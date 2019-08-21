@@ -15,7 +15,8 @@ public class ShowManager {
 		ShowManager sm = new ShowManager();
 		sm.showData();
 	}
-///ÄÄ¸Í
+// ÄÄ¸Í
+	// Àü ¾Æ´Ô
 	public List<CIWIShowVO> showData() {
 		List<CIWIShowVO> list = new ArrayList<CIWIShowVO>();
 		int sno = 1;
