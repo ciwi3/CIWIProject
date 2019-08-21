@@ -816,7 +816,6 @@ body {
     padding: 40px 0 30px;
     background: url(images/footer-cover.jpg) no-repeat;
     background-size: cover;
-	width:150px;    
 }
 
 .site-footer::before {
@@ -2082,9 +2081,8 @@ a, a:link, a:visited, a:hover, a:active {
 
 /* #autocomplete {
   max-width: 400px;
-  margin: 0 auto;
-}
- */
+  margin: 0px auto;
+} */
 
 
 
