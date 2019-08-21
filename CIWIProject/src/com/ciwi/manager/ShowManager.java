@@ -16,6 +16,7 @@ public class ShowManager {
 		sm.showData();
 	}
 ///ÄÄ¸Í
+	/// ½Ã¹ß
 	public List<CIWIShowVO> showData() {
 		List<CIWIShowVO> list = new ArrayList<CIWIShowVO>();
 		int sno = 1;
