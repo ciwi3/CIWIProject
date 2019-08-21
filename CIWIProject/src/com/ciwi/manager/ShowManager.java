@@ -9,7 +9,7 @@ import org.jsoup.select.Elements;
 
 import com.ciwi.dao.CiwiShowDAO;
 import com.ciwi.vo.*;
-
+// show ¤±¤±¤Ç¤Ç¤Ç
 public class ShowManager {
 	public static void main(String[] args) {
 		ShowManager sm = new ShowManager();
@@ -17,6 +17,9 @@ public class ShowManager {
 	}
 ///ÄÄ¸Í
 	/// ½Ã¹ß
+// ÄÄ¸Í
+	// Àü ¾Æ´Ô
+		//±×·³´©±¸?
 	public List<CIWIShowVO> showData() {
 		List<CIWIShowVO> list = new ArrayList<CIWIShowVO>();
 		int sno = 1;
