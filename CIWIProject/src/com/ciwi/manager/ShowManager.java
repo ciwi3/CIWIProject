@@ -9,7 +9,7 @@ import org.jsoup.select.Elements;
 
 import com.ciwi.dao.CiwiShowDAO;
 import com.ciwi.vo.*;
-
+// show
 public class ShowManager {
 	public static void main(String[] args) {
 		ShowManager sm = new ShowManager();
