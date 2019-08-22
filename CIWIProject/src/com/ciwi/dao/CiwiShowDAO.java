@@ -9,7 +9,7 @@ import com.ciwi.vo.CIWIShowVO;
 public class CiwiShowDAO {
 	private static SqlSessionFactory ssf;
 	static {
-		ssf = CreateSqlSessionFactory.getSssf();
+		ssf = CreateSqlSessionFactory.getSsf();
 	}
 
 	public static void insertCIWIShow(CIWIShowVO vo) {
