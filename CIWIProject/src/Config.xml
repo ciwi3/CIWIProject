@@ -6,6 +6,7 @@
     <properties resource="db.properties"></properties>
     <typeAliases>
        <typeAlias type="com.ciwi.vo.MemberVO" alias="MemberVO"/>
+       <typeAlias type="com.ciwi.vo.CIWIShowVO" alias="CIWIShowVO"/>
        
        <!-- <typeAlias type="com.sist.vo.FestivalVO" alias="FestivalVO"/> -->
     </typeAliases>
@@ -23,6 +24,7 @@
     </environments>
     <mappers>
        <mapper resource="com/ciwi/mapper/member-mapper.xml"/>
+       <mapper resource="com/ciwi/mapper/show-mapper.xml"/>
        <!-- <mapper resource="com/sist/mapper/festival-mapper.xml"/> -->
     </mappers>
  </configuration>
