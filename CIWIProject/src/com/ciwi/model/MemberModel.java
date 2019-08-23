@@ -11,12 +11,16 @@ import com.ciwi.vo.MemberVO;
 public class MemberModel {
 	@RequestMapping("member/join.do")
 	public String member_main(Model model) {
-		model.addAttribute("main_jsp", "../member/join.jsp");
-		return "../main/main.jsp";
+		return "../member/join.jsp";
 	}
-	// 로그인 처리 => 로그인 버튼을 누르면 바로 main으로 가는게 아니라 login.jsp를 거쳐서 가야됨
 	@RequestMapping("member/login.do")
 	public String member_login(Model model) {
+		return "../member/login.jsp";
+	}
+	
+	// 로그인 처리 => 로그인 버튼을 누르면 바로 main으로 가는게 아니라 login.jsp를 거쳐서 가야됨
+	/*@RequestMapping("member/login.do")
+	public String member_login_ok(Model model) {
 		String id=model.getRequest().getParameter("id");
 		String pwd=model.getRequest().getParameter("pwd");
 		
@@ -29,7 +33,7 @@ public class MemberModel {
 		}
 		model.addAttribute("result", vo.getAdmin());
 		return "../member/login.jsp";
-	}
+	}*/
 	
 	@RequestMapping("member/logout.do")
 	public String member_logout(Model model) {
