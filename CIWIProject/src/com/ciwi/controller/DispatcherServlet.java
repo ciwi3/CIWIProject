@@ -19,6 +19,7 @@ public class DispatcherServlet extends HttpServlet {
     // web.xml => XML의 경로명 읽기 ==> HandlerMapping에 전송 (SAX) ==> 등록된 클래스 모아둔다 
 	//                                                          ========= Model
 	// XML에 등록 패키지의 => 클래스를 모아둔다 
+	// ㅎㅇ
 	private List<String> list=new ArrayList<String>();
 	public void init(ServletConfig config) throws ServletException {
 		String path=config.getInitParameter("xmlPath");
