@@ -14,8 +14,8 @@ body {
 
 @font-face {
     font-family: "mountains";
-    src: url(../index_fonts/beyond_the_mountains.ttf);
-    src: url(../index_fonts/beyond_the_mountains.otf);
+    src: url(fonts/beyond_the_mountains.ttf);
+    src: url(fonts/beyond_the_mountains.otf);
     font-weight: 400;
 }
 
@@ -35,7 +35,7 @@ body {
 # site-header
 ------------------------------------------------------------*/
 .home-page {
-    background: url(../index_images/images/middle-cover.jpg) no-repeat;
+    background: url(images/middle-cover.jpg) no-repeat;
 }
 
 .site-header {
@@ -232,7 +232,7 @@ body {
 -----------------------------------------------------------*/
 .hero-content {
     padding: 220px 0;
-    background: url("../index_images/cover.jpg") no-repeat;
+    background: url("images/cover.jpg") no-repeat;
     background-size: cover;
 }
 
@@ -284,10 +284,10 @@ body {
     margin-bottom: 30px;
 }
 
-.countdown-holder .movie,
-.countdown-holder .show,
+.countdown-holder .dday,
+.countdown-holder .dhour,
 .countdown-holder .dmin,
-.countdown-holder .festival {
+.countdown-holder .dsec {
     display: block;
     font-size: 72px;
     font-weight: 600;
@@ -331,7 +331,7 @@ body {
     min-height: 4640px;
     width: 100%;
     padding-bottom: 120px;
-    background: url("../index_images/middle-cover.jpg") no-repeat;
+    background: url("images/middle-cover.jpg") no-repeat;
     background-size: 100% auto;
 }
 
@@ -814,7 +814,7 @@ body {
 .site-footer {
     position: relative;
     padding: 40px 0 30px;
-    background: url(../index_images/footer-cover.jpg) no-repeat;
+    background: url(images/footer-cover.jpg) no-repeat;
     background-size: cover;
 }
 
@@ -924,7 +924,7 @@ body {
 # about-us
 ------------------------------------------------------------*/
 .about-us {
-    background: url("../index_imges/about-us-background.jpg") no-repeat;
+    background: url("images/about-us-background.jpg") no-repeat;
     width: 100%;
     height: 100%;
 }
@@ -954,7 +954,7 @@ body {
 }
 
 .about-us .page-header {
-    background: url("../index_images/about-us-header-background.jpg") no-repeat;
+    background: url("images/about-us-header-background.jpg") no-repeat;
     background-size: cover;
 }
 
@@ -1469,7 +1469,7 @@ body {
 .blog-page {
     width: 100%;
     height: 100%;
-    background: url("../index_images/blog-page-background.jpg") no-repeat;
+    background: url("images/blog-page-background.jpg") no-repeat;
 }
 
 /*------------------------------------------------------------
@@ -1947,139 +1947,10 @@ body {
     content: "03.";
 }
 
-$background: #eee;
-$base-color: #eee;
-$search-box: #F5D76E;
-$search-box-hover: #F89406;
-$article-color: #72C1AF;
 
-body {
-    background-color: $background;
-    color: $base-color;
-    font-family: 'Roboto';
-}
 
-h5 {
-    margin-bottom: 20px;
-    font-size: 1.2em;
-    font-weight: 500;
-}
 
-#search {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    transition: all 100ms ease;
-}
 
-#search.top {
-    top: 10%;
-}
 
-#search input {
-    width: 300px;
-    border: 2px solid $search-box;
-    border-radius: 20px;
-    background-color: #eee;
-}
 
-#search input:focus {
-    border: 2px solid $search-box-hover;
-    background-color: #fff;
-}
 
-#search input:focus + .input-addon {
-    border-color: $search-box-hover;
-}
-
-.input-addon {
-    position: absolute;
-    top: 20%;
-    right: 5%;
-    padding-left: 10px;
-    color: #bbb;
-    font-weight: 500;
-    border-left: 1px solid $search-box;
-    z-index: 10;
-}
-
-.input-addon a:hover {
-    color: #999;
-}
-
-.article-list {
-    margin: 150px auto;
-}
-
-.article {
-    width: 80%;
-    min-height: 75px;
-    margin: 10px auto;
-    padding: 20px;
-    background-color: $article-color;
-    border: 1px solid #ddd;
-    opacity: 1;
-    
-    font-size: 1.1em;
-    
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
-    cursor: pointer;
-    
-    transition: all 200ms ease;
-    -webkit-transition: all 200ms ease;
-    -moz-transition: all 200ms ease;
-    -o-transition: all 200ms ease;
-}
-
-.article:hover {
-    transform: translateX(5px);
-}
-
-.article p {
-    margin-left: 15px;
-}
-
-a, a:link, a:visited, a:hover, a:active {
-    text-decoration:none;
-    color: inherit;
-}
-
-/* Bounce animation from animate.css by Daniel Eden:  https://daneden.github.io/animate.css/ */
-@keyframes bounce {
-  from, 60%, 75%, 90%, to {
-    animation-timing-function: ease;
-  }
-
-  from {
-    opacity: 0;
-    transform: translate3d(0, 3000px, 0);
-  }
-
-  60% {
-    opacity: 1;
-    transform: translate3d(0, -20px, 0);
-  }
-
-  75% {
-    transform: translate3d(0, 10px, 0);
-  }
-
-  90% {
-    transform: translate3d(0, -5px, 0);
-  }
-
-  to {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-.bounce {
-  animation: bounce .8s ease;
-}
-
-/* #autocomplete {
-  max-width: 400px;
-  margin: 0px auto;
-} */
