@@ -1,0 +1,31 @@
+.firstbar .nav-icons {
+  float: right;
+  padding: 0;
+  margin: 0;
+  margin-top: 27px;
+}
+.firstbar .nav-icons li {
+  display: block;
+  float: left;
+  margin-left: 20px;
+}
+.firstbar .nav-icons li a {
+  display: inline-block;
+  color: #191E21;
+}
+.firstbar .nav-icons li a i {
+  font-size: 18px;
+  float: left;
+  width: 25px;
+  text-align: left;
+}
+.firstbar .nav-icons li a div {
+  float: left;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-top: 3px;
+}
+.firstbar .nav-icons li a:hover {
+  color: #F73F52;
+}
