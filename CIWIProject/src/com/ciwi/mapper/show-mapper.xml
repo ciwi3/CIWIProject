@@ -1,9 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.mapper.show-mapper">
+	<resultMap type="CIWIShowVO" id="ShowMap">
+		<result property="sno" column="sno" />
+		<result property="subject" column="subject" />
+		<result property="sdate" column="sdate" />
+		<result property="poster" column="poster" />
+		<result property="starttime" column="starttime" />
+		<result property="price" column="price" />
+		<result property="place" column="place" />
+		<result property="showtime" column="showtime" />
+		<result property="tel" column="tel" />
+		<result property="host" column="host" />
+		<result property="age" column="age" />
+		<result property="homepage" column="homepage" />
+		<result property="source" column="source" />
+		<result property="address" column="address" />
+		<result property="slike" column="slike" />
+		<result property="genre_no" column="genre_no" />
+		<result property="category_no" column="category_no" />
+		<result property="area_no" column="area_no" />
+		<result property="scvo.show_genre" column="show_genre" />
+		<result property="ccvo.category_name" column="category_name" />
+		<result property="avo.area_name" column="area_name" />
+	</resultMap>
 	<insert id="insertCIWIShow" parameterType="CIWIShowVO">
 		INSERT INTO show
 		VALUES
 		(#{sno},#{subject},#{sdate},#{poster},#{starttime},#{price},#{place},#{showtime},#{tel},#{host},#{age},#{homepage},#{source},#{address},#{slike},#{genre_no},#{category_no},#{area_no})
 	</insert>
+
+
+	<select id="total" parameterType="java.util.Map" resultMap="ShowMap">
+		SELECT sno,subject,poster,sdate,sg.show_genre as show_genre, c.category_name as category_name, a.area_name as area_name
+		FROM show s, category c, area a,show_genre sg
+		WHERE s.genre_no = sg.show_no
+		AND s.category_no = c.category_no
+		AND s.area_no = a.area_no
+
+		<if test='searchOption.equals("제목")'>
+		<choose>
+		<when test='text.equals("")'>
+		AND regexp_like(subject,'.*')
+		</when>
+		<when test='!text.equals("")'>
+		AND regexp_like(subject,#{text})
+		</when>
+		</choose>
+		</if>		
+		<if test='searchOption.equals("내용")'>
+		AND regexp_like(content,#{text})
+		</if>
+		<if test='!area.equals("")'>
+		AND area_name = #{area}
+		</if>
+		<if test='!genre.equals("")'>
+		AND show_genre = #{genre}
+		</if>
+		ORDER BY sno asc
+	</select>
 </mapper>

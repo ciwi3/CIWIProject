@@ -1,5 +1,10 @@
 package com.ciwi.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -16,5 +21,12 @@ public class CiwiShowDAO {
 		SqlSession session = ssf.openSession(true);
 		session.insert("insertCIWIShow", vo);
 		session.close();
+	}
+
+	public static List<CIWIShowVO> total(Map map) {
+		List<CIWIShowVO> list = new ArrayList<>();
+		SqlSession session = ssf.openSession();
+		list = session.selectList("total", map);
+		return list;
 	}
 }

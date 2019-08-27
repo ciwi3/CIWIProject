@@ -1,8 +1,14 @@
 package com.ciwi.model;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.ciwi.controller.Controller;
 import com.ciwi.controller.Model;
 import com.ciwi.controller.RequestMapping;
+import com.ciwi.dao.CiwiShowDAO;
+import com.ciwi.vo.CIWIShowVO;
 
 @Controller("mainModel") // key="mainModel"
 public class MainModel {

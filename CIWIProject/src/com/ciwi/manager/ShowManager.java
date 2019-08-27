@@ -27,16 +27,14 @@ public class ShowManager {
 		List<CIWIShowVO> list = new ArrayList<CIWIShowVO>();
 		int sno = 1;
 		try {
-			for (int i = 1; i <= 22; i++) {
+			for (int i = 1; i <= 19; i++) {
 				Document doc = Jsoup.connect("https://www.culture.go.kr/perform/experienceList.do?cPage=" + i).get();
 				Elements link = doc.select("div.list_type dl.info dt a");
 				// System.out.println(link.get(0).attr("href"));
 
-				for (int j = 0; j < link.size(); j++) {
+				for (int j = 16; j < link.size(); j++) {
 					try {
-						if (i < 15) {
-							continue;
-						}
+				
 						String site = "https://www.culture.go.kr" + link.get(j).attr("href");
 						Document doc2 = Jsoup.connect(site).get();
 						Element subject = doc2.select("div.content_link div span").first();
@@ -166,7 +164,7 @@ public class ShowManager {
 						System.out.println(genre.text());
 						System.out.println("====================================");
 						sno++;
-						//CiwiShowDAO.insertCIWIShow(vo);
+						CiwiShowDAO.insertCIWIShow(vo);
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}

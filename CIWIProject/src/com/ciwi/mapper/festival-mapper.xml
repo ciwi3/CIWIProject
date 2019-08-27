@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ciwi.mapper.festival-mapper">
+
 	<insert id="festivalDataInsert" parameterType="FestivalVO">
 		<!-- {} = get메소드 -->
 		Insert Into festival Values(
-			#{fno},
-			#{place},
-			#{subject},
-			#{poster},
-			#{fdate},
-			#{host},
-			#{homepage},
-			#{tel},
-			#{showtime},
-			#{flike},
-			#{concert_genre},
-			#{category_no},
-			#{area_no}
+		#{fno},
+		#{place},
+		#{subject},
+		#{poster},
+		#{fdate},
+		#{host},
+		#{homepage},
+		#{tel},
+		#{showtime},
+		#{flike},
+		#{concert_genre},
+		#{category_no},
+		#{area_no}
 		)
 	</insert>
 </mapper>
