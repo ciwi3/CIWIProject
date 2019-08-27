@@ -17,7 +17,6 @@ public class MemberModel {
 	public String member_login(Model model) {
 		return "../member/login.jsp";
 	}
-	
 	// 로그인 처리 => 로그인 버튼을 누르면 바로 main으로 가는게 아니라 login.jsp를 거쳐서 가야됨
 	/*@RequestMapping("member/login.do")
 	public String member_login_ok(Model model) {
@@ -34,7 +33,6 @@ public class MemberModel {
 		model.addAttribute("result", vo.getAdmin());
 		return "../member/login.jsp";
 	}*/
-	
 	@RequestMapping("member/logout.do")
 	public String member_logout(Model model) {
 		HttpSession session=model.getRequest().getSession();
