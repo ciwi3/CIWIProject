@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.ciwi.vo.*;
+import java.util.*;
 
 public class FestivalDAO {
 	private static SqlSessionFactory ssf;
@@ -15,5 +16,19 @@ public class FestivalDAO {
 		SqlSession session = ssf.openSession(true); // getConnection()
 		session.insert("festivalDataInsert", vo);
 		session.close(); // disConnection()
+	}
+	
+	public static List<FestivalVO> festivalAllData() {
+		SqlSession session=ssf.openSession();
+		List<FestivalVO> list=session.selectList("festivalAllData");
+		session.close();
+		return list;
+	}
+	
+	public static FestivalVO festivalDetail(int fno) {
+		SqlSession session=ssf.openSession();
+		FestivalVO vo=session.selectOne("festivalDetail", fno);
+		session.close();
+		return vo;
 	}
 }
