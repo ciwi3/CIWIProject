@@ -6,8 +6,11 @@
     <properties resource="db.properties"></properties>
     <typeAliases>
        <typeAlias type="com.ciwi.vo.MemberVO" alias="MemberVO"/>
-       <typeAlias type="com.ciwi.vo.CIWIShowVO" alias="CIWIShowVO"/>
+       <typeAlias type="com.ciwi.vo.ShowVO" alias="ShowVO"/>
        <typeAlias type="com.ciwi.vo.FestivalVO" alias="FestivalVO"/>
+       <typeAlias type="com.ciwi.vo.AreaVO" alias="AreaVO"/>
+       <typeAlias type="com.ciwi.vo.CIWICategoryVO" alias="CIWICategoryVO"/>
+       <typeAlias type="com.ciwi.vo.ShowCategoryVO" alias="ShowCategoryVO"/>
        
        <!-- <typeAlias type="com.sist.vo.FestivalVO" alias="FestivalVO"/> -->
     </typeAliases>

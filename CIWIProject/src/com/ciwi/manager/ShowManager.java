@@ -7,10 +7,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.ciwi.dao.CiwiShowDAO;
+import com.ciwi.dao.ShowDAO;
 import com.ciwi.vo.*;
 
-// show ¤±¤±¤Ç¤Ç¤Ç
 public class ShowManager {
 	public static void main(String[] args) {
 		ShowManager sm = new ShowManager();
@@ -23,20 +22,18 @@ public class ShowManager {
 	// Àü ¾Æ´Ô
 	// ±×·³´©±¸?
 	// Â¦²á
-	public List<CIWIShowVO> showData() {
-		List<CIWIShowVO> list = new ArrayList<CIWIShowVO>();
+	public List<ShowVO> showData() {
+		List<ShowVO> list = new ArrayList<ShowVO>();
 		int sno = 1;
 		try {
-			for (int i = 1; i <= 22; i++) {
+			for (int i = 1; i <= 19; i++) {
 				Document doc = Jsoup.connect("https://www.culture.go.kr/perform/experienceList.do?cPage=" + i).get();
 				Elements link = doc.select("div.list_type dl.info dt a");
 				// System.out.println(link.get(0).attr("href"));
 
-				for (int j = 0; j < link.size(); j++) {
+				for (int j = 16; j < link.size(); j++) {
 					try {
-						if (i < 15) {
-							continue;
-						}
+				
 						String site = "https://www.culture.go.kr" + link.get(j).attr("href");
 						Document doc2 = Jsoup.connect(site).get();
 						Element subject = doc2.select("div.content_link div span").first();
@@ -52,7 +49,7 @@ public class ShowManager {
 						Element address = doc2.select("div.jqTabLocation div.detail_info ul li").get(1);
 						Element homepage = doc2.select("div.jqTabLocation div.detail_info ul li a").first();
 						Element genre = doc2.select("div.info_wrap div.label_info span.basic").first();
-						CIWIShowVO vo = new CIWIShowVO();
+						ShowVO vo = new ShowVO();
 						vo.setSno(sno);
 						vo.setSubject(subject.text());
 						vo.setPoster(poster.attr("src"));
@@ -166,7 +163,7 @@ public class ShowManager {
 						System.out.println(genre.text());
 						System.out.println("====================================");
 						sno++;
-						//CiwiShowDAO.insertCIWIShow(vo);
+						ShowDAO.insertShow(vo);
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}

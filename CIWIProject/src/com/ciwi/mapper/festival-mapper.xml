@@ -13,10 +13,17 @@
 			#{homepage},
 			#{tel},
 			#{showtime},
-			#{flike},
-			#{concert_genre},
-			#{category_no},
-			#{area_no}
+			#{flike}
 		)
 	</insert>
+	<select id="festivalAllData" resultType="FestivalVO">
+		Select fno, poster, subject, host, fdate, place
+		From festival
+	</select>
+	
+	<select id="festivalDetail" resultType="FestivalVO" parameterType="int">
+		Select *
+		From festival
+		Where fno=#{fno}
+	</select>
 </mapper>

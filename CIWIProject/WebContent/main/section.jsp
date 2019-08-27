@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -82,82 +83,36 @@
                <div class="row">
                   <div class="col-md-12">
                      <div class="section-title">
-                        <h2 class="title">Recent posts</h2>
+                        <h2 class="title">행사</h2>
                      </div>
                   </div>
                   <!-- post -->
-                  <div class="col-md-6">
+                  <c:forEach var="fvo" items="${flist }" varStatus="f">
+                  <div class="col-md-4">
+                  <c:if test="${f.index<3 }">
                      <div class="post">
-                        <a class="post-img" href="blog-post.html"><img src="../img/post-1.jpg" alt=""></a>
+                        <a class="post-img" href="../contents/festival_detail.do?fno=${fvo.fno }">
+                        	<img src="${fvo.poster }" alt="" style="width:200px; height:200px">
+                        </a>
                         <div class="post-body">
                            <div class="post-category">
                               <a href="category.html">Travel</a>
                            </div>
-                           <h3 class="post-title"><a href="blog-post.html">Sed ut perspiciatis, unde omnis iste natus error sit</a></h3>
+                           <h3 class="post-title">
+                           		<a href="../contents/festival_detail.do?fno=${fvo.fno }">${fvo.subject }</a>
+                           </h3>
                            <ul class="post-meta">
-                              <li><a href="author.html">John Doe</a></li>
-                              <li>20 April 2018</li>
+                              <li>${fvo.host }</li>
+                              <li>${fvo.place }</li>
+                              <li>${fvo.fdate }</li>
                            </ul>
                         </div>
                      </div>
+                  </c:if>
                   </div>
-                  <!-- /post -->
-
-                  <!-- post -->
-                  <div class="col-md-6">
-                     <div class="post">
-                        <a class="post-img" href="blog-post.html"><img src="../img/post-2.jpg" alt=""></a>
-                        <div class="post-body">
-                           <div class="post-category">
-                              <a href="category.html">Technology</a>
-                              <a href="category.html">Lifestyle</a>
-                           </div>
-                           <h3 class="post-title"><a href="blog-post.html">Ne bonorum praesent cum, labitur persequeris definitionem quo cu?</a></h3>
-                           <ul class="post-meta">
-                              <li><a href="author.html">John Doe</a></li>
-                              <li>20 April 2018</li>
-                           </ul>
-                        </div>
-                     </div>
-                  </div>
-                  <!-- /post -->
-
-                  <div class="clearfix visible-md visible-lg"></div>
-
-                  <!-- post -->
-                  <div class="col-md-6">
-                     <div class="post">
-                        <a class="post-img" href="blog-post.html"><img src="../img/post-4.jpg" alt=""></a>
-                        <div class="post-body">
-                           <div class="post-category">
-                              <a href="category.html">Health</a>
-                           </div>
-                           <h3 class="post-title"><a href="blog-post.html">Postea senserit id eos, vivendo periculis ei qui</a></h3>
-                           <ul class="post-meta">
-                              <li><a href="author.html">John Doe</a></li>
-                              <li>20 April 2018</li>
-                           </ul>
-                        </div>
-                     </div>
-                  </div>
-                  <!-- /post -->
-
-                  <!-- post -->
-                  <div class="col-md-6">
-                     <div class="post">
-                        <a class="post-img" href="blog-post.html"><img src="../img/post-7.jpg" alt=""></a>
-                        <div class="post-body">
-                           <div class="post-category">
-                              <a href="category.html">Health</a>
-                              <a href="category.html">Lifestyle</a>
-                           </div>
-                           <h3 class="post-title"><a href="blog-post.html">Sed ut perspiciatis, unde omnis iste natus error sit</a></h3>
-                           <ul class="post-meta">
-                              <li><a href="author.html">John Doe</a></li>
-                              <li>20 April 2018</li>
-                           </ul>
-                        </div>
-                     </div>
+                  </c:forEach>
+                  <div class="col-md-12 text-right">
+                  	<a href="../contents/festival.do">더보기</a><hr>
                   </div>
                   <!-- /post -->
                </div>
@@ -167,7 +122,7 @@
                <div class="row">
                   <div class="col-md-12">
                      <div class="section-title">
-                        <h2 class="title">Lifestyle</h2>
+                        <h2 class="title">공연</h2>
                      </div>
                   </div>
                   <!-- post -->
