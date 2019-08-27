@@ -30,8 +30,10 @@
 		(#{sno},#{subject},#{sdate},#{poster},#{starttime},#{price},#{place},#{showtime},#{tel},#{host},#{age},#{homepage},#{source},#{address},#{slike},#{genre_no},#{category_no},#{area_no})
 	</insert>
 
-
-	<select id="total" parameterType="java.util.Map" resultMap="ShowMap">
+<!-- 
+	검색조건에 따라서 검색 searchOption에 검색옵션을 적고 검색을 위한 text를 통해 검색
+ -->
+	<select id="showSearch" parameterType="java.util.Map" resultMap="ShowMap">
 		SELECT sno,subject,poster,sdate,sg.show_genre as show_genre, c.category_name as category_name, a.area_name as area_name
 		FROM show s, category c, area a,show_genre sg
 		WHERE s.genre_no = sg.show_no

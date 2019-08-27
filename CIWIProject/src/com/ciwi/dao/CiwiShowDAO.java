@@ -23,10 +23,10 @@ public class CiwiShowDAO {
 		session.close();
 	}
 
-	public static List<CIWIShowVO> total(Map map) {
+	public static List<CIWIShowVO> showSearch(Map map) {
 		List<CIWIShowVO> list = new ArrayList<>();
 		SqlSession session = ssf.openSession();
-		list = session.selectList("total", map);
+		list = session.selectList("showSearch", map);
 		return list;
 	}
 }
