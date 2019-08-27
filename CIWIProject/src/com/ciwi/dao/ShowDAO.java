@@ -19,7 +19,7 @@ public class ShowDAO {
 
 	public static void insertShow(ShowVO vo) {
 		SqlSession session = ssf.openSession(true);
-		session.insert("insertCIWIShow", vo);
+		session.insert("insertShow", vo);
 		session.close();
 	}
 

@@ -10,7 +10,6 @@ import org.jsoup.select.Elements;
 import com.ciwi.dao.ShowDAO;
 import com.ciwi.vo.*;
 
-// show けけででで
 public class ShowManager {
 	public static void main(String[] args) {
 		ShowManager sm = new ShowManager();
