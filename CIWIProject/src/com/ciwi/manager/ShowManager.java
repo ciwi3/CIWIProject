@@ -7,7 +7,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.ciwi.dao.CiwiShowDAO;
+import com.ciwi.dao.ShowDAO;
 import com.ciwi.vo.*;
 
 // show ¤±¤±¤Ç¤Ç¤Ç
@@ -23,8 +23,8 @@ public class ShowManager {
 	// Àü ¾Æ´Ô
 	// ±×·³´©±¸?
 	// Â¦²á
-	public List<CIWIShowVO> showData() {
-		List<CIWIShowVO> list = new ArrayList<CIWIShowVO>();
+	public List<ShowVO> showData() {
+		List<ShowVO> list = new ArrayList<ShowVO>();
 		int sno = 1;
 		try {
 			for (int i = 1; i <= 19; i++) {
@@ -50,7 +50,7 @@ public class ShowManager {
 						Element address = doc2.select("div.jqTabLocation div.detail_info ul li").get(1);
 						Element homepage = doc2.select("div.jqTabLocation div.detail_info ul li a").first();
 						Element genre = doc2.select("div.info_wrap div.label_info span.basic").first();
-						CIWIShowVO vo = new CIWIShowVO();
+						ShowVO vo = new ShowVO();
 						vo.setSno(sno);
 						vo.setSubject(subject.text());
 						vo.setPoster(poster.attr("src"));
@@ -164,7 +164,7 @@ public class ShowManager {
 						System.out.println(genre.text());
 						System.out.println("====================================");
 						sno++;
-						CiwiShowDAO.insertCIWIShow(vo);
+						ShowDAO.insertCIWIShow(vo);
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}

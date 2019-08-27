@@ -1,6 +1,6 @@
 package com.ciwi.vo;
 
-public class CIWIShowVO {
+public class ShowVO {
 	private int sno;
 	private String subject;
 	private String sdate;
