@@ -164,7 +164,7 @@ public class ShowManager {
 						System.out.println(genre.text());
 						System.out.println("====================================");
 						sno++;
-						ShowDAO.insertCIWIShow(vo);
+						ShowDAO.insertShow(vo);
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}

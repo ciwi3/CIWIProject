@@ -17,7 +17,7 @@ public class ShowDAO {
 		ssf = CreateSqlSessionFactory.getSsf();
 	}
 
-	public static void insertCIWIShow(ShowVO vo) {
+	public static void insertShow(ShowVO vo) {
 		SqlSession session = ssf.openSession(true);
 		session.insert("insertCIWIShow", vo);
 		session.close();
