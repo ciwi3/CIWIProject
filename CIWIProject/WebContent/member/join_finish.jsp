@@ -37,7 +37,7 @@
 						<p><h3 class="text-center">000님, 회원가입을 축하합니다.</h3></p>
 						<div class="text-center">
 							<a href="../main/main.do" class="primary-button">메인으로</a>
-							<a href="#" class="secondary-button">로그인</a>
+							<a href="../member/login.do" class="secondary-button">로그인</a>
 						</div>
 					</div>
 				</div>

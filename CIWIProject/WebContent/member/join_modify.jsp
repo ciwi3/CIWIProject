@@ -17,13 +17,13 @@
 	<!-- SECTION -->
 	<div class="section">
 		<div class="container">
-			<h2 class="text-center">회원가입</h2>
+			<h2 class="text-center">회원정보/수정</h2>
 				<div class="row">
 					<table class="table">
-						<tr>
+						 <tr>
 							<th class="text-right" width=20% height=20%><font size="2px">아이디</font></th>
 							<td class="text-left" width=80%>
-								<input type=text name=id size=20 >
+								<input type=text name=id size=20 readonly="readonly">
 								<input type=button value="중복확인" class="btn btn-sm btn-info">
 								&nbsp;&nbsp;
 								<font size="2px">영문소문자/숫자, 4~16자</font>
@@ -147,8 +147,8 @@
 								</td>
 							</tr>
 							<td colspan=2 class="text-center">
-                  					<input type=button value="가입취소" class="btn btn-ms btn-danger" onclick="javascript:history.back()">
-               						<a href="../member/join_finish.do" class="btn btn-ms btn-info">신규회원가입 완료</a>
+                  					<input type=button value="수정취소" class="btn btn-ms btn-danger" onclick="javascript:history.back()">
+               						<a href="../member/join_finish.do" class="btn btn-ms btn-info">수정완료</a>
                					</td>
 							</th>
 					</table>

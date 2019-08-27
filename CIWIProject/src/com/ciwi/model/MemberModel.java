@@ -11,11 +11,23 @@ import com.ciwi.vo.MemberVO;
 public class MemberModel {
 	@RequestMapping("member/join.do")
 	public String member_main(Model model) {
-		return "../member/join.jsp";
+		model.addAttribute("main_jsp", "../member/join.jsp");
+		return "../main/main.jsp";
 	}
 	@RequestMapping("member/login.do")
 	public String member_login(Model model) {
-		return "../member/login.jsp";
+		model.addAttribute("main_jsp", "../member/login.jsp");
+		return "../main/main.jsp";
+	}
+	@RequestMapping("member/join_modify.do")
+	public String member_join_modify(Model model){
+		model.addAttribute("main_jsp", "../member/join_modify.jsp");
+		return "../main/main.jsp";
+	}
+	@RequestMapping("member/join_finish.do")
+	public String member_join_finish(Model model){
+		model.addAttribute("main_jsp", "../member/join_finish.jsp");
+		return "../main/main.jsp";
 	}
 	// 로그인 처리 => 로그인 버튼을 누르면 바로 main으로 가는게 아니라 login.jsp를 거쳐서 가야됨
 	/*@RequestMapping("member/login.do")

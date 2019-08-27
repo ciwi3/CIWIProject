@@ -40,8 +40,9 @@
 
                <!-- search & aside toggle -->
                <div class="nav-btns">
-                  <button class="aside-btn"><i class="fa fa-bars"></i></button>
-                  <button class="search-btn"><i class="fa fa-search"></i></button>
+               	  <a href="../member/login.do" class="btn btn-sm btn-info">로그인</a>
+                  <button class="aside-btn"><i class="fa fa-bars">메뉴</i></button>
+                  <button class="search-btn"><i class="fa fa-search">검색</i></button>
                   <div id="nav-search">
                      <form>
                         <input class="input" name="search" placeholder="통합검색">
@@ -115,7 +116,7 @@
 									<ul class="dropdown-list">
 										<li><a href="#">내지갑</a></li>
 										<li><a href="#">보고싶어요</a></li>
-										<li><a href="#">회원수정</a></li>
+										<li><a href="../member/join_modify.do">회원수정</a></li>
 									</ul>
 								</div>
 							</div>
@@ -154,7 +155,7 @@
                </li>
                <li class="has-dropdown"><a>내 페이지</a>
                   <ul class="dropdown">
-                     <li><a href="#">회원정보 / 수정</a></li>
+                     <li><a href="../member/join_modify.do">회원정보 / 수정</a></li>
                      <li><a href="#">내 지갑</a></li>
                      <li><a href="#">보고싶어요</a></li>
                   </ul>
