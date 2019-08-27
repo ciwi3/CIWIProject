@@ -16,17 +16,34 @@ public class ShowDAO {
 	static {
 		ssf = CreateSqlSessionFactory.getSsf();
 	}
-
-	public static void insertShow(ShowVO vo) {
+	
+	public static List<ShowVO> showAllData(){
+		List<ShowVO> list=new ArrayList<ShowVO>();
+		SqlSession session = ssf.openSession();	// getConnection()
+		list=session.selectList("showAllData");
+		session.close();	// disConnection()
+		return list;
+	}
+	
+	public static void showInsert(ShowVO svo) {
 		SqlSession session = ssf.openSession(true);
-		session.insert("insertShow", vo);
+		session.insert("showInsert", svo);
 		session.close();
 	}
 
 	public static List<ShowVO> showSearch(Map map) {
-		List<ShowVO> list = new ArrayList<>();
+		List<ShowVO> list = new ArrayList<ShowVO>();
 		SqlSession session = ssf.openSession();
 		list = session.selectList("showSearch", map);
+		session.close();
 		return list;
+	}
+	
+	public static ShowVO showDetailData(int sno){
+		ShowVO vo=new ShowVO();
+		SqlSession session = ssf.openSession();
+		vo=session.selectOne("showDetailData", sno);
+		session.close();
+		return vo;
 	}
 }

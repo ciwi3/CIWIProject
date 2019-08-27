@@ -16,12 +16,6 @@ public class ShowManager {
 		sm.showData();
 	}
 
-	/// ÄÄ¸Í
-	/// ½Ã¹ß
-	// ÄÄ¸Í
-	// Àü ¾Æ´Ô
-	// ±×·³´©±¸?
-	// Â¦²á
 	public List<ShowVO> showData() {
 		List<ShowVO> list = new ArrayList<ShowVO>();
 		int sno = 1;
@@ -163,7 +157,7 @@ public class ShowManager {
 						System.out.println(genre.text());
 						System.out.println("====================================");
 						sno++;
-						ShowDAO.insertShow(vo);
+						ShowDAO.showInsert(vo);
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}
