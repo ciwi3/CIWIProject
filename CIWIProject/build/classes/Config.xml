@@ -10,7 +10,8 @@
        <typeAlias type="com.ciwi.vo.FestivalVO" alias="FestivalVO"/>
        <typeAlias type="com.ciwi.vo.AreaVO" alias="AreaVO"/>
        <typeAlias type="com.ciwi.vo.CIWICategoryVO" alias="CIWICategoryVO"/>
-       <typeAlias type="com.ciwi.vo.ShowCategoryVO" alias="ShowCategoryVO"/>
+       <typeAlias type="com.ciwi.vo.ShowGenreVO" alias="ShowGenreVO"/>
+       <typeAlias type="com.ciwi.vo.FestivalGenreVO" alias="FestivalGenreVO"/>
        
        <!-- <typeAlias type="com.sist.vo.FestivalVO" alias="FestivalVO"/> -->
     </typeAliases>
