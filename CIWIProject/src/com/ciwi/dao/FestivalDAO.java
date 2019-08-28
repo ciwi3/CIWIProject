@@ -34,6 +34,7 @@ public class FestivalDAO {
 
 	public static List<FestivalVO> festivalSearch(Map map) {
 		SqlSession session = ssf.openSession();
+		System.out.println(map.get("festival_area"));
 		List<FestivalVO> list = session.selectList("festivalSearch",map);
 		session.close();
 		return list;

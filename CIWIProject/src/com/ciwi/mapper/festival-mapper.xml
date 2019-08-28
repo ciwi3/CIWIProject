@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ciwi.mapper.festival-mapper">
-	<resultMap type="FestivalVO" id="">
+	<resultMap type="FestivalVO" id="FestivalMap">
 		<result property="fno" column="fno" />
 		<result property="place" column="place" />
 		<result property="subject" column="subject" />
@@ -50,17 +50,17 @@
 		Where fno=#{fno}
 	</select>
 
-	<select id="festivalSearch" resultMap="" parameterType="java.util.Map">
-		SELECT fno,subject,poster,fdate,cg.concert_genre as concert_genre,
+	<select id="festivalSearch" resultMap="FestivalMap" parameterType="java.util.Map">
+		SELECT fno,subject,poster,fdate,fg.festival_genre as festival_genre,
 		c.category_name as category_name, a.area_name as area_name
-		FROM festival f, category c, area a,concert_genre cg
-		WHERE f.concert_genre =
-		cg.concert_no
+		FROM festival f, category c, area a,festival_genre fg
+		WHERE f.festival_no =
+		fg.festival_no
 		AND f.category_no = c.category_no
 		AND f.area_no = a.area_no
       <if test='searchOption.equals("제목")'>
       <if test='text!=null  and !text.equals("")'>
-      AND regexp_like(subject,'#{text}')
+      AND regexp_like(subject,#{text})
       </if>
       </if>      
       <if test='searchOption.equals("내용")'>
@@ -68,10 +68,10 @@
       AND regexp_like(content,#{text})
       </if>
       </if>
-      <if test=' area!=null and !area.equals("")'>
+      <if test='festival_area!=null and !festival_area.equals("")'>
       AND area_name = #{festival_area}
       </if>
-      <if test='genre!=null and !genre.equals("") '>
+      <if test='festival_genre!=null and !festival_genre.equals("") '>
       AND show_genre = #{festival_genre}
       </if>
       ORDER BY fno ASC

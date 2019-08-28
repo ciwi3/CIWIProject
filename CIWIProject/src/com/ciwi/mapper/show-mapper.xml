@@ -55,7 +55,7 @@
 
       <if test='searchOption.equals("제목")'>
       <if test='text!=null  and !text.equals("")'>
-      AND regexp_like(subject,'#{text}')
+      AND regexp_like(subject,#{text})
       </if>
       </if>      
       <if test='searchOption.equals("내용")'>
@@ -63,10 +63,10 @@
       AND regexp_like(content,#{text})
       </if>
       </if>
-      <if test=' area!=null and !area.equals("")'>
+      <if test=' show_area!=null and !show_area.equals("")'>
       AND area_name = #{show_area}
       </if>
-      <if test='genre!=null and !genre.equals("") '>
+      <if test='show_genre!=null and !show_genre.equals("") '>
       AND show_genre = #{show_genre}
       </if>
       ORDER BY sno asc
