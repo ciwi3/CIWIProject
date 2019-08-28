@@ -14,7 +14,7 @@ public class ShowModel {
 	public String show_list(Model model){
 		List<ShowVO> slist=ShowDAO.showAllData();
 		model.addAttribute("slist",slist);
-		return "../main/main.jsp";
+		return "../show/show.jsp";
 	}
 	
 	@RequestMapping("show/show_detail.do")
