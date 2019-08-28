@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
    <title>CIWI Template</title>
-<link rel="stylesheet" href="../css2/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
 <style type="text/css">
 .row {
 	margin: 0px auto;

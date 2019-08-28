@@ -13,7 +13,14 @@ public class MemberVO {
 	private String main_addr;
 	private String sub_addr;
 	private int admin;
+	private String msg;
 	
+	public String getMsg() {
+		return msg;
+	}
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 	public int getJoin_no() {
 		return join_no;
 	}
