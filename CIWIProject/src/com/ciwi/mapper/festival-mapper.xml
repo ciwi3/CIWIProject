@@ -23,18 +23,19 @@
 		<!-- {} = get메소드 -->
 		Insert Into festival Values(
 		#{fno},
-		#{place},
 		#{subject},
-		#{poster},
 		#{fdate},
+		#{poster},
+		#{place},
+		#{showtime},
+		#{tel},
 		#{host},
 		#{homepage},
-		#{tel},
-		#{showtime},
+		#{address},
 		#{flike},
-		 #{festival_no},
-         #{category_no},
-         #{area_no}
+		#{festival_no},
+        #{category_no},
+        #{area_no}
 		)
 	</insert>
 	<select id="festivalAllData" resultType="FestivalVO">

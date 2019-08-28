@@ -4,14 +4,15 @@ import java.util.*;
 
 public class FestivalVO {
 	private int fno;
-	private String place;
 	private String subject;
-	private String poster;
 	private String fdate;
+	private String poster;
+	private String place;
+	private String showtime;
+	private String tel;
 	private String host;
 	private String homepage;
-	private String tel;
-	private String showtime;
+	private String address;
 	private int flike;
 	private int festival_no;
 	private int category_no;
@@ -19,6 +20,15 @@ public class FestivalVO {
 	private FestivalGenreVO fgvo = new FestivalGenreVO();
 	private CIWICategoryVO ccvo = new CIWICategoryVO();
 	private AreaVO avo = new AreaVO();
+
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 	public void setFestival_no(int festival_no) {
 		this.festival_no = festival_no;

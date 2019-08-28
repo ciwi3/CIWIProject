@@ -36,7 +36,7 @@ public class FestivalManager {
 				Elements link=doc.select("div.list_type1 ul li a");
 				linkCount=48;
 				for(int i=16;i<subject.size();i++) { // 10개씩
-					System.out.println(k);
+					System.out.println(k); // fno
 					System.out.println("제목: "+subject.get(i).text());
 					String sub=subject.get(i).text();
 					System.out.println("포스터: https://www.culture.go.kr"+poster.get(i).attr("src"));
@@ -51,12 +51,15 @@ public class FestivalManager {
 						Element host=doc2.select("div.info_wrap table.tbl_info tbody tr td").get(3); //o
 						Element tel=doc2.select("div.info_wrap table.tbl_info tbody tr td").get(4); //o
 						Element hompage=doc2.selectFirst("div.link_wrap a"); //o
+						Element address=doc2.select("div#location div.detail_info ul li").get(1);
 						System.out.println("기간: "+fDate.text());
 						System.out.println("지역: "+loc.text());
 						System.out.println("장소: "+place.text());
 						System.out.println("주최: "+host.text());
 						System.out.println("전화: "+tel.text());
 						System.out.println("공식 홈페이지: "+hompage.attr("href"));
+						String addr=address.text().substring(2,address.text().length());
+						System.out.println("주소: "+addr);
 						
 						String area=loc.text();
 						FestivalVO vo=new FestivalVO();
@@ -73,6 +76,7 @@ public class FestivalManager {
 						vo.setShowtime("-");
 						vo.setHost(host.text());
 						vo.setHomepage(hompage.attr("href"));
+						vo.setAddress(addr);
 						vo.setTel(tel.text());
 						vo.setShowtime("-");
 						vo.setFlike(0);
