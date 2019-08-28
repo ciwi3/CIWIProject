@@ -12,10 +12,10 @@
 		<result property="tel" column="tel" />
 		<result property="showtime" column="showtime" />
 		<result property="flike" column="flike" />
-		<result property="festival_genre" column="concert_genre" />
+		<result property="festival_no" column="festival_no" />
 		<result property="category_no" column="category_no" />
 		<result property="area_no" column="area_no" />
-		<result property="fgvo.festival_genre" column="fgvo" />
+		<result property="fgvo.festival_genre" column="festival_genre" />
 		<result property="ccvo.category_name" column="category_name" />
 		<result property="avo.area_name" column="area_name" />
 	</resultMap>

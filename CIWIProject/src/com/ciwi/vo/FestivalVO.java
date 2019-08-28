@@ -13,19 +13,19 @@ public class FestivalVO {
 	private String tel;
 	private String showtime;
 	private int flike;
-	private int festival_genre;
+	private int festival_no;
 	private int category_no;
 	private int area_no;
 	private FestivalGenreVO fgvo = new FestivalGenreVO();
 	private CIWICategoryVO ccvo = new CIWICategoryVO();
 	private AreaVO avo = new AreaVO();
 
-	public void setFestival_genre(int festival_genre) {
-		this.festival_genre = festival_genre;
+	public void setFestival_no(int festival_no) {
+		this.festival_no = festival_no;
 	}
 
-	public int getFestival_genre() {
-		return festival_genre;
+	public int getFestival_no() {
+		return festival_no;
 	}
 
 	public FestivalGenreVO getFgvo() {
