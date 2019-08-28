@@ -19,15 +19,15 @@ public class ShowVO {
 	private int genre_no;
 	private int category_no;
 	private int area_no;
-	private ShowCategoryVO scvo = new ShowCategoryVO();
+	private ShowGenreVO scvo = new ShowGenreVO();
 	private CIWICategoryVO ccvo = new CIWICategoryVO();
 	private AreaVO avo = new AreaVO();
 
-	public ShowCategoryVO getScvo() {
+	public ShowGenreVO getScvo() {
 		return scvo;
 	}
 
-	public void setScvo(ShowCategoryVO scvo) {
+	public void setScvo(ShowGenreVO scvo) {
 		this.scvo = scvo;
 	}
 
