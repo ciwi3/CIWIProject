@@ -1,6 +1,6 @@
 package com.ciwi.vo;
 
-public class ShowCategoryVO {
+public class ShowGenreVO {
 	private int show_no;
 	private String show_genre;
 
