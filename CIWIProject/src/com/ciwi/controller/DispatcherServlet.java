@@ -21,7 +21,6 @@ public class DispatcherServlet extends HttpServlet {
 	// XML에 등록 패키지의 => 클래스를 모아둔다 
 	private List<String> list=new ArrayList<String>();
 	public void init(ServletConfig config) throws ServletException {
-		System.out.println("tq2");
 		String path=config.getInitParameter("xmlPath");
 		// <init-param> => config (web.xml을 읽기)
 		// System.out.println(path);
@@ -73,7 +72,6 @@ public class DispatcherServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try
 		{
-			System.out.println("tq");
 			String cmd=request.getRequestURI();
 			// /JSPMVCLastProject/main/main.do  ===> URI
 			// ================== ContextPath
