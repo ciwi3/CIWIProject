@@ -19,7 +19,7 @@ public class CurMovieManager {
 		List<MovieVO> list=m.movieAlldata();
 		int i=1;
 		for(MovieVO vo:list) {
-			MovieDAO.curmovieDataInsert(vo);
+			MovieDAO.movieDataInsert(vo);
 			System.out.println("i="+i);
 			i++;
 		}
@@ -85,7 +85,8 @@ public List<MovieVO> movieAlldata(){
 					vo.setStory(story.text());
 					vo.setCategory_no(2); // category_no = 2 (현재 상영중인 영화)
 					vo.setScore(sco);
-					vo.setTheater_no(0); // 아직 상영관 카테고리 정보 없음
+					vo.setTheater_no(1); // 아직 상영관 카테고리 정보 없음
+					vo.setShowing(1); // 1=상영중
 					list.add(vo);
 					k++;
 					
@@ -98,9 +99,5 @@ public List<MovieVO> movieAlldata(){
 		}
 		return list;
 	}
-	
-	
-	
-	
 }
 

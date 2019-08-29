@@ -33,7 +33,7 @@
        <mapper resource="com/ciwi/mapper/member-mapper.xml"/>
        <mapper resource="com/ciwi/mapper/show-mapper.xml"/>
        <mapper resource="com/ciwi/mapper/festival-mapper.xml"/>
-       <mapper resource="com/ciwi/mapper/curmovie-mapper.xml"/>
+       <mapper resource="com/ciwi/mapper/movie-mapper.xml"/>
        <!-- <mapper resource="com/sist/mapper/festival-mapper.xml"/> -->
     </mappers>
  </configuration>

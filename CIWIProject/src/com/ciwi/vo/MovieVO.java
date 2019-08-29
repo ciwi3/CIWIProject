@@ -15,8 +15,15 @@ public class MovieVO {
 	private String score;
 	private int category_no;
 	private int theater_no;
+	private int showing;
 	
 	
+	public int getShowing() {
+		return showing;
+	}
+	public void setShowing(int showing) {
+		this.showing = showing;
+	}
 	public int getTheater_no() {
 		return theater_no;
 	}

@@ -84,7 +84,7 @@ public class MovieManager {
 						System.out.println("=================================================");
 						
 						MovieVO vo=new MovieVO();
-						vo.setMno(k);
+						vo.setMno(k+71);
 						vo.setTitle(title.text());
 						vo.setPoster(poster.attr("src"));
 						vo.setDirector(director.text());
@@ -95,6 +95,8 @@ public class MovieManager {
 						vo.setStory(story.text());
 						vo.setCategory_no(3);
 						vo.setScore(sco);
+						vo.setTheater_no(0); // 0=기타, 아직 theater테이블 데이터 없음
+						vo.setShowing(0); // 0=비상영
 						list.add(vo);
 						k++;  
 					}catch (Exception e) {

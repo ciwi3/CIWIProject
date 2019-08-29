@@ -10,15 +10,10 @@ public class MovieDAO {
 	static{
 		ssf= CreateSqlSessionFactory.getSsf();
 	}//
-	public static void movieDataInsert(MovieVO vo){
-		SqlSession session = ssf.openSession(true);
-		session.insert("movieDataInsert", vo);  // 매개변수가 parameterType이다. 
-		session.close();
-	}
 	
-	public static void curmovieDataInsert(MovieVO vo) {
+	public static void movieDataInsert(MovieVO vo) {
 		SqlSession session=ssf.openSession(true);
-		session.insert("curmovieDataInsert",vo);
+		session.insert("movieDataInsert",vo);
 		session.close();
 	}
 }
