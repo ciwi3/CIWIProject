@@ -10,6 +10,34 @@ public class MemberDAO {
 	static {
 		ssf = CreateSqlSessionFactory.getSsf();
 	}
+	//회원가입 : 아이디 중복체크
+	public static int memberIdOverlap(String id){
+		int count=0;
+		SqlSession session =null;
+		try{
+			session=ssf.openSession();
+			count =session.selectOne("memberIdOverlap",id);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+		return count;
+	}
+	//회원가입 : 회원정보 db에 넣기 
+	public static void memberInsertData(MemberVO vo){
+		SqlSession session =null;
+		try{
+			session=ssf.openSession(true);
+			session.insert("memberInsertData",vo);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+	}
 	//로그인 
 	public static MemberVO memberLogin(String id,String pwd){
 		MemberVO vo= new MemberVO();

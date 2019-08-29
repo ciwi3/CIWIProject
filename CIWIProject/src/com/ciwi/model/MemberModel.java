@@ -9,6 +9,17 @@ import com.ciwi.dao.MemberDAO;
 import com.ciwi.vo.MemberVO;
 @Controller("MemberModel")
 public class MemberModel {
+	//아이디 중복검색 
+	@RequestMapping("member/join_ok.do")
+	public String member_join_ok(Model model){
+		String id=model.getRequest().getParameter("id");
+		System.out.println(id);
+		int count = MemberDAO.memberIdOverlap(id);
+		System.out.println(count);
+		HttpSession session = model.getRequest().getSession();
+		session.setAttribute("count", count);
+		return "../member/join_ok.jsp"; // 띄울 화면으로 이동.
+	}
 	//회원가입
 	@RequestMapping("member/join.do")
 	public String member_join(Model model){
@@ -50,10 +61,11 @@ public class MemberModel {
 		model.addAttribute("result", vo.getMsg());
 		return "../member/login_ok.jsp";
 	}
+	//로그아웃 : session에 저장한 값 모두 지우기.
 	@RequestMapping("member/logout.do")
 	public String member_logout(Model model){
 		HttpSession session = model.getRequest().getSession();
-		session.invalidate();// session에 저장한 값 모두 지우기.
+		session.invalidate();
 		return "redirect:../main/main.do";
 	}
 	

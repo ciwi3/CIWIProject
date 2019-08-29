@@ -6,6 +6,36 @@
 <meta charset="UTF-8">
    <title>CIWI Template</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#id').keyup(function(){
+		var id=$('#id').val();
+		
+		
+	 		$.ajax({
+			type:'post',
+			url:'../member/join_ok.do',
+			data:{id:id},
+			success:function(response){
+				var count = response.trim();
+				if( id.trim()=="" || (id.lenght>4 && id.lenght<16) ){
+					$('#id').text("조건에 맞게 입력하셈");
+					return;
+				}
+				if(count ==1){
+					$('#a').text("사용 중인 아이디입니다. 다시입력해주세요.");
+					$('#a').focus();
+					return;
+				}else if(count ==0){
+					$('#a').text("사용 가능한 아이디입니다.");
+					return;
+				}
+			}
+		}); 
+	});
+});
+</script>
 <style type="text/css">
 .row {
 	margin: 0px auto;
@@ -23,10 +53,10 @@
 						<tr>
 							<th class="text-right" width=20% height=20%><font size="2px">아이디</font></th>
 							<td class="text-left" width=80%>
-								<input type=text name=id size=20 >
-								<input type=button value="중복확인" class="btn btn-sm btn-info">
+								<input type=text name=id size=20 id="id">
+								<input type=button value="중복확인" class="btn btn-sm btn-info" id="overlapBtn" >
 								&nbsp;&nbsp;
-								<font size="2px">영문소문자/숫자, 4~16자</font>
+								<font size="2px" id=a>영문소문자/숫자, 4~16자</font>
 							</td>
 						</tr>
 						<tr>
@@ -119,13 +149,37 @@
 								</select>
 								<select name=category>
 										<option>장르선택</option>
-										<option>음악/콘서트</option>
-										<option>뮤지컬/오페라</option>
-										<option>연극</option>
-										<option>국악</option>
-										<option>무용/발레</option>
-										<option>아동/가족</option>
-										<option>전시</option>
+										<option>액션</option>
+										<option>코미디</option>
+										<option>애니매이션</option>
+										<option>모험</option>
+										<option>가족</option>
+										<option>드라마</option>
+										<option>판타지</option>
+										<option>뮤지컬</option>
+										<option>멜로/로멘스</option>
+										<option>다큐멘터리</option>
+										<option>미스터리</option>
+										<option>공포</option>
+										<option>SF</option>
+										<option>공연실황</option>
+										<option>범죄</option>
+										<option>스릴러</option>
+										<option>기타</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+							<th class="text-right" width=20%><font size="2px">      </font>
+								<td class="text-left" width=80%>
+								<select name=category>
+									<option>카테고리선택</option>
+									<option>영화</option>
+									<option>공연 전시</option>
+									<option>페스티벌</option>
+								</select>
+								<select name=category>
+										<option>장르선택</option>
 										<option>액션</option>
 										<option>코미디</option>
 										<option>애니매이션</option>
@@ -156,11 +210,5 @@
 				</div>
 				<!-- /container -->
 			</div>
-			<!-- /SECTION -->
-				<!-- jQuery Plugins -->
-	<script src="../js2/jquery.min.js"></script>
-	<script src="../js2/bootstrap.min.js"></script>
-	<script src="../js2/jquery.stellar.min.js"></script>
-	<script src="../js2/main.js"></script>
 </body>
 </html>
