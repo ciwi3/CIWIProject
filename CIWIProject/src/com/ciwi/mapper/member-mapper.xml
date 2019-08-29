@@ -20,7 +20,12 @@
 	</select>
 	<!-- 회원가입 데이터 db에 넣기 -->
 	<insert id="memberInsertData" parameterType="MemberVO">
+	<selectKey keyProperty="join_no" resultType="int" order="BEFORE">
+		Select NVL(MAX(no)+1,1) as join_no
+		From member
+	</selectKey>
 		INSERT INTO member VALUES(
+			#{join_no},
 			#{id},
 			#{pwd},
 			#{name},
@@ -31,7 +36,10 @@
 			#{post},
 			#{main_addr},
 			#{sub_addr},
-			0
+			sysdate,
+			0,
+			#{cate},
+			#{genre}
 		)
 	</insert>
 </mapper>

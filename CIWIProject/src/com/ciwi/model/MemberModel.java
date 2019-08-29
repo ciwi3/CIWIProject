@@ -13,31 +13,63 @@ public class MemberModel {
 	@RequestMapping("member/join_ok.do")
 	public String member_join_ok(Model model){
 		String id=model.getRequest().getParameter("id");
-		System.out.println(id);
 		int count = MemberDAO.memberIdOverlap(id);
-		System.out.println(count);
 		HttpSession session = model.getRequest().getSession();
 		session.setAttribute("count", count);
 		return "../member/join_ok.jsp"; // 띄울 화면으로 이동.
 	}
-	//회원가입
+	//회원가입:화면이동
 	@RequestMapping("member/join.do")
 	public String member_join(Model model){
 		model.addAttribute("main_jsp", "../member/join.jsp");
 		return "../main/main.jsp";
 	}
+	//회원가입 : 데이터넣기
+	@RequestMapping("member/insert.do")
+	public String member_join_insert(Model model){
+		String id=model.getRequest().getParameter("id");
+		String pwd=model.getRequest().getParameter("pwd");
+		String name=model.getRequest().getParameter("name");
+		String sex=model.getRequest().getParameter("sex");
+		String birthday=model.getRequest().getParameter("birth");
+		String email=model.getRequest().getParameter("email");
+		String phone=model.getRequest().getParameter("phone");
+		String post=model.getRequest().getParameter("post");
+		String main_addr=model.getRequest().getParameter("main_addr");
+		String sub_addr=model.getRequest().getParameter("sub_addr");
+		String cate=model.getRequest().getParameter("cate");
+		String genre=model.getRequest().getParameter("genre");
+		System.out.println(id);
+		MemberVO vo = new MemberVO();
+		vo.setId(id);
+		vo.setPwd(pwd);
+		vo.setName(name);
+		vo.setSex(sex);
+		vo.setBirthday(birthday);
+		vo.setEmail(email);
+		vo.setPhone(phone);
+		vo.setPost(post);
+		vo.setMain_addr(main_addr);
+		vo.setSub_addr(sub_addr);
+		vo.setCate(cate);
+		vo.setGenre(genre);
+		MemberDAO.memberInsertData(vo);
+		//model.addAttribute("main_jsp", "../member/join_finish.jsp");
+		return "redirect:../member/join_finish.do";
+	}
+	
 	//회원수정 
 	@RequestMapping("member/join_modify.do")
 	public String member_join_modify(Model model){
 		model.addAttribute("main_jsp", "../member/join_modify.jsp");
 		return "../main/main.jsp";
 	}
-	//회원가입 완료 
+/*	//회원가입 완료 
 	@RequestMapping("mamber/join_finish")
 	public String member_join_finish(Model model){
 		model.addAttribute("main_jsp", "../member/join_finish.jsp");
 		return "../main/main.jsp";
-	}
+	}*/
 	//로그인화면 출력
 	@RequestMapping("member/login.do")
 	public String member_login(Model model){
