@@ -39,7 +39,7 @@ public class MemberModel {
 		String sub_addr=model.getRequest().getParameter("sub_addr");
 		String cate=model.getRequest().getParameter("cate");
 		String genre=model.getRequest().getParameter("genre");
-		System.out.println(id);
+		System.out.println(id+"들어왔나?");
 		MemberVO vo = new MemberVO();
 		vo.setId(id);
 		vo.setPwd(pwd);
@@ -55,7 +55,7 @@ public class MemberModel {
 		vo.setGenre(genre);
 		MemberDAO.memberInsertData(vo);
 		//model.addAttribute("main_jsp", "../member/join_finish.jsp");
-		return "redirect:../member/join_finish.do";
+		return "redirect:join_finish.do";
 	}
 	
 	//회원수정 

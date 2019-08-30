@@ -19,6 +19,15 @@
 		#{showing}
 		)
 	</insert>
+	<!-- CGV -->
+	<insert id="theaterDataInsert" parameterType="TheaterVO">
+		Insert Into theater Values(
+		#{theater_no}
+		#{theater_name}
+		#{theater_seat}
+		#{theater_loc}
+		)
+	</insert>
 	<select id="movieSearch" parameterType="java.util.Map" resultType="MovieVO" >
 	SELECT mno,title,director,actor,poster,regdate,story,genre,category_no,score,grade,showing,num
 	FROM (SELECT mno,title,director,actor,poster,regdate,story,genre,category_no,score,grade,showing,rownum as num FROM movie ORDER BY regdate)

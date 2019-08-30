@@ -17,7 +17,11 @@ public class MovieDAO {
 		session.insert("movieDataInsert", vo);
 		session.close();
 	}
-
+	public static void theaterDataInsert(TheaterVO vo) {
+		SqlSession session = ssf.openSession(true);
+		session.insert("theaterDataInsert", vo);
+		session.close();
+	}
 	public static List<MovieVO> movieSearch(Map map) {
 		List<MovieVO> list = new ArrayList<>();
 
