@@ -87,14 +87,16 @@ $(function(){
         </tr>
         <tr>
           <td colspan="4" class="text-right">
-            <a href="freeboard_update.do?no=${vo.no }" class="btn btn-sm btn-info">수정</a>
-            <a href="freeboard_delete.do?no=${vo.no }" class="btn btn-sm btn-danger">삭제</a>
+	          <c:if test="${vo.id==id }">
+	            <a href="freeboard_update.do?no=${vo.no }" class="btn btn-sm btn-info">수정</a>
+	            <a href="freeboard_delete.do?no=${vo.no }" class="btn btn-sm btn-danger">삭제</a>
+	          </c:if>
             <a href="freeboard_list.do" class="btn btn-sm btn-info">목록</a>
           </td>
         </tr>
       </table>
     </div>
-<%--     <div class="row">
+    <div class="row">
       <table class="table">
         <tr>
          <td class="text-left">댓글(${count })</td>
@@ -174,7 +176,7 @@ $(function(){
 	        </tr>
 	      </table>
       </c:if>
-    </div> --%>
+    </div>
   </div>
 </body>
 </html>

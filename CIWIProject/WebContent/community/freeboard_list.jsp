@@ -34,7 +34,12 @@ $(function () {
        <table class="table">
          <tr>
            <td class="text-left">
-             <a href="freeboard_insert.do" class="btn btn-sm btn-info">새글</a>
+	           <c:if test="${id!=null }">
+	             <a href="freeboard_insert.do" class="btn btn-sm btn-info">새글</a>
+	           </c:if>
+	           <c:if test="${id==null }">
+	           	글쓰기는 로그인후 이용 가능합니다.
+	           </c:if>
            </td>
            <td class="text-right">
             <font color="f1f1f1"> ${curpage } page / ${totalpage } pages</font>

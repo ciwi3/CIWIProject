@@ -93,6 +93,47 @@ public class BoardModel {
 		return "../main/main.jsp";
 	}
 	
+	  @RequestMapping("community/freeboard_update.do")
+	  public String board_update(Model model)
+	  {
+		  // 요청값을 받는다
+		  String no=model.getRequest().getParameter("no");
+		  // DAO => 결과값 받기 
+		  FreeBoardVO vo=FreeBoardDAO.freeboardDetailData(Integer.parseInt(no), "update");
+		  // 결과값 => JSP로 전송
+		  model.addAttribute("vo", vo);
+		  model.addAttribute("main_jsp", "../community/freeboard_update.jsp");
+		  return "../main/main.jsp";
+	  }
+	  @RequestMapping("community/freeboard_update_ok.do")
+	  public String board_update_ok(Model model)
+	  {
+		  try
+		  {
+			  model.getRequest().setCharacterEncoding("UTF-8");
+		  }catch(Exception ex){}
+		  
+		  String subject=model.getRequest().getParameter("subject");
+		  String content=model.getRequest().getParameter("content");
+		  String bcategory=model.getRequest().getParameter("board_category");
+		  String no=model.getRequest().getParameter("no");
+		  
+		  bcategory=bcategory.substring(0,1);
+		  int board_category = Integer.parseInt(bcategory);
+		  
+		  FreeBoardVO vo=new FreeBoardVO();
+		  vo.setSubject(subject);
+		  vo.setContent(content);
+		  vo.setBoard_category(board_category);
+		  vo.setNo(Integer.parseInt(no));
+		  
+		  // DAO 연결 ==> password
+		  int n=FreeBoardDAO.freeboardUpdate(vo);
+		  
+		  model.addAttribute("no", n);
+		  
+		  return "../community/freeboard_update_ok.jsp";
+	  }
 	
 	
 	

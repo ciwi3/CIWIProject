@@ -39,7 +39,12 @@
 	    WHERE no=#{no}
 	    AND fb.board_category=bc.bcno
  	</select>
- 	
+ 	<!-- 수정하기 -->
+ 	<update id="freeboardUpdate" parameterType="FreeBoardVO">
+ 		UPDATE freeboard SET
+ 		subject=#{subject},content=#{content},board_category=#{board_category}
+ 		WHERE no=#{no}
+ 	</update>
 </mapper>
 
 

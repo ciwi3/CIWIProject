@@ -66,6 +66,20 @@ public class FreeBoardDAO {
 		return vo;
 	}
 	
+	//수정하기
+	public static int freeboardUpdate(FreeBoardVO vo){
+		int no=0;
+		SqlSession session = ssf.openSession();
+		
+			no=vo.getNo();
+			session.update("freeboardUpdate", vo);
+			session.commit();
+
+		
+		session.close();
+		return no;
+	}
+	
 	
 	
 	
