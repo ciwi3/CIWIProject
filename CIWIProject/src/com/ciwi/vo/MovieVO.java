@@ -14,7 +14,22 @@ public class MovieVO {
 	private String story; //¡Ÿ∞≈∏Æ
 	private String score;
 	private int category_no;
+	private int theater_no;
+	private int showing;
 	
+	
+	public int getShowing() {
+		return showing;
+	}
+	public void setShowing(int showing) {
+		this.showing = showing;
+	}
+	public int getTheater_no() {
+		return theater_no;
+	}
+	public void setTheater_no(int theater_no) {
+		this.theater_no = theater_no;
+	}
 	public String getRegdate() {
 		return regdate;
 	}

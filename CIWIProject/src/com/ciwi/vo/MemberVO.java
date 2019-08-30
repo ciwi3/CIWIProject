@@ -1,5 +1,7 @@
 package com.ciwi.vo;
 
+import java.util.Date;
+
 public class MemberVO {
 	private int join_no;
 	private String id;
@@ -13,7 +15,35 @@ public class MemberVO {
 	private String main_addr;
 	private String sub_addr;
 	private int admin;
+	private String cate;
+	private Date regdate;
+	public Date getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
+	public String getCate() {
+		return cate;
+	}
+	public void setCate(String cate) {
+		this.cate = cate;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	private String genre;
+	private String msg;
 	
+	public String getMsg() {
+		return msg;
+	}
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 	public int getJoin_no() {
 		return join_no;
 	}

@@ -40,12 +40,17 @@
 
                <!-- search & aside toggle -->
                <div class="nav-btns">
+               	<c:if test="${sessionScope.id==null }">
                	  <a href="../member/login.do" class="btn btn-sm btn-info">로그인</a>
+               	 </c:if>
+               	 <c:if test="${sessionScope.id != null }">
+               	  	<a href="../member/logout.do" class="btn btn-sm btn-danger">로그아웃</a>
+               	 </c:if>
                   <button class="aside-btn"><i class="fa fa-bars">메뉴</i></button>
-                  <button class="search-btn"><i class="fa fa-search">검색</i></button>
+                  <button class="search-btn"><i 	class="fa fa-search">검색</i></button>
                   <div id="nav-search">
-                     <form>
-                        <input class="input" name="search" placeholder="통합검색">
+                     <form method="get" action="../main/unifiedsearch.do">
+                        <input class="input" name="text" placeholder="통합검색">
                      </form>
                      <button class="nav-close search-close">
                         <span></span>
@@ -102,7 +107,7 @@
 							<div class="dropdown">
 								<div class="dropdown-body">
 									<ul class="dropdown-list">
-										<li><a href="#">자유게시판</a></li>
+										<li><a href="../community/freeboard_list.do">자유게시판</a></li>
 									</ul>
 								</div>
 							</div>

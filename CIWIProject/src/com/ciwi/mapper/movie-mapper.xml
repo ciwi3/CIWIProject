@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ciwi.mapper.curmovie-mapper">
+	<insert id="movieDataInsert" parameterType="MovieVO">
+		<!-- {} = get메소드 -->
+		Insert Into movie Values(
+		#{mno},
+		#{title},
+		#{director},
+		#{actor},
+		#{poster},
+		#{regdate},
+		#{genre},
+		#{grade},
+		#{story},
+		#{category_no},
+		#{score},
+		#{theater_no},
+		#{showing}
+		)
+	</insert>
+	<!-- CGV -->
+	<insert id="theaterDataInsert" parameterType="TheaterVO">
+		Insert Into theater Values(
+		#{theater_no},
+		#{theater_name},
+		#{theater_total_seat},
+		#{theater_loc}
+		)
+	</insert>
+	<select id="movieSearch" parameterType="java.util.Map" resultType="MovieVO" >
+	SELECT mno,title,director,actor,poster,regdate,story,genre,category_no,score,grade,showing,num
+	FROM (SELECT mno,title,director,actor,poster,regdate,story,genre,category_no,score,grade,showing,rownum as num FROM movie ORDER BY regdate)
+  <trim prefix="WHERE" prefixOverrides="AND|OR">
+	<if test='moiveGenre !=null and !movieGenre.equals("")'>
+	AND REGEXP_LIKE(genre,#{movieGenre})
+	</if>
+      <if test='searchOption.equals("제목") 	and text!=null  and !text.equals("")'>
+ 	AND REGEXP_LIKE(title,#{text})
+	</if>
+     <if test='searchOption.equals("배우") and text!=null  and !text.equals("")'>
+	AND REGEXP_LIKE(actor,#{text})
+	</if>
+	 <if test='searchOption.equals("감독") and text!=null  and !text.equals("")'>
+	AND REGEXP_LIKE(director,#{text})
+	</if>
+	<if test="isOnScreen==0">
+	AND showing = 0
+	</if>
+	<if test="isOnScreen==1">
+	AND showing = 1
+	</if>
+	</trim>
+	ORDER BY num    
+	</select>
+</mapper>

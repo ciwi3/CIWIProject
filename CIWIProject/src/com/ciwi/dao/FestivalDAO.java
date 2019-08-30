@@ -25,6 +25,21 @@ public class FestivalDAO {
 		return list;
 	}
 
+	public static List<FestivalVO> festivalListData(Map map) {
+		SqlSession session = ssf.openSession();
+		List<FestivalVO> list = session.selectList("festivalListData", map);
+		session.close();
+		return list;
+	}
+
+	public static int festivalTotalPage(int rowSize) {
+		int totalPage = 0;
+		SqlSession session = ssf.openSession();
+		totalPage = session.selectOne("festivalTotalPage", rowSize);
+		session.close();
+		return totalPage;
+	}
+
 	public static FestivalVO festivalDetail(int fno) {
 		SqlSession session = ssf.openSession();
 		FestivalVO vo = session.selectOne("festivalDetail", fno);
@@ -34,7 +49,7 @@ public class FestivalDAO {
 
 	public static List<FestivalVO> festivalSearch(Map map) {
 		SqlSession session = ssf.openSession();
-		List<FestivalVO> list = session.selectList("festivalSearch",map);
+		List<FestivalVO> list = session.selectList("festivalSearch", map);
 		session.close();
 		return list;
 	}

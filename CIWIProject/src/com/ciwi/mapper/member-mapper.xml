@@ -4,9 +4,8 @@
 	<!-- login -->
 	<!-- 1. 아이디 존재여부 확인 -->
 	<select id="memberIdCount" resultType="int" parameterType="String">
-		Select COUNT(*)
-		From member
-		Where id=#{id}
+	select count(*) from member
+	where id=#{id}
 	</select>
 	<!-- 2. 비밀번호 확인 -->
 	<select id="memberGetPwd" resultType="MemberVO" parameterType="String">
@@ -14,4 +13,33 @@
 		From member
 		Where id=#{id}
 	</select>
+	<!-- 아이디 중복검색 -->
+	<select id="memberIdOverlap" resultType="int" parameterType="String">
+	select count(*) from member
+	where id=#{id}
+	</select>
+	<!-- 회원가입 데이터 db에 넣기 -->
+	<insert id="memberInsertData" parameterType="MemberVO">
+	<selectKey keyProperty="join_no" resultType="int" order="BEFORE">
+		Select NVL(MAX(no)+1,1) as join_no
+		From member
+	</selectKey>
+		INSERT INTO member VALUES(
+			#{join_no},
+			#{id},
+			#{pwd},
+			#{name},
+			#{sex},
+			#{birthday},
+			#{email},
+			#{phone},
+			#{post},
+			#{main_addr},
+			#{sub_addr},
+			sysdate,
+			0,
+			#{cate},
+			#{genre}
+		)
+	</insert>
 </mapper>
