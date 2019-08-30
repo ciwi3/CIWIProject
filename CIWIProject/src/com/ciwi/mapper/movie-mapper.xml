@@ -22,9 +22,9 @@
 	<!-- CGV -->
 	<insert id="theaterDataInsert" parameterType="TheaterVO">
 		Insert Into theater Values(
-		#{theater_no}
-		#{theater_name}
-		#{theater_seat}
+		#{theater_no},
+		#{theater_name},
+		#{theater_total_seat},
 		#{theater_loc}
 		)
 	</insert>

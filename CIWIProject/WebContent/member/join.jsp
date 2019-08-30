@@ -112,8 +112,7 @@ $(function(){
 			$('#phone').focus();
 			return;
 		}
-		
-		$('form').submit(); 
+		$('form').submit();
 	});
 });//마지막
 </script>

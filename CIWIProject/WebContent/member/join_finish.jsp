@@ -4,16 +4,7 @@
 <html>
 <head>
 <meta charset=UTF-8">
-<title>Insert title here</title>
-   <title>CIWI Template</title>
-   <!-- Google font -->
-   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CMuli:400,700" rel="stylesheet">
-   <!-- Bootstrap -->
-   <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css" />
-   <!-- Font Awesome Icon -->
-   <link rel="stylesheet" href="../css/font-awesome.min.css">
-   <!-- Custom stlylesheet -->
-   <link type="text/css" rel="stylesheet" href="../css/style.css" />
+<title>CIWI Template</title>
 <style type="text/css">
 .row {
 	margin: 0px auto;
