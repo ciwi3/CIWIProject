@@ -14,6 +14,8 @@
        <typeAlias type="com.ciwi.vo.FestivalGenreVO" alias="FestivalGenreVO"/>
         <typeAlias type="com.ciwi.vo.MemberVO" alias="MemberVO"/>
        <typeAlias type="com.ciwi.vo.MovieVO" alias="MovieVO"/>
+       <typeAlias type="com.ciwi.vo.FreeBoardVO" alias="FreeBoardVO"/>
+       <typeAlias type="com.ciwi.vo.FreeReplyVO" alias="FreeReplyVO"/>
        
        <!-- <typeAlias type="com.sist.vo.FestivalVO" alias="FestivalVO"/> -->
     </typeAliases>
@@ -34,6 +36,7 @@
        <mapper resource="com/ciwi/mapper/show-mapper.xml"/>
        <mapper resource="com/ciwi/mapper/festival-mapper.xml"/>
        <mapper resource="com/ciwi/mapper/movie-mapper.xml"/>
+       <mapper resource="com/ciwi/mapper/freeboard-mapper.xml"/>
        <!-- <mapper resource="com/sist/mapper/festival-mapper.xml"/> -->
     </mappers>
  </configuration>

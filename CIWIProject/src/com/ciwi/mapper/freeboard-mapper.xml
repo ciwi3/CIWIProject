@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ciwi.mapper.freeboard-mapper">
+	<select id="freeboardListData" resultType="FreeBoardVO" parameterType="java.util.Map">
+		SELECT no,subject,id,dbday,hit,num,bc.board_category as bccate
+		FROM (SELECT no,subject,id,TO_CHAR(regdate,'YYYY-MM-DD')as dbday,hit,rownum as num ,board_category
+		FROM (SELECT no,subject,id,regdate,hit,board_category
+		FROM freeboard ORDER BY no DESC))fb, board_category bc
+		WHERE num BETWEEN #{start} AND #{end}
+	    AND fb.board_category=bc.bcno
+	</select>
+	<!-- 총페이지 -->
+ 	<select id="freeboardTotalPage" resultType="int">
+ 		SELECT CEIL(count(*)/10.0) FROM freeboard
+ 	</select>
+ 	<!-- 게시물번호 처리-->
+ 	<select id="freeboardRowCount" resultType="int">
+ 		SELECT count(*) FROM freeboard
+ 	</select>
+ 	<!-- 게시글 추가 -->
+	<insert id="freeboardInsert" parameterType="FreeBoardVO">
+		INSERT INTO freeboard(no,id,subject,content,board_category) VALUES(
+			freeboard_no_seq.nextval,
+			#{id},
+			#{subject},
+			#{content},
+			#{board_category}
+		)
+	</insert>
+ 	 <!-- 상세보기 -->
+ 	<update id="hitIncrement" parameterType="int">
+ 		UPDATE freeboard SET
+ 		hit = hit+1
+ 		WHERE no =#{no}
+ 	</update>
+ 	<select id="freeboardDetailData" resultType="FreeBoardVO" parameterType="int">
+	    SELECT no,id,subject,content,TO_CHAR(regdate,'RRRR-MM-DD') as dbday, hit,bc.board_category as bccate
+	    FROM freeboard fb,board_category bc
+	    WHERE no=#{no}
+	    AND fb.board_category=bc.bcno
+ 	</select>
+ 	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
