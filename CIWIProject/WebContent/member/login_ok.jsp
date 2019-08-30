@@ -15,6 +15,6 @@
 		</script>
 	</c:when>
 	<c:otherwise>
-		<c:redirect url="reserve.do"></c:redirect>
+		<c:redirect url="../main/main.do"></c:redirect>
 	</c:otherwise>
 </c:choose>
