@@ -66,15 +66,11 @@
 		fg.festival_no
 		AND f.category_no = c.category_no
 		AND f.area_no = a.area_no
-      <if test='searchOption.equals("제목")'>
-      <if test='text!=null  and !text.equals("")'>
+      <if test='searchOption.equals("제목") and text!=null  and !text.equals("")'>
       AND regexp_like(subject,#{text})
       </if>
-      </if>      
-      <if test='searchOption.equals("내용")'>
-      <if test='text!=null  and !text.equals("")'>
+      <if test='searchOption.equals("내용") and text!=null  and !text.equals("")'>
       AND regexp_like(content,#{text})
-      </if>
       </if>
       <if test='festival_area!=null and !festival_area.equals("")'>
       AND area_name = #{festival_area}

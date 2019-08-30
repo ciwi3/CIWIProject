@@ -27,7 +27,6 @@ public class ShowManager {
 
 				for (int j = 16; j < link.size(); j++) {
 					try {
-				
 						String site = "https://www.culture.go.kr" + link.get(j).attr("href");
 						Document doc2 = Jsoup.connect(site).get();
 						Element subject = doc2.select("div.content_link div span").first();
@@ -46,7 +45,7 @@ public class ShowManager {
 						ShowVO vo = new ShowVO();
 						vo.setSno(sno);
 						vo.setSubject(subject.text());
-						vo.setPoster(poster.attr("src"));
+						vo.setPoster("https://www.culture.go.kr" + poster.attr("src"));
 						vo.setSdate(sdate.text().substring(0, 21));
 						vo.setStarttime(starttime.text());
 						vo.setPrice(price.text());
