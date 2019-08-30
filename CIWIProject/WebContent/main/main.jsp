@@ -107,7 +107,7 @@
 							<div class="dropdown">
 								<div class="dropdown-body">
 									<ul class="dropdown-list">
-										<li><a href="../community/freeboard.do">자유게시판</a></li>
+										<li><a href="../community/freeboard_list.do">자유게시판</a></li>
 									</ul>
 								</div>
 							</div>
