@@ -47,10 +47,10 @@
                	  	<a href="../member/logout.do" class="btn btn-sm btn-danger">로그아웃</a>
                	 </c:if>
                   <button class="aside-btn"><i class="fa fa-bars">메뉴</i></button>
-                  <button class="search-btn"><i class="fa fa-search">검색</i></button>
+                  <button class="search-btn"><i 	class="fa fa-search">검색</i></button>
                   <div id="nav-search">
-                     <form>
-                        <input class="input" name="search" placeholder="통합검색">
+                     <form method="get" action="../main/unifiedsearch.do">
+                        <input class="input" name="text" placeholder="통합검색">
                      </form>
                      <button class="nav-close search-close">
                         <span></span>

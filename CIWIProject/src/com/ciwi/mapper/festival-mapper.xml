@@ -59,7 +59,7 @@
 	</select>
 
 	<select id="festivalSearch" resultMap="FestivalMap" parameterType="java.util.Map">
-		SELECT fno,subject,poster,fdate,fg.festival_genre as festival_genre,
+		SELECT fno,subject,poster,fdate,fg.festival_genre as festival_genre,	
 		c.category_name as category_name, a.area_name as area_name
 		FROM festival f, category c, area a,festival_genre fg
 		WHERE f.festival_no =
