@@ -39,6 +39,22 @@ public class ShowDAO {
 		return list;
 	}
 	
+	public static List<String> getAreaName(){
+		List<String> list= new ArrayList<String>();
+		SqlSession session = ssf.openSession();
+		list=session.selectList("getAreaName");
+		session.close();
+		return list;
+	}
+
+	public static List<String> getGenreName(){
+		List<String> list= new ArrayList<String>();
+		SqlSession session = ssf.openSession();
+		list=session.selectList("getGenreName");
+		session.close();
+		return list;
+	}
+	
 	public static ShowVO showDetailData(int sno){
 		ShowVO vo=new ShowVO();
 		SqlSession session = ssf.openSession();

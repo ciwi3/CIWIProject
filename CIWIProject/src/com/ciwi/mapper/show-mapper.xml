@@ -24,18 +24,18 @@
 		<result property="ccvo.category_name" column="category_name" />
 		<result property="avo.area_name" column="area_name" />
 	</resultMap>
-	
+
 	<!-- 전체 리스트 -->
 	<select id="showAllData" resultType="ShowVO">
 		SELECT * FROM show
 	</select>
-	
-	<!-- 상세보기  -->
+
+	<!-- 상세보기 -->
 	<select id="showDetailData" resultType="ShowVO" parameterType="int">
 		SELECT * FROM show
 		WHERE sno=#{sno}
 	</select>
-	
+
 	<!-- 추가 -->
 	<insert id="showInsert" parameterType="ShowVO">
 		INSERT INTO show
@@ -43,32 +43,40 @@
 		(#{sno},#{subject},#{sdate},#{poster},#{starttime},#{price},#{place},#{showtime},#{tel},#{host},#{age},#{homepage},#{source},#{address},#{slike},#{genre_no},#{category_no},#{area_no})
 	</insert>
 
-	<!-- 
-		검색조건에 따라서 검색 searchOption에 검색옵션을 적고 검색을 위한 text를 통해 검색
-	 -->
+	<!-- 검색조건에 따라서 검색 searchOption에 검색옵션을 적고 검색을 위한 text를 통해 검색 -->
 	<select id="showSearch" parameterType="java.util.Map" resultMap="ShowMap">
-      SELECT sno,subject,poster,sdate,sg.show_genre as show_genre, c.category_name as category_name, a.area_name as area_name
-      FROM show s, category c, area a,show_genre sg
-      WHERE s.genre_no = sg.show_no
-      AND s.category_no = c.category_no
-      AND s.area_no = a.area_no
+		SELECT sno,subject,poster,sdate,sg.show_genre as show_genre,
+		c.category_name as category_name, a.area_name as area_name
+		FROM show s, category c, area a,show_genre sg
+		WHERE s.genre_no = sg.show_no
+		AND s.category_no = c.category_no
+		AND s.area_no = a.area_no
 
-      <if test='searchOption.equals("제목")'>
-      <if test='text!=null  and !text.equals("")'>
-      AND regexp_like(subject,#{text})
-      </if>
-      </if>      
-      <if test='searchOption.equals("내용")'>
-      <if test='text!=null  and !text.equals("")'>
-      AND regexp_like(content,#{text})
-      </if>
-      </if>
-      <if test=' show_area!=null and !show_area.equals("")'>
-      AND area_name = #{show_area}
-      </if>
-      <if test='show_genre!=null and !show_genre.equals("") '>
-      AND show_genre = #{show_genre}
-      </if>
-      ORDER BY sno asc
-   </select>
+		<if test='searchOption.equals("제목")'>
+			<if test='text!=null  and !text.equals("")'>
+				AND regexp_like(subject,'#{text}')
+			</if>
+		</if>
+		<if test='searchOption.equals("내용")'>
+			<if test='text!=null  and !text.equals("")'>
+				AND regexp_like(content,#{text})
+			</if>
+		</if>
+		<if test=' area!=null and !area.equals("")'>
+			AND area_name = #{show_area}
+		</if>
+		<if test='genre!=null and !genre.equals("") '>
+			AND show_genre = #{show_genre}
+		</if>
+		ORDER BY sno asc
+	</select>
+	
+	<select id="getAreaName" resultType="String">
+		SELECT area_name FROM area
+	</select>
+	
+	<select id="getGenreName" resultType="String">
+		SELECT show_genre FROM show_genre
+	</select>
+	
 </mapper>
