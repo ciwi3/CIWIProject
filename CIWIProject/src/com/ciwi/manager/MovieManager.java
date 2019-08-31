@@ -12,20 +12,7 @@ import com.ciwi.vo.TheaterVO;
 public class MovieManager {
 	public static void main(String[] args) {
 		MovieManager mm = new MovieManager();
-		int severalTotalSeat=0;
 		
-		for(int i=1; i<=167; i++) {
-			severalTotalSeat= (int)((Math.random()*11)+40);
-			System.out.println(i+"번 째 상영관");
-			System.out.println(severalTotalSeat);
-			System.out.println("---------");
-			
-			TheaterVO vo=new TheaterVO();
-			vo.setTheater_no(i);
-			vo.setTheater_total_seat(severalTotalSeat);
-			MovieDAO.totalSeatUpdate(vo);
-		}
-		System.out.println("저장 완료");
 	}
 	
 	public List<MovieVO> movieData(){
@@ -91,8 +78,7 @@ public class MovieManager {
 						vo.setStory(story.text());
 						vo.setCategory_no(3);
 						vo.setScore(sco);
-						vo.setTheater_no(0); // 0=기타, 아직 theater테이블 데이터 없음
-						vo.setShowing(0); // 0=비상영
+						vo.setTheater_no("0"); // 0=상영관 없음
 						list.add(vo);
 						k++;  
 					}catch (Exception e) {

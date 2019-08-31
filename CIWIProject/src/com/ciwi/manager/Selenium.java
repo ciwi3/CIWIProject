@@ -25,7 +25,7 @@ public class Selenium {
 	public static final String WEB_DRIVER_PATH = "C:/mvcDev/chromedriver.exe";
 
 	// 크롤링할 URL
-	private String base_url = "https://www.culture.go.kr/perform/experienceList.do";
+	private String base_url = "http://www.cgv.co.kr/theaters/";
 
 	public Selenium() {
 		super();
@@ -41,7 +41,7 @@ public class Selenium {
 		try {
 			// get page
 			driver.get(base_url);
-			WebElement target = driver.findElement(By.className("last"));
+			WebElement target = driver.findElement(By.xpath("[@id=\"contents\"]/div[1]/div/div[2]/ul/li[1]/div/ul/li[2]/a"));
 			Actions builder = new Actions(driver);
 			Action seriesOfActions;
 			seriesOfActions = builder.click(target).build();

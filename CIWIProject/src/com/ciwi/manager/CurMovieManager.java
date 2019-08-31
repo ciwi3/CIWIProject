@@ -14,9 +14,8 @@ import org.jsoup.select.Elements;
 public class CurMovieManager {
 
 	public static void main(String[] args) {
-		CurMovieManager m = new CurMovieManager();
-		
-		List<MovieVO> list=m.movieAlldata();
+		CurMovieManager cm = new CurMovieManager();
+		List<MovieVO> list=cm.movieAlldata();
 		int i=1;
 		for(MovieVO vo:list) {
 			MovieDAO.movieDataInsert(vo);
@@ -24,6 +23,7 @@ public class CurMovieManager {
 			i++;
 		}
 		System.out.println("save end");
+		cm.theaterData();
 	}
 
 public List<MovieVO> movieAlldata(){
@@ -68,7 +68,7 @@ public List<MovieVO> movieAlldata(){
 					} else {
 						System.out.println("출연 : "+actor.text());
 					}
-					System.out.println("================================================");
+					
 					MovieVO vo = new MovieVO();
 					vo.setMno(k);
 					vo.setTitle(title.text());
@@ -85,9 +85,10 @@ public List<MovieVO> movieAlldata(){
 					vo.setStory(story.text());
 					vo.setCategory_no(2); // category_no = 2 (현재 상영중인 영화)
 					vo.setScore(sco);
-					vo.setTheater_no(1); // 아직 상영관 카테고리 정보 없음
-					vo.setShowing(1); // 1=상영중
+					String theaterData=CurMovieManager.theaterData();
+					vo.setTheater_no(theaterData); // 현재 상영중인 영화의 상영관 난수 발생시켜야됨
 					list.add(vo);
+					System.out.println("================================================");
 					k++;
 					
 					}catch (Exception e) { 
@@ -98,6 +99,45 @@ public List<MovieVO> movieAlldata(){
 			System.out.println(e.getMessage());
 		}
 		return list;
+	}
+
+	public static String theaterData() {
+		// 총 극장 20개 중 => 1 1 1 1 (중복이 있으면 안됨)
+		String result="";
+		int[] com=new int[(int)(Math.random()*10)+6]; // 중복없는 난수 발생 => 최소 6개~최대15개 
+		int su=0;
+		boolean bCheck=false;
+		for(int i=0; i<com.length; i++) {
+			bCheck=true;
+			while(bCheck) {
+				su=(int)(Math.random()*167)+1; // com[] 배열에 1~20 값을 넣음 
+				bCheck=false;
+				for(int j=0;j<i;j++) {
+					if(com[j]==su) {
+						bCheck=true;
+						break;
+					}
+				}
+			}
+			com[i]=su;
+		}
+		
+		for(int i=0;i<com.length-1;i++) { // 선택정렬 오름차순
+			for(int j=i+1;j<com.length;j++) {
+				if(com[i]>com[j]) {
+					int temp=com[i];
+					com[i]=com[j];
+					com[j]=temp;
+				}
+			}
+		}
+		for(int i=0;i<com.length;i++) {
+			// System.out.print(com[i]+" ");
+			result+=com[i]+", ";
+		}
+		result=result.substring(0,result.lastIndexOf(", "));
+		System.out.println(result);
+		return result;
 	}
 }
 

@@ -41,5 +41,24 @@ public class CGVTheaterManager {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		tm.totalSeat();
+	}
+	
+	public static void totalSeat() {
+		int severalTotalSeat=0;
+		
+		for(int i=1; i<=167; i++) {
+			severalTotalSeat= (int)((Math.random()*11)+40);
+			System.out.println(i+"번 째 상영관");
+			System.out.println(severalTotalSeat);
+			System.out.println("---------");
+			
+			TheaterVO vo=new TheaterVO();
+			vo.setTheater_no(i);
+			vo.setTheater_total_seat(severalTotalSeat);
+			MovieDAO.totalSeatUpdate(vo);
+		}
+		System.out.println("저장 완료");
 	}
 }
