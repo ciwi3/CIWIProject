@@ -54,7 +54,7 @@
 
 		<if test='searchOption.equals("제목")'>
 			<if test='text!=null  and !text.equals("")'>
-				AND regexp_like(subject,'#{text}')
+				AND regexp_like(subject,#{text})
 			</if>
 		</if>
 		<if test='searchOption.equals("내용")'>
