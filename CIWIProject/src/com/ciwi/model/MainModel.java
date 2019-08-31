@@ -21,16 +21,8 @@ public class MainModel {
 	@RequestMapping("main/main.do")
 	public String main_page(Model model) {
 
-		Map map = new HashMap<>();
-		map.put("searchOption", "力格");
-		map.put("text", "绢亥");
-		List<MovieVO> list = MovieDAO.movieSearch(map);
-		model.addAttribute("list", list);
 		model.addAttribute("main_jsp", "../main/section.jsp");
-		for(MovieVO vo : list){
-			System.out.println(vo.getTitle());
-		}
-		
+
 		return "../main/main.jsp";
 	}
 
@@ -40,7 +32,7 @@ public class MainModel {
 			model.getRequest().setCharacterEncoding("UTF-8");
 		} catch (Exception ex) {
 		}
-		
+
 		String text = model.getRequest().getParameter("text");
 		Map map = new HashMap<>();
 		map.put("searchOption", "力格");
@@ -48,10 +40,19 @@ public class MainModel {
 		List<FestivalVO> fList = FestivalDAO.festivalSearch(map);
 		List<ShowVO> sList = ShowDAO.showSearch(map);
 		List<MovieVO> mList = MovieDAO.movieSearch(map);
-
-		System.out.println(fList.size());
-		System.out.println(sList.size());
-		System.out.println(mList.size());
+		int searchTextSize = 15;
+		for (FestivalVO vo : fList) {
+			if (vo.getSubject().length() > searchTextSize)
+				vo.setSubject(vo.getSubject().substring(0, searchTextSize) + "...");
+		}
+		for (ShowVO vo : sList) {
+			if (vo.getSubject().length() > searchTextSize)
+				vo.setSubject(vo.getSubject().substring(0, searchTextSize) + "...");
+		}
+		for (MovieVO vo : mList) {
+			if (vo.getTitle().length() > searchTextSize)
+				vo.setTitle(vo.getTitle().substring(0, searchTextSize) + "...");
+		}
 		model.addAttribute("fList", fList);
 		model.addAttribute("sList", sList);
 		model.addAttribute("mList", mList);

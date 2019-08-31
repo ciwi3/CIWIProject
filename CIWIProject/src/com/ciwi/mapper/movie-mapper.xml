@@ -34,8 +34,8 @@
 		Where theater_no=#{theater_no}
 	</update>
 	<select id="movieSearch" parameterType="java.util.Map" resultType="MovieVO" >
-	SELECT mno,title,director,actor,poster,regdate,story,genre,category_no,score,grade,showing,num
-	FROM (SELECT mno,title,director,actor,poster,regdate,story,genre,category_no,score,grade,showing,rownum as num FROM movie ORDER BY regdate)
+	SELECT mno,title,director,actor,poster,regdate,story,genre,category_no,score,grade,num
+	FROM (SELECT mno,title,director,actor,poster,regdate,story,genre,category_no,score,grade,rownum as num FROM movie ORDER BY regdate)
   <trim prefix="WHERE" prefixOverrides="AND|OR">
 	<if test='moiveGenre !=null and !movieGenre.equals("")'>
 	AND REGEXP_LIKE(genre,#{movieGenre})
@@ -49,11 +49,11 @@
 	 <if test='searchOption.equals("감독") and text!=null  and !text.equals("")'>
 	AND REGEXP_LIKE(director,#{text})
 	</if>
-	<if test="isOnScreen==0">
-	AND showing = 0
+	<if test="isOnScreen==0"> <!-- 바꾸던가 해야할듯? -->
+	AND category_no = 2
 	</if>
 	<if test="isOnScreen==1">
-	AND showing = 1
+	AND category_no = 3
 	</if>
 	</trim>
 	ORDER BY num    
