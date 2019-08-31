@@ -91,7 +91,7 @@ $(function(){
 	            <a href="freeboard_update.do?no=${vo.no }" class="btn btn-sm btn-info">수정</a>
 	            <a href="freeboard_delete.do?no=${vo.no }" class="btn btn-sm btn-danger">삭제</a>
 	          </c:if>
-            <a href="freeboard_list.do" class="btn btn-sm btn-info">목록</a>
+            <a href="#" class="btn btn-sm btn-info" onclick="history.back()">목록</a>
           </td>
         </tr>
       </table>
