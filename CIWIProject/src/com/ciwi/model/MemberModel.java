@@ -50,7 +50,7 @@ public class MemberModel {
 		System.out.println(sex+"들어왔나?");
 		System.out.println(birthday+"들어왔나?");
 		System.out.println(email+"들어왔나?");
-		System.out.println(phone+"들어왔나?");
+		System.out.println(phone+"들어왔나?");//
 		System.out.println(post+"들어왔나?");
 		System.out.println(main_addr+"들어왔나?");
 		System.out.println(sub_addr+"들어왔나?");

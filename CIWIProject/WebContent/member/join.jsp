@@ -77,7 +77,7 @@ $(function(){
 		var main_addr=$('#main_addr').val();
 		var sub_addr=$('#sub_addr').val();
 		//var email=$('#email').val();
-		//var email=$(":input:name[name=email]").text()+'@'+$(":input:name[name=email]").text();
+		//var email=$(":input:name[name=email]").text()+'@'+$(":input:name[name=email]").text();ㅁ
 		document.getElementById ( "tdid" ).textContent;
 		var email=document.getElementById ( "tdid" );
 		var phone=$('#phone').val();
