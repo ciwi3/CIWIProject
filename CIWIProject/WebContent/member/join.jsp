@@ -8,6 +8,7 @@
    <title>CIWI Template</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> <!-- 다음 우편검색 -->
 <script type="text/javascript">
 $(function(){
 	//회원가입 완료버튼 눌렀을때
@@ -70,12 +71,16 @@ $(function(){
 		var pwd=$('#pwd').val();
 		var name=$('#name').val();
 		var birth=$('#birth').val();
-		var sex=$('#sex').val();
+		//var sex=$('#sex').val();
+		var sex = $(":input:radio[name=sex]").val();
 		var post=$('#post').val();
 		var main_addr=$('#main_addr').val();
 		var sub_addr=$('#sub_addr').val();
-		var email=$('#email').text();
-		var phone=$('#phone').text();
+		//var email=$('#email').val();
+		//var email=$(":input:name[name=email]").text()+'@'+$(":input:name[name=email]").text();
+		document.getElementById ( "tdid" ).textContent;
+		var email=document.getElementById ( "tdid" );
+		var phone=$('#phone').val();
 		if(id.trim()==""){
 			$('#id').focus();
 			return;
@@ -112,9 +117,58 @@ $(function(){
 			$('#phone').focus();
 			return;
 		}
-		$('form').submit();
+		//회원가입 입력데이터 insert.do로 전송. 
+		$('#joinfrm').submit();
 	});
-});//마지막
+});//마지막 회원가입 조건.
+//다음우편검색 
+function sample6_execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var addr = ''; // 주소 변수
+            var extraAddr = ''; // 참고항목 변수
+
+            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                addr = data.jibunAddress;
+            }
+
+            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+            if(data.userSelectedType === 'R'){
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraAddr !== ''){
+                    extraAddr = ' (' + extraAddr + ')';
+                }
+                // 조합된 참고항목을 해당 필드에 넣는다.
+                document.getElementById("sample6_extraAddress").value = extraAddr;
+            
+            } else {
+                document.getElementById("sample6_extraAddress").value = '';
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('sample6_postcode').value = data.zonecode;
+            document.getElementById("sample6_address").value = addr;
+            // 커서를 상세주소 필드로 이동한다.
+            document.getElementById("sample6_detailAddress").focus();
+        }
+    }).open();
+}
 </script>
 <style type="text/css">
 .row {
@@ -129,7 +183,7 @@ $(function(){
 		<div class="container">
 			<h2 class="text-center">회원가입</h2>
 				<div class="row">
-					<form method=post action="../member/insert.do">
+					<form method=post action="../member/insert.do" id="joinfrm">
 					<table class="table">
 						<tr>
 							<th class="text-right" width=20% height=20%><font size="2px">아이디</font></th>
@@ -158,62 +212,42 @@ $(function(){
 							<th class="text-right" width=20% ><font size="2px">생년월일</font></th>
 							<td class="text-left" width=80%>
 								<input type="date" size=20 name=birth id=birth>
-								<%-- <select name=birth >
-								<!-- forEach돌려서 생년월일 하기.  -->
-								<c:forEach var="i" begin="1900" end="2020" >
-									<c:if test="${i==2010 }">
-									<option selected>${i }</option>
-									</c:if>
-									<c:if test="${i!=2010 }">
-									<option>${i }</option>
-									</c:if>
-									</c:forEach>
-								</select>&nbsp;&nbsp;
-								<select name=birth >
-									<c:forEach var="i" begin="1" end="12">
-									<option>${i }</option>
-									</c:forEach>
-								</select>&nbsp;&nbsp;
-								<select name=birth >
-									<c:forEach var="i" begin="1" end="31">
-									<option>${i }</option>
-									</c:forEach>
-								</select>--%>&nbsp;&nbsp;
-								<font size="2px">음력</font>&nbsp;<input type=radio value="음력">
-								<font size="2px">양력</font>&nbsp;<input type=radio value="양력" checked="checked">
+								<font size="2px">음력</font>&nbsp;<input type="radio" value="음력" name=birth>
+								<font size="2px">양력</font>&nbsp;<input type="radio" value="양력" checked="checked" name=birth>
 							</td>
 						</tr>
 						<tr>
 							<th class="text-right" width=20% ><font size="2px">성별</font></th>
-							<td class="text-left" width=80% name=sex>
-								<font size="2px">남자</font>&nbsp;<input type=radio value="남자" checked="checked" id=m>&nbsp;&nbsp;
-								<font size="2px">여자</font>&nbsp;<input type=radio  value="여자" id=w>
+							<td class="text-left" width=80%>
+								<font size="2px">남자</font>&nbsp;<input type="radio" value="남자" checked="checked" name=sex>&nbsp;&nbsp;
+								<font size="2px">여자</font>&nbsp;<input type="radio"  value="여자" name=sex>
 							</td>
 						</tr>
 						<tr>
-							<th class="text-right" width=20% ><font size="2px">우편번호</font></th>
+							<!-- <th class="text-right" width=20% ><font size="2px">우편번호</font></th>
 							<td class="text-left" width=80% name=post>
 								<input type=text size=20 id=post >
 								<input type=button  value="우편번호검색" class="btn btn-sm btn-info">
-							</td>
+							</td> -->
+							<th class="text-right" width=20% ><font size="2px">우편번호</font></th>
+								<td>
+									<input type="text" id="sample6_postcode" placeholder=" 우편번호" width=80% name=post>
+									<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+								</td>
 						</tr>
 						<tr>
 							<th class="text-right" width=20%><font size="2px">주소</font></th>
 							<td class="text-left" width=80% >
-								<input type=text name=main_addr size=50 id=main_addr>
-							</td>
-						</tr>
-						<tr>
-							<th class="text-right" width=20%><font size="2px">상세주소</font></th>
-							<td class="text-left" width=80% >
-								<input type=text name=sub_addr size=50 placeholder=" 나머지주소 입력" id=sub_addr>
+								<input type="text" id="sample6_address" placeholder=" 주소" size=40 name="main_addr"><br>
+								<input type="text" id="sample6_detailAddress" placeholder=" 상세주소" name="sub_addr">
+								<input type="text" id="sample6_extraAddress" placeholder=" 참고항목">
 							</td>
 						</tr>
 						<tr>
 							<th class="text-right" width=20% ><font size="2px">Email</font></th>
 							<td class="text-left" width=80% name=email>
-								<input type=text size=10 > @
-								<input type=text size=15 >
+								<input type=text size=10 name=email1> @
+								<input type=text size=15 name=email2>
 							</td>
 						</tr>
 						<tr>
@@ -296,7 +330,7 @@ $(function(){
 							</tr>
 							<td colspan=2 class="text-center">
                   					<input type=button value="가입취소" class="btn btn-ms btn-danger" onclick="javascript:history.back()">
-               						<input type=button class="btn btn-ms btn-info" value="신규회원가입 완료" id=joinBtn>
+               						<input type=submit class="btn btn-ms btn-info" value="신규회원가입 완료" id=joinBtn>
                					</td>
 							</th>
 					</table>

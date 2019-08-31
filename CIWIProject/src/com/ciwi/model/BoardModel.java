@@ -53,7 +53,7 @@ public class BoardModel {
 		
 		return "../main/main.jsp";
 	}
-	
+	//게시판 내용 추가 
 	@RequestMapping("community/freeboard_insert_ok.do")
 	public String freeboard_insert_ok(Model model){
 		

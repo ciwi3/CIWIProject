@@ -7,6 +7,8 @@ import com.ciwi.controller.Model;
 import com.ciwi.controller.RequestMapping;
 import com.ciwi.dao.MemberDAO;
 import com.ciwi.vo.MemberVO;
+
+import net.bytebuddy.matcher.ModifierMatcher.Mode;
 @Controller("MemberModel")
 public class MemberModel {
 	//아이디 중복검색 
@@ -27,6 +29,9 @@ public class MemberModel {
 	//회원가입 : 데이터넣기
 	@RequestMapping("member/insert.do")
 	public String member_join_insert(Model model){
+		try{
+			model.getRequest().setCharacterEncoding("UTF-8");
+		}catch (Exception e) {}
 		String id=model.getRequest().getParameter("id");
 		String pwd=model.getRequest().getParameter("pwd");
 		String name=model.getRequest().getParameter("name");
@@ -40,7 +45,19 @@ public class MemberModel {
 		String cate=model.getRequest().getParameter("cate");
 		String genre=model.getRequest().getParameter("genre");
 		System.out.println(id+"들어왔나?");
-		MemberVO vo = new MemberVO();
+		System.out.println(pwd+"들어왔나?");
+		System.out.println(name+"들어왔나?");
+		System.out.println(sex+"들어왔나?");
+		System.out.println(birthday+"들어왔나?");
+		System.out.println(email+"들어왔나?");
+		System.out.println(phone+"들어왔나?");
+		System.out.println(post+"들어왔나?");
+		System.out.println(main_addr+"들어왔나?");
+		System.out.println(sub_addr+"들어왔나?");
+		System.out.println(cate+"들어왔나?");
+		System.out.println(genre+"들어왔나?");
+		
+		/*MemberVO vo = new MemberVO();
 		vo.setId(id);
 		vo.setPwd(pwd);
 		vo.setName(name);
@@ -53,9 +70,9 @@ public class MemberModel {
 		vo.setSub_addr(sub_addr);
 		vo.setCate(cate);
 		vo.setGenre(genre);
-		MemberDAO.memberInsertData(vo);
+		MemberDAO.memberInsertData(vo);*/
 		//model.addAttribute("main_jsp", "../member/join_finish.jsp");
-		return "redirect:join_finish.do";
+		return "redirect:../member/join_finish.do";
 	}
 	
 	//회원수정 
