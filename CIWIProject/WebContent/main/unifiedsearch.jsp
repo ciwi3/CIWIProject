@@ -20,14 +20,14 @@
 			</table>
 			<table class="table">
 				<tr>
-					<c:forEach var="svo" items="${ sList}">
-						<td>${fvo.subject }</td>
+					<c:forEach var="svo" items="${sList}">
+						<td>${svo.subject }</td>
 					</c:forEach>
 				</tr>
 			</table>
 			<table class="table">
 				<tr>
-					<c:forEach var="mvo" items="${ mList}">
+					<c:forEach var="mvo" items="${mList}">
 						<td>${mvo.title }</td>
 					</c:forEach>
 				</tr>
