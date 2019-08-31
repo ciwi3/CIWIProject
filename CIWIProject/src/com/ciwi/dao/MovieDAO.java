@@ -32,4 +32,10 @@ public class MovieDAO {
 		session.close();
 		return list;
 	}
+	
+	public static void totalSeatUpdate(TheaterVO vo) {
+		SqlSession session=ssf.openSession(true);
+		session.update("totalSeatUpdate", vo);
+		session.close();
+	}
 }

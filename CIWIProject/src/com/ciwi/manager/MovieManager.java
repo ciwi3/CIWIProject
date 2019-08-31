@@ -8,17 +8,24 @@ import org.jsoup.select.Elements;
 
 import com.ciwi.dao.MovieDAO;
 import com.ciwi.vo.MovieVO;
+import com.ciwi.vo.TheaterVO;
 public class MovieManager {
 	public static void main(String[] args) {
 		MovieManager mm = new MovieManager();
-		List<MovieVO> list=mm.movieData();
-		int i=1;
-		for(MovieVO vo:list) {
-			MovieDAO.movieDataInsert(vo);
-			System.out.println("i="+i);
-			i++;
+		int severalTotalSeat=0;
+		
+		for(int i=1; i<=167; i++) {
+			severalTotalSeat= (int)((Math.random()*11)+40);
+			System.out.println(i+"번 째 상영관");
+			System.out.println(severalTotalSeat);
+			System.out.println("---------");
+			
+			TheaterVO vo=new TheaterVO();
+			vo.setTheater_no(i);
+			vo.setTheater_total_seat(severalTotalSeat);
+			MovieDAO.totalSeatUpdate(vo);
 		}
-		System.out.println("end");
+		System.out.println("저장 완료");
 	}
 	
 	public List<MovieVO> movieData(){
@@ -31,23 +38,12 @@ public class MovieManager {
 				Document doc = Jsoup.connect("https://movie.naver.com/movie/sdb/rank/rmovie.nhn?sel=pnt&date=20190813&page="+i).get(); // 
 				
 				Elements link = doc.select("td.title div.tit5 a");
-				/*
-				 <td class="title"> <div class="tit5"> <a
-				 href="/movie/bi/mi/basic.nhn?code=171539" title="그린 북">그린
-				 북</a> </div> </td>
-				 */
 				for(int j=0; j<link.size(); j++){
 					try{
 						String url = "https://movie.naver.com"+link.get(j).attr("href");
 						//System.out.println(url);
 						Document doc2 = Jsoup.connect(url).get();
 						Element title = doc2.selectFirst("h3.h_movie a");
-						/* <h3 class="h_movie">
-			<a href="./basic.nhn?code=171539">그린 북</a><!-- N=a:ifo.title -->
-			<strong class="h_movie2" title="Green Book, 2018">Green Book
-					2018</strong>
-						</h3>
-						 * */
 						Element poster = doc2.selectFirst("div.poster img");
 						Element genre = doc2.select("p.info_spec span").get(0);
 						Element regdate = doc2.select("p.info_spec span").get(3);

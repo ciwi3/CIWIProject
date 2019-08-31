@@ -19,7 +19,7 @@
 		#{showing}
 		)
 	</insert>
-	<!-- CGV -->
+	<!-- 극장정보 삽입 -->
 	<insert id="theaterDataInsert" parameterType="TheaterVO">
 		Insert Into theater Values(
 		#{theater_no},
@@ -28,6 +28,12 @@
 		#{theater_loc}
 		)
 	</insert>
+	<!-- 극장별 총 좌석 수 난수 발생 및 삽입 -->
+	<update id="totalSeatUpdate" parameterType="TheaterVO">
+		Update theater Set
+		theater_total_seat=#{theater_total_seat}
+		Where theater_no=#{theater_no}
+	</update>
 	<select id="movieSearch" parameterType="java.util.Map" resultType="MovieVO" >
 	SELECT mno,title,director,actor,poster,regdate,story,genre,category_no,score,grade,showing,num
 	FROM (SELECT mno,title,director,actor,poster,regdate,story,genre,category_no,score,grade,showing,rownum as num FROM movie ORDER BY regdate)
