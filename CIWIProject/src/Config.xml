@@ -17,6 +17,8 @@
        <typeAlias type="com.ciwi.vo.FreeBoardVO" alias="FreeBoardVO"/>
        <typeAlias type="com.ciwi.vo.FreeReplyVO" alias="FreeReplyVO"/>
        <typeAlias type="com.ciwi.vo.TheaterVO" alias="TheaterVO"/>
+       <typeAlias type="com.ciwi.vo.DateInfoVO" alias="DateInfoVO"/>
+       <typeAlias type="com.ciwi.vo.TimeInfoVO" alias="TimeInfoVO"/>
        
        <!-- <typeAlias type="com.sist.vo.FestivalVO" alias="FestivalVO"/> -->
     </typeAliases>

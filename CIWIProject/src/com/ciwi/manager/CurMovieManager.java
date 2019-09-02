@@ -85,6 +85,7 @@ public List<MovieVO> movieAlldata(){
 					vo.setStory(story.text());
 					vo.setCategory_no(2); // category_no = 2 (현재 상영중인 영화)
 					vo.setScore(sco);
+					// 난수 발생 시킴
 					String theaterData=CurMovieManager.theaterData();
 					vo.setTheater_no(theaterData); // 현재 상영중인 영화의 상영관 난수 발생시켜야됨
 					list.add(vo);

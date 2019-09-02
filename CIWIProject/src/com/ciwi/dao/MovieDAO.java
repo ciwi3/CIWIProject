@@ -38,4 +38,10 @@ public class MovieDAO {
 		session.update("totalSeatUpdate", vo);
 		session.close();
 	}
+	
+	public static void theaterDateUpdate(TheaterVO vo) {
+		SqlSession session=ssf.openSession(true);
+		session.update("theaterDateUpdate", vo);
+		session.close();
+	}
 }
