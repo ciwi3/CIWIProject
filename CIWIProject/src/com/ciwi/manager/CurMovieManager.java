@@ -36,12 +36,13 @@ public class CurMovieManager {
 			System.out.println("k= "+k);
 			k++;
 		}*/
-		int k=1;
+		// ³­¼ö 
+		/*int k=1;
 		for(int i=1; i<=30; i++) {
 			DateInfoVO vo=new DateInfoVO();
 			vo.setDate_no(i);
-			vo.setTime_no(cm.);
-		}
+			vo.setTime_no(cm.reserveDayData());
+		}*/
 	}
 
 public List<MovieVO> movieAlldata(){
