@@ -65,7 +65,7 @@ $(function () {
           <th width=20% class="text-center">작성일</th>
           <th width=10% class="text-center">조회수</th>
          </tr>
-		  <c:forEach var="gvo" items="${list }" varStatus="s">
+	 	  <c:forEach var="gvo" items="${list }">
 		  	<c:if test="${gvo.bccate=='공지사항' }">
 			  	<tr bgcolor="pink">
 	             <td width=10% class="text-center">공지</td>
@@ -82,7 +82,6 @@ $(function () {
 		  	</c:if>
 		  </c:forEach>
          <c:forEach var="vo" items="${list }" varStatus="s">
-        	 <c:if test="${gvo.bccate!='공지사항' }">
 	           <tr class="${s.index%2==0?'':'warning' }">
 	             <td width=10% class="text-center">${vo.no }</td>
 	             <td width=45% class="text-left"><a href="freeboard_detail.do?no=${vo.no }">
@@ -95,7 +94,6 @@ $(function () {
 	             <td width=20% class="text-center">${vo.dbday }</td>
 	             <td width=10% class="text-center">${vo.hit }</td>
 	           </tr>
-         	</c:if>
          </c:forEach>
        </table>
        <table class="table">

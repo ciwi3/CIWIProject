@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.ciwi.dao.CreateSqlSessionFactory;
 import com.ciwi.vo.FreeBoardVO;
+import com.ciwi.vo.FreeReplyVO;
 
 public class FreeBoardDAO {
 	private static SqlSessionFactory ssf;
@@ -24,6 +25,17 @@ public class FreeBoardDAO {
 		session.close();
 		
 		return list;
+	}
+	//공지사항 목록
+	public static List<FreeBoardVO> freeboardNoticeData(Map map){
+		
+		List<FreeBoardVO> nlist = new ArrayList<FreeBoardVO>();
+		SqlSession session = ssf.openSession();
+		nlist = session.selectList("freeboardNoticeData", map);
+	
+		session.close();
+		
+		return nlist;
 	}
 	
 	//총페이지 읽기
@@ -80,8 +92,30 @@ public class FreeBoardDAO {
 		return no;
 	}
 	
+	// 댓글 올리기
+	public static void replyInsert(FreeReplyVO vo)
+	{
+		SqlSession session=ssf.openSession(true);
+		session.insert("replyInsert",vo);
+		session.close();
+	}
 	
-	
+	   // 댓글 가지고 오기 
+	   public static List<FreeReplyVO> replyListData(int bno)
+	   {
+		   SqlSession session=ssf.openSession(true);
+		   List<FreeReplyVO> list=session.selectList("replyListData",bno);
+		   session.close();
+		   return list;
+	   }
+	   
+	   public static int replyListCount(int bno)
+	   {
+		   SqlSession session=ssf.openSession(true);
+		   int count=session.selectOne("replyListCount",bno);
+		   session.close();
+		   return count;
+	   }
 	
 	
 	

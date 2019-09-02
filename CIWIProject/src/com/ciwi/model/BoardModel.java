@@ -3,11 +3,14 @@ package com.ciwi.model;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import javax.servlet.http.HttpSession;
+
 import com.ciwi.controller.Controller;
 import com.ciwi.controller.Model;
 import com.ciwi.controller.RequestMapping;
 import com.ciwi.dao.FreeBoardDAO;
 import com.ciwi.vo.FreeBoardVO;
+import com.ciwi.vo.FreeReplyVO;
 
 @Controller("boardModel")
 public class BoardModel {
@@ -40,6 +43,24 @@ public class BoardModel {
 		model.addAttribute("curpage", curpage);
 		model.addAttribute("totalpage", totalpage);
 		model.addAttribute("count", count);
+		model.addAttribute("main_jsp", "../community/freeboard_list.jsp");
+		
+		
+		return "../main/main.jsp";
+	}
+	
+	//공지사항 
+	@RequestMapping("community/freeboard_list.do")
+	public String board_nlist(Model model){
+
+		Map map = new HashMap();
+		
+		List<FreeBoardVO> nlist = FreeBoardDAO.freeboardNoticeData(map);
+		
+		model.addAttribute("nlist", nlist);
+	
+		String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		model.addAttribute("today", today);
 		model.addAttribute("main_jsp", "../community/freeboard_list.jsp");
 		
 		
@@ -86,9 +107,12 @@ public class BoardModel {
 		String no=model.getRequest().getParameter("no");
 		FreeBoardVO vo = FreeBoardDAO.freeboardDetailData(Integer.parseInt(no), "detail");
 		model.addAttribute("vo", vo);
-		model.addAttribute("main_jsp", "../community/freeboard_detail.jsp");		
 		//list 댓글목록 
-		
+		  List<FreeReplyVO> list=FreeBoardDAO.replyListData(Integer.parseInt(no));
+		  int count=FreeBoardDAO.replyListCount(Integer.parseInt(no));
+		  model.addAttribute("list", list);
+		  model.addAttribute("count", count);
+		  model.addAttribute("main_jsp", "../community/freeboard_detail.jsp");
 		
 		return "../main/main.jsp";
 	}
@@ -135,7 +159,32 @@ public class BoardModel {
 		  return "../community/freeboard_update_ok.jsp";
 	  }
 	
-	
+	  @RequestMapping("community/reply_insert.do")
+	  public String reply_insert(Model model)
+	  {
+		  // 요청값을 받는다 
+		  try
+		  {
+			  model.getRequest().setCharacterEncoding("UTF-8");
+		  }catch(Exception ex){}
+		  
+		  String bno=model.getRequest().getParameter("bno");
+		  String msg=model.getRequest().getParameter("msg");
+		  
+		  HttpSession session=model.getRequest().getSession();
+		  String id=(String)session.getAttribute("id");
+		  
+		  FreeReplyVO vo=new FreeReplyVO();
+		  vo.setBno(Integer.parseInt(bno));
+		  vo.setMsg(msg);
+		  vo.setId(id);
+
+		  // DAO=>데이터 추가 
+		  
+		  FreeBoardDAO.replyInsert(vo);
+		  // 결과값(X)
+		  return "redirect:../community/freeboard_detail.do?no="+bno;
+	  }
 	
 	
 	

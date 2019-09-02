@@ -5,9 +5,18 @@
 		SELECT no,subject,id,dbday,hit,num,bc.board_category as bccate
 		FROM (SELECT no,subject,id,TO_CHAR(regdate,'YYYY-MM-DD')as dbday,hit,rownum as num ,board_category
 		FROM (SELECT no,subject,id,regdate,hit,board_category
-		FROM freeboard ORDER BY no DESC))fb, board_category bc
+		FROM freeboard ORDER BY no asc))fb, board_category bc
 		WHERE num BETWEEN #{start} AND #{end}
 	    AND fb.board_category=bc.bcno
+	    ORDER BY num desc
+	</select>
+	<select id="freeboardNoticeData" resultType="FreeBoardVO" parameterType="java.util.Map">
+		SELECT no,subject,id,dbday,hit,num,bc.board_category as bccate
+		FROM (SELECT no,subject,id,TO_CHAR(regdate,'YYYY-MM-DD')as dbday,hit,rownum as num ,board_category
+		FROM (SELECT no,subject,id,regdate,hit,board_category
+		FROM freeboard ORDER BY no asc))fb, board_category bc
+		WHERE fb.board_category=bc.bcno AND bc.bcno = 4
+	    ORDER BY num desc
 	</select>
 	<!-- 총페이지 -->
  	<select id="freeboardTotalPage" resultType="int">
@@ -45,6 +54,29 @@
  		subject=#{subject},content=#{content},board_category=#{board_category}
  		WHERE no=#{no}
  	</update>
+ 	<!-- 댓글 추가 -->
+ 	<insert id="replyInsert" parameterType="FreeReplyVO">
+    INSERT INTO freeboardReply(no,bno,id,msg,group_id) VALUES(
+      freeboardReply_no_seq.nextval,
+      #{bno},
+      #{id},
+      #{msg},
+      (SELECT NVL(MAX(group_id)+1,1) FROM freeboardReply)
+    )
+   </insert>
+   <!-- 댓글 읽기 -->
+   <select id="replyListData" resultType="FreeReplyVO" parameterType="int">
+     SELECT no,bno,id,msg,
+     TO_CHAR(regdate,'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') as dbday,group_tab 
+     FROM freeboardReply
+     WHERE bno=#{bno}
+     ORDER BY group_id DESC,group_step ASC
+   </select>
+   <select id="replyListCount" resultType="int" parameterType="int">
+     SELECT COUNT(*) 
+     FROM freeboardReply
+     WHERE bno=#{bno}
+   </select>
 </mapper>
 
 

@@ -114,7 +114,7 @@ $(function(){
 	            </c:forEach>
 	            <img src="re.gif">
 	          </c:if>
-                             ◐<font color="blue">${rvo.name }</font>&nbsp;${rvo.dbday }</td>
+                             ◐<font color="blue">${rvo.id }</font>&nbsp;${rvo.dbday }</td>
              <td class="text-right">
               <c:if test="${sessionScope.id!=null && sessionScope.id==rvo.id }">
                <a href="#" class="btn btn-xs btn-warning updateBtn" value="${rvo.no }">수정</a>
@@ -165,7 +165,7 @@ $(function(){
 	      <table class="table">
 	        <tr>
 	          <td class="text-left">
-	           <form name="frm" method="post" action="../board/reply_insert.do">
+	           <form name="frm" method="post" action="../community/reply_insert.do">
 	            <textarea rows="3" cols="110" name="msg" style="float: left"></textarea>
 	            <input type="hidden" name="bno" value="${vo.no }">
 	            <input type="submit" class="btn btn-sm btn-primary" style="height: 67px"
