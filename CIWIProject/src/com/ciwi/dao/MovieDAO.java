@@ -39,6 +39,12 @@ public class MovieDAO {
 		session.close();
 	}
 	
+	public static void dateInsert(DateInfoVO vo) {
+		SqlSession session=ssf.openSession(true);
+		session.insert("dateInsert",vo);
+		session.close();
+	}
+	
 	public static void theaterDateUpdate(TheaterVO vo) {
 		SqlSession session=ssf.openSession(true);
 		session.update("theaterDateUpdate", vo);

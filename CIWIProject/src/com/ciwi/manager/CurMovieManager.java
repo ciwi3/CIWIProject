@@ -6,6 +6,7 @@ import java.util.List;
 import com.ciwi.dao.FestivalDAO;
 import com.ciwi.dao.MovieDAO;
 import com.ciwi.vo.*;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -15,15 +16,32 @@ public class CurMovieManager {
 
 	public static void main(String[] args) {
 		CurMovieManager cm = new CurMovieManager();
-		List<MovieVO> list=cm.movieAlldata();
-		int i=1;
+		// List<MovieVO> list=cm.movieAlldata();
+		/*int i=1;
 		for(MovieVO vo:list) {
 			MovieDAO.movieDataInsert(vo);
 			System.out.println("i="+i);
 			i++;
 		}
 		System.out.println("save end");
-		cm.theaterData();
+		cm.theaterData();*/
+		
+		// 167개의 극장에서 각 날짜에 해당하는 상영시간표에 난수를 넣음
+		/*int k=1;
+		for(int i=1; i<=167; i++) { // 극장 총 167개
+			DateInfoVO vo=new DateInfoVO();
+			vo.setDate_no(i);
+			vo.setTime_no(cm.reserveDayData());
+			MovieDAO.dateInsert(vo);
+			System.out.println("k= "+k);
+			k++;
+		}*/
+		int k=1;
+		for(int i=1; i<=30; i++) {
+			DateInfoVO vo=new DateInfoVO();
+			vo.setDate_no(i);
+			vo.setTime_no(cm.);
+		}
 	}
 
 public List<MovieVO> movieAlldata(){
@@ -102,6 +120,7 @@ public List<MovieVO> movieAlldata(){
 		return list;
 	}
 
+	// 해당 영화에 대한 상영관 난수 발생
 	public static String theaterData() {
 		// 총 극장 20개 중 => 1 1 1 1 (중복이 있으면 안됨)
 		String result="";
@@ -112,6 +131,86 @@ public List<MovieVO> movieAlldata(){
 			bCheck=true;
 			while(bCheck) {
 				su=(int)(Math.random()*167)+1; // com[] 배열에 1~20 값을 넣음 
+				bCheck=false;
+				for(int j=0;j<i;j++) {
+					if(com[j]==su) {
+						bCheck=true;
+						break;
+					}
+				}
+			}
+			com[i]=su;
+		}
+		
+		for(int i=0;i<com.length-1;i++) { // 선택정렬 오름차순
+			for(int j=i+1;j<com.length;j++) {
+				if(com[i]>com[j]) {
+					int temp=com[i];
+					com[i]=com[j];
+					com[j]=temp;
+				}
+			}
+		}
+		for(int i=0;i<com.length;i++) {
+			// System.out.print(com[i]+" ");
+			result+=com[i]+", ";
+		}
+		result=result.substring(0,result.lastIndexOf(", "));
+		System.out.println(result);
+		return result;
+	}
+	
+	// 상영관 마다 상영하는 날짜 난수 발생
+	public String reserveDayData() {
+		// 총 극장 20개 중 => 1 1 1 1 (중복이 있으면 안됨)
+		String result="";
+		int[] com=new int[(int)(Math.random()*10)+5]; // 중복없는 난수 발생 => 최소 5개부터 15개까지
+		int su=0;
+		boolean bCheck=false;
+		for(int i=0; i<com.length; i++) {
+			bCheck=true;
+			while(bCheck) {
+				su=(int)(Math.random()*30)+1; // 1~30 (9월)
+				bCheck=false;
+				for(int j=0;j<i;j++) {
+					if(com[j]==su) {
+						bCheck=true;
+						break;
+					}
+				}
+			}
+			com[i]=su;
+		}
+		
+		for(int i=0;i<com.length-1;i++) { // 선택정렬 오름차순
+			for(int j=i+1;j<com.length;j++) {
+				if(com[i]>com[j]) {
+					int temp=com[i];
+					com[i]=com[j];
+					com[j]=temp;
+				}
+			}
+		}
+		for(int i=0;i<com.length;i++) {
+			// System.out.print(com[i]+" ");
+			result+=com[i]+", ";
+		}
+		result=result.substring(0,result.lastIndexOf(", "));
+		// System.out.println(result);
+		return result;
+	}
+	
+	// 상영관 마다 상영하는 날짜 난수발생
+	public String reserveTimeData() {
+		// 총 극장 20개 중 => 1 1 1 1 (중복이 있으면 안됨)
+		String result="";
+		int[] com=new int[(int)(Math.random()*6)+5]; // 중복없는 난수 발생 => 최소 5개부터 11개까지
+		int su=0;
+		boolean bCheck=false;
+		for(int i=0; i<com.length; i++) {
+			bCheck=true;
+			while(bCheck) {
+				su=(int)(Math.random()*27)+1; // 1~27
 				bCheck=false;
 				for(int j=0;j<i;j++) {
 					if(com[j]==su) {

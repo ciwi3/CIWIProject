@@ -1,19 +1,18 @@
 package com.ciwi.vo;
 
 public class DateInfoVO {
-	private int dno;
-	private String timeno; // 참조
-	public int getDno() {
-		return dno;
+	private int date_no;
+	private String time_no; // 참조
+	public int getDate_no() {
+		return date_no;
 	}
-	public void setDno(int dno) {
-		this.dno = dno;
+	public void setDate_no(int date_no) {
+		this.date_no = date_no;
 	}
-	public String getTimeno() {
-		return timeno;
+	public String getTime_no() {
+		return time_no;
 	}
-	public void setTimeno(String timeno) {
-		this.timeno = timeno;
+	public void setTime_no(String time_no) {
+		this.time_no = time_no;
 	}
-	
 }

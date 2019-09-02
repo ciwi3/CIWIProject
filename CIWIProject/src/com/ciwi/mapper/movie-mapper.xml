@@ -37,16 +37,16 @@
 	<!-- 날짜  -->
 	<insert id="dateInsert" parameterType="DateInfoVO">
 		Insert Into dateInfo Values(
-			#{dno},
-			#{timeno}
+			#{date_no},
+			#{time_no}
 		)
 	</insert>
 	<!-- 해당 영화에 대한 극장별 상영일 난수 발생 및 삽입 -->
-	<update id="theaterDateUpdate" parameterType="TheaterVO">
+	<insert id="theaterDateUpdate" parameterType="TheaterVO">
 		Update theater Set
 		date_no=#{date_no}
 		Where theater_no=#{theater_no}
-	</update>
+	</insert>
 	
 	<!-- 해당 영화에 대한 극장별 상영시간 난수 발생 및 삽입 -->
 	
