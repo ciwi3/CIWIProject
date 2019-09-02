@@ -22,6 +22,7 @@
 					<c:if test="${i.index%4==0 }">
 						<tr>
 					</c:if>
+					<c:if test="${i.index<8 }">
 					<td class="text-left">
 						<ul class="text-center">
 							<a href="../contents/festival_detail.do?fno=${fvo.fno }">
@@ -30,6 +31,7 @@
 							</a>
 						</ul>
 					</td>
+					</c:if>
 					<c:if test="${i.index%4==3 || i.last == true}">
 						</tr>
 					</c:if>
