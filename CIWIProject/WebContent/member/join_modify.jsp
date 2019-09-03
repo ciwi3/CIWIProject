@@ -10,29 +10,29 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> <!-- 다음 우편검색 -->
 <script type="text/javascript">
 $(function(){
-$('#overlapPWDBtn').click(function(){
-	var pwd=$('#pwd').val();// 입력한 비밀번호 조건
-			if(pwd.trim()=="" ||  pwd.length<6 ){
-				$('#pwdCondition').text("영문 대/소문자+숫자 조합, 6~16자로 입력하세요.");
-				$('#pwdCondition').css("color","red");
-				$('#pwd').focus();
-				return;
-			}else if (pwd.length>16){
-				$('#pwdCondition').text("영문 대/소문자+숫자 조합, 6~16자로 입력하세요.");
-				$('#pwdCondition').css("color","red");
-				$('#pwd').focus();
-				return;
-			} else if (!pwd.match(/[0-9]+[a-z]|[A-Z]/)){
-				$('#pwdCondition').text("영문 대/소문자+숫자 조합, 6~16자로 입력하세요.");
-				$('#pwdCondition').css("color","red");
-				$('#pwd').focus();
-				return;
-			}else{
-				$('#pwdCondition').text("사용가능한 비밀번호입니다.");
-				$('#pwdCondition').css("color","blue");
-				return;
-			}
-});//비밀번호 확인
+		$('#overlapPWDBtn').click(function(){
+			var pwd=$('#pwd').val();// 입력한 비밀번호 조건
+					if(pwd.trim()=="" ||  pwd.length<6 ){
+						$('#pwdCondition').text("영문 대/소문자+숫자 조합, 6~16자로 입력하세요.");
+						$('#pwdCondition').css("color","red");
+						$('#pwd').focus();
+						return;
+					}else if (pwd.length>16){
+						$('#pwdCondition').text("영문 대/소문자+숫자 조합, 6~16자로 입력하세요.");
+						$('#pwdCondition').css("color","red");
+						$('#pwd').focus();
+						return;
+					} else if (!pwd.match(/[0-9]+[a-z]|[A-Z]/)){
+						$('#pwdCondition').text("영문 대/소문자+숫자 조합, 6~16자로 입력하세요.");
+						$('#pwdCondition').css("color","red");
+						$('#pwd').focus();
+						return;
+					}else{
+						$('#pwdCondition').text("사용가능한 비밀번호입니다.");
+						$('#pwdCondition').css("color","blue");
+						return;
+					}
+		});//비밀번호 확인
 		$('#modifyBtn').click(function(){
 				var pwd=$('#pwd').val();
 				var post=$('#post').val(); 
@@ -108,6 +108,24 @@ $('#overlapPWDBtn').click(function(){
 					}
 			});// ajax
 		});//회원가입완료버튼
+		//회원탈퇴
+		$('#deleteBtn').click(function(){ 
+				var pwd=$('#pwd').val();// 입력한 아이디 조건
+						if(pwd.trim()==""){
+							$('#pwd').focus();
+							alert("탈퇴 하시려면 비밀번호를 입력해주세요.");
+							return;
+						}
+							$.ajax({
+							type:'post',
+							url:'../member/member_delete.do',
+							data:{pwd:pwd},
+							success:function(response){
+								alert("정상 탈퇴되었습니다. 안녕히 가세요.");
+								location.href="../main/main.do";
+								}
+						}); 
+			}); // 비밀번호중복체크 
 });
 //다음우편검색 
 function sample6_execDaumPostcode() {
@@ -195,22 +213,22 @@ function sample6_execDaumPostcode() {
 						<tr>
 							<th class="text-right" width=20% ><font size="2px">우편번호</font></th>
 								<td>
-									<input type="text" id="post" placeholder=" 우편번호" width=80% name=post >
+									<input type="text" id="post" placeholder=" 우편번호" value="${post }" width=80% name=post >
 									<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 								</td>
 						</tr>
 						<tr>
 							<th class="text-right" width=20%><font size="2px">주소</font></th>
 							<td class="text-left" width=80% >
-								<input type="text" id="main_addr" placeholder=" 주소" size=40 name="main_addr" ><br>
-								<input type="text" id="sub_addr" placeholder=" 상세주소" name="sub_addr">
+								<input type="text" id="main_addr" placeholder=" 주소" value="${main_addr }" size=40 name="main_addr" ><br>
+								<input type="text" id="sub_addr" placeholder=" 상세주소" value="${sub_addr }" name="sub_addr">
 								<input type="text" id="sample6_extraAddress" placeholder=" 참고항목">
 							</td>
 						</tr>
 						<tr>
 							<th class="text-right" width=20% ><font size="2px">Email</font></th>
 								<td class="text-left" width=80% name=email id=email>
-									<input type=text size=10 name=email1 id=email1> @
+									<input type=text size=10 name=email1 id=email1 > @
 									<input type=text size=15 name=email2 id=email2>
 								</td>
 						</tr>
@@ -295,7 +313,10 @@ function sample6_execDaumPostcode() {
 							<td colspan=2 class="text-center">
                   					<input type=button value="수정취소" class="btn btn-ms btn-danger" onclick="javascript:history.back()">
                						<input type=button class="btn btn-ms btn-info" value="정보수정" id=modifyBtn>
-               					</td>
+               				</td>
+               				<td colspan=18 class="text-right">
+               						<input type=button class="btn btn-sm btn-danger" value="회원탈퇴" id=deleteBtn>
+               				</td>
 							</th>
 					</table>
 					</form>

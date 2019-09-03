@@ -80,6 +80,7 @@ public class MemberDAO {
 	}
 	//회원정보 수정
 	public static void joinUpdate(MemberVO vo){
+		
 		SqlSession session = null;
 		try{
 			session=ssf.openSession();
@@ -87,6 +88,34 @@ public class MemberDAO {
 			session.commit();
 		}catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+	}
+	//비밀번호 찾기
+	public static MemberVO memberGetPwd(String id){
+		MemberVO vo = new MemberVO();
+		SqlSession session =null;
+		try{
+			session=ssf.openSession();
+			vo=session.selectOne("memberGetPwd",id);
+			//System.out.println(vo.getPwd());
+		}catch (Exception e) {
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+		return vo;
+	}
+	//회원 탈퇴
+	public static void member_delete(String id){
+		SqlSession session =null;
+		try{
+			session=ssf.openSession();
+			session.delete("joinDelete",id);
+			session.commit();
+		}catch (Exception e) {
 		}finally {
 			if(session!=null)
 				session.close();

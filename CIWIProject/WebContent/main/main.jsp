@@ -123,6 +123,7 @@
 								</div>
 							</div>
 						</li>
+						<c:if test="${sessionScope.id != null }">
 						<li class="has-dropdown">
 							<a href="#">마이페이지</a>
 							<div class="dropdown">
@@ -130,11 +131,13 @@
 									<ul class="dropdown-list">
 										<li><a href="#">내지갑</a></li>
 										<li><a href="#">보고싶어요</a></li>
-										<li><a href="../member/join_modify.do">회원수정</a></li>
+											<li><a href="../member/join_modify.do">회원수정</a></li>
+										
 									</ul>
 								</div>
 							</div>
 						</li>
+						</c:if>
 					</ul>
 					<!-- /nav -->
 				</div>
@@ -167,6 +170,7 @@
                      <li><a href="#">Q & A</a></li>
                   </ul>
                </li>
+               <c:if test="${sessionScope.id != null }">
                <li class="has-dropdown"><a>내 페이지</a>
                   <ul class="dropdown">
                      <li><a href="../member/join_modify.do">회원정보 / 수정</a></li>
@@ -175,6 +179,7 @@
                   </ul>
                </li>
             </ul>
+            </c:if>
             <button class="nav-close nav-aside-close"><span></span></button>
          </div>
          <!-- /Aside Nav -->
