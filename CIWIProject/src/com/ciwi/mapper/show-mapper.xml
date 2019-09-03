@@ -53,30 +53,30 @@
 		AND s.area_no = a.area_no
 
 		<if test='searchOption.equals("제목")'>
-			<if test='text!=null  and !text.equals("")'>
-				AND regexp_like(subject,#{text})
+			<if test='search!=null  and !search.equals("")'>
+				AND regexp_like(subject,#{search})
 			</if>
 		</if>
 		<if test='searchOption.equals("내용")'>
-			<if test='text!=null  and !text.equals("")'>
-				AND regexp_like(content,#{text})
+			<if test='search!=null  and !search.equals("")'>
+				AND regexp_like(content,#{search})
 			</if>
 		</if>
-		<if test=' area!=null and !area.equals("")'>
-			AND area_name = #{show_area}
+		<if test='!area.equals("전체") and area!=null and !area.equals("")'>
+			AND s.area_no = #{area}
 		</if>
-		<if test='genre!=null and !genre.equals("") '>
-			AND show_genre = #{show_genre}
+		<if test='!show_genre.equals("전체") and genre!=null and !show_genre.equals("") '>
+			AND s.genre_no = #{show_genre}
 		</if>
 		ORDER BY sno asc
 	</select>
 	
-	<select id="getAreaName" resultType="String">
-		SELECT area_name FROM area
+	<select id="getAreaName" resultType="AreaVO">
+		SELECT * FROM area
 	</select>
 	
-	<select id="getGenreName" resultType="String">
-		SELECT show_genre FROM show_genre
+	<select id="getGenreName" resultType="ShowGenreVO">
+		SELECT * FROM show_genre
 	</select>
 	
 </mapper>

@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.ciwi.dao.CreateSqlSessionFactory;
+import com.ciwi.vo.AreaVO;
+import com.ciwi.vo.ShowGenreVO;
 import com.ciwi.vo.ShowVO;
 
 public class ShowDAO {
@@ -39,16 +41,16 @@ public class ShowDAO {
 		return list;
 	}
 	
-	public static List<String> getAreaName(){
-		List<String> list= new ArrayList<String>();
+	public static List<AreaVO> getAreaName(){
+		List<AreaVO> list= new ArrayList<AreaVO>();
 		SqlSession session = ssf.openSession();
 		list=session.selectList("getAreaName");
 		session.close();
 		return list;
 	}
 
-	public static List<String> getGenreName(){
-		List<String> list= new ArrayList<String>();
+	public static List<ShowGenreVO> getGenreName(){
+		List<ShowGenreVO> list= new ArrayList<ShowGenreVO>();
 		SqlSession session = ssf.openSession();
 		list=session.selectList("getGenreName");
 		session.close();
