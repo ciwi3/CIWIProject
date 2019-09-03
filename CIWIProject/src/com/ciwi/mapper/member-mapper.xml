@@ -50,14 +50,9 @@
 	</select>
 	<!-- 장르검색? -->
 	<!-- 회원정보 수정하기 -->
-	<select id="joinSeleteData" resultType="MemberVO" parameterType="MemberVO">
-		select id,name,sex from member
-		where id=#{id}
-	</select>
 	<update id="joinUpdate" parameterType="MemberVO">
 		update member set
 		pwd=#{pwd},
-		birthday=#{birthday},
 		post=#{post},
 		main_addr=#{main_addr},
 		sub_addr=#{sub_addr},

@@ -39,19 +39,21 @@ public class MemberModel {
 		String birthday=model.getRequest().getParameter("birth");
 		String email=model.getRequest().getParameter("email1")+"@"+model.getRequest().getParameter("email2");
 		String phone=model.getRequest().getParameter("phone1")+"-"+model.getRequest().getParameter("phone2")
-				+"-"+model.getRequest().getParameter("phone3");
+							+"-"+model.getRequest().getParameter("phone3");
 		String post=model.getRequest().getParameter("post");
 		String main_addr=model.getRequest().getParameter("main_addr");
 		String sub_addr=model.getRequest().getParameter("sub_addr");
-		String cate=model.getRequest().getParameter("cate");
-		String genre=model.getRequest().getParameter("genre");
+		String cate=model.getRequest().getParameter("cate1")+","+
+							model.getRequest().getParameter("cate2");
+		String genre=model.getRequest().getParameter("genre1")+","+
+							model.getRequest().getParameter("genre2");
 		System.out.println(id+"들어왔나?");
 		System.out.println(pwd+"들어왔나?");
 		System.out.println(name+"들어왔나?");
 		System.out.println(sex+"들어왔나?");
 		System.out.println(birthday+"들어왔나?");
 		System.out.println(email+"들어왔나?");
-		System.out.println(phone+"들어왔나?");//
+		System.out.println(phone+"들어왔나?");
 		System.out.println(post+"들어왔나?");
 		System.out.println(main_addr+"들어왔나?");
 		System.out.println(sub_addr+"들어왔나?");
@@ -82,11 +84,58 @@ public class MemberModel {
 		model.addAttribute("main_jsp", "../member/join_finish.jsp");
 		return "../main/main.jsp";
 	}
+	//회원수정 화면이동
+	@RequestMapping("member/join_modify.do")
+	public String join_modify(Model model){
+		model.addAttribute("main_jsp", "../member/join_modify.jsp");
+		return "../main/main.jsp";
+	}
 	
 	//회원수정 
-	@RequestMapping("member/join_modify.do")
-	public String member_join_modify(Model model){
-		model.addAttribute("main_jsp", "../member/join_modify.jsp");
+	@RequestMapping("member/join_modify_ok.do")
+	public String join_modify_update(Model model){
+		try{
+			model.getRequest().setCharacterEncoding("UTF-8");
+		}catch (Exception e) {}
+		String pwd=model.getRequest().getParameter("pwd");
+		String email=model.getRequest().getParameter("email1")+"@"+model.getRequest().getParameter("email2");
+		String phone=model.getRequest().getParameter("phone1")+"-"+model.getRequest().getParameter("phone2")
+				+"-"+model.getRequest().getParameter("phone3");
+		String post=model.getRequest().getParameter("post");
+		String main_addr=model.getRequest().getParameter("main_addr");
+		String sub_addr=model.getRequest().getParameter("sub_addr");
+		String cate=model.getRequest().getParameter("cate1")+","+
+							model.getRequest().getParameter("cate2");
+		String genre=model.getRequest().getParameter("genre1")+","+
+							model.getRequest().getParameter("genre2");
+		System.out.println(pwd+"들어왔나?");
+		System.out.println(email+"들어왔나?");
+		System.out.println(phone+"들어왔나?");//
+		System.out.println(post+"들어왔나?");
+		System.out.println(main_addr+"들어왔나?");
+		System.out.println(sub_addr+"들어왔나?");
+		System.out.println(cate+"들어왔나?");
+		System.out.println(genre+"들어왔나?");
+		MemberVO vo= new MemberVO();
+		vo.setPwd(pwd);
+		vo.setEmail(email);
+		vo.setPhone(phone);
+		vo.setPost(post);
+		vo.setMain_addr(main_addr);
+		vo.setSub_addr(sub_addr);
+		vo.setCate(cate);
+		vo.setGenre(genre);
+		// 확인
+		HttpSession session=model.getRequest().getSession();
+		String id=(String)session.getAttribute("id");
+		vo.setId(id);
+		MemberDAO.joinUpdate(vo);
+		return "redirect:../member/modify_finish.do";
+	}
+	//회원수정완료
+	@RequestMapping("member/modify_finish.do")
+	public String member_modify_finish(Model model){
+		model.addAttribute("main_jsp", "../member/modify_finish.jsp");
 		return "../main/main.jsp";
 	}
 	//로그인화면 출력

@@ -84,7 +84,7 @@ $(function(){
 				var email1=$('#email1').val();
 				var email2=$('#email2').val();
 				//alert(email1+"@"+email2);
-				var phone1=$('#phone1').val();
+				var phone1=$("#phone1 option:selected").val();
 				var phone2=$('#phone2').val();
 				var phone3=$('#phone3').val();
 				//alert(phone1+"-"+phone2+"-"+phone3);
@@ -124,7 +124,8 @@ $(function(){
 					$('#email2').focus();
 					return;
 				}
-				if(phone1.trim()==""){
+				if(phone1.trim()=="번호선택"){
+					alert("휴대폰번호 확인해주세요.");
 					$('#phone1').focus();
 					return;
 				}
@@ -136,22 +137,30 @@ $(function(){
 					$('#phone3').focus();
 					return;
 				}
-				var cate=$("#cate option:selected").val();
-				if(cate.trim()=="카테고리선택"){
-					cate=null;
+				var cate1=$("#cate1 option:selected").val();
+				if(cate1.trim()=="카테고리선택"){
+					cate1=null;
 				}
-				var genre=$("#genre option:selected").val();
-				if(genre.trim()=="장르선택"){
-					genre=null;
+				var cate2=$("#cate2 option:selected").val();
+				if(cate2.trim()=="카테고리선택"){
+					cate2=null;
+				}
+				var genre1=$("#genre1 option:selected").val();
+				if(genre1.trim()=="장르선택"){
+					genre1=null;
+				}
+				var genre2=$("#genre2 option:selected").val();
+				if(genre2.trim()=="장르선택"){
+					genre2=null;
 				}
 				$.ajax({
 					type:'post',
 					url:'../member/insert.do',
 					data:{id:id,pwd:pwd,name:name,sex:sex,birth:birth,email1:email1,email2:email2,
 							phone1:phone1,phone2:phone2,phone3:phone3,post:post,main_addr:main_addr,
-							sub_addr:sub_addr,cate:cate,genre:genre},
+							sub_addr:sub_addr,cate1:cate1,cate2:cate2,genre1:genre1,genre2:genre2},
 					success:function(res){
-						location.href="../member/join_finish.do";
+						location.href="../member/join_finish.do"; // 결과값 넣고 이동 화면.
 					}
 		});// ajax
 	});//회원가입완료 
@@ -301,15 +310,13 @@ function sample6_execDaumPostcode() {
 							<tr>
 							<th class="text-right" width=20%><font size="2px">보고싶어요 장르</font>
 								<td class="text-left" width=80%>
-								<select name=cate id=cate>
+								<select name=cate id=cate1>
 									<option>카테고리선택</option>
-									<c:forEach var="vo" items="${list }">
 										<option>영화</option>
 										<option>공연 전시</option>
 										<option>페스티벌</option>
-									</c:forEach>
 								</select>
-								<select name=genre id=genre>
+								<select name=genre id=genre1>
 										<option>장르선택</option>
 										<option>액션</option>
 										<option>코미디</option>
@@ -334,13 +341,13 @@ function sample6_execDaumPostcode() {
 							<tr>
 							<th class="text-right" width=20%><font size="2px">      </font>
 								<td class="text-left" width=80%>
-								<select name=cate >
+								<select name=cate id=cate2 >
 									<option>카테고리선택</option>
 									<option>영화</option>
 									<option>공연 전시</option>
 									<option>페스티벌</option>
 								</select>
-								<select name=genre>
+								<select name=genre id=genre2>
 										<option>장르선택</option>
 										<option>액션</option>
 										<option>코미디</option>
