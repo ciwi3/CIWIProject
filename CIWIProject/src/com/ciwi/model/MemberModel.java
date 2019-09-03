@@ -37,8 +37,9 @@ public class MemberModel {
 		String name=model.getRequest().getParameter("name");
 		String sex=model.getRequest().getParameter("sex");
 		String birthday=model.getRequest().getParameter("birth");
-		String email=model.getRequest().getParameter("email");
-		String phone=model.getRequest().getParameter("phone");
+		String email=model.getRequest().getParameter("email1")+"@"+model.getRequest().getParameter("email2");
+		String phone=model.getRequest().getParameter("phone1")+"-"+model.getRequest().getParameter("phone2")
+				+"-"+model.getRequest().getParameter("phone3");
 		String post=model.getRequest().getParameter("post");
 		String main_addr=model.getRequest().getParameter("main_addr");
 		String sub_addr=model.getRequest().getParameter("sub_addr");
@@ -57,7 +58,7 @@ public class MemberModel {
 		System.out.println(cate+"들어왔나?");
 		System.out.println(genre+"들어왔나?");
 		
-		/*MemberVO vo = new MemberVO();
+		MemberVO vo = new MemberVO();
 		vo.setId(id);
 		vo.setPwd(pwd);
 		vo.setName(name);
@@ -70,9 +71,16 @@ public class MemberModel {
 		vo.setSub_addr(sub_addr);
 		vo.setCate(cate);
 		vo.setGenre(genre);
-		MemberDAO.memberInsertData(vo);*/
-		//model.addAttribute("main_jsp", "../member/join_finish.jsp");
-		return "redirect:../member/join_finish.do";
+		MemberDAO.memberInsertData(vo);
+		return "redirect:../member/join_finish.do"; //값을 전송
+	}
+	//회원가입 완료 
+	@RequestMapping("member/join_finish.do")
+	public String member_join_finish(Model model){
+		String id=MemberDAO.joinFinishData();
+		model.addAttribute("id", id);
+		model.addAttribute("main_jsp", "../member/join_finish.jsp");
+		return "../main/main.jsp";
 	}
 	
 	//회원수정 
@@ -81,12 +89,6 @@ public class MemberModel {
 		model.addAttribute("main_jsp", "../member/join_modify.jsp");
 		return "../main/main.jsp";
 	}
-/*	//회원가입 완료 
-	@RequestMapping("mamber/join_finish")
-	public String member_join_finish(Model model){
-		model.addAttribute("main_jsp", "../member/join_finish.jsp");
-		return "../main/main.jsp";
-	}*/
 	//로그인화면 출력
 	@RequestMapping("member/login.do")
 	public String member_login(Model model){

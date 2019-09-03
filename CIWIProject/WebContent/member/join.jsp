@@ -12,133 +12,166 @@
 <script type="text/javascript">
 $(function(){
 	//회원가입 완료버튼 눌렀을때
-	$('#overlapIDBtn').click(function(){ 
-		var id=$('#id').val();// 입력한 아이디 조건
-				if(id.trim()=="" ||  id.length<4 ){
-					$('#idConditon').text("4~16자이내로 입력하세요.");
-					$('#idConditon').css("color","red");
-					$('#id').focus();
-					return;
-				}else if (id.length>16){
-					$('#idConditon').text("4~16자이내로 입력하세요.");
-					$('#idConditon').css("color","red");
-					$('#id').focus();
-					return;
-				}
-		 		$.ajax({
-					type:'post',
-					url:'../member/join_ok.do',
-					data:{id:id},
-					success:function(response){
-						var count = response.trim();
-						if(count ==1){
-							$('#idConditon').text("사용 중인 아이디입니다. 다시입력해주세요.");
+			$('#overlapIDBtn').click(function(){ 
+				var id=$('#id').val();// 입력한 아이디 조건
+						if(id.trim()=="" ||  id.length<4 ){
+							$('#idConditon').text("영문소문자/숫자, 4~16자로 입력하세요.");
 							$('#idConditon').css("color","red");
-							$('#idConditon').focus();
+							$('#id').focus();
 							return;
-						}else if(count ==0){
-							$('#idConditon').text("사용 가능한 아이디입니다.");
-							$('#idConditon').css("color","blue");
+						}else if (id.length>16){
+							$('#idConditon').text("영문소문자/숫자, 4~16자로 입력하세요.");
+							$('#idConditon').css("color","red");
+							$('#id').focus();
+							return;
+						}else if( (!id.match(/[a-z]+[0-9]/)) && (!id.match(/[0-9]+[a-z]/)) ){
+							$('#idConditon').text("영문소문자/숫자, 4~16자로 입력하세요.");
+							$('#idConditon').css("color","red");
+							$('#id').focus();
+							//return 값이 있으면 에이젝스 실행안됨;;
 						}
-					}
-				}); 
-	}); // 아이디중복체크 
-	$('#overlapPWDBtn').click(function(){
-				var pwd=$('#pwd').val();// 입력한 비밀번호 조건
-				if(pwd.trim()=="" ||  pwd.length<6 ){
-					$('#pwdCondition').text("영문 대/소문자+숫자 조합, 6~16자로 입력하세요.");
-					$('#pwdCondition').css("color","red");
-					$('#pwd').focus();
-					return;
-				}else if (pwd.length>16){
-					$('#pwdCondition').text("영문 대/소문자+숫자 조합, 6~16자로 입력하세요.");
-					$('#pwdCondition').css("color","red");
-					$('#pwd').focus();
-					return;
-				} else if (!pwd.match(/[0-9]+[a-z]|[A-Z]/)){
-					$('#pwdCondition').text("영문 대/소문자+숫자 조합, 6~16자로 입력하세요.");
-					$('#pwdCondition').css("color","red");
-					$('#pwd').focus();
-					return;
-				}else{
-					$('#pwdCondition').text("사용가능한 비밀번호입니다.");
-					$('#pwdCondition').css("color","blue");
+							$.ajax({
+							type:'post',
+							url:'../member/join_ok.do',
+							data:{id:id},
+							success:function(response){
+								var count = response.trim();
+								if(count ==1){
+									$('#idConditon').text("사용 중인 아이디입니다. 다시입력해주세요.");
+									$('#idConditon').css("color","red");
+									$('#idConditon').focus();
+									return;
+								}else if(count ==0){
+									$('#idConditon').text("사용 가능한 아이디입니다.");
+									$('#idConditon').css("color","blue");
+									return;
+								}
+							}
+						}); 
+			}); // 아이디중복체크 
+			$('#overlapPWDBtn').click(function(){
+						var pwd=$('#pwd').val();// 입력한 비밀번호 조건
+						if(pwd.trim()=="" ||  pwd.length<6 ){
+							$('#pwdCondition').text("영문 대/소문자+숫자 조합, 6~16자로 입력하세요.");
+							$('#pwdCondition').css("color","red");
+							$('#pwd').focus();
+							return;
+						}else if (pwd.length>16){
+							$('#pwdCondition').text("영문 대/소문자+숫자 조합, 6~16자로 입력하세요.");
+							$('#pwdCondition').css("color","red");
+							$('#pwd').focus();
+							return;
+						} else if (!pwd.match(/[0-9]+[a-z]|[A-Z]/)){
+							$('#pwdCondition').text("영문 대/소문자+숫자 조합, 6~16자로 입력하세요.");
+							$('#pwdCondition').css("color","red");
+							$('#pwd').focus();
+							return;
+						}else{
+							$('#pwdCondition').text("사용가능한 비밀번호입니다.");
+							$('#pwdCondition').css("color","blue");
+							return;
+						}
+			});//비밀번호 확인
+		$('#joinBtn').click(function(){
+				var id=$('#id').val();
+				var pwd=$('#pwd').val();
+				var name=$('#name').val();
+				var birth=$('#birth').val();
+				var sex = $(":input:radio[name=sex]").val();
+				var post=$('#post').val(); 
+				var main_addr=$('#main_addr').val();
+				var sub_addr=$('#sub_addr').val();
+				var email1=$('#email1').val();
+				var email2=$('#email2').val();
+				//alert(email1+"@"+email2);
+				var phone1=$('#phone1').val();
+				var phone2=$('#phone2').val();
+				var phone3=$('#phone3').val();
+				//alert(phone1+"-"+phone2+"-"+phone3);
+				if(id.trim()==""){
+					$('#id').focus();
 					return;
 				}
-	});//비밀번호 확인
-	$('#joinBtn').click(function(){
-		var id=$('#id').val();
-		var pwd=$('#pwd').val();
-		var name=$('#name').val();
-		var birth=$('#birth').val();
-		//var sex=$('#sex').val();
-		var sex = $(":input:radio[name=sex]").val();
-		var post=$('#post').val();
-		var main_addr=$('#main_addr').val();
-		var sub_addr=$('#sub_addr').val();
-		//var email=$('#email').val();
-		//var email=$(":input:name[name=email]").text()+'@'+$(":input:name[name=email]").text();ㅁ
-		document.getElementById ( "tdid" ).textContent;
-		var email=document.getElementById ( "tdid" );
-		var phone=$('#phone').val();
-		if(id.trim()==""){
-			$('#id').focus();
-			return;
-		}
-		if(pwd.trim()==""){
-			$('#pwd').focus();
-			return;
-		}
-		if(name.trim()==""){
-			$('#name').focus();
-			return;
-		}
-		if(birth.trim()==""){
-			$('#birth').focus();
-			return;
-		}
-		if(post.trim()==""){
-			$('#post').focus();
-			return;
-		}
-		if(main_addr.trim()==""){
-			$('#main_addr').focus();
-			return;
-		}
-		if(sub_addr.trim()==""){
-			$('#sub_addr').focus();
-			return;
-		}
-		if(email.trim()==""){
-			$('#email').focus();
-			return;
-		}
-		if(phone.trim()==""){
-			$('#phone').focus();
-			return;
-		}
-		//회원가입 입력데이터 insert.do로 전송. 
-		$('#joinfrm').submit();
-	});
+				if(pwd.trim()==""){
+					$('#pwd').focus();
+					return;
+				}
+				if(name.trim()==""){
+					$('#name').focus();
+					return;
+				}
+				if(birth.trim()==""){
+					$('#birth').focus();
+					return;
+				}
+				if(post.trim()==""){
+					$('#post').focus();
+					return;
+				}
+				if(main_addr.trim()==""){
+					$('#main_addr').focus();
+					return;
+				}
+				if(sub_addr.trim()==""){
+					$('#sub_addr').focus();
+					return;
+				}
+				if(email1.trim()==""){
+					$('#email1').focus();
+					return;
+				}
+				if(email2.trim()==""){
+					$('#email2').focus();
+					return;
+				}
+				if(phone1.trim()==""){
+					$('#phone1').focus();
+					return;
+				}
+				if(phone2.trim()==""){
+					$('#phone2').focus();
+					return;
+				}
+				if(phone3.trim()==""){
+					$('#phone3').focus();
+					return;
+				}
+				var cate=$("#cate option:selected").val();
+				if(cate.trim()=="카테고리선택"){
+					cate=null;
+				}
+				var genre=$("#genre option:selected").val();
+				if(genre.trim()=="장르선택"){
+					genre=null;
+				}
+				$.ajax({
+					type:'post',
+					url:'../member/insert.do',
+					data:{id:id,pwd:pwd,name:name,sex:sex,birth:birth,email1:email1,email2:email2,
+							phone1:phone1,phone2:phone2,phone3:phone3,post:post,main_addr:main_addr,
+							sub_addr:sub_addr,cate:cate,genre:genre},
+					success:function(res){
+						location.href="../member/join_finish.do";
+					}
+		});// ajax
+	});//회원가입완료 
 });//마지막 회원가입 조건.
+
 //다음우편검색 
 function sample6_execDaumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {
             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
             // 각 주소의 노출 규칙에 따라 주소를 조합한다.
             // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
             var addr = ''; // 주소 변수
             var extraAddr = ''; // 참고항목 변수
-
             //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
             if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
                 addr = data.roadAddress;
             } else { // 사용자가 지번 주소를 선택했을 경우(J)
                 addr = data.jibunAddress;
             }
-
             // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
             if(data.userSelectedType === 'R'){
                 // 법정동명이 있을 경우 추가한다. (법정리는 제외)
@@ -160,12 +193,11 @@ function sample6_execDaumPostcode() {
             } else {
                 document.getElementById("sample6_extraAddress").value = '';
             }
-
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('sample6_postcode').value = data.zonecode;
-            document.getElementById("sample6_address").value = addr;
+            document.getElementById('post').value = data.zonecode;
+            document.getElementById("main_addr").value = addr;
             // 커서를 상세주소 필드로 이동한다.
-            document.getElementById("sample6_detailAddress").focus();
+            document.getElementById("sub_addr").focus();
         }
     }).open();
 }
@@ -231,29 +263,29 @@ function sample6_execDaumPostcode() {
 							</td> -->
 							<th class="text-right" width=20% ><font size="2px">우편번호</font></th>
 								<td>
-									<input type="text" id="sample6_postcode" placeholder=" 우편번호" width=80% name=post>
+									<input type="text" id="post" placeholder=" 우편번호" width=80% name=post >
 									<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 								</td>
 						</tr>
 						<tr>
 							<th class="text-right" width=20%><font size="2px">주소</font></th>
 							<td class="text-left" width=80% >
-								<input type="text" id="sample6_address" placeholder=" 주소" size=40 name="main_addr"><br>
-								<input type="text" id="sample6_detailAddress" placeholder=" 상세주소" name="sub_addr">
+								<input type="text" id="main_addr" placeholder=" 주소" size=40 name="main_addr" ><br>
+								<input type="text" id="sub_addr" placeholder=" 상세주소" name="sub_addr">
 								<input type="text" id="sample6_extraAddress" placeholder=" 참고항목">
 							</td>
 						</tr>
 						<tr>
 							<th class="text-right" width=20% ><font size="2px">Email</font></th>
-							<td class="text-left" width=80% name=email>
-								<input type=text size=10 name=email1> @
-								<input type=text size=15 name=email2>
-							</td>
+								<td class="text-left" width=80% name=email id=email>
+									<input type=text size=10 name=email1 id=email1> @
+									<input type=text size=15 name=email2 id=email2>
+								</td>
 						</tr>
 						<tr>
 							<th class="text-right" width=20% ><font size="2px">연락처</font></th>
-							<td class="text-left" width=80% name=phone>
-								<select >
+							<td class="text-left" width=80% name=phone id=phone>
+								<select name=phone1 id=phone1>
 									<option>번호선택</option>
 									<option>010</option>
 									<option>011</option>
@@ -262,20 +294,22 @@ function sample6_execDaumPostcode() {
 									<option>018</option>
 									<option>019</option>
 								</select> - 
-								<input type=text name=tel size=5 > - 
-								<input type=text name=tel size=5 >
+								<input type=text  size=5 name=phone2 id=phone2> - 
+								<input type=text  size=5 name=phone3 id=phone3>
 							</td>
 						</tr>
 							<tr>
 							<th class="text-right" width=20%><font size="2px">보고싶어요 장르</font>
 								<td class="text-left" width=80%>
-								<select name=cate>
+								<select name=cate id=cate>
 									<option>카테고리선택</option>
-									<option>영화</option>
-									<option>공연 전시</option>
-									<option>페스티벌</option>
+									<c:forEach var="vo" items="${list }">
+										<option>영화</option>
+										<option>공연 전시</option>
+										<option>페스티벌</option>
+									</c:forEach>
 								</select>
-								<select name=genre>
+								<select name=genre id=genre>
 										<option>장르선택</option>
 										<option>액션</option>
 										<option>코미디</option>
@@ -300,7 +334,7 @@ function sample6_execDaumPostcode() {
 							<tr>
 							<th class="text-right" width=20%><font size="2px">      </font>
 								<td class="text-left" width=80%>
-								<select name=cate>
+								<select name=cate >
 									<option>카테고리선택</option>
 									<option>영화</option>
 									<option>공연 전시</option>
@@ -330,7 +364,7 @@ function sample6_execDaumPostcode() {
 							</tr>
 							<td colspan=2 class="text-center">
                   					<input type=button value="가입취소" class="btn btn-ms btn-danger" onclick="javascript:history.back()">
-               						<input type=submit class="btn btn-ms btn-info" value="신규회원가입 완료" id=joinBtn>
+               						<input type=button class="btn btn-ms btn-info" value="신규회원가입 완료" id=joinBtn>
                					</td>
 							</th>
 					</table>

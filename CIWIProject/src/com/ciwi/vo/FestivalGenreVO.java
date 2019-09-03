@@ -15,7 +15,6 @@ public class FestivalGenreVO {
 	public String getFestival_genre() {
 		return festival_genre;
 	}
-
 	public void setFestival_genre(String festival_genre) {
 		this.festival_genre = festival_genre;
 	}

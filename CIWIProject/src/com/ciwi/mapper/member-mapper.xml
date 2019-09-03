@@ -21,9 +21,8 @@
 	<!-- 회원가입 데이터 db에 넣기 -->
 	<insert id="memberInsertData" parameterType="MemberVO">
 	<selectKey keyProperty="join_no" resultType="int" order="BEFORE">
-		Select NVL(MAX(no)+1,1) as join_no
-		From member
-	</selectKey>
+			select NVL(max(join_no)+1,1) as join_no from member
+		</selectKey>
 		INSERT INTO member VALUES(
 			#{join_no},
 			#{id},
@@ -42,4 +41,39 @@
 			#{genre}
 		)
 	</insert>
+	<!-- 회원가입 완료 후 회원정보검색 -->
+	<select id="joinFinishData" resultType="String">
+		select id,rownum 
+		from member 
+		Where rownum=1 
+		order by join_no desc 
+	</select>
+	<!-- 장르검색? -->
+	<!-- 회원정보 수정하기 -->
+	<select id="joinSeleteData" resultType="MemberVO" parameterType="MemberVO">
+		select id,name,sex from member
+		where id=#{id}
+	</select>
+	<update id="joinUpdate" parameterType="MemberVO">
+		update member set
+		pwd=#{pwd},
+		birthday=#{birthday},
+		post=#{post},
+		main_addr=#{main_addr},
+		sub_addr=#{sub_addr},
+		email=#{email},
+		phone=#{phone},
+		cate=#{cate},
+		genre=#{genre}
+		where id=#{id}
+	</update>
+	<!-- 회원 삭제하기 -->
+	<delete id="joinDelete" parameterType="String">
+		delete * from member
+		where id=#{id}
+	</delete>
 </mapper>
+
+
+
+

@@ -38,6 +38,22 @@ public class MemberDAO {
 				session.close();
 		}
 	}
+	//회원가입 후 아이디받기
+	public static String joinFinishData(){
+		//MemberVO vo= new MemberVO();
+		String id="";
+		SqlSession session =null;
+		try{
+			session=ssf.openSession();
+			id=session.selectOne("joinFinishData");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+		return id;
+	}
 	//로그인 
 	public static MemberVO memberLogin(String id,String pwd){
 		MemberVO vo= new MemberVO();
