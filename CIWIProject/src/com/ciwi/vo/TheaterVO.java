@@ -5,6 +5,15 @@ public class TheaterVO {
 	private String theater_name;
 	private int theater_total_seat;
 	private String theater_loc;
+	private String date_no;
+	
+	
+	public String getDate_no() {
+		return date_no;
+	}
+	public void setDate_no(String date_no) {
+		this.date_no = date_no;
+	}
 	public int getTheater_no() {
 		return theater_no;
 	}

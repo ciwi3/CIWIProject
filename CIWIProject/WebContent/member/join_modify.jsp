@@ -9,7 +9,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> <!-- 다음 우편검색 -->
 <script type="text/javascript">
-
+$(function(){
 $('#overlapPWDBtn').click(function(){
 	var pwd=$('#pwd').val();// 입력한 비밀번호 조건
 			if(pwd.trim()=="" ||  pwd.length<6 ){
@@ -33,25 +33,18 @@ $('#overlapPWDBtn').click(function(){
 				return;
 			}
 });//비밀번호 확인
-		$('#joinBtn').click(function(){
+		$('#modifyBtn').click(function(){
 				var pwd=$('#pwd').val();
-				var birth=$('#birth').val();
 				var post=$('#post').val(); 
 				var main_addr=$('#main_addr').val();
 				var sub_addr=$('#sub_addr').val();
 				var email1=$('#email1').val();
 				var email2=$('#email2').val();
-				//alert(email1+"@"+email2);
-				var phone1=$('#phone1').val();
+				var phone1=$("#phone1 option:selected").val();
 				var phone2=$('#phone2').val();
 				var phone3=$('#phone3').val();
-				//alert(phone1+"-"+phone2+"-"+phone3);
 				if(pwd.trim()==""){
 					$('#pwd').focus();
-					return;
-				}
-				if(birth.trim()==""){
-					$('#birth').focus();
 					return;
 				}
 				if(post.trim()==""){
@@ -74,7 +67,8 @@ $('#overlapPWDBtn').click(function(){
 					$('#email2').focus();
 					return;
 				}
-				if(phone1.trim()==""){
+				if(phone1.trim()=="번호선택"){
+					alert("휴대폰번호 확인해주세요.");
 					$('#phone1').focus();
 					return;
 				}
@@ -86,26 +80,34 @@ $('#overlapPWDBtn').click(function(){
 					$('#phone3').focus();
 					return;
 				}
-				var cate=$("#cate option:selected").val();
-				if(cate.trim()=="카테고리선택"){
-					cate=null;
+				var cate1=$("#cate1 option:selected").val();
+				if(cate1.trim()=="카테고리선택"){
+					cate1=null;
+				}
+				var cate2=$("#cate2 option:selected").val();
+				if(cate2.trim()=="카테고리선택"){
+					cate2=null;
+				}
+				var genre1=$("#genre1 option:selected").val();
+				if(genre1.trim()=="장르선택"){
+					genre1=null;
+				}
+				var genre2=$("#genre2 option:selected").val();
+				if(genre2.trim()=="장르선택"){
+					genre2=null;
 				}
 				
-				var genre=$("#genre option:selected").val();
-				if(genre.trim()=="장르선택"){
-					genre=null;
-				}
 				$.ajax({
 					type:'post',
-					url:'../member/insert.do',
-					data:{id:id,pwd:pwd,name:name,sex:sex,birth:birth,email1:email1,email2:email2,
+					url:'../member/join_modify_ok.do',
+					data:{pwd:pwd,email1:email1,email2:email2,
 							phone1:phone1,phone2:phone2,phone3:phone3,post:post,main_addr:main_addr,
-							sub_addr:sub_addr,cate:cate,genre:genre},
+							sub_addr:sub_addr,cate1:cate1,cate2:cate2,genre1:genre1,genre2:genre2},
 					success:function(res){
-						location.href="../member/join_finish.do";
+						location.href="../member/modify_finish.do"; //이동화면
 					}
 			});// ajax
-			});//회원가입완료 
+		});//회원가입완료버튼
 });
 //다음우편검색 
 function sample6_execDaumPostcode() {
@@ -163,14 +165,14 @@ function sample6_execDaumPostcode() {
 	<!-- SECTION -->
 	<div class="section">
 		<div class="container">
-			<h2 class="text-center">회원가입</h2>
+			<h2 class="text-center">회원정보 수정</h2>
 				<div class="row">
-					<form method=post action="../member/insert.do" id="joinfrm">
+					<form method=post action="../member/join_modify_ok.do">
 					<table class="table">
 						<tr>
 							<th class="text-right" width=20% height=20%><font size="2px">아이디</font></th>
 							<td class="text-left" width=80%>
-								<input type=text name=id size=20 id="id" readonly="readonly">
+								<input type=text name=id size=20 id="id" readonly value="${id }">
 								<input type=button value="중복확인" class="btn btn-sm btn-info" id="overlapIDBtn" >
 								&nbsp;&nbsp;
 								<font size="2px" id="idConditon">영문소문자/숫자, 4~16자</font>
@@ -187,23 +189,10 @@ function sample6_execDaumPostcode() {
 						<tr>
 							<th class="text-right" width=20% ><font size="2px">이름</font></th>
 							<td class="text-left" width=80%>
-								<input type=text name=name size=15 id=name readonly="readonly">
+								<input type=text name=name size=15 id=name value="${name }" readonly="readonly">
 							</td>
 						</tr>
 						<tr>
-							<th class="text-right" width=20% ><font size="2px">생년월일</font></th>
-							<td class="text-left" width=80%>
-								<input type="date" size=20 name=birth id=birth readonly="readonly">
-								<font size="2px">음력</font>&nbsp;<input type="radio" value="음력" name=birth>
-								<font size="2px">양력</font>&nbsp;<input type="radio" value="양력" checked="checked" name=birth>
-							</td>
-						</tr>
-						<tr>
-							<!-- <th class="text-right" width=20% ><font size="2px">우편번호</font></th>
-							<td class="text-left" width=80% name=post>
-								<input type=text size=20 id=post >
-								<input type=button  value="우편번호검색" class="btn btn-sm btn-info">
-							</td> -->
 							<th class="text-right" width=20% ><font size="2px">우편번호</font></th>
 								<td>
 									<input type="text" id="post" placeholder=" 우편번호" width=80% name=post >

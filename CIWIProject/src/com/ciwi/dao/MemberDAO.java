@@ -40,7 +40,6 @@ public class MemberDAO {
 	}
 	//회원가입 후 아이디받기
 	public static String joinFinishData(){
-		//MemberVO vo= new MemberVO();
 		String id="";
 		SqlSession session =null;
 		try{
@@ -78,6 +77,20 @@ public class MemberDAO {
 				session.close();
 		}
 		return vo;
+	}
+	//회원정보 수정
+	public static void joinUpdate(MemberVO vo){
+		SqlSession session = null;
+		try{
+			session=ssf.openSession();
+			session.update("joinUpdate",vo);
+			session.commit();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
 	}
 	
 }
