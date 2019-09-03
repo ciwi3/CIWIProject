@@ -35,10 +35,10 @@ public class MainModel {
 
 		String text = model.getRequest().getParameter("text");
 		Map map = new HashMap<>();
-		map.put("searchOption", "Á¦¸ñ");
-		map.put("text", text);
+		map.put("searchOption", "ì œëª©");
+		map.put("search", text);
 		List<FestivalVO> fList = FestivalDAO.festivalSearch(map);
-		List<ShowVO> sList = ShowDAO.showSearch(map);
+		List<ShowVO> sList = ShowDAO.showSearch8(map);
 		List<MovieVO> mList = MovieDAO.movieSearch(map);
 		int searchTextSize = 15;
 		for (FestivalVO vo : fList) {

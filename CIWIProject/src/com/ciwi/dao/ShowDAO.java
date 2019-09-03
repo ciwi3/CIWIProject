@@ -18,15 +18,15 @@ public class ShowDAO {
 	static {
 		ssf = CreateSqlSessionFactory.getSsf();
 	}
-	
-	public static List<ShowVO> showAllData(){
-		List<ShowVO> list=new ArrayList<ShowVO>();
-		SqlSession session = ssf.openSession();	// getConnection()
-		list=session.selectList("showAllData");
-		session.close();	// disConnection()
+
+	public static List<ShowVO> showAllData() {
+		List<ShowVO> list = new ArrayList<ShowVO>();
+		SqlSession session = ssf.openSession(); // getConnection()
+		list = session.selectList("showAllData");
+		session.close(); // disConnection()
 		return list;
 	}
-	
+
 	public static void showInsert(ShowVO svo) {
 		SqlSession session = ssf.openSession(true);
 		session.insert("showInsert", svo);
@@ -40,27 +40,43 @@ public class ShowDAO {
 		session.close();
 		return list;
 	}
-	
-	public static List<AreaVO> getAreaName(){
-		List<AreaVO> list= new ArrayList<AreaVO>();
+
+	public static List<ShowVO> showSearch8(Map map) {
+		List<ShowVO> list = new ArrayList<ShowVO>();
 		SqlSession session = ssf.openSession();
-		list=session.selectList("getAreaName");
+		list = session.selectList("showSearch8", map);
 		session.close();
 		return list;
 	}
 
-	public static List<ShowGenreVO> getGenreName(){
-		List<ShowGenreVO> list= new ArrayList<ShowGenreVO>();
+	public static List<ShowVO> showSearch20(Map map) {
+		List<ShowVO> list = new ArrayList<ShowVO>();
 		SqlSession session = ssf.openSession();
-		list=session.selectList("getGenreName");
+		list = session.selectList("showSearch20", map);
 		session.close();
 		return list;
 	}
-	
-	public static ShowVO showDetailData(int sno){
-		ShowVO vo=new ShowVO();
+
+	public static List<AreaVO> getAreaName() {
+		List<AreaVO> list = new ArrayList<AreaVO>();
 		SqlSession session = ssf.openSession();
-		vo=session.selectOne("showDetailData", sno);
+		list = session.selectList("getAreaName");
+		session.close();
+		return list;
+	}
+
+	public static List<ShowGenreVO> getGenreName() {
+		List<ShowGenreVO> list = new ArrayList<ShowGenreVO>();
+		SqlSession session = ssf.openSession();
+		list = session.selectList("getGenreName");
+		session.close();
+		return list;
+	}
+
+	public static ShowVO showDetailData(int sno) {
+		ShowVO vo = new ShowVO();
+		SqlSession session = ssf.openSession();
+		vo = session.selectOne("showDetailData", sno);
 		session.close();
 		return vo;
 	}
