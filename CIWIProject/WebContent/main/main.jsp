@@ -34,7 +34,7 @@
 
                <!-- logo -->
                <div class="nav-logo">
-                  <a href="../main/main.do" class="logo"><img src="../img/ciwilogo.png" style="width:280px; height: 150px; "></a>
+                  <a href="../main/main.do" class="logo"><img src="../img/ciwilogo.png" style="width:280px; height: 130px; "></a>
                </div>
                <!-- /logo -->
 
@@ -126,36 +126,29 @@
 									</ul>
 								</div>
 							</div>
-<<<<<<< HEAD
+
 						</li>&nbsp;&nbsp;&nbsp;
-=======
+
 						</li>
 						<c:if test="${sessionScope.id != null }">
->>>>>>> branch 'master' of https://github.com/ciwi3/CIWIProject.git
 						<li class="has-dropdown">
 						<a data-toggle="tab" href="#tab1">MY PAGE</a>
 							<div class="dropdown">
 								<div class="dropdown-body">
 									<ul class="dropdown-list">
-<<<<<<< HEAD
 										<li><a data-toggle="tab" href="#tab1">MY INFORMATION</a></li>
 										<li><a data-toggle="tab" href="#tab2">MY WALLET</a></li>
 										<li><a data-toggle="tab" href="#tab2">MISSING</a></li>
-=======
 										<li><a href="#">내지갑</a></li>
 										<li><a href="#">보고싶어요</a></li>
 											<li><a href="../member/join_modify.do">회원수정</a></li>
 										
->>>>>>> branch 'master' of https://github.com/ciwi3/CIWIProject.git
 									</ul>
 								</div>
 							</div>
-<<<<<<< HEAD
 						</li>&nbsp;&nbsp;&nbsp;
-=======
 						</li>
 						</c:if>
->>>>>>> branch 'master' of https://github.com/ciwi3/CIWIProject.git
 					</ul>
 					<!-- /nav -->
 				</div>
