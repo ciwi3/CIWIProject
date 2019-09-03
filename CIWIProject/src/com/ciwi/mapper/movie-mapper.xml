@@ -48,13 +48,6 @@
 		Where theater_no=#{theater_no}
 	</insert>
 	
-	<!-- 현재 예약 가능한 영화 목록 출력 -->
-	<select id="movieListData" resultType="MovieVO">
-		Select *
-		From movie
-		Where category_no=2
-	</select>
-	
 	<select id="movieSearch" parameterType="java.util.Map" resultType="MovieVO" >
 	SELECT mno,title,director,actor,poster,regdate,story,genre,category_no,score,grade,num
 	FROM (SELECT mno,title,director,actor,poster,regdate,story,genre,category_no,score,grade,rownum as num FROM movie ORDER BY regdate)
@@ -78,6 +71,32 @@
 	AND category_no = 3
 	</if>
 	</trim>
-	ORDER BY num    
+	ORDER BY num
+	</select>
+	
+	<!-- 예약 -->
+	<!-- 현재 예약 가능한 영화 목록 출력 -->
+	<select id="movieListData" resultType="MovieVO">
+		Select *
+		From movie
+		Where category_no=2
+		And mno Between 1 And 10
+	</select>
+	<!-- 선택한 영화를 제공하는 상영관 목록 출력 -->
+	<select id="theaterData" resultType="TheaterVO" parameterType="int">
+		Select theater_no,theater_name,theater_loc,date_no
+		From theater
+		Where theater_no=#{theater_no}
+	</select>
+	<!-- 시간정보 불러오기 -->
+	<select id="reserveGetTime" resultType="String" parameterType="int">
+		Select time_no
+		From dateInfo
+		Where date_no=#{date_no}
+	</select>
+	<select id="timeData" resultType="String" parameterType="int">
+		Select time
+		From timeInfo
+		Where time_no=#{time_no}
 	</select>
 </mapper>

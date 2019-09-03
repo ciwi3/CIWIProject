@@ -14,6 +14,12 @@ $(function(){
 		var hour=time.substring(0,time.indexOf(":"));
 		var min=time.substring(time.indexOf(":")+1);
 		var value=hour+"시 "+min+"분";
+		
+		// 다른 영화를 눌렀을 때 reserve_* 내용들 초기화
+		$('#reserve_time').text("");
+		$('#reserve_inwon').text("");
+		$('#reserve_price').text("");
+		
 		$('#reserve_time').text(value); // reserve.jsp에서 출력
 		
 		$.ajax({

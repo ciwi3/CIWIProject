@@ -6,7 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
 <style type="text/css">
 #circle {
       width: 50px;
@@ -32,14 +31,20 @@ $(function(){
 		var year=$(this).attr("data-year");
 		var month=$(this).attr("data-month");
 		var day=$(this).text();
-		
 		var data=year+"년"+month+"월"+day+"일";
+		
+		// 다른 영화를 눌렀을 때 reserve_* 내용들 초기화
+		$('#reserve_day').text("");
+		$('#reserve_time').text("");
+		$('#reserve_inwon').text("");
+		$('#reserve_price').text("");
+		
 		$('#reserve_day').text(data); // reserve.jsp에서 출력
 		
 		// ajax로 time출력
 		$.ajax({
 			type:'post',
-			url:'../movie/time.do',
+			url:'../contents/time.do',
 			data:{day:day},
 			success:function(response) {
 				$('#time').html(response);

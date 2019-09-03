@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
 <style type="text/css">
 .row{
 	margin:0px auto;
@@ -19,15 +19,25 @@ $(function(){
 	$('.movies').click(function(){
 		var poster=$(this).attr("data-poster"); // 클릭한 tr의 정보
 		var title=$(this).attr("data-title");
-		var theater_no=$(this).attr("data-theater_no");
+		var theater_no=$(this).attr("data-tno");
+		
+		// 다른 영화를 눌렀을 때 reserve_* 내용들 초기화
+		$('#reserve_title').text("");
+		$('#reserve_theater').text("");
+		$('#reserve_day').text("");
+		$('#reserve_time').text("");
+		$('#reserve_inwon').text("");
+		$('#reserve_price').text("");
+		
+		
 		$('#poster').attr("src",poster); // <span id="title">에 db에서 가져온 poster값(vo.getPoster())을 넣음
 		$('#reserve_title').text(title);
 		
+		
+		
 		$.ajax({
 			type:'post',
-			url:'../movie/theater.do',
-			// 왼쪽 theater_no = key
-			// 오른쪽 theater_no = var theater_no
+			url:'../contents/theater.do',
 			data:{theater_no:theater_no},
 			success:function(response){ // 정상수행 시 수행할 내용 => response가 실행된 내용을 가져옴
 				$('#theater').html(response);
@@ -64,20 +74,8 @@ function reserve() {
 </head>
 <body>
 	<div class="container">
-		<h3 class="text-center">영화 예매</h3>
-		<div class="text-right">
-			<!-- 어드민인지 아닌지 파악 -->
-			<!-- 어드민O=예약현황, 어드민X=마이페이지 -->
-			<!-- 어드민X -->
-			<c:if test="${sessionScope.admin==0 }">
-				<a href="mypage.do" class="btn btn-sm btn-primary">마이페이지</a>
-			</c:if>
-			<!-- 어드민O -->
-			<c:if test="${sessionScope.admin==1 }">
-				<a href="adminpage.do" class="btn btn-sm btn-primary">예약현황</a>
-			</c:if>
-			<br><br>
-		</div>
+		<br><br>
+		<h1 class="text-center">영화 예매</h1>
 		<div class="row">
 			<table class="table" height=800>
 				<tr>
@@ -88,8 +86,8 @@ function reserve() {
 							</tr>
 						</table>
 						<table class="table table-hover">
-						<c:forEach var="vo" items="${list }">
-							<tr class="movies" data-poster="${vo.poster }" data-title="${vo.title }" data-theater_no="${vo.theater_no }">
+						<c:forEach var="vo" items="${mlist }">
+							<tr class="movies" data-poster="${vo.poster }" data-title="${vo.title }" data-tno="${vo.theater_no }">
 							<!-- 사용자 정의 => 속성은 자기 마음대로 줄 수 있음 -->
 								<td class="text-center"><img src="${vo.poster }" width=30 height=30></td>
 								<td class="text-left">${vo.title }</td>

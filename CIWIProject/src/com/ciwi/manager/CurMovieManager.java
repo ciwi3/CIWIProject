@@ -37,16 +37,16 @@ public class CurMovieManager {
 			k++;
 		}*/
 		// 상영관 마다 날짜 난수 발생
-		int k=1;
-		for(int i=1; i<=167; i++) { // 상영관 총 167개
-			TheaterVO vo=new TheaterVO();
-			vo.setDate_no(cm.reserveDayData());
-			vo.setTheater_no(i);
-			MovieDAO.theaterDateUpdate(vo);
+		/*int k=1;
+		for(int i=1; i<=30; i++) { // 9월 = 30일
+			DateInfoVO vo=new DateInfoVO();
+			vo.setDate_no(i);
+			vo.setTime_no(cm.reserveTimeData());
+			MovieDAO.dateInsert(vo);
 			System.out.println("k= "+k);
 			k++;
 		}
-		System.out.println("저장 완료");
+		System.out.println("저장 완료");*/
 	}
 
 public List<MovieVO> movieAlldata(){
@@ -201,7 +201,7 @@ public List<MovieVO> movieAlldata(){
 			result+=com[i]+", ";
 		}
 		result=result.substring(0,result.lastIndexOf(", "));
-		System.out.println(result);
+		//System.out.println(result);
 		return result;
 	}
 	
