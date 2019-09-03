@@ -12,7 +12,7 @@
    <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css" />
    <!-- Font Awesome Icon -->
    <link rel="stylesheet" href="../css/font-awesome.min.css">
-   <!-- Custom stlylesheet -->
+   <!-- Custom stylesheet -->
    <link type="text/css" rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
@@ -34,7 +34,7 @@
 
                <!-- logo -->
                <div class="nav-logo">
-                  <a href="../main/main.do" class="logo"><img src="../img/ciwilogo2.png" alt=""></a>
+                  <a href="../main/main.do" class="logo"><img src="../img/ciwilogo.png" style="width:280px; height: 150px; "></a>
                </div>
                <!-- /logo -->
 
@@ -68,73 +68,77 @@
 					<!-- nav -->
 					<ul class="nav-menu">
 						<li class="has-dropdown">
-							<a href="#">소개</a>
+							<a data-toggle="tab" href="#tab1">PAGES</a>
 							<div class="dropdown">
 								<div class="dropdown-body">
 									<ul class="dropdown-list">
-										<li><a href="#">소개</a></li>
-										<li><a href="#">가이드</a></li>
+										<li><a data-toggle="tab" href="#tab1">ABOUT US</a></li>
+										<li><a data-toggle="tab" href="#tab2">GUIED</a></li>
 									</ul>
 								</div>
 							</div>
-						</li>
+						</li> &nbsp;&nbsp;&nbsp;
 						<li class="has-dropdown">
-							<a href="#">문화</a>
+							<a data-toggle="tab" href="#tab1">CULTURE</a>
 							<div class="dropdown">
 								<div class="dropdown-body">
-									<ul class="dropdown-list">
-										<li><a href="#">공연, 전시</a></li>
-										<li><a href="#">영화</a></li>
-										<li><a href="../contents/festival.do">행사</a></li>
-									</ul>
-								</div>
+<!-- 									<div class="col-md-2">
+ -->										<ul class="dropdown-list">
+												<li class="active"><a data-toggle="tab" href="../show/stest.do">PERFORMANCE / EXHIBITION</a></li>
+												<li><a data-toggle="tab" href="#tab2">MOVIE</a></li>
+												<li><a data-toggle="tab" href="../contents/festival.do">CONCERT</a></li>
+										</ul>
+ 									</div>
 							</div>
-						</li>
+						</li> &nbsp;&nbsp;&nbsp;
 						<li class="has-dropdown">
-							<a href="#">예약</a>
+							<a data-toggle="tab" href="#tab1">TICKETION</a>
 							<div class="dropdown">
 								<div class="dropdown-body">
-									<ul class="dropdown-list">
-										<li><a href="#">공연,전시</a></li>
-										<li><a href="../contents/reserve.do">영화</a></li>
-										<li><a href="#">축제</a></li>
-									</ul>
+<!--  										<div class="col-md-3"> -->
+											<!--<h4 class="dropdown-heading">Categories</h4> -->
+											<ul class="dropdown-list">
+											<li><a data-toggle="tab" href="#tab1">PERFORMANCE / EXHIBITION</a></li>
+											<li><a data-toggle="tab" href="#tab2">MOVIE</a></li>
+											<li><a data-toggle="tab" href="#tab3">CONCERT</a></li>
+											</ul>
+<!-- 										</div> -->
+									</div>
 								</div>
-							</div>
-						</li>
+							</li>&nbsp;&nbsp;&nbsp;
 						<li class="has-dropdown">
-							<a href="#">커뮤니티</a>
+							<a data-toggle="tab" href="#tab1">COMMUNITY</a>
 							<div class="dropdown">
 								<div class="dropdown-body">
 									<ul class="dropdown-list">
-										<li><a href="../community/freeboard_list.do">자유게시판</a></li>
+										<li><a data-toggle="tab" href="#tab1">FREE BOARD</a></li>
 									</ul>
 								</div>
 							</div>
-						</li>
+						</li>&nbsp;&nbsp;&nbsp;
 						<li class="has-dropdown">
-							<a href="#">고객센터</a>
+							<a data-toggle="tab" href="#tab1">NOTICE</a>
 							<div class="dropdown">
 								<div class="dropdown-body">
 									<ul class="dropdown-list">
-										<li><a href="#">공지사항</a></li>
-										<li><a href="#">자주묻는 질문</a></li>
+										<li><a data-toggle="tab" href="#tab1">NOTICE</a></li>
+										<li><a data-toggle="tab" href="#tab2">Q & A</a></li>
 									</ul>
 								</div>
 							</div>
-						</li>
+						</li>&nbsp;&nbsp;&nbsp;
 						<li class="has-dropdown">
-							<a href="#">마이페이지</a>
+						<a data-toggle="tab" href="#tab1">MY PAGE</a>
 							<div class="dropdown">
 								<div class="dropdown-body">
 									<ul class="dropdown-list">
-										<li><a href="#">내지갑</a></li>
-										<li><a href="#">보고싶어요</a></li>
-										<li><a href="../member/join_modify.do">회원수정</a></li>
+										<li><a data-toggle="tab" href="#tab1">MY INFORMATION</a></li>
+										<li><a data-toggle="tab" href="#tab2">MY WALLET</a></li>
+										<li><a data-toggle="tab" href="#tab2">MISSING</a></li>
 									</ul>
 								</div>
 							</div>
-						</li>
+						</li>&nbsp;&nbsp;&nbsp;
 					</ul>
 					<!-- /nav -->
 				</div>
