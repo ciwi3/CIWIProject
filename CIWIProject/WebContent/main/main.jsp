@@ -111,7 +111,7 @@
 							<div class="dropdown">
 								<div class="dropdown-body">
 									<ul class="dropdown-list">
-										<li><a data-toggle="tab" href="#tab1">FREE BOARD</a></li>
+										<li><a href="../community/freeboard_list.do">FREE BOARD</a></li>
 									</ul>
 								</div>
 							</div>
@@ -172,7 +172,7 @@
                </li>
                <li class="has-dropdown"><a>커뮤니티</a>
                   <ul class="dropdown">
-                     <li><a href="#">자유게시판</a></li>
+                     <li><a href="../community/freeboard_list.do">자유게시판</a></li>
                   </ul>
                </li>
                <li class="has-dropdown"><a>공지</a>
