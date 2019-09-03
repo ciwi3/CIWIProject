@@ -1,5 +1,6 @@
 package com.ciwi.model;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -55,9 +56,9 @@ public class BoardModel {
 
 		Map map = new HashMap();
 		
-		List<FreeBoardVO> nlist = FreeBoardDAO.freeboardNoticeData(map);
+		List<FreeBoardVO> nList = FreeBoardDAO.freeboardNoticeData(map);
 		
-		model.addAttribute("nlist", nlist);
+		model.addAttribute("nList", nList);
 	
 		String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		model.addAttribute("today", today);
@@ -186,8 +187,112 @@ public class BoardModel {
 		  return "redirect:../community/freeboard_detail.do?no="+bno;
 	  }
 	
+	  @RequestMapping("community/reply_reinsert.do")
+	  public String reply_reinsert(Model model)
+	  {
+		  try
+		  {
+			  model.getRequest().setCharacterEncoding("UTF-8");
+		  }catch(Exception ex){}
+		  
+		  // msg
+		  String msg=model.getRequest().getParameter("msg");
+		  // no
+		  String pno=model.getRequest().getParameter("no");
+		  // bno
+		  String bno=model.getRequest().getParameter("bno");
 	
+		  HttpSession session=model.getRequest().getSession();
+		  String id=(String)session.getAttribute("id");
+		  
+		  FreeReplyVO vo=new FreeReplyVO();
+		  vo.setBno(Integer.parseInt(bno));
+		  
+		  vo.setMsg(msg);
+		  vo.setId(id);
+		  
+		  FreeBoardDAO.replyReInsert(Integer.parseInt(pno), vo);
+		  // group_id , group_step , group_tab
+		  
+		  return "redirect:../community/freeboard_detail.do?no="+bno;
+	  }
 	
+	  @RequestMapping("community/reply_update.do")
+	  public String reply_update(Model model)
+	  {
+		  try
+		  {
+			  model.getRequest().setCharacterEncoding("UTF-8");
+		  }catch(Exception ex){}
+		  
+		  // msg
+		  String msg=model.getRequest().getParameter("msg");
+		  // no
+		  String no=model.getRequest().getParameter("no");
+		  // bno
+		  String bno=model.getRequest().getParameter("bno");
+		  
+		  FreeReplyVO vo=new FreeReplyVO();
+		  // DAO처리 
+		  vo.setMsg(msg);
+		  vo.setNo(Integer.parseInt(no));
+		  
+		  FreeBoardDAO.replyUpdate(vo);
+		  
+		  return "redirect:../community/freeboard_detail.do?no="+bno;
+	  }
+	  
+	  @RequestMapping("community/reply_delete.do")
+	  public String reply_delete(Model model)
+	  {
+		  String no=model.getRequest().getParameter("no");
+		  // bno
+		  String bno=model.getRequest().getParameter("bno");
+		  // DAO
+		  FreeBoardDAO.replyDelete(Integer.parseInt(no));
+		  return "redirect:../community/freeboard_detail.do?no="+bno;
+	  }
+	  
+	  @RequestMapping("community/freeboard_delete.do")
+	  public String board_delete(Model model)
+	  {
+		  String no=model.getRequest().getParameter("no");
+		  model.addAttribute("no", no);
+		  model.addAttribute("main_jsp", "../community/freeboard_delete.jsp");
+		  return "../main/main.jsp";
+		  // 삭제창으로 이동 
+	  }
+	  @RequestMapping("community/freeboard_delete_ok.do")
+	  public String board_delete_ok(Model model)
+	  {
+		  String no=model.getRequest().getParameter("no");
+		 FreeBoardDAO.freeboardDelete(Integer.parseInt(no));
+		  return "../community/freeboard_list.do";
+	  }
+	  
+	  @RequestMapping("community/freeboard_find.do")  
+	  public String board_find(Model model){
+		  
+		  	try {
+				model.getRequest().setCharacterEncoding("UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			String fs = model.getRequest().getParameter("fs");
+			String ss = model.getRequest().getParameter("ss");
+			
+			Map map = new HashMap();
+			map.put("fs",fs);
+			map.put("ss",ss);
+			List<FreeBoardVO> list = FreeBoardDAO.boardFindData(map);
+			
+			model.addAttribute("list", list);
+			model.addAttribute("count", list.size());
+			model.addAttribute("main_jsp","../community/freeboard_find.jsp");
+			return "../main/main.jsp";
+	  }
+	  
 	
 	
 	

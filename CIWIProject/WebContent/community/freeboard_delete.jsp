@@ -16,25 +16,16 @@
 <script type="text/javascript">
 $(function () {
 	$('#delBtn').click(function () {
-		var pwd=$('#pwd').val();
-		if(pwd.trim()==""){
-			$('#pwd').focus();
-			return;
-		}
+
 		var no=$('#no').val();
 		$.ajax({
 			type:'post',
-			url:'board_delete_ok.do',
-			data:{no:no,pwd:pwd},
+			url:'freeboard_delete_ok.do',
+			data:{no:no},
 			success:function(response){
-				var i = response.trim();
-				if(i==0){
-					alert("비밀번호가 틀렸습니다.")
-					$('#pwd').val("");
-					$('#pwd').focus();
-				} else {
-					location.href="../board/board_list.do";
-				}
+
+				location.href="../community/freeboard_list.do";
+			
 			}
 		});
 	});
@@ -47,9 +38,7 @@ $(function () {
 		<div class="row">
 				<table class="table">
 					<tr>
-						<td class="text-right" width="30%">비밀번호</td>
-						<td class="text-left" width="70%">
-							<input type="password" name="pwd" size="15" id="pwd">
+						<td class="text-center" width="100%">정말 삭제 하시겠습니까?
 							<input type="hidden" name="no" value="${no }" id="no">
 						</td>
 					</tr>

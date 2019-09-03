@@ -71,7 +71,7 @@ $(function(){
           </td>
         </tr>
         <tr>
-          <th class="text-center info" width=20%>아이디</th>
+          <th class="text-center info" width=20%>작성자</th>
           <td class="text-center" width=30%>${vo.id }</td>
           <th class="text-center info" width=20%>조회수</th>
           <td class="text-center" width=30%>${vo.hit }</td>
@@ -91,7 +91,7 @@ $(function(){
 	            <a href="freeboard_update.do?no=${vo.no }" class="btn btn-sm btn-info">수정</a>
 	            <a href="freeboard_delete.do?no=${vo.no }" class="btn btn-sm btn-danger">삭제</a>
 	          </c:if>
-            <a href="#" class="btn btn-sm btn-info" onclick="history.back()">목록</a>
+            <a href="freeboard_list.do" class="btn btn-sm btn-info">목록</a>
           </td>
         </tr>
       </table>
@@ -112,13 +112,13 @@ $(function(){
 	            <c:forEach var="i" begin="1" end="${rvo.group_tab }">
 	              &nbsp;&nbsp;
 	            </c:forEach>
-	            <img src="re.gif">
+	            └
 	          </c:if>
-                             ◐<font color="blue">${rvo.id }</font>&nbsp;${rvo.dbday }</td>
+                               ▶<font color="blue">${rvo.id }</font>&nbsp;${rvo.dbday }</td>
              <td class="text-right">
               <c:if test="${sessionScope.id!=null && sessionScope.id==rvo.id }">
                <a href="#" class="btn btn-xs btn-warning updateBtn" value="${rvo.no }">수정</a>
-               <a href="../board/reply_delete.do?no=${rvo.no }&bno=${vo.no}" class="btn btn-xs btn-info">삭제</a>
+               <a href="../community/reply_delete.do?no=${rvo.no }&bno=${vo.no}" class="btn btn-xs btn-info">삭제</a>
               </c:if>
               <c:if test="${sessionScope.id!=null }">
                <a href="#" class="btn btn-xs btn-success replyBtn" value="${rvo.no }">댓글</a>
@@ -136,19 +136,19 @@ $(function(){
            </tr>
            <tr style="display:none" id="m${rvo.no }" class="reply">
 	          <td class="text-left" colspan="2">
-	           <form name="frm" method="post" action="../board/reply_reinsert.do">
+	           <form name="frm" method="post" action="../community/reply_reinsert.do">
 	            <textarea rows="3" cols="100" name="msg" style="float: left"></textarea>
 	            <input type="hidden" name="bno" value="${vo.no }">
 	            <input type="hidden" name=no value="${rvo.no }">
 	            <input type="submit" class="btn btn-sm btn-primary" style="height: 67px"
-	             value="댓글쓰기"
+	             value="RE 댓글쓰기"
 	            >
 	           </form>
 	          </td>
 	        </tr>
 	        <tr style="display:none" id="u${rvo.no }" class="update">
 	          <td class="text-left" colspan="2">
-	           <form name="frm" method="post" action="../board/reply_update.do">
+	           <form name="frm" method="post" action="../community/reply_update.do">
 	            <textarea rows="3" cols="100" name="msg" style="float: left">${rvo.msg }</textarea>
 	            <input type="hidden" name="bno" value="${vo.no }">
 	            <input type="hidden" name=no value="${rvo.no }">

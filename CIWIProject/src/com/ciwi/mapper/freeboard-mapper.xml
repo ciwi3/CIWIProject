@@ -5,27 +5,32 @@
 		SELECT no,subject,id,dbday,hit,num,bc.board_category as bccate
 		FROM (SELECT no,subject,id,TO_CHAR(regdate,'YYYY-MM-DD')as dbday,hit,rownum as num ,board_category
 		FROM (SELECT no,subject,id,regdate,hit,board_category
-		FROM freeboard ORDER BY no asc))fb, board_category bc
+		FROM freeboard ORDER BY no desc))fb, board_category bc
 		WHERE num BETWEEN #{start} AND #{end}
 	    AND fb.board_category=bc.bcno
-	    ORDER BY num desc
+	    ORDER BY no desc
+
 	</select>
 	<select id="freeboardNoticeData" resultType="FreeBoardVO" parameterType="java.util.Map">
 		SELECT no,subject,id,dbday,hit,num,bc.board_category as bccate
 		FROM (SELECT no,subject,id,TO_CHAR(regdate,'YYYY-MM-DD')as dbday,hit,rownum as num ,board_category
 		FROM (SELECT no,subject,id,regdate,hit,board_category
-		FROM freeboard ORDER BY no asc))fb, board_category bc
+		FROM freeboard ORDER BY no desc))fb, board_category bc
 		WHERE fb.board_category=bc.bcno AND bc.bcno = 4
-	    ORDER BY num desc
+	    ORDER BY no desc
+	    
 	</select>
+	
 	<!-- 총페이지 -->
  	<select id="freeboardTotalPage" resultType="int">
  		SELECT CEIL(count(*)/10.0) FROM freeboard
  	</select>
+ 	
  	<!-- 게시물번호 처리-->
  	<select id="freeboardRowCount" resultType="int">
  		SELECT count(*) FROM freeboard
  	</select>
+ 	
  	<!-- 게시글 추가 -->
 	<insert id="freeboardInsert" parameterType="FreeBoardVO">
 		INSERT INTO freeboard(no,id,subject,content,board_category) VALUES(
@@ -36,6 +41,7 @@
 			#{board_category}
 		)
 	</insert>
+	
  	 <!-- 상세보기 -->
  	<update id="hitIncrement" parameterType="int">
  		UPDATE freeboard SET
@@ -48,13 +54,15 @@
 	    WHERE no=#{no}
 	    AND fb.board_category=bc.bcno
  	</select>
+ 	
  	<!-- 수정하기 -->
  	<update id="freeboardUpdate" parameterType="FreeBoardVO">
  		UPDATE freeboard SET
  		subject=#{subject},content=#{content},board_category=#{board_category}
  		WHERE no=#{no}
  	</update>
- 	<!-- 댓글 추가 -->
+ 	
+ 	<!-- 댓글 쓰기 -->
  	<insert id="replyInsert" parameterType="FreeReplyVO">
     INSERT INTO freeboardReply(no,bno,id,msg,group_id) VALUES(
       freeboardReply_no_seq.nextval,
@@ -64,6 +72,7 @@
       (SELECT NVL(MAX(group_id)+1,1) FROM freeboardReply)
     )
    </insert>
+   
    <!-- 댓글 읽기 -->
    <select id="replyListData" resultType="FreeReplyVO" parameterType="int">
      SELECT no,bno,id,msg,
@@ -72,11 +81,86 @@
      WHERE bno=#{bno}
      ORDER BY group_id DESC,group_step ASC
    </select>
+   
+   <!-- 댓글 개수 -->
    <select id="replyListCount" resultType="int" parameterType="int">
      SELECT COUNT(*) 
      FROM freeboardReply
      WHERE bno=#{bno}
    </select>
+   
+   <!-- 대댓글 쓰기 -->
+   <select id="replyParentInfo" resultType="FreeReplyVO" parameterType="int">
+     SELECT group_id,group_step,group_tab 
+     FROM freeboardReply
+     WHERE no=#{no}
+   </select>
+   <update id="replyStepIncrement" parameterType="FreeReplyVO">
+     UPDATE freeboardReply SET
+     group_step=group_step+1
+     WHERE group_id=#{group_id} AND group_step>#{group_step}
+   </update>
+   <insert id="replyReInsert" parameterType="FreeReplyVO">
+     INSERT INTO freeboardReply(no,bno,id,msg,group_id,group_step,group_tab,root) VALUES(
+      freeboardReply_no_seq.nextval,
+      #{bno},
+      #{id},
+      #{msg},
+      #{group_id},
+      #{group_step},
+      #{group_tab},
+      #{root}
+    )
+   </insert>
+   <update id="replyDepthIncrement" parameterType="int">
+     UPDATE freeboardReply SET
+     depth=depth+1
+     WHERE no=#{no}
+   </update>
+   
+   <!-- 댓글 수정 -->
+   <update id="replyUpdate" parameterType="FreeReplyVO">
+   	UPDATE freeboardReply SET
+   	msg = #{msg}
+   	WHERE no = #{no}
+   </update>
+   <select id="replyGetDepth" resultType="FreeReplyVO" parameterType="int">
+   	SELECT depth,root FROM freeboardReply
+   	WHERE no=#{no}
+   </select>
+   <!-- depth=0 -->
+   <delete id="replyDelete" parameterType="int">
+   	DELETE FROM freeboardReply
+   	WHERE no=#{no}
+   </delete>
+   <!-- depth!=0 -->
+   <update id="replyDataUpdate" parameterType="FreeReplyVO">
+   	UPDATE freeboardReply SET
+   	msg=#{msg}
+   	WHERE no=#{no}
+   </update>
+   <!-- depth 감소 -->
+   <update id="replyDepthDecrement" parameterType="int">
+   	UPDATE freeboardReply SET
+   	depth = depth-1
+   	WHERE no = #{no}
+   </update>
+   <!-- 게시물 삭제 -->
+   <delete id="freeboardDelete" parameterType="int">
+   	DELETE FROM freeboard
+   	WHERE no=#{no}
+   </delete>
+   <delete id="freeboardReplyDelete" parameterType="int">
+   	DELETE FROM freeboardReply
+   	WHERE bno=#{bno}
+   </delete>
+   <!-- 게시글 검색 -->
+    <select id="boardFindData" resultType="FreeBoardVO" parameterType="java.util.Map">
+      SELECT no,subject,id,content,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,hit,bc.board_category as bccate
+      FROM freeboard fb, board_category bc
+      WHERE ${fs} LIKE '%'||#{ss}||'%' AND fb.board_category=bc.bcno
+      ORDER BY no desc
+    </select>
 </mapper>
 
 
