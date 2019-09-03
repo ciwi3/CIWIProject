@@ -48,7 +48,6 @@
 		Where rownum=1 
 		order by join_no desc 
 	</select>
-	<!-- 장르검색? -->
 	<!-- 회원정보 수정하기 -->
 	<update id="joinUpdate" parameterType="MemberVO">
 		update member set
@@ -64,7 +63,7 @@
 	</update>
 	<!-- 회원 삭제하기 -->
 	<delete id="joinDelete" parameterType="String">
-		delete * from member
+		delete from member
 		where id=#{id}
 	</delete>
 </mapper>
