@@ -26,7 +26,6 @@ public class MovieDAO {
 	
 	public static List<MovieVO> movieSearch(Map map) {
 		List<MovieVO> list = new ArrayList<>();
-
 		SqlSession session = ssf.openSession(true);
 		list = session.selectList("movieSearch", map);
 		session.close();
@@ -49,5 +48,13 @@ public class MovieDAO {
 		SqlSession session=ssf.openSession(true);
 		session.update("theaterDateUpdate", vo);
 		session.close();
+	}
+	
+	public static List<MovieVO> movieListData() {
+		List<MovieVO> list=new ArrayList<MovieVO>();
+		SqlSession session=ssf.openSession();
+		list=session.selectList("movieListData");
+		session.close();
+		return list;
 	}
 }

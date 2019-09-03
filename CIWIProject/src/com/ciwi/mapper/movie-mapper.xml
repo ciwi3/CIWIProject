@@ -48,8 +48,12 @@
 		Where theater_no=#{theater_no}
 	</insert>
 	
-	<!-- 해당 영화에 대한 극장별 상영시간 난수 발생 및 삽입 -->
-	
+	<!-- 현재 예약 가능한 영화 목록 출력 -->
+	<select id="movieListData" resultType="MovieVO">
+		Select *
+		From movie
+		Where category_no=2
+	</select>
 	
 	<select id="movieSearch" parameterType="java.util.Map" resultType="MovieVO" >
 	SELECT mno,title,director,actor,poster,regdate,story,genre,category_no,score,grade,num

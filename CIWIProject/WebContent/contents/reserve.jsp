@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
 <style type="text/css">
 .row{
 	margin:0px auto;
@@ -19,16 +19,16 @@ $(function(){
 	$('.movies').click(function(){
 		var poster=$(this).attr("data-poster"); // 클릭한 tr의 정보
 		var title=$(this).attr("data-title");
-		var tno=$(this).attr("data-tno");
+		var theater_no=$(this).attr("data-theater_no");
 		$('#poster').attr("src",poster); // <span id="title">에 db에서 가져온 poster값(vo.getPoster())을 넣음
 		$('#reserve_title').text(title);
 		
 		$.ajax({
 			type:'post',
 			url:'../movie/theater.do',
-			// 왼쪽 tno = key
-			// 오른쪽 tno = var tno
-			data:{tno:tno},
+			// 왼쪽 theater_no = key
+			// 오른쪽 theater_no = var theater_no
+			data:{theater_no:theater_no},
 			success:function(response){ // 정상수행 시 수행할 내용 => response가 실행된 내용을 가져옴
 				$('#theater').html(response);
 			}
@@ -89,7 +89,7 @@ function reserve() {
 						</table>
 						<table class="table table-hover">
 						<c:forEach var="vo" items="${list }">
-							<tr class="movies" data-poster="${vo.poster }" data-title="${vo.title }" data-tno="${vo.tno }">
+							<tr class="movies" data-poster="${vo.poster }" data-title="${vo.title }" data-theater_no="${vo.theater_no }">
 							<!-- 사용자 정의 => 속성은 자기 마음대로 줄 수 있음 -->
 								<td class="text-center"><img src="${vo.poster }" width=30 height=30></td>
 								<td class="text-left">${vo.title }</td>

@@ -96,7 +96,7 @@
 								<div class="dropdown-body">
 									<ul class="dropdown-list">
 										<li><a href="#">공연,전시</a></li>
-										<li><a href="../contents/movie/reserve.do">영화</a></li>
+										<li><a href="../contents/reserve.do">영화</a></li>
 										<li><a href="#">축제</a></li>
 									</ul>
 								</div>
