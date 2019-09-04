@@ -66,6 +66,10 @@
 		delete from member
 		where id=#{id}
 	</delete>
+	<!-- 회원 추천을 위한 카테고리 및 장르 검색 -->
+	<select id="memberGetGenreAndCategory" resultType="MemberVO" parameterType="String">
+		SELECT cate,genre FROM member WHERE ID = #{id}
+	</select>
 </mapper>
 
 

@@ -80,7 +80,7 @@
 		WHERE num BETWEEN 1 AND 12
 		ORDER BY num
 	</select>
-<select id="showSearch8" parameterType="java.util.Map" resultMap="ShowMap">
+	<select id="showSearch8" parameterType="java.util.Map" resultMap="ShowMap">
 		SELECT sno,subject,poster,sdate,show_genre, category_name,
 		area_name,num
 		FROM <include refid="showSearchSql"/>

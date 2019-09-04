@@ -1,13 +1,18 @@
 package com.ciwi.model;
 
 import java.util.*;
+
+import javax.servlet.http.HttpSession;
+
 import com.ciwi.controller.Controller;
 import com.ciwi.controller.Model;
 import com.ciwi.controller.RequestMapping;
 import com.ciwi.dao.FestivalDAO;
+import com.ciwi.dao.MemberDAO;
 import com.ciwi.dao.MovieDAO;
 import com.ciwi.dao.ShowDAO;
 import com.ciwi.vo.FestivalVO;
+import com.ciwi.vo.MemberVO;
 import com.ciwi.vo.MovieVO;
 import com.ciwi.vo.ShowVO;
 
@@ -15,14 +20,20 @@ import com.ciwi.vo.ShowVO;
 public class MainModel {
 	@RequestMapping("main/index.do")
 	public String main_index_page(Model model) {
+
 		return "../main/index.jsp";
 	}
 
 	@RequestMapping("main/main.do")
 	public String main_page(Model model) {
-
+		/*
+		 * String id = ""; int genre = 0; int category = 0; HttpSession session
+		 * = model.getRequest().getSession(); if (session.getAttribute("id") !=
+		 * null) { id = (String) session.getAttribute("id"); MemberVO vo =
+		 * MemberDAO.memberGetGenreAndCategory(Integer.parseInt(id)); genre=
+		 * vo.getGenre(); category = vo.getCate(); }
+		 */
 		model.addAttribute("main_jsp", "../main/section.jsp");
-
 		return "../main/main.jsp";
 	}
 
