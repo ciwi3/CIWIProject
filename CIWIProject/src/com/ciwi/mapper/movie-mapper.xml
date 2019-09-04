@@ -99,4 +99,10 @@
 		From timeInfo
 		Where time_no=#{time_no}
 	</select>
+	<!-- 상영관 별 전체 좌석 가져오기 -->
+	<select id="totalSeat" resultType="int" parameterType="int">
+		Select theater_total_seat
+		From theater
+		Where theater_no=#{theater_no};
+	</select>
 </mapper>

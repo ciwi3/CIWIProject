@@ -130,7 +130,7 @@
 									<ul class="dropdown-list">
 										<li><a data-toggle="tab" href="#tab1">PERFORMANCE /
 												EXHIBITION</a></li>
-										<li><a data-toggle="tab" href="#tab2">MOVIE</a></li>
+										<li><a data-toggle="tab" href="../contents/reserve.do">MOVIE</a></li>
 										<li><a data-toggle="tab" href="#tab3">CONCERT</a></li>
 									</ul>
 									<!-- 										</div> -->

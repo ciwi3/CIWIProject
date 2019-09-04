@@ -98,4 +98,11 @@ public class MovieDAO {
 		}
 		return time;
 	}
+	public static int totalSeat(int theater_no) {
+		int total=0;
+		SqlSession session=ssf.openSession();
+		total=session.selectOne("totalSeat", theater_no);
+		session.close();
+		return total;
+	}
 }
