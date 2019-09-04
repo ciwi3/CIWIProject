@@ -117,13 +117,6 @@ public class FreeBoardDAO {
 		   session.close();
 		   return count;
 	   }
-	   public static int BreplyListCount(int bno)
-	   {
-		   SqlSession session=ssf.openSession(true);
-		   int count=session.selectOne("BreplyListCount",bno);
-		   session.close();
-		   return count;
-	   }
 	
 	//´ë´ñ±Û ¾²±â
 	   public static void replyReInsert(int root,FreeReplyVO vo)
