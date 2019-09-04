@@ -19,6 +19,7 @@ public class MovieModel {
 	@RequestMapping("contents/reserve.do")
 	public String movie_reserve_list(Model model) {
 		List<MovieVO> mlist = MovieDAO.movieListData();
+		// int totalSeat=MovieDAO.totalSeat(1);
 		model.addAttribute("mlist", mlist);
 		model.addAttribute("main_jsp", "../contents/reserve.jsp");
 		return "../main/main.jsp";

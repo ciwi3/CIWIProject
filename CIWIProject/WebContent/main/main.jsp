@@ -56,9 +56,9 @@
 						</div>
 						<div class="col-md-3 col-sm-12 text-right">
 							<ul class="nav-icons">
-								<li><a href="join.do"><i class="ion-person-add"></i>
+								<li><a href="../member/join.do"><i class="ion-person-add"></i>
 										<div>Register</div></a></li>
-								<li><a href="login.do"><i class="ion-person"></i>
+								<li><a href="../member/login.do"><i class="ion-person"></i>
 										<div>Login</div></a></li>
 							</ul>
 						</div>
@@ -115,10 +115,9 @@
 									<!-- 									<div class="col-md-2">
  -->
 									<ul class="dropdown-list">
-										<li class="active"><a data-toggle="tab"
-											href="../show/stest.do">PERFORMANCE / EXHIBITION</a></li>
+										<li class="active"><a href="../contents/show.do">PERFORMANCE / EXHIBITION</a></li>
 										<li><a data-toggle="tab" href="#tab2">MOVIE</a></li>
-										<li><a data-toggle="tab" href="../contents/festival.do">CONCERT</a></li>
+										<li><a href="../contents/festival.do">CONCERT</a></li>
 									</ul>
 								</div>
 							</div></li> &nbsp;&nbsp;&nbsp;
@@ -130,7 +129,7 @@
 									<ul class="dropdown-list">
 										<li><a data-toggle="tab" href="#tab1">PERFORMANCE /
 												EXHIBITION</a></li>
-										<li><a data-toggle="tab" href="../contents/reserve.do">MOVIE</a></li>
+										<li><a href="../contents/reserve.do">MOVIE</a></li>
 										<li><a data-toggle="tab" href="#tab3">CONCERT</a></li>
 									</ul>
 									<!-- 										</div> -->
@@ -179,7 +178,6 @@
 			</div>
 			<!-- /Main Nav -->
 
-<<<<<<< HEAD
 			<!-- Aside Nav -->
 			<div id="nav-aside">
 				<ul class="nav-aside-menu">
@@ -221,7 +219,7 @@
 		<!-- /NAV -->
 	</header>
 	<!-- /HEADER -->
-=======
+	
          <!-- Aside Nav -->
          <div id="nav-aside">
             <ul class="nav-aside-menu">
@@ -268,10 +266,6 @@
    
    <!-- include -->
    <jsp:include page="${main_jsp }"/>
->>>>>>> branch 'master' of https://github.com/ciwi3/CIWIProject.git
-
-	<!-- include -->
-	<jsp:include page="${main_jsp }" />
 
 	<!-- FOOTER -->
 	<footer id="footer">
