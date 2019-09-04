@@ -18,7 +18,6 @@ public class ShowModel {
 
 		List<AreaVO> alist = ShowDAO.getAreaName();
 		List<ShowGenreVO> glist = ShowDAO.getGenreName();
-
 		model.addAttribute("alist", alist);
 		model.addAttribute("glist", glist);
 		model.addAttribute("slist", slist);
@@ -45,7 +44,6 @@ public class ShowModel {
 		String text = model.getRequest().getParameter("stext");
 		System.out.println(area);
 		Map map = new HashMap<>();
-
 		map.put("show_genre", genre);
 		map.put("area", area);
 		map.put("searchOption", searchOption);

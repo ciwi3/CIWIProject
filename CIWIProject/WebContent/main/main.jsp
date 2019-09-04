@@ -140,7 +140,7 @@
 							<div class="dropdown">
 								<div class="dropdown-body">
 									<ul class="dropdown-list">
-										<li><a data-toggle="tab" href="#tab1">FREE BOARD</a></li>
+										<li><a href="../community/freeboard_list.do">FREE BOARD</a></li>
 									</ul>
 								</div>
 							</div></li>&nbsp;&nbsp;&nbsp;
@@ -179,6 +179,7 @@
 			</div>
 			<!-- /Main Nav -->
 
+<<<<<<< HEAD
 			<!-- Aside Nav -->
 			<div id="nav-aside">
 				<ul class="nav-aside-menu">
@@ -220,6 +221,54 @@
 		<!-- /NAV -->
 	</header>
 	<!-- /HEADER -->
+=======
+         <!-- Aside Nav -->
+         <div id="nav-aside">
+            <ul class="nav-aside-menu">
+               <li class="has-dropdown"><a href="#">홈페이지</a>
+                  <ul class="dropdown">
+                     <li><a href="#">소개</a></li>
+                     <li><a href="#">가이드</a></li>
+                  </ul>
+               <li class="has-dropdown"><a>문화</a>
+                  <ul class="dropdown">
+                     <li><a href="#">공연 / 전시</a></li>
+                     <li><a href="#">영화</a></li>
+                     <li><a href="#">페스티발</a></li>
+                  </ul>
+               </li>
+               <li class="has-dropdown"><a>커뮤니티</a>
+                  <ul class="dropdown">
+                     <li><a href="../community/freeboard_list.do">자유게시판</a></li>
+                  </ul>
+               </li>
+               <li class="has-dropdown"><a>공지</a>
+                  <ul class="dropdown">
+                     <li><a href="#">공지사항</a></li>
+                     <li><a href="#">Q & A</a></li>
+                  </ul>
+               </li>
+               <c:if test="${sessionScope.id != null }">
+               <li class="has-dropdown"><a>내 페이지</a>
+                  <ul class="dropdown">
+                     <li><a href="../member/join_modify.do">회원정보 / 수정</a></li>
+                     <li><a href="#">내 지갑</a></li>
+                     <li><a href="#">보고싶어요</a></li>
+                  </ul>
+               </li>
+            </ul>
+            </c:if>
+            <button class="nav-close nav-aside-close"><span></span></button>
+         </div>
+         <!-- /Aside Nav -->
+      </div>
+      <!-- /NAV -->
+   </header>
+   <!-- /HEADER -->
+   
+   <!-- include -->
+   <jsp:include page="${main_jsp }"/>
+>>>>>>> branch 'master' of https://github.com/ciwi3/CIWIProject.git
 
 	<!-- include -->
 	<jsp:include page="${main_jsp }" />

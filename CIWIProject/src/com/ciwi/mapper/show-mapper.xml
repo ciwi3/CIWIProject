@@ -24,7 +24,36 @@
 		<result property="ccvo.category_name" column="category_name" />
 		<result property="avo.area_name" column="area_name" />
 	</resultMap>
+	<sql id="showSearchSql">
+		 (
+		SELECT sno,subject,poster,sdate,sg.show_genre as show_genre,
+		c.category_name as category_name, a.area_name as area_name,rownum as num
+		FROM show s,
+		category c, area a,show_genre sg
+		WHERE s.genre_no = sg.show_no
+		AND
+		s.category_no = c.category_no
+		AND s.area_no = a.area_no
 
+		<if test='searchOption.equals("제목")'>
+			<if test='search!=null  and !search.equals("")'>
+				AND regexp_like(subject,#{search})
+			</if>
+		</if>
+		<if test='searchOption.equals("내용")'>
+			<if test='search!=null  and !search.equals("")'>
+				AND regexp_like(content,#{search})
+			</if>
+		</if>
+		<if test='area!=null and !area.equals("전체") and !area.equals("")'>
+			AND s.area_no = #{area}
+		</if>
+		<if
+			test='show_genre!=null and !show_genre.equals("전체") and  !show_genre.equals("") '>
+			AND s.genre_no = #{show_genre}
+		</if>
+		ORDER BY sno asc)
+	</sql>
 	<!-- 전체 리스트 -->
 	<select id="showAllData" resultType="ShowVO">
 		SELECT * FROM show
@@ -45,38 +74,34 @@
 
 	<!-- 검색조건에 따라서 검색 searchOption에 검색옵션을 적고 검색을 위한 text를 통해 검색 -->
 	<select id="showSearch" parameterType="java.util.Map" resultMap="ShowMap">
-		SELECT sno,subject,poster,sdate,sg.show_genre as show_genre,
-		c.category_name as category_name, a.area_name as area_name
-		FROM show s, category c, area a,show_genre sg
-		WHERE s.genre_no = sg.show_no
-		AND s.category_no = c.category_no
-		AND s.area_no = a.area_no
-
-		<if test='searchOption.equals("제목")'>
-			<if test='search!=null  and !search.equals("")'>
-				AND regexp_like(subject,#{search})
-			</if>
-		</if>
-		<if test='searchOption.equals("내용")'>
-			<if test='search!=null  and !search.equals("")'>
-				AND regexp_like(content,#{search})
-			</if>
-		</if>
-		<if test='!area.equals("전체") and area!=null and !area.equals("")'>
-			AND s.area_no = #{area}
-		</if>
-		<if test='!show_genre.equals("전체") and genre!=null and !show_genre.equals("") '>
-			AND s.genre_no = #{show_genre}
-		</if>
-		ORDER BY sno asc
+		SELECT sno,subject,poster,sdate,show_genre, category_name,
+		area_name,num
+		FROM <include refid="showSearchSql"/>
+		WHERE num BETWEEN 1 AND 12
+		ORDER BY num
+	</select>
+<select id="showSearch8" parameterType="java.util.Map" resultMap="ShowMap">
+		SELECT sno,subject,poster,sdate,show_genre, category_name,
+		area_name,num
+		FROM <include refid="showSearchSql"/>
+		WHERE num BETWEEN 1 AND 8
+		ORDER BY num
+	</select>
+	<select id="showSearch20" parameterType="java.util.Map" resultMap="ShowMap">
+		SELECT sno,subject,poster,sdate,show_genre, category_name,
+		area_name,num
+		FROM <include refid="showSearchSql"/>
+		WHERE num BETWEEN 1 AND 20
+		ORDER BY num
 	</select>
 	
+
 	<select id="getAreaName" resultType="AreaVO">
 		SELECT * FROM area
 	</select>
-	
+
 	<select id="getGenreName" resultType="ShowGenreVO">
 		SELECT * FROM show_genre
 	</select>
-	
+
 </mapper>
