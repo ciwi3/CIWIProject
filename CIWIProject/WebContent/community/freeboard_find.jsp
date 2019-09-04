@@ -27,7 +27,7 @@
        </c:if>
        <c:if test="${count>0 }">
 	       <table class="table">
-	         <tr class="danger">
+	         <tr class="info">
 	          <th width=10% class="text-center">번호</th>
 	          <th width=45% class="text-center">제목</th>
 	          <th width=15% class="text-center">아이디</th>
@@ -35,7 +35,7 @@
 	          <th width=10% class="text-center">조회수</th>
 	         </tr>
 	         <c:forEach var="vo" items="${list }" varStatus="s">
-	           <tr class="${s.index%2==0?'':'warning' }">
+	           <tr>
 	             <td width=10% class="text-center">${vo.no }</td>
 	             <td width=45% class="text-left"><a href="freeboard_detail.do?no=${vo.no }">
 	             <font color="blue">[${vo.bccate}]</font>&nbsp;&nbsp;${vo.subject }</a></td>
@@ -49,7 +49,7 @@
        <table class="table">
          <tr>
            <td class="text-right">
-             <a href="freeboard_list.do" class="btn btn-sm btn-success">목록</a>
+             <a href="freeboard_list.do" class="btn btn-sm btn-info">목록</a>
            </td>
          </tr>
        </table>

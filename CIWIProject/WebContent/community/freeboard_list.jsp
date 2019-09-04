@@ -49,31 +49,23 @@ $(function () {
 	           </c:if>
            </td>
            <td class="text-right">
-             ${curpage } page / ${totalpage } pages
+             <strong style="background-color: pink">${curpage } page / ${totalpage } pages</strong>
            </td>
          </tr>
        </table>
        <table class="table">
          <tr class="info">
-          <th width=10% class="text-center">
-          	<select name="board_category" class="input-sm" id="bc">
-				<option>글머리 선택 </option>
-				<option value="1">잡담</option>
-				<option value="2">질문</option>
-				<option value="3">정보공유</option>
-				<option value="4">공지사항</option>
-			</select>
-          </th>
+          <th width=10% class="text-center"></th>
           <th width=45% class="text-center">제목</th>
           <th width=15% class="text-center">작성자</th>
           <th width=20% class="text-center">작성일</th>
           <th width=10% class="text-center">조회수</th>
          </tr>
-         <c:if test="${curpage==1 }">
-		 	 <c:forEach var="gvo" items="${list }">
+       		<c:if test="${curpage==1 }">
+		 	 <c:forEach var="gvo" items="${nList }">
 			   <c:if test="${gvo.bccate=='공지사항' }">
 				  <tr bgcolor="f200f200f200">
-		             <td width=10% class="text-center">공지</td>
+		             <td width=10% class="text-center"><strong style="color: red">공지</strong></td>
 		             <td width=45% class="text-left"><a href="freeboard_detail.do?no=${gvo.no }">
 		             <font color="red">[${gvo.bccate}]&nbsp; ${gvo.subject }</font></a>
 		             	<c:if test="${today==gvo.dbday }">
@@ -86,7 +78,7 @@ $(function () {
 		           </tr>
 			  	</c:if>
 			  </c:forEach>
-		  </c:if>
+			</c:if>
          <c:set var="count" value="${count }"/>
          <c:forEach var="vo" items="${list }" varStatus="s">
 	           <tr>

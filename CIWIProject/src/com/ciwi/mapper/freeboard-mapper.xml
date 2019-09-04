@@ -16,7 +16,7 @@
 		FROM (SELECT no,subject,id,TO_CHAR(regdate,'YYYY-MM-DD')as dbday,hit,rownum as num ,board_category
 		FROM (SELECT no,subject,id,regdate,hit,board_category
 		FROM freeboard ORDER BY no desc))fb, board_category bc
-		WHERE fb.board_category=bc.bcno AND bc.bcno = 4
+		WHERE fb.board_category=bc.bcno
 	    ORDER BY no desc
 	    
 	</select>
@@ -88,7 +88,6 @@
      FROM freeboardReply
      WHERE bno=#{bno}
    </select>
-   
    <!-- 대댓글 쓰기 -->
    <select id="replyParentInfo" resultType="FreeReplyVO" parameterType="int">
      SELECT group_id,group_step,group_tab 

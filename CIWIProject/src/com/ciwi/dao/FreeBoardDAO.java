@@ -109,10 +109,18 @@ public class FreeBoardDAO {
 		   return list;
 	   }
 	   
+	   //´ñ±Û °³¼ö
 	   public static int replyListCount(int bno)
 	   {
 		   SqlSession session=ssf.openSession(true);
 		   int count=session.selectOne("replyListCount",bno);
+		   session.close();
+		   return count;
+	   }
+	   public static int BreplyListCount(int bno)
+	   {
+		   SqlSession session=ssf.openSession(true);
+		   int count=session.selectOne("BreplyListCount",bno);
 		   session.close();
 		   return count;
 	   }
