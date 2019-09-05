@@ -13,7 +13,7 @@
 <body>
 	<!-- HEADER -->
 	<header id="header"> <!-- PAGE HEADER -->
-	<div class="page-header">
+	<div class="page-header"> 
 		<div class="container">
 			<div class="row">
 				<div class="col-md-offset-1 col-md-10 text-center">

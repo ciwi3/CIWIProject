@@ -7,13 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<style>
-table {
-}
-</style>
 <body>
 	<!-- HEADER -->
-	<header id="header">
+	<header id="header"> 
 		<!-- PAGE HEADER -->
 		<div class="page-header">
 			<div class="container">

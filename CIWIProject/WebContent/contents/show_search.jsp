@@ -10,7 +10,7 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../code.jquery.com/jquery.min.js"></script>
 <title>Insert title here</title>
-</head>
+</head> 
 <body>
 	<div class="container-fluid">
 		<div class="row">
