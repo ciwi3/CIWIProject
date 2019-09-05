@@ -38,19 +38,14 @@
         #{area_no}
 		)
 	</insert>
-	<select id="festivalAllData" resultType="FestivalVO">
-		Select fno, poster,
-		subject, host, fdate, place
-		From festival
+	<select id="festivalListData" resultType="FestivalVO" parameterType="hashMap">
+			SELECT fno, poster,subject, host, fdate, place,num
+			FROM (SELECT fno, poster,subject, host, fdate, place,rownum as num FROM festival)
+			WHERE num BETWEEN #{start} AND #{end}
 	</select>
-<select id="festivalListData" resultType="FestivalVO" parameterType="hashMap">
-		SELECT fno, poster,subject, host, fdate, place,num
-		FROM (SELECT fno, poster,subject, host, fdate, place,rownum as num FROM festival)
-		WHERE num BETWEEN #{start} AND #{end}
-</select>
-<select id="festivalTotalPage" resultType="int" parameterType="int">
-	SELECT CEIL(COUNT(*)/#{rowSize}) FROM festival
-</select>
+	<select id="festivalTotalPage" resultType="int" parameterType="int">
+		SELECT CEIL(COUNT(*)/#{rowSize}) FROM festival
+	</select>
 	<select id="festivalDetail" resultType="FestivalVO"
 		parameterType="int">
 		Select *

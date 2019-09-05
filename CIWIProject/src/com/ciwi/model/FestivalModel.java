@@ -2,11 +2,15 @@ package com.ciwi.model;
 
 import java.util.*;
 
+import javax.servlet.http.HttpSession;
+
 import com.ciwi.controller.Controller;
 import com.ciwi.controller.Model;
 import com.ciwi.controller.RequestMapping;
-import com.ciwi.dao.FestivalDAO;
+import com.ciwi.dao.*;
+import com.ciwi.dao.JjimDAO;
 import com.ciwi.vo.FestivalVO;
+import com.ciwi.vo.JjimVO;
 
 @Controller("festivalModel")
 public class FestivalModel {
@@ -52,5 +56,33 @@ public class FestivalModel {
 		model.addAttribute("fvo", fvo);
 		model.addAttribute("main_jsp", "../contents/festival_detail.jsp");
 		return "../main/main.jsp";
+	}
+	@RequestMapping("contents/festival_jjim_ok.do")
+	public String festival_jjim_ok(Model model) {
+		String fno=model.getRequest().getParameter("fno"); // 찜 등록,삭제 구분
+		HttpSession session=model.getRequest().getSession();
+		String id=(String)session.getAttribute("id");
+		
+		Map map=new HashMap();
+		map.put("fno", fno);
+		map.put("id", id);
+		System.out.println("여기로오지 계속?");
+		JjimDAO.insertJjimFestivalData(map);
+		
+		return "redirect:../contents/festival_detail.do?fno="+fno;
+	}
+	@RequestMapping("contents/festival_jjim_delete.do")
+	public String festival_jjim_delete(Model model) {
+		String fno=model.getRequest().getParameter("fno"); // 찜 등록,삭제 구분
+		HttpSession session=model.getRequest().getSession();
+		String id=(String)session.getAttribute("id");
+		
+		Map map=new HashMap();
+		map.put("fno", fno);
+		map.put("id", id);
+		System.out.println("여기는 와?");
+		JjimDAO.deleteJjimFestivalData(id);
+		
+		return "redirect:../contents/festival_detail.do?fno="+fno;
 	}
 }

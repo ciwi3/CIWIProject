@@ -1,3 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ciwi.mapper.jjim-mapper"></mapper>
+<mapper namespace="com.ciwi.mapper.jjim-mapper">
+	<!-- 공연 찜 등록 -->
+	<insert id="insertJjimShowData" parameterType="hashMap">
+		Insert Into jjim Values(
+			4,
+			#{sno},
+			#{id},
+			0
+		)
+	</insert>
+	<!-- 영화 찜 등록 -->
+	<insert id="insertJjimMovieData" parameterType="hashMap">
+		Insert Into jjim Values(
+			3,
+			#{mno},
+			#{id},
+			0
+		)
+	</insert>
+	<!-- 행사 찜 등록 -->
+	<insert id="insertJjimFestivalData" parameterType="hashMap">
+		Insert Into jjim Values(
+			1,
+			#{fno},
+			#{id},
+			0
+		)
+	</insert>
+	
+	<!-- 공연 찜 삭제 -->
+	<delete id="deleteJjimShowData" parameterType="String">
+		Delete From jjim
+		Where id=#{id}
+	</delete>
+	<!-- 영화 찜 삭제 -->
+	<delete id="deleteJjimMovieData" parameterType="String">
+		Delete From jjim
+		Where id=#{id}
+	</delete>
+	<!-- 행사 찜 삭제 -->
+	<delete id="deleteJjimFestivalData" parameterType="String">
+		Delete From jjim
+		Where id=#{id}
+	</delete>
+</mapper>
