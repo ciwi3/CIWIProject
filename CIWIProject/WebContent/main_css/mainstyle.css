@@ -1217,7 +1217,6 @@ section.search .search-result {
 .form-group.floating.focus.focused .form-control::-webkit-input-placeholder {
   opacity: 1;
 }
-
 .nav-top {
   position: relative;
   padding-top: 20px;
@@ -1225,19 +1224,19 @@ section.search .search-result {
   width: 100%;
   background-color: #FFFFFF;
 }
-.nav-top .brand {
+.nav-top .logo {
   float: left;
   margin: 20px 0;
 }
-.nav-top .brand a {
+.nav-top .logo a {
   text-decoration: none;
 }
-.nav-top .brand img {
-  width: 200px;
+.nav-top .logo img {
+  width: 100%;
   display: block;
   float: left;
 }
-.nav-top .brand .text {
+.nav-top .logo .text {
   font-size: 6em;
   text-transform: uppercase;
   letter-spacing: 8px;

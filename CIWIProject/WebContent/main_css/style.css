@@ -312,8 +312,9 @@ textarea.input {
 
 #nav-top {
   text-align: center;
-  height: 150px;
+  height: 100px;
   margin-top: 30px; 
+  margin-bottom: 25px;
 }
 
 #nav-top>.container {
@@ -322,6 +323,9 @@ textarea.input {
 
 #nav-bottom {
   border-top: 1px solid #e8eaed;
+    height: 60px;
+  margin-top: auto; 
+  margin-bottom: auto;
 }
 
 /*----------------------------*\
@@ -424,7 +428,7 @@ textarea.input {
 \*----------------------------*/
 
 .nav-menu {
-  position: relative;
+  position: absolute;
   text-align: center;
   float: none;
 }
@@ -436,7 +440,7 @@ textarea.input {
 
 .nav-menu>li>a {
   display: block;
-  padding: 25px 15px;
+  padding: 20px 25px;
   line-height: 20px;
   font-weight: 700;
   text-transform: uppercase;
