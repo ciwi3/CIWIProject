@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-<link rel="stylesheet" href="../main_css/bootstrap.min.css">
+<link rel="stylesheet" href="../main/css/bootstrap.min.css">
 <style type="text/css">
 .row {
    margin: 0px auto;
@@ -91,7 +91,7 @@ $(function(){
 	            <a href="freeboard_update.do?no=${vo.no }" class="btn btn-sm btn-info">수정</a>
 	            <a href="freeboard_delete.do?no=${vo.no }" class="btn btn-sm btn-danger">삭제</a>
 	          </c:if>
-            <a href="freeboard_list.do" class="btn btn-sm btn-info">목록</a>
+            <a href="freeboard_list.do?page=${curpage }" class="btn btn-sm btn-info">목록</a>
           </td>
         </tr>
       </table>
@@ -118,7 +118,7 @@ $(function(){
              <td class="text-right">
               <c:if test="${sessionScope.id!=null && sessionScope.id==rvo.id }">
                <a href="#" class="btn btn-xs btn-warning updateBtn" value="${rvo.no }">수정</a>
-               <a href="../community/reply_delete.do?no=${rvo.no }&bno=${vo.no}" class="btn btn-xs btn-info">삭제</a>
+               <a href="../community/reply_delete.do?no=${rvo.no }&bno=${vo.no}&page=${curpage}" class="btn btn-xs btn-info">삭제</a>
               </c:if>
               <c:if test="${sessionScope.id!=null }">
                <a href="#" class="btn btn-xs btn-success replyBtn" value="${rvo.no }">댓글</a>
@@ -132,7 +132,7 @@ $(function(){
 	              &nbsp;&nbsp;
 	            </c:forEach>
 	          </c:if>
-             ${rvo.msg }</td>
+             <pre>${rvo.msg }</pre></td>
            </tr>
            <tr style="display:none" id="m${rvo.no }" class="reply">
 	          <td class="text-left" colspan="2">
@@ -140,6 +140,7 @@ $(function(){
 	            <textarea rows="3" cols="100" name="msg" style="float: left"></textarea>
 	            <input type="hidden" name="bno" value="${vo.no }">
 	            <input type="hidden" name=no value="${rvo.no }">
+	            <input type="hidden" name="page" value="${curpage }">
 	            <input type="submit" class="btn btn-sm btn-primary" style="height: 67px"
 	             value="RE 댓글쓰기"
 	            >
@@ -152,6 +153,7 @@ $(function(){
 	            <textarea rows="3" cols="100" name="msg" style="float: left">${rvo.msg }</textarea>
 	            <input type="hidden" name="bno" value="${vo.no }">
 	            <input type="hidden" name=no value="${rvo.no }">
+	            <input type="hidden" name="page" value="${curpage }">
 	            <input type="submit" class="btn btn-sm btn-primary" style="height: 67px"
 	             value="수정하기"
 	            >
@@ -166,8 +168,9 @@ $(function(){
 	        <tr>
 	          <td class="text-left">
 	           <form name="frm" method="post" action="../community/reply_insert.do">
-	            <textarea rows="3" cols="100" name="msg" style="float: left"></textarea>
+	            <textarea rows="3" cols="108" name="msg" style="float: left"></textarea>
 	            <input type="hidden" name="bno" value="${vo.no }">
+	            <input type="hidden" name="page" value="${curpage }">
 	            <input type="submit" class="btn btn-sm btn-primary" style="height: 72px"
 	             value="댓글쓰기"
 	            >

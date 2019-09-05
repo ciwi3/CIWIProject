@@ -3,6 +3,13 @@
 <mapper namespace="com.ciwi.mapper.qnaboard-mapper">
 	<select id="QNABoardListData" resultType="QNABoardVO" parameterType="java.util.Map">
 		SELECT * fROM qnaboard
-		ORDER BY no desc
+		ORDER BY 1
 	</select>
+	<insert id="QNABoardInsert" parameterType="QNABoardVO">
+		INSERT INTO qnaboard(no,subject,content) VALUES(
+		qnaboard_no_seq.nextval,
+		#{subject},
+		#{content}
+		)
+	</insert>
 </mapper>

@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../main_css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
 <style type="text/css">
 .row {
    margin: 0px auto;
@@ -24,20 +24,13 @@ $(function () {
 		}
 		$('#frm').submit();
 	})
-/* 	$('#bc').click(function () {
-		$.ajax({
-			
-		})
-		
-		
-	}) */
 });
 </script>
 </head>
 <body>
    <div class="container">
      <div class="row">
-       <h1 class="text-center">자유게시판</h1>
+       <h1 class="text-center" style="padding: 2ex;" >자유게시판</h1>
        <table class="table">
          <tr>
            <td class="text-left">
@@ -66,7 +59,7 @@ $(function () {
 			   <c:if test="${gvo.bccate=='공지사항' }">
 				  <tr bgcolor="f200f200f200">
 		             <td width=10% class="text-center"><strong style="color: red">공지</strong></td>
-		             <td width=45% class="text-left"><a href="freeboard_detail.do?no=${gvo.no }">
+		             <td width=45% class="text-left"><a href="freeboard_detail.do?no=${gvo.no }&page=${curpage }">
 		             <font color="red">[${gvo.bccate}]&nbsp; ${gvo.subject }</font></a>
 		             	<c:if test="${today==gvo.dbday }">
 		             		<sup><font color=pink>new</font></sup>
@@ -86,7 +79,7 @@ $(function () {
          <c:forEach var="vo" items="${list }" varStatus="s">
 	           <tr>
 	             <td width=10% class="text-center">${count }</td>
-	             <td width=45% class="text-left"><a href="freeboard_detail.do?no=${vo.no }">
+	             <td width=45% class="text-left"><a href="freeboard_detail.do?no=${vo.no }&page=${curpage }">
 	             <font color="blue">[${vo.bccate}]</font>&nbsp;&nbsp; ${vo.subject }</a>
 	             	<c:if test="${today==vo.dbday }">
 	             		<sup><font color=pink>new</font></sup>

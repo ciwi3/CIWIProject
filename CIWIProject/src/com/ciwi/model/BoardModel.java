@@ -94,6 +94,7 @@ public class BoardModel {
 	public String board_detail(Model model) {
 
 		String no = model.getRequest().getParameter("no");
+		String page = model.getRequest().getParameter("page");
 		FreeBoardVO vo = FreeBoardDAO.freeboardDetailData(Integer.parseInt(no), "detail");
 		model.addAttribute("vo", vo);
 		// list 댓글목록
@@ -101,6 +102,7 @@ public class BoardModel {
 		int count = FreeBoardDAO.replyListCount(Integer.parseInt(no));
 		model.addAttribute("list", list);
 		model.addAttribute("count", count);
+		model.addAttribute("curpage", page);
 		model.addAttribute("main_jsp", "../community/freeboard_detail.jsp");
 
 		return "../main/main.jsp";
@@ -157,7 +159,10 @@ public class BoardModel {
 
 		String bno = model.getRequest().getParameter("bno");
 		String msg = model.getRequest().getParameter("msg");
-
+		
+		String page = model.getRequest().getParameter("page");
+		model.addAttribute("curpage", page);
+		
 		HttpSession session = model.getRequest().getSession();
 		String id = (String) session.getAttribute("id");
 
@@ -170,7 +175,7 @@ public class BoardModel {
 
 		FreeBoardDAO.replyInsert(vo);
 		// 결과값(X)
-		return "redirect:../community/freeboard_detail.do?no=" + bno;
+		return "redirect:../community/freeboard_detail.do?no=" + bno+"&page="+page;
 	}
 
 	@RequestMapping("community/reply_reinsert.do")
@@ -190,6 +195,9 @@ public class BoardModel {
 		HttpSession session = model.getRequest().getSession();
 		String id = (String) session.getAttribute("id");
 
+		String page = model.getRequest().getParameter("page");
+		model.addAttribute("curpage", page);
+		
 		FreeReplyVO vo = new FreeReplyVO();
 		vo.setBno(Integer.parseInt(bno));
 
@@ -199,7 +207,7 @@ public class BoardModel {
 		FreeBoardDAO.replyReInsert(Integer.parseInt(pno), vo);
 		// group_id , group_step , group_tab
 
-		return "redirect:../community/freeboard_detail.do?no=" + bno;
+		return "redirect:../community/freeboard_detail.do?no=" + bno+"&page="+page;
 	}
 
 	@RequestMapping("community/reply_update.do")
@@ -216,6 +224,9 @@ public class BoardModel {
 		// bno
 		String bno = model.getRequest().getParameter("bno");
 
+		String page = model.getRequest().getParameter("page");
+		model.addAttribute("curpage", page);
+		
 		FreeReplyVO vo = new FreeReplyVO();
 		// DAO처리
 		vo.setMsg(msg);
@@ -223,7 +234,7 @@ public class BoardModel {
 
 		FreeBoardDAO.replyUpdate(vo);
 
-		return "redirect:../community/freeboard_detail.do?no=" + bno;
+		return "redirect:../community/freeboard_detail.do?no=" + bno+"&page="+page;
 	}
 
 	@RequestMapping("community/reply_delete.do")
@@ -232,8 +243,12 @@ public class BoardModel {
 		// bno
 		String bno = model.getRequest().getParameter("bno");
 		// DAO
+		
+		String page = model.getRequest().getParameter("page");
+		model.addAttribute("curpage", page);
+		
 		FreeBoardDAO.replyDelete(Integer.parseInt(no));
-		return "redirect:../community/freeboard_detail.do?no=" + bno;
+		return "redirect:../community/freeboard_detail.do?no=" + bno+"&page="+page;
 	}
 
 	@RequestMapping("community/freeboard_delete.do")

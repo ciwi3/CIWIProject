@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.ciwi.vo.FreeBoardVO;
 import com.ciwi.vo.QNABoardVO;
 
 public class QNABoardDAO {
@@ -26,7 +27,11 @@ public class QNABoardDAO {
 		return list;
 	}
 	
-	
+	public static void QNABoardInsert(QNABoardVO vo){
+		SqlSession session = ssf.openSession(true);
+		session.insert("QNABoardInsert",vo);
+		session.close();
+	}
 	
 	
 	
