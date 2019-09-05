@@ -1,16 +1,15 @@
 package com.ciwi.dao;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-
 import com.ciwi.vo.MemberVO;
-
 public class MemberDAO {
 	private static SqlSessionFactory ssf;
 	static {
 		ssf = CreateSqlSessionFactory.getSsf();
 	}
-
 	// 회원가입 : 아이디 중복체크
 	public static int memberIdOverlap(String id) {
 		int count = 0;
@@ -26,7 +25,21 @@ public class MemberDAO {
 		}
 		return count;
 	}
-
+	// 회원가입 : 휴대폰번호 중복체크
+	public static int joinPhone(String phone){
+		int count = 0;
+		SqlSession session = null;
+		try {
+			session = ssf.openSession();
+			count = session.selectOne("joinPhone", phone);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return count;
+	}
 	// 회원가입 : 회원정보 db에 넣기
 	public static void memberInsertData(MemberVO vo) {
 		SqlSession session = null;
@@ -98,15 +111,49 @@ public class MemberDAO {
 				session.close();
 		}
 	}
-
-	// 비밀번호 찾기
+	//아이디찾기 
+	public static int memberIdsearch(String phone){
+		MemberVO vo= new MemberVO();
+		int count=0;
+		SqlSession session = null;
+		try{
+			session=ssf.openSession();
+			count=session.selectOne("memberIdsearch",phone);
+			if(count==1){
+				vo.setMsg("OK");
+			}else if(count==0){
+				vo.setMsg("NOPHONE");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+		return count;
+	}
+	//비밀번호 찾기
+	public static int memberPwdsearch(String id){
+		int count=0;
+		SqlSession session = null;
+		try{
+			session=ssf.openSession();
+			count=session.selectOne("memberPwdsearch",id);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+		return count;
+	}
+	// 회원탈퇴: 비밀번호 확인
 	public static MemberVO memberGetPwd(String id) {
 		MemberVO vo = new MemberVO();
 		SqlSession session = null;
 		try {
 			session = ssf.openSession();
 			vo = session.selectOne("memberGetPwd", id);
-			// System.out.println(vo.getPwd());
 		} catch (Exception e) {
 		} finally {
 			if (session != null)

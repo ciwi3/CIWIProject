@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
    <title>CIWI Template</title>
-<link rel="stylesheet" href="../main_css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> <!-- 다음 우편검색 -->
 <script type="text/javascript">
@@ -48,7 +48,41 @@ $(function(){
 								}
 							}
 						}); 
-			}); // 아이디중복체크 
+			}); // 아이디중복체크
+			//휴대폰번호 중복 눌렀을때
+			$('#phoneBtn').click(function(){ 
+				var phone1=$('#phone1').val();
+				var phone2=$('#phone2').val();
+				var phone3=$('#phone3').val();
+					if( !phone1.match(/[0-9]/)) {
+							alert("숫자만 입력가능합니다.");
+							$('#phone1').focus();
+							return;
+					} else if( !phone2.match(/[0-9]/)) {
+						alert("숫자만 입력가능합니다.");
+						$('#phone2').focus();
+						return;
+					} else if( !phone3.match(/[0-9]/)) {
+						alert("숫자만 입력가능합니다.");
+						$('#phone3').focus();
+						return;
+					}//숫자를 다 입력했다? 
+							$.ajax({
+							type:'post',
+							url:'../member/join_phone_ok.do',
+							data:{phone1:phone1,phone2:phone2,phone3:phone3},
+							success:function(response){
+								var count = response.trim();
+								if(count ==1){
+									alert("사용 중인 번호입니다. 다시입력해주세요.");
+									return;
+								}else if(count ==0){
+									alert("사용 가능한 번호입니다.");
+									return;
+								}
+							}
+						}); 
+			}); //비밀번호 확인
 			$('#overlapPWDBtn').click(function(){
 						var pwd=$('#pwd').val();// 입력한 비밀번호 조건
 						if(pwd.trim()=="" ||  pwd.length<6 ){
@@ -292,7 +326,7 @@ function sample6_execDaumPostcode() {
 								</td>
 						</tr>
 						<tr>
-							<th class="text-right" width=20% ><font size="2px">연락처</font></th>
+							<th class="text-right" width=20% ><font size="2px">휴대폰번호</font></th>
 							<td class="text-left" width=80% name=phone id=phone>
 								<select name=phone1 id=phone1>
 									<option>번호선택</option>
@@ -305,6 +339,7 @@ function sample6_execDaumPostcode() {
 								</select> - 
 								<input type=text  size=5 name=phone2 id=phone2> - 
 								<input type=text  size=5 name=phone3 id=phone3>
+								<input type=button value="중복확인" class="btn btn-sm btn-info" id=phoneBtn>
 							</td>
 						</tr>
 							<tr>

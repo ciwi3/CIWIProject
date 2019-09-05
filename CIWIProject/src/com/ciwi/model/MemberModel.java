@@ -1,5 +1,8 @@
 package com.ciwi.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import com.ciwi.controller.Controller;
@@ -19,6 +22,15 @@ public class MemberModel {
 		HttpSession session = model.getRequest().getSession();
 		session.setAttribute("count", count);
 		return "../member/join_ok.jsp"; // 띄울 화면으로 이동.
+	}
+	//휴대폰번호 중복 확인
+	@RequestMapping("member/join_phone.do")
+	public String join_phone(Model model){
+		String phone=model.getRequest().getParameter("phone1")+"-"+model.getRequest().getParameter("phone2")+"-"
+							+model.getRequest().getParameter("phone3");
+		int count = MemberDAO.joinPhone(phone);
+		model.addAttribute("count", count);
+		return "../member/join_phone_ok.jsp";
 	}
 	//회원가입:화면이동
 	@RequestMapping("member/join.do")
@@ -90,7 +102,6 @@ public class MemberModel {
 		model.addAttribute("main_jsp", "../member/join_modify.jsp");
 		return "../main/main.jsp";
 	}
-	
 	//회원수정 
 	@RequestMapping("member/join_modify_ok.do")
 	public String join_modify_update(Model model){
@@ -169,6 +180,31 @@ public class MemberModel {
 		session.invalidate();
 		return "redirect:../main/main.do";
 	}
+	//아이디 찾기 화면출력
+	@RequestMapping("member/idFind.do")
+	public String idFind(Model model){
+		model.addAttribute("main_jsp", "../member/idFind.jsp");
+		return "../main/main.jsp";
+	}
+	//아이디찾기
+	@RequestMapping("member/idFind_ok.do")
+	public String idFind_ok(Model model){
+		String phone=model.getRequest().getParameter("phone1")+"-"+model.getRequest().getParameter("phone2")
+				+"-"+model.getRequest().getParameter("phone3");
+		//System.out.println(phone);
+		int count=MemberDAO.memberIdsearch(phone);
+		System.out.println(count);
+		model.addAttribute("count", count);
+		return "../member/idFind_ok.jsp";
+	}
+	//아이디 찾기 완료 화면출력
+	@RequestMapping("member/idFind_finish.do")
+	public String idFind_finish(Model model){
+		model.addAttribute("main_jsp", "../member/idFind_finish.jsp");
+		return "../main/main.jsp";
+	}
+	//비밀번호 찾기 화면출력
+	
 	//회원 탈퇴 
 	@RequestMapping("member/member_delete.do")
 	public String member_delete(Model model){
