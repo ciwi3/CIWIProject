@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../main_css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
 <style type="text/css">
 .row {
    margin: 0px auto;

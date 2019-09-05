@@ -13,7 +13,7 @@
 <body>
 	<!-- HEADER -->
 	<header id="header"> <!-- PAGE HEADER -->
-	<div class="page-header"> 
+	<div class="page-header">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-offset-1 col-md-10 text-center">
@@ -102,10 +102,10 @@
 
 
 	<!-- jQuery Plugins -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.stellar.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="js2/jquery.min.js"></script>
+	<script src="js2/bootstrap.min.js"></script>
+	<script src="js2/jquery.stellar.min.js"></script>
+	<script src="js2/main.js"></script>
 
 </body>
 </html>
