@@ -19,6 +19,7 @@
        <typeAlias type="com.ciwi.vo.TheaterVO" alias="TheaterVO"/>
        <typeAlias type="com.ciwi.vo.DateInfoVO" alias="DateInfoVO"/>
        <typeAlias type="com.ciwi.vo.TimeInfoVO" alias="TimeInfoVO"/>
+       <typeAlias type="com.ciwi.vo.QNABoardVO" alias="QNABoardVO"/>
        
        <!-- <typeAlias type="com.sist.vo.FestivalVO" alias="FestivalVO"/> -->
     </typeAliases>
@@ -40,6 +41,7 @@
        <mapper resource="com/ciwi/mapper/festival-mapper.xml"/>
        <mapper resource="com/ciwi/mapper/movie-mapper.xml"/>
        <mapper resource="com/ciwi/mapper/freeboard-mapper.xml"/>
+       <mapper resource="com/ciwi/mapper/qnaboard-mapper.xml"/>
        <!-- <mapper resource="com/sist/mapper/festival-mapper.xml"/> -->
     </mappers>
  </configuration>
