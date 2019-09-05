@@ -71,6 +71,9 @@ $(function () {
 		             	<c:if test="${today==gvo.dbday }">
 		             		<sup><font color=red>new</font></sup>
 		             	</c:if>
+		             	<c:if test="${gvo.hit>30 }">
+		             		<sup><font color=red>hot</font></sup>
+		             	</c:if>
 		             </td>
 		             <td width=15% class="text-center">${gvo.id }</td>
 		             <td width=20% class="text-center">${gvo.dbday }</td>
@@ -88,6 +91,9 @@ $(function () {
 	             	<c:if test="${today==vo.dbday }">
 	             		<sup><font color=red>new</font></sup>
 	             	</c:if>
+	             	<c:if test="${vo.hit>30 }">
+		             	<sup><font color=red>hot</font></sup>
+		            </c:if>
 	             </td>
 	             <td width=15% class="text-center">${vo.id }</td>
 	             <td width=20% class="text-center">${vo.dbday }</td>
