@@ -21,6 +21,7 @@
        <typeAlias type="com.ciwi.vo.TimeInfoVO" alias="TimeInfoVO"/>
        <typeAlias type="com.ciwi.vo.QNABoardVO" alias="QNABoardVO"/>
        <typeAlias type="com.ciwi.vo.JjimVO" alias="JjimVO"/>
+       <typeAlias type="com.ciwi.vo.ReviewVO" alias="ReviewVO"/>
        
        <!-- <typeAlias type="com.sist.vo.FestivalVO" alias="FestivalVO"/> -->
     </typeAliases>
@@ -44,6 +45,7 @@
        <mapper resource="com/ciwi/mapper/freeboard-mapper.xml"/>
        <mapper resource="com/ciwi/mapper/qnaboard-mapper.xml"/>
        <mapper resource="com/ciwi/mapper/jjim-mapper.xml"/>
+       <mapper resource="com/ciwi/mapper/review-mapper.xml"/>
        <!-- <mapper resource="com/sist/mapper/festival-mapper.xml"/> -->
     </mappers>
  </configuration>
