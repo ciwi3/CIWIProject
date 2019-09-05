@@ -69,7 +69,7 @@ $(function () {
 		             <td width=45% class="text-left"><a href="freeboard_detail.do?no=${gvo.no }">
 		             <font color="red">[${gvo.bccate}]&nbsp; ${gvo.subject }</font></a>
 		             	<c:if test="${today==gvo.dbday }">
-		             		<sup><font color=red>new</font></sup>
+		             		<sup><font color=pink>new</font></sup>
 		             	</c:if>
 		             	<c:if test="${gvo.hit>30 }">
 		             		<sup><font color=red>hot</font></sup>
@@ -89,7 +89,7 @@ $(function () {
 	             <td width=45% class="text-left"><a href="freeboard_detail.do?no=${vo.no }">
 	             <font color="blue">[${vo.bccate}]</font>&nbsp;&nbsp; ${vo.subject }</a>
 	             	<c:if test="${today==vo.dbday }">
-	             		<sup><font color=red>new</font></sup>
+	             		<sup><font color=pink>new</font></sup>
 	             	</c:if>
 	             	<c:if test="${vo.hit>30 }">
 		             	<sup><font color=red>hot</font></sup>

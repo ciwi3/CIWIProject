@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ciwi.mapper.qnaboard-mapper">
-	<select id="QNABoardData" resultType="QNABoardVO" parameterType="java.util.Map">
+	<select id="QNABoardListData" resultType="QNABoardVO" parameterType="java.util.Map">
 		SELECT * fROM qnaboard
 		ORDER BY no desc
 	</select>
