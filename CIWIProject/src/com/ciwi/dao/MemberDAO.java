@@ -112,25 +112,20 @@ public class MemberDAO {
 		}
 	}
 	//아이디찾기 
-	public static int memberIdsearch(String phone){
-		MemberVO vo= new MemberVO();
-		int count=0;
+	public static MemberVO memberIdsearch(String phone){
+		MemberVO vo=new MemberVO();
 		SqlSession session = null;
 		try{
 			session=ssf.openSession();
-			count=session.selectOne("memberIdsearch",phone);
-			if(count==1){
-				vo.setMsg("OK");
-			}else if(count==0){
-				vo.setMsg("NOPHONE");
-			}
+			 vo=session.selectOne("memberIdsearch",phone);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			if(session!=null)
+			if(session!=null){
 				session.close();
+			}
 		}
-		return count;
+		return vo;
 	}
 	//비밀번호 찾기
 	public static int memberPwdsearch(String id){

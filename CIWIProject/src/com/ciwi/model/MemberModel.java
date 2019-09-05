@@ -2,15 +2,12 @@ package com.ciwi.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import com.ciwi.controller.Controller;
 import com.ciwi.controller.Model;
 import com.ciwi.controller.RequestMapping;
 import com.ciwi.dao.MemberDAO;
 import com.ciwi.vo.MemberVO;
-
 import net.bytebuddy.matcher.ModifierMatcher.Mode;
 @Controller("MemberModel")
 public class MemberModel {
@@ -23,12 +20,13 @@ public class MemberModel {
 		session.setAttribute("count", count);
 		return "../member/join_ok.jsp"; // 띄울 화면으로 이동.
 	}
-	//휴대폰번호 중복 확인
-	@RequestMapping("member/join_phone.do")
+	//회원가입: 휴대폰번호 중복 확인
+	@RequestMapping("member/join_phone_ok.do")
 	public String join_phone(Model model){
 		String phone=model.getRequest().getParameter("phone1")+"-"+model.getRequest().getParameter("phone2")+"-"
 							+model.getRequest().getParameter("phone3");
 		int count = MemberDAO.joinPhone(phone);
+		//System.out.println(count);
 		model.addAttribute("count", count);
 		return "../member/join_phone_ok.jsp";
 	}
@@ -191,15 +189,16 @@ public class MemberModel {
 	public String idFind_ok(Model model){
 		String phone=model.getRequest().getParameter("phone1")+"-"+model.getRequest().getParameter("phone2")
 				+"-"+model.getRequest().getParameter("phone3");
-		//System.out.println(phone);
-		int count=MemberDAO.memberIdsearch(phone);
-		System.out.println(count);
-		model.addAttribute("count", count);
+		MemberVO vo= MemberDAO.memberIdsearch(phone);
+		String id=vo.getId();
+		System.out.println(id);
+		
 		return "../member/idFind_ok.jsp";
 	}
 	//아이디 찾기 완료 화면출력
 	@RequestMapping("member/idFind_finish.do")
 	public String idFind_finish(Model model){
+		
 		model.addAttribute("main_jsp", "../member/idFind_finish.jsp");
 		return "../main/main.jsp";
 	}

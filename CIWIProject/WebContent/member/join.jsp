@@ -74,11 +74,12 @@ $(function(){
 							success:function(response){
 								var count = response.trim();
 								if(count ==1){
+									//alert(count)
 									alert("사용 중인 번호입니다. 다시입력해주세요.");
 									return;
 								}else if(count ==0){
+									//alert(count)
 									alert("사용 가능한 번호입니다.");
-									return;
 								}
 							}
 						}); 
