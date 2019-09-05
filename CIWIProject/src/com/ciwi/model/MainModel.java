@@ -11,6 +11,7 @@ import com.ciwi.dao.FestivalDAO;
 import com.ciwi.dao.MemberDAO;
 import com.ciwi.dao.MovieDAO;
 import com.ciwi.dao.ShowDAO;
+import com.ciwi.manager.NaverBlogManager;
 import com.ciwi.vo.FestivalVO;
 import com.ciwi.vo.MemberVO;
 import com.ciwi.vo.MovieVO;
@@ -26,13 +27,34 @@ public class MainModel {
 
 	@RequestMapping("main/main.do")
 	public String main_page(Model model) {
-		/*
-		 * String id = ""; int genre = 0; int category = 0; HttpSession session
-		 * = model.getRequest().getSession(); if (session.getAttribute("id") !=
-		 * null) { id = (String) session.getAttribute("id"); MemberVO vo =
-		 * MemberDAO.memberGetGenreAndCategory(Integer.parseInt(id)); genre=
-		 * vo.getGenre(); category = vo.getCate(); }
-		 */
+/*
+		String id = "";
+		int genre = 0;
+		int category = 0;
+		HttpSession session = model.getRequest().getSession();
+		Map<String, String> map = new HashMap<String, String>();
+		NaverBlogManager nm = new NaverBlogManager();
+		if (session.getAttribute("id") != null) {
+			id = (String) session.getAttribute("id");
+
+			MemberVO vo = MemberDAO.memberGetGenreAndCategory(id);
+			if (vo.getCate().contains("1")) {
+				List<FestivalVO> fList = FestivalDAO.festivalRecommend(Integer.parseInt(vo.getGenre()));
+				FestivalVO[] array = (FestivalVO[]) fList.toArray();
+				int[] a = new int[25];
+				fList.ge
+				model.addAttribute("fList", fList);
+
+			}
+			if (vo.getCate().contains("2")) {
+				List<ShowVO> sList = ShowDAO.showRecommend(map);
+				model.addAttribute("sList", sList);
+			}
+			if (vo.getCate().contains("3")) {
+
+			}
+		}
+*/
 		model.addAttribute("main_jsp", "../main/section.jsp");
 		return "../main/main.jsp";
 	}

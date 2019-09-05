@@ -172,13 +172,12 @@ public class MemberDAO {
 	}
 
 	// 추천을 위한 회원 취향 확인
-	public static MemberVO memberGetGenreAndCategory(int id) {
+	public static MemberVO memberGetGenreAndCategory(String id) {
 		MemberVO vo = new MemberVO();
 		SqlSession session = null;
 		try {
 			session = ssf.openSession();
 			vo = session.selectOne("memberGetGenreAndCategory", id);
-			// System.out.println(vo.getPwd());
 		} catch (Exception e) {
 		} finally {
 			if (session != null)
