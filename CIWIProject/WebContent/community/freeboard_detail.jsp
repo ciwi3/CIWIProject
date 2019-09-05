@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-<link rel="stylesheet" href="../main/css/bootstrap.min.css">
+<link rel="stylesheet" href="../main_css/bootstrap.min.css">
 <style type="text/css">
 .row {
    margin: 0px auto;

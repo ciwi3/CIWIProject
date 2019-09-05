@@ -5,7 +5,7 @@
 <head>
 <meta charset=UTF-8">
 <title>CIWI Template</title>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../main_css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
