@@ -62,9 +62,9 @@
 					<div style="padding-left:100px;">
 					</div> -->
 					<div class="col-md-3 col-sm-12 text-right" style="padding-left: 50px;">
-							<div style="padding-top: 35px;"><a href="#"><img src="../img/plus.png" style="width: 25px; height: 26px;">  
+							<div style="padding-top: 35px;"><a href="../member/join.do"><img src="../img/plus.png" style="width: 25px; height: 26px;">  
 									  <span>Sign up</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
-									  <a href="#"><img src="../img/profile.png" style="width: 25px; height: 26px;">  
+									  <a href="../member/login.do"><img src="../img/profile.png" style="width: 25px; height: 26px;">  
 									 <span>Login</span></a></div>
 <!-- 							<div><a href="#"><img src="../img/joinperson.png" style="width: 30px; height: 25px;">
 									 <span>Login</span></a></div> -->
@@ -157,7 +157,7 @@
 							<div class="dropdown-body">
 								<ul class="dropdown-list">
 									<li><a data-toggle="tab" href="#tab1">NOTICE</a></li>
-									<li><a data-toggle="tab" href="#tab2">Q & A</a></li>
+									<li><a href="../notice/qnaboard.do">Q & A</a></li>
 								</ul>
 							</div>
 						</div></li>&nbsp;&nbsp;&nbsp;
