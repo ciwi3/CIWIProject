@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- HEADER -->
+	<!-- HEADER --> 
 	<header id="header"> 
 		<!-- PAGE HEADER -->
 		<div class="page-header">
