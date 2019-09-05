@@ -57,18 +57,6 @@ public class MemberModel {
 							model.getRequest().getParameter("cate2");
 		String genre=model.getRequest().getParameter("genre1")+","+
 							model.getRequest().getParameter("genre2");
-/*		System.out.println(id+"들어왔나?");
-		System.out.println(pwd+"들어왔나?");
-		System.out.println(name+"들어왔나?");
-		System.out.println(sex+"들어왔나?");
-		System.out.println(birthday+"들어왔나?");
-		System.out.println(email+"들어왔나?");
-		System.out.println(phone+"들어왔나?");
-		System.out.println(post+"들어왔나?");
-		System.out.println(main_addr+"들어왔나?");
-		System.out.println(sub_addr+"들어왔나?");
-		System.out.println(cate+"들어왔나?");
-		System.out.println(genre+"들어왔나?");*/
 		
 		MemberVO vo = new MemberVO();
 		vo.setId(id);
@@ -117,14 +105,7 @@ public class MemberModel {
 							model.getRequest().getParameter("cate2");
 		String genre=model.getRequest().getParameter("genre1")+","+
 							model.getRequest().getParameter("genre2");
-/*		System.out.println(pwd+"들어왔나?");
-		System.out.println(email+"들어왔나?");
-		System.out.println(phone+"들어왔나?");//
-		System.out.println(post+"들어왔나?");
-		System.out.println(main_addr+"들어왔나?");
-		System.out.println(sub_addr+"들어왔나?");
-		System.out.println(cate+"들어왔나?");
-		System.out.println(genre+"들어왔나?");*/
+
 		MemberVO vo= new MemberVO();
 		vo.setPwd(pwd);
 		vo.setEmail(email);
@@ -147,7 +128,6 @@ public class MemberModel {
 		model.addAttribute("main_jsp", "../member/modify_finish.jsp");
 		return "../main/main.jsp";
 	}
-	
 	//로그인화면 출력
 	@RequestMapping("member/login.do")
 	public String member_login(Model model){
