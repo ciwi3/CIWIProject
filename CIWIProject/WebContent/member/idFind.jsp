@@ -49,7 +49,7 @@ $(function(){
 <style type="text/css">
 .row {
 	margin: 0px auto;
-	width: 700px;
+	width: 700px; 
 	height:600px;
 }
 </style>

@@ -177,7 +177,7 @@ public class MemberModel {
 		HttpSession session = model.getRequest().getSession();
 		session.invalidate();
 		return "redirect:../main/main.do";
-	}
+	} 
 	//아이디 찾기 화면출력
 	@RequestMapping("member/idFind.do")
 	public String idFind(Model model){
