@@ -13,8 +13,11 @@ $(function(){
 		var inwon=$('#inwon_sel').val();
 		$('#reserve_inwon').text(inwon+'명');
 		$('#reserve_price').text((inwon*12000)+'원');
-		
-		$('#reserve_btn').html('<input type="button" value="예매하기" class="btn btn-sm btn-info" onclick="reserve()">');
+		if(${sessionScope.id==null}) {
+			$('#reserve_btn').html('<font style="color: red">로그인 후 다시 선택해주세요!</font>');
+		} else {
+			$('#reserve_btn').html('<input type="button" value="예매하기" class="btn btn-sm btn-info" onclick="reserve()">');
+		}
 	})
 })
 </script>
