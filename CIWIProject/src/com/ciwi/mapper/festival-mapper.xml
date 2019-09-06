@@ -75,4 +75,17 @@
       </if>
       ORDER BY fno ASC
 	</select>
+		<select id="festivalRecommendSingleGenre" resultType="FestivalVO" parameterType="int">
+		SELECT fno, poster,
+		subject, host, fdate, place
+		FROM festival
+		WHERE festival_no = #{genre} 
+</select>
+	<select id="festivalRecommendMultiGenre" resultType="FestivalVO" parameterType="java.util.Map">
+		SELECT fno, poster,
+		subject, host, fdate, places
+		FROM festival
+		WHERE festival_no = #{first} 
+		OR festival_no = #{last}   
+</select>
 </mapper>

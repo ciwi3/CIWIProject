@@ -53,4 +53,16 @@ public class FestivalDAO {
 		session.close();
 		return list;
 	}
+	public static List<FestivalVO> festivalRecommendSingleGenre(int genre) {
+		SqlSession session = ssf.openSession();
+		List<FestivalVO> list = session.selectList("festivalRecommendSingleGenre", genre);
+		session.close();
+		return list;
+	}
+	public static List<FestivalVO> festivalRecommendMultiGenre(Map map) {
+		SqlSession session = ssf.openSession();
+		List<FestivalVO> list = session.selectList("festivalRecommendMultiGenre", map);
+		session.close();
+		return list;
+	}
 }

@@ -27,7 +27,7 @@ public class MainModel {
 
 	@RequestMapping("main/main.do")
 	public String main_page(Model model) {
-/*
+		List<FestivalVO> fList = null;
 		String id = "";
 		int genre = 0;
 		int category = 0;
@@ -35,26 +35,46 @@ public class MainModel {
 		Map<String, String> map = new HashMap<String, String>();
 		NaverBlogManager nm = new NaverBlogManager();
 		if (session.getAttribute("id") != null) {
+			List<String> bList;
 			id = (String) session.getAttribute("id");
-
 			MemberVO vo = MemberDAO.memberGetGenreAndCategory(id);
 			if (vo.getCate().contains("1")) {
-				List<FestivalVO> fList = FestivalDAO.festivalRecommend(Integer.parseInt(vo.getGenre()));
-				FestivalVO[] array = (FestivalVO[]) fList.toArray();
-				int[] a = new int[25];
-				fList.ge
-				model.addAttribute("fList", fList);
-
+				StringTokenizer st = new StringTokenizer(vo.getGenre(), ",");
+				int genreCount = st.countTokens();
+				if (genreCount > 1) {
+					String firstGenre = st.nextToken();
+					String lastGenre = st.nextToken();
+					map.put("first", firstGenre);
+					map.put("last", lastGenre);
+					fList = FestivalDAO.festivalRecommendMultiGenre(map);
+					bList = nm.blogGetData(firstGenre + " " + lastGenre);
+				} else {
+					fList = FestivalDAO.festivalRecommendSingleGenre(Integer.parseInt(vo.getGenre()));
+					bList = nm.blogGetData(vo.getGenre());
+				}
+				int[] count = new int[fList.size()];
+				for (String s : bList) {
+					for (int i = 0; i < fList.size(); i++) {
+						if (s.contains(fList.get(i).getSubject())) {
+							count[i]++;
+						}
+					}
+				}
 			}
-			if (vo.getCate().contains("2")) {
-				List<ShowVO> sList = ShowDAO.showRecommend(map);
-				model.addAttribute("sList", sList);
-			}
-			if (vo.getCate().contains("3")) {
-
-			}
+			model.addAttribute("fList", fList);
+			/*
+			 * List<FestivalVO> fList =
+			 * FestivalDAO.festivalRecommend(vo.getGenre()); FestivalVO[] array
+			 * = (FestivalVO[]) fList.toArray(); int[] a = new
+			 * int[array.length]; fList.ge model.addAttribute("fList", fList);
+			 * 
+			 * } if (vo.getCate().contains("2")) { List<ShowVO> sList =
+			 * ShowDAO.showRecommend(map); model.addAttribute("sList", sList); }
+			 * if (vo.getCate().contains("3")) {
+			 * 
+			 * }
+			 */
 		}
-*/
 		model.addAttribute("main_jsp", "../main/section.jsp");
 		return "../main/main.jsp";
 	}
