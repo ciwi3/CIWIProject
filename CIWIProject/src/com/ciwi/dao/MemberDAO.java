@@ -128,19 +128,19 @@ public class MemberDAO {
 		return vo;
 	}
 	//비밀번호 찾기
-	public static int memberPwdsearch(String id){
-		int count=0;
+	public static MemberVO memberPwdsearch(String id){
+		MemberVO vo = new MemberVO();
 		SqlSession session = null;
 		try{
 			session=ssf.openSession();
-			count=session.selectOne("memberPwdsearch",id);
+			vo=session.selectOne("memberPwdsearch",id);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			if(session!=null)
 				session.close();
 		}
-		return count;
+		return vo;
 	}
 	// 회원탈퇴: 비밀번호 확인
 	public static MemberVO memberGetPwd(String id) {

@@ -32,7 +32,7 @@
 							</tr>
 					</c:if>
 					<c:if test="${res==0 }">
-						<h2 class="text-center">고객님의 아이디 검색 결과가 없습니다.</h2><br><br>		
+						<h2 class="text-center">고객님의 비밀번호 검색 결과가 없습니다.</h2><br><br>		
 					</c:if>
 						</table>
 						<div class="text-center">

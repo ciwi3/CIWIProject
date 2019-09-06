@@ -170,20 +170,53 @@ public class MemberModel {
 		String phone=model.getRequest().getParameter("phone1")+"-"+model.getRequest().getParameter("phone2")
 				+"-"+model.getRequest().getParameter("phone3");
 		MemberVO vo= MemberDAO.memberIdsearch(phone);
-		String id=vo.getId();
-		System.out.println(id);
-		
-		return "../member/idFind_ok.jsp";
-	}
-	//아이디 찾기 완료 화면출력
-	@RequestMapping("member/idFind_finish.do")
-	public String idFind_finish(Model model){
-		
+		int res=0;
+		String id="";
+		String name="";
+		if(vo.getId()!=null){
+			res=1; // 아이디가 있을때 
+			id=vo.getId();
+			name=vo.getName();
+		}else{
+			res=0; // 없을때 
+		}
+		//System.out.println(res);
+		//System.out.println(id);
+		//System.out.println(name);
+		model.addAttribute("res", res);
+		model.addAttribute("id", id);
+		model.addAttribute("name", name);
 		model.addAttribute("main_jsp", "../member/idFind_finish.jsp");
 		return "../main/main.jsp";
 	}
 	//비밀번호 찾기 화면출력
-	
+	@RequestMapping("member/pwdFind.do")
+	public String pwdFind(Model model){
+		model.addAttribute("main_jsp", "../member/pwdFind.jsp");
+		return "../main/main.jsp";
+	}
+	//비밀번호 찾기
+	@RequestMapping("member/pwdFind_ok.do")
+	public String pwdFind_ok(Model model){
+		String id=model.getRequest().getParameter("id");
+		MemberVO vo=MemberDAO.memberPwdsearch(id);
+		int res=0;
+		String db_id="";
+		String db_pwd="";
+		if(vo.getId() != null){ //아이디가 있을때
+			res=1;
+			db_id=vo.getId();
+			db_pwd=vo.getPwd();
+		}else{
+			res=0;
+		}
+		//System.out.println(res);
+		model.addAttribute("res", res);
+		model.addAttribute("id", db_id);
+		model.addAttribute("pwd", db_pwd);
+		model.addAttribute("main_jsp", "../member/pwdFind_finish.jsp");
+		return "../main/main.jsp";
+	}
 	//회원 탈퇴 
 	@RequestMapping("member/member_delete.do")
 	public String member_delete(Model model){
