@@ -1,65 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ciwi.mapper.review-mapper">
-	<!-- 전체 리뷰 리스트 -->
-	<select id="reviewAllList" resultType="ReviewVO">
-		SELECT * FROM review
-	</select>
 
-	<!-- 리뷰 총 페이지 수 -->
-	<select id="reviewTotalPage" resultType="int">
-		SELECT
-		CEIL(count(*).10.0) FROM review
-	</select>
+   <!-- 전체 리뷰 리스트 -->
+   <select id="reviewAllList" resultType="ReviewVO">
+      SELECT * FROM review
+   </select>
 
-	<!-- 평점,리뷰 추가 -->
-	<insert id="resultInsert" parameterType="ReviewVO">
-		INSERT INTO
-		review(rno,category_no,memid,date,rating,rlike,rdislike,review)
-		values(
-		review_no_seq.nextval,
-		#{rating},
-		#{rno},
-		#{category_no},
-		#{memid},
-		#{date},
-		#{rlike},
-		#{rdislike},
-		#{review}
-		)
-	</insert>
+   <!-- 리뷰 페이지 수 -->
+   <select id="reviewPage" resultType="int">
+      SELECT
+      CEIL(count(*)/10.0) FROM review WHERE category_no=#{category_no} AND content_no=#{content_no}
+   </select>
 
-	<!-- 평점 추가 -->
-	<insert id="ratingInsert" parameterType="ReviewVO">
-		INSERT INTO
-		review(rno,category_no,memid,date,rating,rlike,rdislike)
-		values(
-		rating_no_seq.nextval,
-		#{rno},
-		#{category_no},
-		#{memid},
-		#{date},
-		#{rating},
-		#{rlike},
-		#{rdislike}
-		)
-	</insert>
+   <!-- 평점,리뷰 추가 -->
+   <insert id="resultInsert" parameterType="ReviewVO">
+      INSERT INTO
+      review(rno,category_no,content_no,memid,date,rating,rlike,rdislike,review)
+      values(
+      review_no_seq.nextval,
+      #{rating},
+      #{rno},
+      #{category_no},
+      #{content_no},
+      #{memid},
+      #{date},
+      #{rlike},
+      #{rdislike},
+      #{review}
+      )
+   </insert>
 
-	<!-- 리뷰 수정 -->
-	<update id="reviewModified" parameterType="ReviewVO">
-		UPDATE review SET
-		review=#{review} WHERE memid=#{memid}
-	</update>
+   <!-- 평점 추가 -->
+   <insert id="ratingInsert" parameterType="ReviewVO">
+      INSERT INTO
+      review(rno,category_no,memid,date,rating,rlike,rdislike)
+      values(
+      rating_no_seq.nextval,
+      #{rno},
+      #{category_no},
+      #{content_no},
+      #{memid},
+      #{date},
+      #{rating},
+      #{rlike},
+      #{rdislike}
+      )
+   </insert>
+   
+   <!-- 리뷰 수정 -->
+   <update id="reviewModified" parameterType="ReviewVO">
+      UPDATE review SET
+      review=#{review} WHERE memid=#{memid} 
+   </update>
 
-	<!-- 리뷰 삭제 -->
-	<delete id="reviewDelete" parameterType="int">
-		DELETE FROM review WHERE
-		rno=#{rno} AND memid=#{memid}
-	</delete>
+   <!-- 리뷰 삭제 -->
+   <delete id="reviewDelete" parameterType="int">
+      DELETE FROM review WHERE memid=#{memid}
+   </delete>
+</mapper>
 
 	<!-- 댓글기능에 좋아요나 싫어요 기능 할때 특정 회원이 좋아요나 싫어요를 누르면 해당 댓글번호랑 회원번호랑 가져와서 좋아요 같은 
 		테이블에 넣고 출력할떄는 좋아요 테이블에서 조회해서 이미 눌렀는지 안눌렀는지 체크한당
 		업데이트는 시간에 민감한 자료 아니면 묶어서 전송해도 된다구함
 		가져올때 인덱스써서 하면 뭐 큰문제 없음
 		 -->
-</mapper>

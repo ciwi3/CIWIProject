@@ -56,13 +56,13 @@ public class ReviewDAO {
 	
 	public static void reviewDelete(int rno){
 		SqlSession session=ssf.openSession();
-		ReviewVO vo= session.selectOne("reviewDelete",rno);
 		
 		if(vo.getMemid()==""){
 			vo.getMemid().replace(vo.getMemid(), "탈퇴한 사용자");
 			session.update("reviewInsert",vo); 
 			// 맞는 지 모르겠네 걍 내가 하고싶은거 일단 ㅋㅋ 한거임 이런식으로 하고싶다 하는거 
 		}
+		
 		session.commit();
 		session.close();
 	}
