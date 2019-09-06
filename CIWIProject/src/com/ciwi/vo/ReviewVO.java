@@ -16,11 +16,18 @@ public class ReviewVO {
 	private int rno;
 	private int category_no;
 	private int content_no;
+	private String memid;
 	private Date datetime;
 	private int rating;
 	private int rlike;
 	private int rdislike;
 	private String review;
+	public String getMemid() {
+		return memid;
+	}
+	public void setMemid(String memid) {
+		this.memid = memid;
+	}
 	public int getRno() {
 		return rno;
 	}
