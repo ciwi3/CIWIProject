@@ -25,7 +25,7 @@
 			1,
 			#{fno},
 			#{id},
-			0
+			1
 		)
 	</insert>
 	
@@ -40,8 +40,15 @@
 		Where id=#{id}
 	</delete>
 	<!-- 행사 찜 삭제 -->
-	<delete id="deleteJjimFestivalData" parameterType="String">
-		Delete From jjim
-		Where id=#{id}
-	</delete>
+	<update id="deleteJjimFestivalData" parameterType="JjimVO">
+		<if test="flag==1">
+		Update jjim Set flag=#{flag}
+		Where id=#{id} And contents_no=#{contents_no}
+		</if>
+	</update>
+	
+	<!-- 찜 추가/삭제 플래그 확인 -->
+	<!-- <select id="getFlag" parameterType="">
+	
+	</select> -->
 </mapper>

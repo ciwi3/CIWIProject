@@ -5,7 +5,7 @@
 <head>
 <meta charset=UTF-8">
 <title>CIWI Template</title>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap.ㅇmin.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -49,7 +49,8 @@ $(function(){
 <style type="text/css">
 .row {
 	margin: 0px auto;
-	width: 800px;
+	width: 700px; 
+	height:600px;
 }
 </style>
 </head>
@@ -81,7 +82,7 @@ $(function(){
 							</td>
 					</tr>
 				</table>
-				<div class="text-center" colspan="4">
+				<div class="text-center" >
 					<input type=button value="확인" class="btn btn-ms btn-info" id=idFindBtn>
 				</div>
 			</div>

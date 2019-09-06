@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
    <title>CIWI Template</title>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../main_css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> <!-- 다음 우편검색 -->
 <script type="text/javascript">
@@ -74,11 +74,12 @@ $(function(){
 							success:function(response){
 								var count = response.trim();
 								if(count ==1){
+									//alert(count)
 									alert("사용 중인 번호입니다. 다시입력해주세요.");
 									return;
 								}else if(count ==0){
+									//alert(count)
 									alert("사용 가능한 번호입니다.");
-									return;
 								}
 							}
 						}); 
