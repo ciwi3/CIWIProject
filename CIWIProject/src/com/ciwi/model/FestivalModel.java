@@ -66,6 +66,7 @@ public class FestivalModel {
 		Map map=new HashMap();
 		map.put("fno", fno);
 		map.put("id", id);
+		System.out.println("여기로오지 계속?");
 		JjimDAO.insertJjimFestivalData(map);
 		
 		return "redirect:../contents/festival_detail.do?fno="+fno;

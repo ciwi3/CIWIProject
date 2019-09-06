@@ -31,7 +31,7 @@ public class JjimDAO {
 	// Âò »èÁ¦
 	public static void deleteJjimFestivalData(String id) {
 		SqlSession session = ssf.openSession(true);
-		session.update("deleteJjimFestivalData", id);
+		session.delete("deleteJjimFestivalData", id);
 		session.close();
 	}
 	
