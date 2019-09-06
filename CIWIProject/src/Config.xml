@@ -46,6 +46,7 @@
        <mapper resource="com/ciwi/mapper/qnaboard-mapper.xml"/>
        <mapper resource="com/ciwi/mapper/jjim-mapper.xml"/>
        <mapper resource="com/ciwi/mapper/review-mapper.xml"/>
+       <mapper resource="com/ciwi/mapper/mypage-mapper.xml"/>
        <!-- <mapper resource="com/sist/mapper/festival-mapper.xml"/> -->
     </mappers>
  </configuration>

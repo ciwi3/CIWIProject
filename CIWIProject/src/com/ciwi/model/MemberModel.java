@@ -217,6 +217,13 @@ public class MemberModel {
 		model.addAttribute("main_jsp", "../member/pwdFind_finish.jsp");
 		return "../main/main.jsp";
 	}
+	// È¸¿ø Å»Åð Àü¿¡ ¸®ºä È¸¿ø¾ÆÀÌµð º¯°æ
+	@RequestMapping("")
+	public String reviewIDUpdate(Model model){
+		
+		model.addAttribute("main_jsp", "");
+		return "";
+	}
 	//È¸¿ø Å»Åð 
 	@RequestMapping("member/member_delete.do")
 	public String member_delete(Model model){

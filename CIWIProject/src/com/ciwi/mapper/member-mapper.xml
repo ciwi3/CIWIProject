@@ -76,6 +76,11 @@
 		genre=#{genre}
 		where id=#{id}
 	</update>
+	<!-- 회원탈퇴 시 리뷰 데이터 변경-->
+	<update id="reviewMemIdUpdate"  parameterType="int">
+		UPDATE member SET memID = '탈퇴한 회원' 
+		WHERE memno = #{memno}
+	</update>  
 	<!-- 회원 삭제하기 -->
 	<delete id="joinDelete" parameterType="String">
 		delete from member

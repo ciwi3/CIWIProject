@@ -168,12 +168,12 @@
 
 					</li>
 					<c:if test="${sessionScope.id != null }">
-						<li class="has-dropdown"><a data-toggle="tab" href="#tab1">MY
+						<li class="has-dropdown"><a data-toggle="tab" href="../mypage/mypage.do">MY
 								PAGE</a>
 							<div class="dropdown">
 								<div class="dropdown-body">
 									<ul class="dropdown-list">
-										<li><a data-toggle="tab" href="#tab1">MY INFORMATION</a></li>
+										<li><a data-toggle="tab" href="#">MY INFORMATION</a></li>
 										<li><a data-toggle="tab" href="#tab2">MY WALLET</a></li>
 										<li><a data-toggle="tab" href="#tab2">MISSING</a></li>
 										<li><a href="#">내지갑</a></li>

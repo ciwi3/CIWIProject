@@ -156,7 +156,19 @@ public class MemberDAO {
 		}
 		return vo;
 	}
-
+	// È¸¿ø Å»ÅðÇÏ±â Àü¿¡ ¸®ºä È¸¿ø¾ÆÀÌµð º¯°æ
+	public static void reviewMemIdUpdate(int memno){
+		SqlSession session = null;
+		try {
+			session = ssf.openSession();
+			session.update("joinDelete", memno);
+			session.commit();
+		} catch (Exception e) {
+		} finally {
+			if (session != null)
+				session.close();
+		}
+	}
 	// È¸¿ø Å»Åð
 	public static void member_delete(String id) {
 		SqlSession session = null;
