@@ -7,6 +7,33 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	var fno=${fvo.fno};
+	var flag=0;
+	$('#jjim').click(function(){
+		if(flag==0) {
+			$.ajax({
+				type:'post',
+				url:'../contents/festival_jjim_ok.do',
+				data:{fno:fno},
+				success:function(){
+					location.href='../contents/festival_detail.do?fno='+fno;
+				}
+			})
+		} else if(flag==1) {
+			$.ajax({
+				type:'post',
+				url:'../contents/festival_jjim_delete.do',
+				data:{fno:fno},
+				success:function(){
+					location.href='../contents/festival_detail.do?fno='+fno;
+				}
+			})
+		}
+	})
+})
+</script>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a254310c50d351a28bbec2eeae2161e&libraries=services"></script>
 </head>
@@ -37,7 +64,15 @@ table {
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-				<h1>${fvo.subject }</h1>
+				<div class="col-sm-10">
+					<h1>${fvo.subject }</h1>
+				</div>
+				<div class="col-sm-1">
+					<input type="button" class="btn btn-sm btn-warning" value="보고싶어요" id="jjim">
+				</div>
+				<div class="col-sm-1">
+					<a href="../contents/festival.do"><input type="button" class="btn btn-sm btn-danger" value="목록으로"></a>
+				</div>
 				<table class="table">
 					<tr>
 						<td rowspan=4><img src="${fvo.poster }" width=350 height=350></td>
@@ -120,9 +155,9 @@ table {
 
 
 	<!-- jQuery Plugins -->
-	<script src="../js2/jquery.min.js"></script>
-	<script src="../js2/bootstrap.min.js"></script>
-	<script src="../js2/jquery.stellar.min.js"></script>
-	<script src="../js2/main.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/jquery.stellar.min.js"></script>
+	<script src="../js/main.js"></script>
 </body>
 </html>
