@@ -83,7 +83,7 @@
 </select>
 	<select id="festivalRecommendMultiGenre" resultType="FestivalVO" parameterType="java.util.Map">
 		SELECT fno, poster,
-		subject, host, fdate, places
+		subject, host, fdate, place
 		FROM festival
 		WHERE festival_no = #{first} 
 		OR festival_no = #{last}   
