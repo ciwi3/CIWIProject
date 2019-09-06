@@ -5,11 +5,12 @@
 <head>
 <meta charset=UTF-8">
 <title>CIWI Template</title>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../main_css/bootstrap.min.css">
 <style type="text/css">
 .row {
 	margin: 0px auto;
-	width: 800px;
+	width: 700px;
+	height:600px;
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -57,10 +58,10 @@ $(function(){
 				</table>
 				</form>
 				<div class="text-center">
-						<a href="../member/idFind.do" class="btn btn-sm btn-info" >아이디찾기</a>
-						<a href="../member/pwdFind.do" class="btn btn-sm btn-info" >비밀번호찾기</a>
-						<a href="../member/join.do" class="btn btn-sm btn-info">회원가입</a>
-				</div>
+					<a href="../member/idFind.do" class="btn btn-sm btn-info">아이디찾기</a>
+					<a href="../member/pwdFind.do" class="btn btn-sm btn-info">비밀번호찾기</a>
+					<a href="../member/join.do" class="btn btn-sm btn-info">회원가입</a>
+					</div>
 			</div>
 		</div>
 	</div>
