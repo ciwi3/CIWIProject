@@ -168,10 +168,10 @@ $(function(){
 	        <tr>
 	          <td class="text-left">
 	           <form name="frm" method="post" action="../community/reply_insert.do">
-	            <textarea rows="3" cols="108" name="msg" style="float: left"></textarea>
+	            <textarea rows="3" cols="130" name="msg" style="float: left"></textarea>
 	            <input type="hidden" name="bno" value="${vo.no }">
 	            <input type="hidden" name="page" value="${curpage }">
-	            <input type="submit" class="btn btn-sm btn-primary" style="height: 72px"
+	            <input type="submit" class="btn btn-sm btn-primary" style="height: 64px"
 	             value="댓글쓰기"
 	            >
 	           </form>

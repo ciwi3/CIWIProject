@@ -161,7 +161,7 @@
 							<div class="dropdown-body">
 								<ul class="dropdown-list">
 									<li><a data-toggle="tab" href="#tab1">NOTICE</a></li>
-									<li><a data-toggle="tab" href="#tab2">Q & A</a></li>
+									<li><a href="../notice/qnaboard.do">Q & A</a></li>
 								</ul>
 							</div>
 						</div></li>&nbsp;&nbsp;&nbsp;
@@ -385,7 +385,7 @@
 
 	<!-- jQuery Plugins -->
 	<script src="../js/bootstrap.min.js"></script>
-	<script src="../js/jquery.min.js"></script>
+	<script src="../js/jquery.min.js"></script>  
 	<script src="../js/jquery.stellar.min.js"></script>
 	<script src="../js/main.js"></script>
 
