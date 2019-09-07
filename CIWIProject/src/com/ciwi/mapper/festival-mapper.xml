@@ -19,6 +19,30 @@
 		<result property="ccvo.category_name" column="category_name" />
 		<result property="avo.area_name" column="area_name" />
 	</resultMap>
+	<sql id="festivalSearchSql">
+	 (SELECT fno,subject,poster,fdate,fg.festival_genre as festival_genre,
+		c.category_name as category_name, a.area_name as area_name,rownum as num
+		FROM
+		festival f, category c, area a,festival_genre fg
+		WHERE f.festival_no =
+		fg.festival_no
+		AND f.category_no = c.category_no
+		AND f.area_no =
+		a.area_no
+		<if test='searchOption.equals("제목") and text!=null  and !text.equals("")'>
+			AND regexp_like(subject,#{text})
+		</if>
+		<if test='searchOption.equals("내용") and text!=null  and !text.equals("")'>
+			AND regexp_like(content,#{text})
+		</if>
+		<if test='festival_area!=null and !festival_area.equals("")'>
+			AND area_name = #{festival_area}
+		</if>
+		<if test='festival_genre!=null and !festival_genre.equals("") '>
+			AND show_genre = #{festival_genre}
+		</if>
+		ORDER BY fno ASC)
+	</sql>
 	<insert id="festivalDataInsert" parameterType="FestivalVO">
 		<!-- {} = get메소드 -->
 		Insert Into festival Values(
@@ -34,14 +58,16 @@
 		#{address},
 		#{flike},
 		#{festival_no},
-        #{category_no},
-        #{area_no}
+		#{category_no},
+		#{area_no}
 		)
 	</insert>
-	<select id="festivalListData" resultType="FestivalVO" parameterType="hashMap">
-			SELECT fno, poster,subject, host, fdate, place,num
-			FROM (SELECT fno, poster,subject, host, fdate, place,rownum as num FROM festival)
-			WHERE num BETWEEN #{start} AND #{end}
+	<select id="festivalListData" resultType="FestivalVO"
+		parameterType="hashMap">
+		SELECT fno, poster,subject, host, fdate, place,num
+		FROM (SELECT fno, poster,subject, host, fdate, place,rownum as num FROM
+		festival)
+		WHERE num BETWEEN #{start} AND #{end}
 	</select>
 	<select id="festivalTotalPage" resultType="int" parameterType="int">
 		SELECT CEIL(COUNT(*)/#{rowSize}) FROM festival
@@ -53,39 +79,29 @@
 		Where fno=#{fno}
 	</select>
 
-	<select id="festivalSearch" resultMap="FestivalMap" parameterType="java.util.Map">
-		SELECT fno,subject,poster,fdate,fg.festival_genre as festival_genre,	
-		c.category_name as category_name, a.area_name as area_name
-		FROM festival f, category c, area a,festival_genre fg
-		WHERE f.festival_no =
-		fg.festival_no
-		AND f.category_no = c.category_no
-		AND f.area_no = a.area_no
-      <if test='searchOption.equals("제목") and text!=null  and !text.equals("")'>
-      AND regexp_like(subject,#{text})
-      </if>
-      <if test='searchOption.equals("내용") and text!=null  and !text.equals("")'>
-      AND regexp_like(content,#{text})
-      </if>
-      <if test='festival_area!=null and !festival_area.equals("")'>
-      AND area_name = #{festival_area}
-      </if>
-      <if test='festival_genre!=null and !festival_genre.equals("") '>
-      AND show_genre = #{festival_genre}
-      </if>
-      ORDER BY fno ASC
+	<select id="festivalSearch" resultMap="FestivalMap"
+		parameterType="java.util.Map">
+	
+   		 SELECT fno,subject,poster,fdate,festival_genre,
+		category_name,area_name,num
+        FROM <include refid="festivalSearchSql"></include>
+        ORDER BY NUM ASC
 	</select>
-		<select id="festivalRecommendSingleGenre" resultType="FestivalVO" parameterType="int">
+	<select id="festivalRecommendSingleGenre" resultType="FestivalVO"
+		parameterType="int">
 		SELECT fno, poster,
 		subject, host, fdate, place
-		FROM festival
-		WHERE festival_no = #{genre} 
-</select>
-	<select id="festivalRecommendMultiGenre" resultType="FestivalVO" parameterType="java.util.Map">
+		FROM
+		festival
+		WHERE festival_no = #{genre}
+	</select>
+	<select id="festivalRecommendMultiGenre" resultType="FestivalVO"
+		parameterType="java.util.Map">
 		SELECT fno, poster,
 		subject, host, fdate, place
-		FROM festival
-		WHERE festival_no = #{first} 
-		OR festival_no = #{last}   
-</select>
+		FROM
+		festival
+		WHERE festival_no = #{first}
+		OR festival_no = #{last}
+	</select>
 </mapper>
