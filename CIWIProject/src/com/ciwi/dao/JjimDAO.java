@@ -28,10 +28,22 @@ public class JjimDAO {
 		session.close();
 	}
 	
+	// 찜 등록한 내용 가져오기
+	public static List<JjimVO> getJjim(Map map) {
+		List<JjimVO> list=new ArrayList<JjimVO>();
+		SqlSession session=ssf.openSession();
+		list=session.selectList("getJjim",map);
+		session.close();
+		return list;
+	}
+	
+	
+	
+	
 	// 찜 삭제
-	public static void deleteJjimFestivalData(String id) {
+	public static void deleteJjimFestivalData(Map map) {
 		SqlSession session = ssf.openSession(true);
-		session.delete("deleteJjimFestivalData", id);
+		session.delete("deleteJjimFestivalData", map);
 		session.close();
 	}
 	

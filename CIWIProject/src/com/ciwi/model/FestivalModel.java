@@ -63,26 +63,38 @@ public class FestivalModel {
 		HttpSession session=model.getRequest().getSession();
 		String id=(String)session.getAttribute("id");
 		
-		Map map=new HashMap();
-		map.put("fno", fno);
-		map.put("id", id);
+		// 찜 등록
+		Map insertJjimMap=new HashMap();
+		insertJjimMap.put("fno", fno);
+		insertJjimMap.put("id", id);
 		System.out.println("여기로오지 계속?");
-		JjimDAO.insertJjimFestivalData(map);
+		JjimDAO.insertJjimFestivalData(insertJjimMap);
 		
-		return "redirect:../contents/festival_detail.do?fno="+fno;
-	}
-	@RequestMapping("contents/festival_jjim_delete.do")
-	public String festival_jjim_delete(Model model) {
-		String fno=model.getRequest().getParameter("fno"); // 찜 등록,삭제 구분
-		HttpSession session=model.getRequest().getSession();
-		String id=(String)session.getAttribute("id");
+		// 어떤 사용자가 어떤 카테고리의 어떤 글을 찜했는지 안했는지 알기 위한 jjim목록 가져오기
+		List<JjimVO> list=new ArrayList<JjimVO>();
+		Map selectFestivalJjimMap=new HashMap();
+		selectFestivalJjimMap.put("category_no", 1);
+		selectFestivalJjimMap.put("contents_no", fno);
+		selectFestivalJjimMap.put("id", id);
+		list=JjimDAO.getJjim(selectFestivalJjimMap); // 카테고리, 글 번호, 아이디, 찜 상태 정보를 가져옴
+		if(list.size()==2) {
+			Map deleteJjimMap=new HashMap();
+			deleteJjimMap.put("category_no", 1);
+			deleteJjimMap.put("contents_no", fno);
+			deleteJjimMap.put("id", id);
+			JjimDAO.deleteJjimFestivalData(deleteJjimMap);
+		}
 		
-		Map map=new HashMap();
-		map.put("fno", fno);
-		map.put("id", id);
-		System.out.println("여기는 와?");
-		JjimDAO.deleteJjimFestivalData(id);
+		/*try {
+			int flag=list.get(1).getFlag();
+			// flag가 1이면 찜 삭제, 아니면 빠져나감
+			
+			model.addAttribute("flag", flag);
+		} catch (Exception e) {}*/
 		
-		return "redirect:../contents/festival_detail.do?fno="+fno;
+		
+		
+		model.addAttribute("flag", list.get(0).getFlag());
+		return "../contents/festival_detail.jsp";
 	}
 }

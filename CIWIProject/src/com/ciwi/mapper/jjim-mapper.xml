@@ -7,7 +7,7 @@
 			4,
 			#{sno},
 			#{id},
-			0
+			1
 		)
 	</insert>
 	<!-- 영화 찜 등록 -->
@@ -16,7 +16,7 @@
 			3,
 			#{mno},
 			#{id},
-			0
+			1
 		)
 	</insert>
 	<!-- 행사 찜 등록 -->
@@ -25,9 +25,19 @@
 			1,
 			#{fno},
 			#{id},
-			0
+			1
 		)
 	</insert>
+	
+	
+	<!-- 찜 등록한 내용 가져오기 -->
+	<select id="getJjim" resultType="JjimVO" parameterType="hashMap">
+		Select * From jjim
+		Where category_no=#{category_no}
+		And contents_no=#{contents_no}
+		And id=#{id}
+	</select>
+	
 	
 	<!-- 공연 찜 삭제 -->
 	<delete id="deleteJjimShowData" parameterType="String">
@@ -40,8 +50,10 @@
 		Where id=#{id}
 	</delete>
 	<!-- 행사 찜 삭제 -->
-	<delete id="deleteJjimFestivalData" parameterType="String">
+	<delete id="deleteJjimFestivalData" parameterType="hashMap">
 		Delete From jjim
-		Where id=#{id}
+		Where category_no=#{category_no}
+		And contents_no=#{contents_no}
+		And id=#{id}
 	</delete>
 </mapper>
