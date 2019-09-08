@@ -4,17 +4,65 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 import com.ciwi.controller.Controller;
 import com.ciwi.controller.Model;
 import com.ciwi.controller.RequestMapping;
+import com.ciwi.dao.FestivalDAO;
 import com.ciwi.dao.MovieDAO;
+import com.ciwi.dao.ShowDAO;
 import com.ciwi.vo.*;
 
 @Controller("MovieModel")
 public class MovieModel {
+	@RequestMapping("contents/movie.do")
+		public String movie_list(Model model){
+/*		
+		List<MovieVO> slist = MovieDAO.movieListData();
+		List<AreaVO> alist = ShowDAO.getAreaName();
+		List<ShowGenreVO> glist = ShowDAO.getGenreName();
+		String page = model.getRequest().getParameter("page");
+		if (page == null) {
+			page = "1";
+		}
+		int curPage = Integer.parseInt(page);
+		int rowSize = 8;
+		int start = (curPage * rowSize) - (rowSize - 1);
+		int end = (curPage * rowSize);
+		int BLOCK = 5;
+		int totalPage = FestivalDAO.festivalTotalPage(rowSize);
+		int startPage = ((curPage - 1) / BLOCK * BLOCK) + 1;
+		int endPage = ((curPage - 1) / BLOCK * BLOCK) + BLOCK;
+		int allPage = totalPage;
+		if (endPage > allPage) {
+			endPage = allPage;
+		}
+
+		Map map = new HashMap<>();
+		map.put("start", start);
+		map.put("end", end);
+
+		List<MovieVO> mlist = MovieDAO.festivalListData(map);
+		model.addAttribute("mlist", mlist);
+		model.addAttribute("curPage", curPage);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("allPage", allPage);
+		model.addAttribute("BLOCK", BLOCK);
+		
+		
+		model.addAttribute("alist", alist);
+		model.addAttribute("glist", glist);
+		model.addAttribute("slist", slist);*/
+		model.addAttribute("main_jsp", "../contents/movie.jsp");
+		return "../main/main.jsp";
+		}
+	
 	// 예약 영화 리스트
 	@RequestMapping("contents/reserve.do")
 	public String movie_reserve_list(Model model) {

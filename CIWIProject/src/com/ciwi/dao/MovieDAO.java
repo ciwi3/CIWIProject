@@ -105,4 +105,17 @@ public class MovieDAO {
 		session.close();
 		return total;
 	}
+	
+	public static List<MovieVO> movieRecommendSingleGenre(int genre) {
+		SqlSession session = ssf.openSession();
+		List<MovieVO> list = session.selectList("movieRecommendSingleGenre", genre);
+		session.close();
+		return list;
+	}
+	public static List<MovieVO> movieRecommendMultiGenre(Map map) {
+		SqlSession session = ssf.openSession();
+		List<MovieVO> list = session.selectList("movieRecommendMultiGenre", map);
+		session.close();
+		return list;
+	}
 }

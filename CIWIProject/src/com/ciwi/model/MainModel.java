@@ -28,11 +28,11 @@ public class MainModel {
 	@RequestMapping("main/main.do")
 	public String main_page(Model model) {
 		List<FestivalVO> fList = null;
+		List<ShowVO> sList = null;
+		List<MovieVO> mList = null;
 		String id = "";
-		int genre = 0;
-		int category = 0;
 		HttpSession session = model.getRequest().getSession();
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, Integer> map = new HashMap<String, Integer>();
 		NaverBlogManager nm = new NaverBlogManager();
 		if (session.getAttribute("id") != null) {
 			List<String> bList;
@@ -44,37 +44,70 @@ public class MainModel {
 				if (genreCount > 1) {
 					String firstGenre = st.nextToken();
 					String lastGenre = st.nextToken();
-					map.put("first", firstGenre);
-					map.put("last", lastGenre);
+					map.put("first", Integer.parseInt(firstGenre));
+					map.put("last", Integer.parseInt(lastGenre));
 					fList = FestivalDAO.festivalRecommendMultiGenre(map);
-					bList = nm.blogGetData(firstGenre + " " + lastGenre);
 				} else {
 					fList = FestivalDAO.festivalRecommendSingleGenre(Integer.parseInt(vo.getGenre()));
+				}
+				Collections.shuffle(fList);
+				if (fList.size() > 5) {
+					fList = fList.subList(0, 6);
+				}
+				model.addAttribute("fList", fList);
+			}
+			if (vo.getCate().contains("2")) {
+				StringTokenizer st = new StringTokenizer(vo.getGenre(), ",");
+				int genreCount = st.countTokens();
+				if (genreCount > 1) {
+					String firstGenre = st.nextToken();
+					String lastGenre = st.nextToken();
+					map.put("first", Integer.parseInt(firstGenre));
+					map.put("last", Integer.parseInt(lastGenre));
+					sList = ShowDAO.showRecommendMultiGenre(map);
+				} else {
+					sList = ShowDAO.showRecommendSingleGenre(Integer.parseInt(vo.getGenre()));
+				}
+				Collections.shuffle(sList);
+				if (fList.size() > 5) {
+					sList = sList.subList(0, 6);
+				}
+				model.addAttribute("sList", sList);
+			}
+			if (vo.getCate().contains("3")) {
+				StringTokenizer st = new StringTokenizer(vo.getGenre(), ",");
+				int genreCount = st.countTokens();
+				if (genreCount > 1) {
+					String firstGenre = st.nextToken();
+					String lastGenre = st.nextToken();
+					map.put("first", Integer.parseInt(firstGenre));
+					map.put("last", Integer.parseInt(lastGenre));
+					mList = MovieDAO.movieRecommendMultiGenre(map);
+					bList = nm.blogGetData(firstGenre + " " + lastGenre + " 영화");
+				} else {
+					mList = MovieDAO.movieRecommendSingleGenre(Integer.parseInt(vo.getGenre()));
 					bList = nm.blogGetData(vo.getGenre());
 				}
-				int[] count = new int[fList.size()];
 				for (String s : bList) {
-					for (int i = 0; i < fList.size(); i++) {
-						if (s.contains(fList.get(i).getSubject())) {
-							count[i]++;
+					for (int i = 0; i < mList.size(); i++) {
+						if (s.contains(mList.get(i).getTitle())) {
+							mList.get(i).setCount(mList.get(i).getCount() + 1);
 						}
 					}
 				}
+				Collections.sort(mList, new Comparator<MovieVO>() {
+					@Override
+					public int compare(MovieVO vo1, MovieVO vo2) {
+						return Integer.compare(vo2.getCount(), vo1.getCount());
+					}
+				});
+				if (mList.size() > 5) {
+					mList = mList.subList(0, 6);
+				}
+				model.addAttribute("mList", mList);
 			}
-			model.addAttribute("fList", fList);
-			/*
-			 * List<FestivalVO> fList =
-			 * FestivalDAO.festivalRecommend(vo.getGenre()); FestivalVO[] array
-			 * = (FestivalVO[]) fList.toArray(); int[] a = new
-			 * int[array.length]; fList.ge model.addAttribute("fList", fList);
-			 * 
-			 * } if (vo.getCate().contains("2")) { List<ShowVO> sList =
-			 * ShowDAO.showRecommend(map); model.addAttribute("sList", sList); }
-			 * if (vo.getCate().contains("3")) {
-			 * 
-			 * }
-			 */
 		}
+
 		model.addAttribute("main_jsp", "../main/section.jsp");
 		return "../main/main.jsp";
 	}

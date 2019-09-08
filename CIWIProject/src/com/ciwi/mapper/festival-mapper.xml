@@ -81,12 +81,29 @@
 
 	<select id="festivalSearch" resultMap="FestivalMap"
 		parameterType="java.util.Map">
-	
-   		 SELECT fno,subject,poster,fdate,festival_genre,
+		SELECT fno,subject,poster,fdate,festival_genre,
 		category_name,area_name,num
-        FROM <include refid="festivalSearchSql"></include>
+        FROM <include refid="festivalSearchSql"/>
+        WHERE num BETWEEN 1 AND 20
         ORDER BY NUM ASC
 	</select>
+		<select id="festivalSearch8" resultMap="FestivalMap"
+		parameterType="java.util.Map">
+		SELECT fno,subject,poster,fdate,festival_genre,
+		category_name,area_name,num
+        FROM <include refid="festivalSearchSql"/>
+        WHERE num BETWEEN 1 AND 20
+        ORDER BY NUM ASC
+	</select>
+		<select id="festivalSearch20" resultMap="FestivalMap"
+		parameterType="java.util.Map">
+		SELECT fno,subject,poster,fdate,festival_genre,
+		category_name,area_name,num
+        FROM <include refid="festivalSearchSql"/>
+        WHERE num BETWEEN 1 AND 20
+        ORDER BY NUM ASC
+	</select>
+	
 	<select id="festivalRecommendSingleGenre" resultType="FestivalVO"
 		parameterType="int">
 		SELECT fno, poster,

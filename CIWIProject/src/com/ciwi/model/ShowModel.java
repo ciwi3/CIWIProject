@@ -15,7 +15,6 @@ public class ShowModel {
 	@RequestMapping("contents/show.do")
 	public String show_list(Model model) {
 		List<ShowVO> slist = ShowDAO.showAllData();
-
 		List<AreaVO> alist = ShowDAO.getAreaName();
 		List<ShowGenreVO> glist = ShowDAO.getGenreName();
 		model.addAttribute("alist", alist);

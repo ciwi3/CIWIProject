@@ -104,5 +104,30 @@
 		Select theater_total_seat
 		From theater
 		Where theater_no=#{theater_no};
+		<!-- 영화 추천  -->
+	</select>
+		<select id="movieRecommendSingleGenre" resultType="MovieVO"
+		parameterType="int">
+		SELECT DISTINCT mno, title,
+		director, actor, poster, regdate,genre,grade,story,category_no,score,theater_no
+		FROM movie
+		WHERE REGEXP_LIKE(genre,(SELECT movie_genre FROM movie_genre WHERE movie_no = #{genre))
+	</select>
+	<!-- 장르 여러개 영화 추천 -->
+	<select id="movieRecommendMultiGenre" resultType="MovieVO"
+		parameterType="java.util.Map">
+		SELECT DISTINCT mno, title,
+		director, actor, poster, regdate,genre,grade,story,category_no,score,theater_no
+		FROM movie
+		WHERE REGEXP_LIKE(genre,(SELECT movie_genre FROM movie_genre WHERE movie_no = #{first})) OR
+		REGEXP_LIKE(genre,(SELECT movie_genre FROM movie_genre WHERE movie_no = #{last}))
+	</select>
+	<!-- 출력 -->
+		<select id="MovieListData" resultType="MovieVO"
+		parameterType="hashMap">
+		SELECT mno, title, director, actor, poster, regdate, genre, grade, story, category_no, score, theater_no,num
+		FROM (SELECT mno, title, director, actor, poster, regdate, genre, grade, story, category_no, score, theater_no, FROM
+		festival)
+		WHERE num BETWEEN #{start} AND #{end}
 	</select>
 </mapper>
