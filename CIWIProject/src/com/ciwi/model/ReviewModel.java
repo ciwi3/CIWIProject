@@ -10,7 +10,7 @@ import com.ciwi.dao.ReviewDAO;
 import com.ciwi.vo.ReviewVO;
 @Controller("reviewModel")
 public class ReviewModel {
-	@RequestMapping("contents/show_detail.do")
+	@RequestMapping("contents/review.do")
 	public String reviewListPage(Model model){
 		String page=model.getRequest().getParameter("total");
 		if(page==null){
