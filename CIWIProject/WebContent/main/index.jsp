@@ -74,7 +74,7 @@
                 <div class="col-12 ">
                     <div class="entry-footer">
                         <a href="../member/login.do" class="btn btn-sm">로그인</a>&nbsp;&nbsp;&nbsp;
-                        <a href="../member/join.do" class="btn current btn-sm">회원가입</a><br><br>
+                        <a href="../member/join.do" class="btn btn-sm">회원가입</a><br><br>
                         <p>
                         <a href="../main/main.do" style="margin-right: 20px;">[ GUEST로 입장 ]</font></a>
                         </p>

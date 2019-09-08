@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,8 +48,9 @@
 						</optgroup>
 					</select> <select name="search">
 							<optgroup>
-								<option>제목</option>
-								<option>내용</option>
+							
+								<option >제목</option>
+								<option >내용</option>
 							</optgroup>
 						</select> <input type="text" size=20 name="stext" alt="Search"> <input
 							type="submit" class="btn btn-sm">
@@ -56,6 +59,8 @@
 			</div>
 		</form>
 	<!-- SEARCH -->
+
+
 
 	<!-- SECTION -->
 	<div class="section">
@@ -95,10 +100,12 @@
 	</div>
 	<!-- /SECTION -->
 
+
 	<!-- jQuery Plugins -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.stellar.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/jquery.stellar.min.js"></script>
+	<script src="../js/main.js"></script>
+
 </body>
 </html>
