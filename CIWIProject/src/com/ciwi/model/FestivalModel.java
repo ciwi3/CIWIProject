@@ -92,9 +92,14 @@ public class FestivalModel {
 			model.addAttribute("flag", flag);
 		} catch (Exception e) {}*/
 		
-		
-		
 		model.addAttribute("flag", list.get(0).getFlag());
 		return "../contents/festival_detail.jsp";
 	}
 }
+
+
+
+
+
+
+

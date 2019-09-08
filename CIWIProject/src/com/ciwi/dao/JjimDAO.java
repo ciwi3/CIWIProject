@@ -2,6 +2,8 @@ package com.ciwi.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+
+import com.ciwi.vo.FestivalVO;
 import com.ciwi.vo.JjimVO;
 import java.util.*;
 
@@ -38,8 +40,6 @@ public class JjimDAO {
 	}
 	
 	
-	
-	
 	// 찜 삭제
 	public static void deleteJjimFestivalData(Map map) {
 		SqlSession session = ssf.openSession(true);
@@ -47,4 +47,13 @@ public class JjimDAO {
 		session.close();
 	}
 	
+	
+	// 찜한 행사 내용 가져오기
+	public static List<FestivalVO> getJjimFestivalData() {
+		List<FestivalVO> jjimFlist=new ArrayList<FestivalVO>();
+		SqlSession session=ssf.openSession();
+		jjimFlist=session.selectList("jjimFlist",jjimFlist);
+		session.close();
+		return jjimFlist;
+	}
 }

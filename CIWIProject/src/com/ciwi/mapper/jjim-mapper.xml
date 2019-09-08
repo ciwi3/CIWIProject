@@ -58,5 +58,11 @@
 	</delete>
 	
 	
-	<!--  -->
+	<!-- 찜한 행사 데이터 가져오기 -->
+	<select id="getJjimFestivalData" resultType="FestivalVO">
+		Select poster, subject, fdate, place
+		From festival f, jjim j
+		Where f.category_no=j.category_no
+		And f.fno=j.contents_no;
+	</select>
 </mapper>
