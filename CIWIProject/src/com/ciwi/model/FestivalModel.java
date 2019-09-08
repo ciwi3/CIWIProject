@@ -67,20 +67,19 @@ public class FestivalModel {
 		Map insertJjimMap=new HashMap();
 		insertJjimMap.put("fno", fno);
 		insertJjimMap.put("id", id);
-		System.out.println("여기로오지 계속?");
 		JjimDAO.insertJjimFestivalData(insertJjimMap);
 		
 		// 어떤 사용자가 어떤 카테고리의 어떤 글을 찜했는지 안했는지 알기 위한 jjim목록 가져오기
 		List<JjimVO> list=new ArrayList<JjimVO>();
 		Map selectFestivalJjimMap=new HashMap();
 		selectFestivalJjimMap.put("category_no", 1);
-		selectFestivalJjimMap.put("contents_no", fno);
+		selectFestivalJjimMap.put("contents_no", Integer.parseInt(fno));
 		selectFestivalJjimMap.put("id", id);
 		list=JjimDAO.getJjim(selectFestivalJjimMap); // 카테고리, 글 번호, 아이디, 찜 상태 정보를 가져옴
-		if(list.size()==2) {
+		if(list.size()>=2) {
 			Map deleteJjimMap=new HashMap();
 			deleteJjimMap.put("category_no", 1);
-			deleteJjimMap.put("contents_no", fno);
+			deleteJjimMap.put("contents_no", Integer.parseInt(fno));
 			deleteJjimMap.put("id", id);
 			JjimDAO.deleteJjimFestivalData(deleteJjimMap);
 		}
@@ -92,7 +91,7 @@ public class FestivalModel {
 			model.addAttribute("flag", flag);
 		} catch (Exception e) {}*/
 		
-		model.addAttribute("flag", list.get(0).getFlag());
+		// model.addAttribute("flag", list.get(0).getFlag());
 		return "../contents/festival_detail.jsp";
 	}
 }

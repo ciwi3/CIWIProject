@@ -6,11 +6,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	var sno=${svo.sno};
+	$('#jjim').click(function(){
+		$.ajax({
+			type:'post',
+			url:'../contents/show_jjim_ok.do',
+			data:{sno:sno},
+			success:function(res) {
+				location.href='../contents/show_detail.do?no='+sno;
+			}
+		})
+	})
+})
+</script>
 </head>
-<style>
-table {
-}
-</style>
 <body>
 	<!-- HEADER -->
 	<header id="header">

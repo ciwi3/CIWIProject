@@ -36,22 +36,22 @@
 			</div>
 			<!-- row -->
 			<div class="row">
-				<c:forEach var="jjimFvo" items="${jjimFlist }">
+				<c:forEach var="jjimSvo" items="${jjimSlist }">
 					<div class="col-md-3">
 						<!-- post -->
 						<div class="poster">
-							<a class="imges" href="../contents/festival_detail.do?fno=${jjimFvo.fno }"><img
-								src="${jjimFvo.poster }" width=250px height=350px></a>
+							<a class="imges" href="../contents/show_detail.do?no=${jjimSvo.sno }"><img
+								src="${jjimSvo.poster }" width=250px height=350px></a>
 							<div class="post-body">
 								<div class="post-category">
 									<h3 class="post-title">
-										<a href="../contents/festival_detail.do?fno=${jjimFvo.fno }">${jjimFvo.subject }</a>
+										<a href="../contents/show_detail.do?no=${jjimSvo.sno }">${jjimSvo.subject }</a>
 									</h3>
 								</div>
 								<ul class="post-meta">
-									<li>${jjimFvo.fdate }</li>
+									<li>${jjimSvo.sdate }</li>
 								</ul>
-								<p>${jjimFvo.place }</p>
+								<p>${jjimSvo.place }</p>
 							</div>
 						</div>
 						<!-- /post -->
@@ -62,7 +62,8 @@
 					<hr>
 				</div>
 			</div>
-			
+		</div>
+		<!-- /container -->
 		<!-- container -->
 		<div class="container">
 			<div class="author">
@@ -96,44 +97,8 @@
 					<hr>
 				</div>
 			</div>
-			
-		<!-- container -->
-		<div class="container">
-			<div class="author">
-				<h3 class="text-uppercase">영화 목록</h3>
-			</div>
-			<!-- row -->
-			<div class="row">
-				<c:forEach var="jjimFvo" items="${jjimFlist }">
-					<div class="col-md-3">
-						<!-- post -->
-						<div class="poster">
-							<a class="imges" href="../contents/festival_detail.do?fno=${jjimFvo.fno }"><img
-								src="${jjimFvo.poster }" width=250px height=350px></a>
-							<div class="post-body">
-								<div class="post-category">
-									<h3 class="post-title">
-										<a href="../contents/festival_detail.do?fno=${jjimFvo.fno }">${jjimFvo.subject }</a>
-									</h3>
-								</div>
-								<ul class="post-meta">
-									<li>${jjimFvo.fdate }</li>
-								</ul>
-								<p>${jjimFvo.place }</p>
-							</div>
-						</div>
-						<!-- /post -->
-					</div>
-				</c:forEach>
-				<div class="col-md-12 text-right">
-					<!-- <a href="../contents/festival.do">더보기</a> -->
-					<hr>
-				</div>
-			</div>
 		</div>
 		<!-- /container -->
-	</div>
-	<!-- /SECTION -->
 
 
 	<!-- jQuery Plugins -->

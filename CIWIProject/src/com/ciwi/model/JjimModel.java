@@ -18,13 +18,13 @@ public class JjimModel {
 		String id=(String)session.getAttribute("id");
 		
 		// 공연 찜 데이터
-		
-		
+		List<ShowVO> jjimSlist=JjimDAO.getJjimShowData(id);
 		// 영화 찜 데이터
 
-		
 		// 행사 찜 데이터
 		List<FestivalVO> jjimFlist=JjimDAO.getJjimFestivalData(id);
+		
+		model.addAttribute("jjimSlist", jjimSlist);
 		model.addAttribute("jjimFlist", jjimFlist);
 		model.addAttribute("main_jsp", "../mypage/jjim.jsp");
 		return "../main/main.jsp";

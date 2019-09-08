@@ -40,14 +40,14 @@
 	
 	
 	<!-- 공연 찜 삭제 -->
-	<delete id="deleteJjimShowData" parameterType="String">
+	<delete id="deleteJjimShowData" parameterType="hashMap">
 		Delete From jjim
 		Where category_no=#{category_no}
 		And contents_no=#{contents_no}
 		And id=#{id}
 	</delete>
 	<!-- 영화 찜 삭제 -->
-	<delete id="deleteJjimMovieData" parameterType="String">
+	<delete id="deleteJjimMovieData" parameterType="hashMap">
 		Delete From jjim
 		Where category_no=#{category_no}
 		And contents_no=#{contents_no}

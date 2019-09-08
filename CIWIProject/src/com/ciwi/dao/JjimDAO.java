@@ -3,8 +3,7 @@ package com.ciwi.dao;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import com.ciwi.vo.FestivalVO;
-import com.ciwi.vo.JjimVO;
+import com.ciwi.vo.*;
 import java.util.*;
 
 public class JjimDAO {
@@ -30,7 +29,7 @@ public class JjimDAO {
 		session.close();
 	}
 	
-	// 찜 등록한 내용 가져오기
+	// 구분자 가져오기
 	public static List<JjimVO> getJjim(Map map) {
 		List<JjimVO> list=new ArrayList<JjimVO>();
 		SqlSession session=ssf.openSession();
@@ -60,6 +59,22 @@ public class JjimDAO {
 	}
 	
 	
+	// 찜한 공연 내용 가져오기
+	public static List<ShowVO> getJjimShowData(String id) {
+		List<ShowVO> jjimSlist=new ArrayList<ShowVO>();
+		SqlSession session=ssf.openSession();
+		jjimSlist=session.selectList("getJjimShowData",id);
+		session.close();
+		return jjimSlist;
+	}
+	// 찜한 영화 내용 가져오기
+	public static List<MovieVO> getJjimMovieData(String id) {
+		List<MovieVO> jjimMlist=new ArrayList<MovieVO>();
+		SqlSession session=ssf.openSession();
+		jjimMlist=session.selectList("getJjimMovieData",id);
+		session.close();
+		return jjimMlist;
+	}
 	// 찜한 행사 내용 가져오기
 	public static List<FestivalVO> getJjimFestivalData(String id) {
 		List<FestivalVO> jjimFlist=new ArrayList<FestivalVO>();
