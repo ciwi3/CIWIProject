@@ -18,7 +18,7 @@
 			<div class="row">
 				<div class="col-md-offset-1 col-md-10 text-center">
 					<div class="author">
-						<h1 class="text-uppercase">전시／공연</h1>
+						<h1 class="text-uppercase">찜한 목록</h1>
 					</div>
 				</div>
 			</div>
@@ -27,73 +27,108 @@
 	<!-- /PAGE HEADER --> </header>
 	<!-- /HEADER -->
 
-	<!-- SEARCH -->
-	<form method="get" action="../contents/show_search.do">
-		<div class="container-fluid">
-			<div class="row">
-				<div style="padding: 50px,20px,20px,50px">
-					<select class="options" name="genre">
-						<optgroup label="장르">
-						<option selected>전체</option>
-							<c:forEach var="genre" items="${glist }">
-								<option value="${genre.show_no}">${genre.show_genre}</option>
-							</c:forEach>
-						</optgroup>
-					</select> <select name="area">
-						<optgroup label="지역">
-							<option selected>전체</option>
-							<c:forEach var="area" items="${alist }">
-								<option value="${area.area_no }">${area.area_name}</option>
-							</c:forEach>
-						</optgroup>
-					</select> <select name="search">
-							<optgroup>
-							
-								<option >제목</option>
-								<option >내용</option>
-							</optgroup>
-						</select> <input type="text" size=20 name="stext" alt="Search"> <input
-							type="submit" class="btn btn-sm">
-					</div>
-				</div>
-			</div>
-		</form>
-	<!-- SEARCH -->
-
-
-
 	<!-- SECTION -->
 	<div class="section">
 		<!-- container -->
 		<div class="container">
+			<div class="author">
+				<h3 class="text-uppercase">공연/행사 목록</h3>
+			</div>
 			<!-- row -->
 			<div class="row">
-				<c:forEach var="svo" items="${slist }">
+				<c:forEach var="jjimFvo" items="${jjimFlist }">
 					<div class="col-md-3">
 						<!-- post -->
 						<div class="poster">
-							<a clsass="imges" href="../contents/show_detail.do?no=${svo.sno }"><img
-								src="${svo.poster }" width=250px height=350px></a>
+							<a class="imges" href="../contents/festival_detail.do?fno=${jjimFvo.fno }"><img
+								src="${jjimFvo.poster }" width=250px height=350px></a>
 							<div class="post-body">
 								<div class="post-category">
 									<h3 class="post-title">
-										<a href="../contents/show_detail.do?no=${svo.sno }">${svo.subject }</a>
+										<a href="../contents/festival_detail.do?fno=${jjimFvo.fno }">${jjimFvo.subject }</a>
 									</h3>
 								</div>
 								<ul class="post-meta">
-									<li>${svo.sdate }</li>
+									<li>${jjimFvo.fdate }</li>
 								</ul>
-								<p>${svo.place }</p>
+								<p>${jjimFvo.place }</p>
 							</div>
 						</div>
 						<!-- /post -->
-						<hr>
 					</div>
 				</c:forEach>
+				<div class="col-md-12 text-right">
+					<!-- <a href="../contents/festival.do">더보기</a> -->
+					<hr>
+				</div>
 			</div>
-			<!-- /row -->
-			<div class="section-row loadmore text-center">
-				<a href="#" class="primary-button">Load More</a>
+			
+		<!-- container -->
+		<div class="container">
+			<div class="author">
+				<h3 class="text-uppercase">페스티벌 목록</h3>
+			</div>
+			<!-- row -->
+			<div class="row">
+				<c:forEach var="jjimFvo" items="${jjimFlist }">
+					<div class="col-md-3">
+						<!-- post -->
+						<div class="poster">
+							<a class="imges" href="../contents/festival_detail.do?fno=${jjimFvo.fno }"><img
+								src="${jjimFvo.poster }" width=250px height=350px></a>
+							<div class="post-body">
+								<div class="post-category">
+									<h3 class="post-title">
+										<a href="../contents/festival_detail.do?fno=${jjimFvo.fno }">${jjimFvo.subject }</a>
+									</h3>
+								</div>
+								<ul class="post-meta">
+									<li>${jjimFvo.fdate }</li>
+								</ul>
+								<p>${jjimFvo.place }</p>
+							</div>
+						</div>
+						<!-- /post -->
+					</div>
+				</c:forEach>
+				<div class="col-md-12 text-right">
+					<!-- <a href="../contents/festival.do">더보기</a> -->
+					<hr>
+				</div>
+			</div>
+			
+		<!-- container -->
+		<div class="container">
+			<div class="author">
+				<h3 class="text-uppercase">영화 목록</h3>
+			</div>
+			<!-- row -->
+			<div class="row">
+				<c:forEach var="jjimFvo" items="${jjimFlist }">
+					<div class="col-md-3">
+						<!-- post -->
+						<div class="poster">
+							<a class="imges" href="../contents/festival_detail.do?fno=${jjimFvo.fno }"><img
+								src="${jjimFvo.poster }" width=250px height=350px></a>
+							<div class="post-body">
+								<div class="post-category">
+									<h3 class="post-title">
+										<a href="../contents/festival_detail.do?fno=${jjimFvo.fno }">${jjimFvo.subject }</a>
+									</h3>
+								</div>
+								<ul class="post-meta">
+									<li>${jjimFvo.fdate }</li>
+								</ul>
+								<p>${jjimFvo.place }</p>
+							</div>
+						</div>
+						<!-- /post -->
+					</div>
+				</c:forEach>
+				<div class="col-md-12 text-right">
+					<!-- <a href="../contents/festival.do">더보기</a> -->
+					<hr>
+				</div>
 			</div>
 		</div>
 		<!-- /container -->

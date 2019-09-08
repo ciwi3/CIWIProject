@@ -30,7 +30,7 @@
 	</insert>
 	
 	
-	<!-- 찜 등록한 구분값들 가져오기 -->
+	<!-- 찜 등록한 구분값들 가져오기 => 찜이 한 번 이상 등록됐다면 찜 삭제-->
 	<select id="getJjim" resultType="JjimVO" parameterType="hashMap">
 		Select * From jjim
 		Where category_no=#{category_no}
@@ -42,12 +42,16 @@
 	<!-- 공연 찜 삭제 -->
 	<delete id="deleteJjimShowData" parameterType="String">
 		Delete From jjim
-		Where id=#{id}
+		Where category_no=#{category_no}
+		And contents_no=#{contents_no}
+		And id=#{id}
 	</delete>
 	<!-- 영화 찜 삭제 -->
 	<delete id="deleteJjimMovieData" parameterType="String">
 		Delete From jjim
-		Where id=#{id}
+		Where category_no=#{category_no}
+		And contents_no=#{contents_no}
+		And id=#{id}
 	</delete>
 	<!-- 행사 찜 삭제 -->
 	<delete id="deleteJjimFestivalData" parameterType="hashMap">
@@ -58,11 +62,28 @@
 	</delete>
 	
 	
+	<!-- 찜한 공연 데이터 가져오기 -->
+	<select id="getJjimShowData" resultType="ShowVO" parameterType="String">
+		Select sno, poster, subject, sdate, place
+		From show s, jjim j
+		Where s.category_no=j.category_no
+		And s.sno=j.contents_no
+		And j.id=#{id}
+	</select>
+	<!-- 찜한 영화 데이터 가져오기 -->
+	<select id="getJjimMovieData" resultType="FestivalVO" parameterType="String">
+		Select mno, poster, subject, regdate, place
+		From movie m, jjim j
+		Where m.category_no=j.category_no
+		And m.mno=j.contents_no
+		And j.id=#{id}
+	</select>
 	<!-- 찜한 행사 데이터 가져오기 -->
-	<select id="getJjimFestivalData" resultType="FestivalVO">
-		Select poster, subject, fdate, place
+	<select id="getJjimFestivalData" resultType="FestivalVO" parameterType="String">
+		Select fno, poster, subject, fdate, place
 		From festival f, jjim j
 		Where f.category_no=j.category_no
-		And f.fno=j.contents_no;
+		And f.fno=j.contents_no
+		And j.id=#{id}
 	</select>
 </mapper>

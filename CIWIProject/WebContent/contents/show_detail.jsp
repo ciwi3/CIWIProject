@@ -36,7 +36,24 @@ table {
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-				<h1>${svo.subject }</h1>
+				<div class="col-sm-10">
+					<h1>${svo.subject }</h1>
+				</div>
+				<c:if test="${sessionScope.id==null }">
+				<div class="col-sm-1">
+					<a href="../member/login.do">
+						<input type="button" class="btn btn-sm btn-warning" value="로그인 필요">
+					</a>
+				</div>
+				</c:if>
+				<c:if test="${sessionScope.id!=null }">
+				<div class="col-sm-1">
+					<input type="button" class="btn btn-sm btn-warning" id="jjim" value="보고싶어요">
+				</div>
+				</c:if>
+				<div class="col-sm-1">
+					<a href="../contents/show.do" class="btn btn-sm btn-danger">목록</a>
+				</div>
 				<table class="table">
 					<tr >
 						<td rowspan=2><img src="${svo.poster }" width=350px height=450px></td>
@@ -45,11 +62,11 @@ table {
 					</tr>
 					<tr>
 						<th>공연장소</th>
-						<td>${fvo.place }</td>
+						<td>${svo.place }</td>
 					</tr>
 					<tr>
 						<th>공연가격</th>
-						<td>${fvo.price }</td>
+						<td>${svo.price }</td>
 					</tr>
 					<tr>
 						<th>공연장소</th>

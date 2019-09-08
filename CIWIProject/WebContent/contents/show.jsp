@@ -72,7 +72,7 @@
 					<div class="col-md-3">
 						<!-- post -->
 						<div class="poster">
-							<a clsass="imges" href="../contents/show_detail.do?no=${svo.sno }"><img
+							<a class="imges" href="../contents/show_detail.do?no=${svo.sno }"><img
 								src="${svo.poster }" width=250px height=350px></a>
 							<div class="post-body">
 								<div class="post-category">

@@ -40,7 +40,19 @@ public class JjimDAO {
 	}
 	
 	
-	// 찜 삭제
+	// 공연 찜 삭제
+	public static void deleteJjimShowData(Map map) {
+		SqlSession session = ssf.openSession(true);
+		session.delete("deleteJjimShowData", map);
+		session.close();
+	}
+	// 영화 찜 삭제
+	public static void deleteJjimMovieData(Map map) {
+		SqlSession session = ssf.openSession(true);
+		session.delete("deleteJjimMovieData", map);
+		session.close();
+	}
+	// 행사 찜 삭제
 	public static void deleteJjimFestivalData(Map map) {
 		SqlSession session = ssf.openSession(true);
 		session.delete("deleteJjimFestivalData", map);
@@ -49,10 +61,10 @@ public class JjimDAO {
 	
 	
 	// 찜한 행사 내용 가져오기
-	public static List<FestivalVO> getJjimFestivalData() {
+	public static List<FestivalVO> getJjimFestivalData(String id) {
 		List<FestivalVO> jjimFlist=new ArrayList<FestivalVO>();
 		SqlSession session=ssf.openSession();
-		jjimFlist=session.selectList("jjimFlist",jjimFlist);
+		jjimFlist=session.selectList("getJjimFestivalData",id);
 		session.close();
 		return jjimFlist;
 	}
