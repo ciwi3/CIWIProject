@@ -58,7 +58,7 @@ public List<MovieVO> movieAlldata(){
 			
 			Document doc = Jsoup.connect("https://movie.naver.com/movie/running/current.nhn").get();
 			Elements link = doc.select("div.thumb a");
-
+			
 				for(int j = 0 ; j < link.size() ;j++) {
 					
 					try{

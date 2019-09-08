@@ -19,6 +19,16 @@ public class MemberVO {
 	private Date regdate;
 	private String genre;
 	private String msg;
+	private ReviewVO review = new ReviewVO();
+	private int mempay;
+
+	public int getMempay() {
+		return mempay;
+	}
+
+	public void setMempay(int mempay) {
+		this.mempay = mempay;
+	}
 
 	public Date getRegdate() {
 		return regdate;

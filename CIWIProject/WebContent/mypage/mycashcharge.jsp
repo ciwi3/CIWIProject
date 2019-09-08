@@ -35,8 +35,8 @@ $(function(){
 			<div class="row">
 				<div class="col-md-offset-1 col-md-10 text-center">
 					<div class="author">
-						<h1 class="text-uppercase">마이페이지</h1>
-						<p class="lead">나의 지갑상태,  확인해보세요~</p>
+						<h1 class="text-uppercase">내 지갑 충전하기</h1>
+						<p class="lead"></p>
 					</div>
 				</div>
 			</div>
@@ -47,13 +47,14 @@ $(function(){
 	<!-- SESSION -->
 		<div class="section">
 		<div class="container">
-			<h2 class="text-center">나의 회원정보</h2>
+			<h2 class="text-center">충전하기</h2>
 				<div class="row2">
-				<form action="../mypage/mycashcharge.do"></form>
+				<form action="../mypage/mycashcharge_ok.do"></form>
 					<table class="table">
 						<tr>
-							<th class="text-right" width=20% height=20%><font size="2px">아이디 : </font></th>
-							<td class="text-left" width=80%>${vo.id }
+							<th class="text-right" width=20% height=20%><font size="2px">충전할 캐시 : </font></th>
+							<td class="text-left" width=80%>
+								<input type=text size=20>
 							</td>
 						</tr>
 						<tr>

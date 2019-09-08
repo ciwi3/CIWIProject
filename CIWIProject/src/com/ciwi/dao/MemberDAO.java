@@ -161,7 +161,7 @@ public class MemberDAO {
 		SqlSession session = null;
 		try {
 			session = ssf.openSession();
-			session.update("joinDelete", memno);
+			session.update("reviewMemIdUpdate", memno);
 			session.commit();
 		} catch (Exception e) {
 		} finally {

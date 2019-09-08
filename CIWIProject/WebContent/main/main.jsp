@@ -168,15 +168,14 @@
 
 					</li>
 					<c:if test="${sessionScope.id != null }">
-						<li class="has-dropdown"><a data-toggle="tab" href="../mypage/mypage.do">MY
+						<li class="has-dropdown"><a data-toggle="tab" href="#">MY
 								PAGE</a>
 							<div class="dropdown">
 								<div class="dropdown-body">
 									<ul class="dropdown-list">
-										<li><a data-toggle="tab" href="#">MY INFORMATION</a></li>
-										<li><a data-toggle="tab" href="#tab2">MY WALLET</a></li>
-										<li><a data-toggle="tab" href="#tab2">MISSING</a></li>
-										<li><a href="#">내지갑</a></li>
+										<li><a href="../mypage/myinformation.do">MY INFORMATION</a></li>
+										<li><a href="#tab2">MY WALLET</a></li>
+										<li><a href="#tab2">MISSING</a></li>
 										<li><a href="#">보고싶어요</a></li>
 										<li><a href="../member/join_modify.do">회원수정</a></li>
 
