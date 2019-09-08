@@ -160,7 +160,7 @@
 						<div class="dropdown">
 							<div class="dropdown-body">
 								<ul class="dropdown-list">
-									<li><a data-toggle="tab" href="#tab1">NOTICE</a></li>
+									<li><a href="../notice/noticeboard_list.do">NOTICE</a></li>
 									<li><a href="../notice/qnaboard.do">Q & A</a></li>
 								</ul>
 							</div>
