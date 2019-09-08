@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.ciwi.vo.FreeBoardVO;
 import com.ciwi.vo.NoticeBoardVO;
 
 
@@ -46,6 +47,25 @@ public class NoticeBoardDAO {
 		
 		session.close();
 		return count;
+	}
+	
+	//게시글 추가
+	public static void noticeboardInsert(NoticeBoardVO vo){
+		SqlSession session = ssf.openSession(true);
+		session.insert("noticeboardInsert",vo);
+		session.close();
+	}
+	//상세보기
+	public static NoticeBoardVO noticeboardDetailData(int no, String type){
+		NoticeBoardVO vo = new NoticeBoardVO();
+		SqlSession session = ssf.openSession();
+		if(type.equals("detail")){
+			session.update("nhitIncrement",no);
+			session.commit();
+		}
+		vo = session.selectOne("noticeboardDetailData", no);	
+		session.close();
+		return vo;
 	}
 	
 	

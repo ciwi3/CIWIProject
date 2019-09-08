@@ -50,4 +50,70 @@ public class NoticeBoardModel {
 		
 		return "../main/main.jsp";
 	}
+	
+	// 게시판 내용 추가
+	@RequestMapping("notice/noticeboard_insert.do")
+	public String nboard_insert(Model model) {
+
+		model.addAttribute("main_jsp", "../notice/noticeboard_insert.jsp");
+
+		return "../main/main.jsp";
+	}
+
+	@RequestMapping("notice/noticeboard_insert_ok.do")
+	public String nboard_insert_ok(Model model) {
+
+		try {
+			model.getRequest().setCharacterEncoding("UTF-8");
+		} catch (Exception e) {
+		}
+
+		String id = model.getRequest().getParameter("id");
+		String subject = model.getRequest().getParameter("subject");
+		String content = model.getRequest().getParameter("content");
+
+		NoticeBoardVO vo = new NoticeBoardVO();
+
+		vo.setId(id);
+		vo.setSubject(subject);
+		vo.setContent(content);
+
+		NoticeBoardDAO.noticeboardInsert(vo);
+
+		return "redirect:../notice/noticeboard_list.do";
+	}
+	
+	@RequestMapping("notice/noticeboard_detail.do")
+	public String nboard_detail(Model model) {
+
+		String no = model.getRequest().getParameter("no");
+		String page = model.getRequest().getParameter("page");
+		NoticeBoardVO vo = NoticeBoardDAO.noticeboardDetailData(Integer.parseInt(no), "detail");
+		model.addAttribute("vo", vo);
+		// list 댓글목록
+		model.addAttribute("curpage", page);
+		model.addAttribute("main_jsp", "../notice/noticeboard_detail.jsp");
+
+		return "../main/main.jsp";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

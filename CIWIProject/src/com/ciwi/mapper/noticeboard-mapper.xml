@@ -5,18 +5,38 @@
 		SELECT no,subject,id,dbday,hit,num
 		FROM (SELECT no,subject,id,TO_CHAR(regdate,'YYYY-MM-DD')as dbday,hit,rownum as num 
 		FROM (SELECT no,subject,id,regdate,hit
-		FROM freeboard ORDER BY no desc))
+		FROM noticeboard ORDER BY no desc))
 		WHERE num BETWEEN #{start} AND #{end}
 	    ORDER BY no desc
 	</select>
 	<!-- 총페이지 -->
  	<select id="noticeboardTotalPage" resultType="int">
- 		SELECT CEIL(count(*)/10.0) FROM freeboard
+ 		SELECT CEIL(count(*)/10.0) FROM noticeboard
  	</select>
  	
  	<!-- 게시물번호 처리-->
  	<select id="noticeboardRowCount" resultType="int">
- 		SELECT count(*) FROM freeboard
+ 		SELECT count(*) FROM noticeboard
  	</select>
-	
+	<!-- 게시글 추가 -->
+	<insert id="noticeboardInsert" parameterType="NoticeBoardVO">
+		INSERT INTO noticeboard(no,id,subject,content,hit) VALUES(
+			noticeboard_no_seq.nextval,
+			#{id},
+			#{subject},
+			#{content},
+			0
+		)
+	</insert>
+	 	 <!-- 상세보기 -->
+ 	<update id="nhitIncrement" parameterType="int">
+ 		UPDATE noticeboard SET
+ 		hit = hit+1
+ 		WHERE no =#{no}
+ 	</update>
+ 	<select id="noticeboardDetailData" resultType="NoticeBoardVO" parameterType="int">
+	    SELECT no,id,subject,content,TO_CHAR(regdate,'RRRR-MM-DD') as dbday, hit
+	    FROM noticeboard 
+	    WHERE no=#{no}
+ 	</select>
 </mapper>

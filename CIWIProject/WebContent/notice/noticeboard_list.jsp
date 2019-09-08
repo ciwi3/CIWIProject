@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,6 +20,16 @@
 	<div class="container">
 		<h1 class="text-center h1" style="padding: 2ex;" ><strong>C.I.W.I 공지사항</strong></h1>
 		<div class="row">
+		    <c:if test="${ id!=null && admin==1 }">
+			  <table class="table" frame=void>
+		         <tr>
+		           <td class="text-left">
+			             <a href="noticeboard_insert.do" class="btn btn-sm btn-info">공지 쓰기</a>
+		           </td>
+		         </tr>
+		       </table>
+		    </c:if>
+		<div style="height: auto; width: 100%; border:1px solid gold;">
 			<table class="table">
 				<tr>
 		          <th width=10% class="text-center"></th>
@@ -42,6 +53,22 @@
 		           <c:set var="count" value="${count-1 }"/>
 	         	</c:forEach>
 			</table>
+			<table class="table">
+				<tr>
+		          <td class="text-center">
+		            <ul class="pagination">
+		              <li><a href="noticeboard_list.do?page=1">&lt;&lt;</a></li>
+		              <li><a href="#">&lt;</a></li>
+					  <c:forEach var="i" begin="1" end="${totalpage }">
+					    <li class="${i==curpage?'active':''}"><a href="freeboard_list.do?page=${i }">${i }</a>
+					  </c:forEach>
+					  <li><a href="#">&gt;</a></li>
+					  <li><a href="noticeboard_list.do?page=${totalpage }">&gt;&gt;</a></li>
+					</ul>
+		          </td>
+		        </tr>
+			</table>
+			</div>
 		</div>
 	</div>
 </body>

@@ -8,10 +8,22 @@ public class NoticeBoardVO {
 	private String id;
 	private String subject;
 	private String content;
-	private String regdate;
+	private Date regdate;
 	private int hit;
-	private Date dbday;
+	private String dbday;
 	
+	public Date getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
+	public String getDbday() {
+		return dbday;
+	}
+	public void setDbday(String dbday) {
+		this.dbday = dbday;
+	}
 	public int getNo() {
 		return no;
 	}
@@ -36,23 +48,12 @@ public class NoticeBoardVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getRegdate() {
-		return regdate;
-	}
-	public void setRegdate(String regdate) {
-		this.regdate = regdate;
-	}
+
 	public int getHit() {
 		return hit;
 	}
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
-	public Date getDbday() {
-		return dbday;
-	}
-	public void setDbday(Date dbday) {
-		this.dbday = dbday;
-	}
-	
+
 }
