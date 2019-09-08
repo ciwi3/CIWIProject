@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.ciwi.dao.CreateSqlSessionFactory;
 import com.ciwi.vo.AreaVO;
+import com.ciwi.vo.MovieVO;
 import com.ciwi.vo.ShowVO;
 import com.ciwi.vo.ShowGenreVO;
 import com.ciwi.vo.ShowVO;
@@ -81,15 +82,32 @@ public class ShowDAO {
 		session.close();
 		return vo;
 	}
+
 	public static List<ShowVO> showRecommendSingleGenre(int genre) {
 		SqlSession session = ssf.openSession();
 		List<ShowVO> list = session.selectList("showRecommendSingleGenre", genre);
 		session.close();
 		return list;
 	}
+
 	public static List<ShowVO> showRecommendMultiGenre(Map map) {
 		SqlSession session = ssf.openSession();
 		List<ShowVO> list = session.selectList("showRecommendMultiGenre", map);
+		session.close();
+		return list;
+	}
+
+	public static int showTotalPage(int rowSize) {
+		int totalPage = 0;
+		SqlSession session = ssf.openSession();
+		totalPage = session.selectOne("showTotalPage", rowSize);
+		session.close();
+		return totalPage;
+	}
+
+	public static List<ShowVO> showPageListData(Map map) {
+		SqlSession session = ssf.openSession();
+		List<ShowVO> list = session.selectList("showPageListData", map);
 		session.close();
 		return list;
 	}

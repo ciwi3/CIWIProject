@@ -62,7 +62,7 @@
 		#{area_no}
 		)
 	</insert>
-	<select id="festivalListData" resultType="FestivalVO"
+	<select id="festivalPageListData" resultType="FestivalVO"
 		parameterType="hashMap">
 		SELECT fno, poster,subject, host, fdate, place,num
 		FROM (SELECT fno, poster,subject, host, fdate, place,rownum as num FROM

@@ -18,7 +18,7 @@
 			<div class="row">
 				<div class="col-md-offset-1 col-md-10 text-center">
 					<div class="author">
-						<h1 class="text-uppercase">전시／공연</h1>
+						<h1 class="text-uppercase">영화</h1>
 					</div>
 				</div>
 			</div>
@@ -36,12 +36,12 @@
 						<optgroup label="장르">
 						<option selected>전체</option>
 							<c:forEach var="genre" items="${glist }">
-								<option value="${genre.show_no}">${genre.show_genre}</option>
+								<option value="${genre.movie_no}">${genre.movie_genre}</option>
 							</c:forEach>
 						</optgroup>
 					</select> <select name="area">
 						<optgroup label="지역">
-							<option selected>전체</option>
+							<option selected>상영여부</option>
 							<c:forEach var="area" items="${alist }">
 								<option value="${area.area_no }">${area.area_name}</option>
 							</c:forEach>
@@ -68,22 +68,22 @@
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-				<c:forEach var="svo" items="${slist }">
+				<c:forEach var="mvo" items="${mlist }">
 					<div class="col-md-3">
 						<!-- post -->
 						<div class="poster">
-							<a clsass="imges" href="../contents/show_detail.do?no=${svo.sno }"><img
-								src="${svo.poster }" width=250px height=350px></a>
+							<a class="imges" href="../contents/movie_detail.do?no=${mvo.mno }"><img
+								src="${mvo.poster }" width=250px height=350px></a>
 							<div class="post-body">
 								<div class="post-category">
 									<h3 class="post-title">
-										<a href="../contents/show_detail.do?no=${svo.sno }">${svo.subject }</a>
+										<a href="../contents/movie_detail.do?no=${mvo.mno }">${mvo.title }</a>
 									</h3>
 								</div>
 								<ul class="post-meta">
-									<li>${svo.sdate }</li>
+									<li>${mvo.regdate }</li>
 								</ul>
-								<p>${svo.place }</p>
+								<p>${mvo.score}</p>
 							</div>
 						</div>
 						<!-- /post -->
@@ -95,16 +95,16 @@
 			<div class="row text-center">
 				<ul class="pagination pagination-lg">
 					<c:if test="${curPage>BLOCK }">
-						<li><a href="show.do?page=1">◁</a></li>
-						<li><a href="show.do?page=${startPage-1 }">&lt;</a></li>
+						<li><a href="movie.do?page=1">◁</a></li>
+						<li><a href="movie.do?page=${startPage-1 }">&lt;</a></li>
 					</c:if>
 					<c:forEach var="i" begin="${startPage }" end="${endPage }">
 						<li class=${curPage==i? "active":"" }><a
-							href="show.do?page=${i }">${i }</a></li>
+							href="movie.do?page=${i }">${i }</a></li>
 					</c:forEach>
 					<c:if test="${endPage<allPage }">
-						<li><a href="show.do?page=${endPage+1 }">&gt;</a></li>
-						<li><a href="show.do?page=${allPage }">▷</a></li>
+						<li><a href="movie.do?page=${endPage+1 }">&gt;</a></li>
+						<li><a href="movie.do?page=${allPage }">▷</a></li>
 					</c:if>
 				</ul>
 			</div>

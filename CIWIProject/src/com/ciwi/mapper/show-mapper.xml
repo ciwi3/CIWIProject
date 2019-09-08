@@ -118,4 +118,14 @@
 		WHERE show_genre = #{first}
 		OR show_genre = #{last}
 	</select>
+	<select id="showTotalPage" resultType="int" parameterType="int">
+		SELECT CEIL(COUNT(*)/#{rowSize}) FROM show
+	</select>
+			<select id="showPageListData" resultType="ShowVO"
+		parameterType="hashMap">
+		SELECT sno,subject,sdate,poster,starttime,price,place,showtime,tel,host,age,homepage,source,address,slike,genre_no,category_no,area_no,num
+		FROM (SELECT sno,subject,sdate,poster,starttime,price,place,showtime,tel,host,age,homepage,source,address,slike,genre_no,category_no,area_no,rownum as num FROM
+		show)
+		WHERE num BETWEEN #{start} AND #{end}
+	</select>
 </mapper>

@@ -118,4 +118,31 @@ public class MovieDAO {
 		session.close();
 		return list;
 	}
+	public static List<MovieVO> moviePageListData(Map map) {
+		SqlSession session = ssf.openSession();
+		List<MovieVO> list = session.selectList("moviePageListData", map);
+		session.close();
+		return list;
+	}
+	public static List<MovieGenreVO> getMovieGenreName() {
+		List<MovieGenreVO> list = new ArrayList<MovieGenreVO>();
+		SqlSession session = ssf.openSession();
+		list = session.selectList("getMovieGenreName");
+		session.close();
+		return list;
+	}
+	public static int movieTotalPage(int rowSize) {
+		int totalPage = 0;
+		SqlSession session = ssf.openSession();
+		totalPage = session.selectOne("movieTotalPage", rowSize);
+		session.close();
+		return totalPage;
+	}
+	public static MovieVO movieDetailData(int mno) {
+		MovieVO vo = new MovieVO();
+		SqlSession session = ssf.openSession();
+		vo = session.selectOne("movieDetailData", mno);
+		session.close();
+		return vo;
+	}
 }

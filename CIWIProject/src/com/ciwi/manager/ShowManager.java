@@ -56,26 +56,26 @@ public class ShowManager {
 						vo.setTel(tel.text());
 						vo.setSlike(0);
 						vo.setCategory_no(4);
-						switch (genre.text()) {
-						case "À½¾Ç/ÄÜ¼­Æ®":
+					/*	switch (genre.text()) {
+						case "ï¿½ï¿½ï¿½ï¿½/ï¿½Ü¼ï¿½Æ®":
 							vo.setGenre_no(1);
 							break;
-						case "¹ÂÁöÄÃ/¿ÀÆä¶ó":
+						case "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½":
 							vo.setGenre_no(2);
 							break;
-						case "¿¬±Ø":
+						case "ï¿½ï¿½ï¿½ï¿½":
 							vo.setGenre_no(3);
 							break;
-						case "±¹¾Ç":
+						case "ï¿½ï¿½ï¿½ï¿½":
 							vo.setGenre_no(4);
 							break;
-						case "¹«¿ë/¹ß·¹":
+						case "ï¿½ï¿½ï¿½ï¿½/ï¿½ß·ï¿½":
 							vo.setGenre_no(5);
 							break;
-						case "¾Æµ¿/°¡Á·":
+						case "ï¿½Æµï¿½/ï¿½ï¿½ï¿½ï¿½":
 							vo.setGenre_no(6);
 							break;
-						case "Àü½Ã":
+						case "ï¿½ï¿½ï¿½ï¿½":
 							vo.setGenre_no(7);
 							break;
 						default:
@@ -84,55 +84,55 @@ public class ShowManager {
 						}
 
 						String area = "";
-						if (address.text().contains("ÁÖ¼Ò-")) {
+						if (address.text().contains("ï¿½Ö¼ï¿½-")) {
 							area = address.text().substring(3, address.text().length());
 						} else {
 							area = address.text().substring(2, address.text().length());
 						}
 						vo.setAddress(area);
 
-						if (area.contains("¼­¿ïÆ¯º°")) {
+						if (area.contains("ï¿½ï¿½ï¿½ï¿½Æ¯ï¿½ï¿½")) {
 							vo.setArea_no(1);
-						} else if (area.contains("ºÎ»ê")) {
+						} else if (area.contains("ï¿½Î»ï¿½")) {
 							vo.setArea_no(2);
-						} else if (area.contains("´ë±¸")) {
+						} else if (area.contains("ï¿½ë±¸")) {
 							vo.setArea_no(3);
-						} else if (area.contains("ÀÎÃµ")) {
+						} else if (area.contains("ï¿½ï¿½Ãµ")) {
 							vo.setArea_no(4);
-						} else if (area.contains("±¤ÁÖ")) {
+						} else if (area.contains("ï¿½ï¿½ï¿½ï¿½")) {
 							vo.setArea_no(5);
-						} else if (area.contains("´ëÀü")) {
+						} else if (area.contains("ï¿½ï¿½ï¿½ï¿½")) {
 							vo.setArea_no(6);
-						} else if (area.contains("¿ï»ê")) {
+						} else if (area.contains("ï¿½ï¿½ï¿½")) {
 							vo.setArea_no(7);
-						} else if (area.contains("¼¼Á¾")) {
+						} else if (area.contains("ï¿½ï¿½ï¿½ï¿½")) {
 							vo.setArea_no(8);
-						} else if (area.contains("°æ±â")) {
+						} else if (area.contains("ï¿½ï¿½ï¿½")) {
 							vo.setArea_no(9);
-						} else if (area.contains("°­¿ø")) {
+						} else if (area.contains("ï¿½ï¿½ï¿½ï¿½")) {
 							vo.setArea_no(10);
-						} else if (area.contains("ÃæÃ»ºÏµµ")) {
+						} else if (area.contains("ï¿½ï¿½Ã»ï¿½Ïµï¿½")) {
 							vo.setArea_no(11);
-						} else if (area.contains("ÃæÃ»³²µµ")) {
+						} else if (area.contains("ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½")) {
 							vo.setArea_no(12);
-						} else if (area.contains("Àü¶óºÏµµ")) {
+						} else if (area.contains("ï¿½ï¿½ï¿½ï¿½Ïµï¿½")) {
 							vo.setArea_no(13);
-						} else if (area.contains("Àü¶ó³²µµ")) {
+						} else if (area.contains("ï¿½ï¿½ï¿½ó³²µï¿½")) {
 							vo.setArea_no(14);
-						} else if (area.contains("°æ»óºÏµµ")) {
+						} else if (area.contains("ï¿½ï¿½ï¿½Ïµï¿½")) {
 							vo.setArea_no(15);
-						} else if (area.contains("°æ»ó³²µµ")) {
+						} else if (area.contains("ï¿½ï¿½ó³²µï¿½")) {
 							vo.setArea_no(16);
-						} else if (area.contains("Á¦ÁÖ")) {
+						} else if (area.contains("ï¿½ï¿½ï¿½ï¿½")) {
 							vo.setArea_no(17);
 						} else {
 							vo.setArea_no(18);
 						}
-						vo.setSource("¾øÀ½");
+						vo.setSource("ï¿½ï¿½ï¿½ï¿½");
 						try {
 							vo.setHomepage(homepage.text());
 						} catch (NullPointerException e) {
-							vo.setHomepage("¾øÀ½");
+							vo.setHomepage("ï¿½ï¿½ï¿½ï¿½");
 						}
 
 						System.out.println(subject.text());
@@ -145,14 +145,14 @@ public class ShowManager {
 						System.out.println(showtime.text());
 						System.out.println(age.text());
 						System.out.println(tel.text());
-						if (address.text().contains("ÁÖ¼Ò-")) {
+						if (address.text().contains("ï¿½Ö¼ï¿½-")) {
 							System.out.println((address.text().substring(3, address.text().length())));
 						} else {
 							System.out.println((address.text().substring(2, address.text().length())));
 						}
 						if (homepage != null) {
 							System.out.println(homepage.text());
-						}
+						}*/
 						System.out.println(genre.text());
 						System.out.println("====================================");
 						sno++;

@@ -20,8 +20,16 @@ public class FestivalVO {
 	private FestivalGenreVO fgvo = new FestivalGenreVO();
 	private CIWICategoryVO ccvo = new CIWICategoryVO();
 	private AreaVO avo = new AreaVO();
+	private int count = 0;
 
-	
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
 	public String getAddress() {
 		return address;
 	}

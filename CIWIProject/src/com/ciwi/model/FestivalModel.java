@@ -37,7 +37,7 @@ public class FestivalModel {
 		map.put("start", start);
 		map.put("end", end);
 
-		List<FestivalVO> flist = FestivalDAO.festivalListData(map);
+		List<FestivalVO> flist = FestivalDAO.festivalPageListData(map);
 		model.addAttribute("flist", flist);
 		model.addAttribute("curPage", curPage);
 		model.addAttribute("totalPage", totalPage);

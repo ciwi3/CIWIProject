@@ -123,11 +123,16 @@
 		REGEXP_LIKE(genre,(SELECT movie_genre FROM movie_genre WHERE movie_no = #{last}))
 	</select>
 	<!-- 출력 -->
-		<select id="MovieListData" resultType="MovieVO"
-		parameterType="hashMap">
-		SELECT mno, title, director, actor, poster, regdate, genre, grade, story, category_no, score, theater_no,num
-		FROM (SELECT mno, title, director, actor, poster, regdate, genre, grade, story, category_no, score, theater_no, FROM
-		festival)
-		WHERE num BETWEEN #{start} AND #{end}
+ 
+		<select id="getMovieGenreName" resultType="MovieGenreVO">
+		SELECT * FROM movie_genre
+	</select>
+	<!-- 페이지수 구하기 -->
+		<select id="movieTotalPage" resultType="int" parameterType="int">
+		SELECT CEIL(COUNT(*)/#{rowSize}) FROM movie
+	</select>
+		<select id="movieDetailData" resultType="movieVO" parameterType="int">
+		SELECT * FROM movie
+		WHERE mno=#{mno}
 	</select>
 </mapper>

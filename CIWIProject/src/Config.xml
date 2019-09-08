@@ -11,6 +11,7 @@
        <typeAlias type="com.ciwi.vo.AreaVO" alias="AreaVO"/>
        <typeAlias type="com.ciwi.vo.CIWICategoryVO" alias="CIWICategoryVO"/>
        <typeAlias type="com.ciwi.vo.ShowGenreVO" alias="ShowGenreVO"/>
+       <typeAlias type="com.ciwi.vo.MovieGenreVO" alias="MovieGenreVO"/>
        <typeAlias type="com.ciwi.vo.FestivalGenreVO" alias="FestivalGenreVO"/>
         <typeAlias type="com.ciwi.vo.MemberVO" alias="MemberVO"/>
        <typeAlias type="com.ciwi.vo.MovieVO" alias="MovieVO"/>

@@ -128,7 +128,7 @@
 								<ul class="dropdown-list">
 									<li class="active"><a href="../contents/show.do">PERFORMANCE
 											/ EXHIBITION</a></li>
-									<li><a data-toggle="tab" href="#tab2">MOVIE</a></li>
+									<li><a href="../contents/movie.do">MOVIE</a></li>
 									<li><a href="../contents/festival.do">CONCERT</a></li>
 								</ul>
 							</div>

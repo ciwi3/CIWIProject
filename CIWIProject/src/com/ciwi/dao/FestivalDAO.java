@@ -25,9 +25,9 @@ public class FestivalDAO {
 		return list;
 	}
 
-	public static List<FestivalVO> festivalListData(Map map) {
+	public static List<FestivalVO> festivalPageListData(Map map) {
 		SqlSession session = ssf.openSession();
-		List<FestivalVO> list = session.selectList("festivalListData", map);
+		List<FestivalVO> list = session.selectList("festivalPageListData", map);
 		session.close();
 		return list;
 	}

@@ -20,11 +20,10 @@ import com.ciwi.vo.*;
 @Controller("MovieModel")
 public class MovieModel {
 	@RequestMapping("contents/movie.do")
-		public String movie_list(Model model){
-/*		
+	public String movie_list(Model model) {
+
 		List<MovieVO> slist = MovieDAO.movieListData();
-		List<AreaVO> alist = ShowDAO.getAreaName();
-		List<ShowGenreVO> glist = ShowDAO.getGenreName();
+		List<MovieGenreVO> glist = MovieDAO.getMovieGenreName();
 		String page = model.getRequest().getParameter("page");
 		if (page == null) {
 			page = "1";
@@ -34,19 +33,18 @@ public class MovieModel {
 		int start = (curPage * rowSize) - (rowSize - 1);
 		int end = (curPage * rowSize);
 		int BLOCK = 5;
-		int totalPage = FestivalDAO.festivalTotalPage(rowSize);
+		int totalPage = MovieDAO.movieTotalPage(rowSize);
 		int startPage = ((curPage - 1) / BLOCK * BLOCK) + 1;
 		int endPage = ((curPage - 1) / BLOCK * BLOCK) + BLOCK;
 		int allPage = totalPage;
 		if (endPage > allPage) {
 			endPage = allPage;
 		}
-
 		Map map = new HashMap<>();
 		map.put("start", start);
 		map.put("end", end);
 
-		List<MovieVO> mlist = MovieDAO.festivalListData(map);
+		List<MovieVO> mlist = MovieDAO.moviePageListData(map);
 		model.addAttribute("mlist", mlist);
 		model.addAttribute("curPage", curPage);
 		model.addAttribute("totalPage", totalPage);
@@ -54,15 +52,22 @@ public class MovieModel {
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("allPage", allPage);
 		model.addAttribute("BLOCK", BLOCK);
-		
-		
-		model.addAttribute("alist", alist);
+
 		model.addAttribute("glist", glist);
-		model.addAttribute("slist", slist);*/
+		model.addAttribute("slist", slist);
 		model.addAttribute("main_jsp", "../contents/movie.jsp");
 		return "../main/main.jsp";
-		}
-	
+	}
+	@RequestMapping("contents/movie_detail.do")
+	public String show_detail(Model model) {
+		String no = model.getRequest().getParameter("no");
+		MovieVO mvo = MovieDAO.movieDetailData(Integer.parseInt(no));
+		model.addAttribute("mvo", mvo);
+		model.addAttribute("main_jsp", "../contents/movie_detail.jsp");
+
+		return "../main/main.jsp";
+	}
+
 	// 예약 영화 리스트
 	@RequestMapping("contents/reserve.do")
 	public String movie_reserve_list(Model model) {
@@ -72,11 +77,12 @@ public class MovieModel {
 		model.addAttribute("main_jsp", "../contents/reserve.jsp");
 		return "../main/main.jsp";
 	}
+
 	// 상영관
 	@RequestMapping("contents/theater.do")
 	public String movie_theater(Model model) {
-		String theater_no=model.getRequest().getParameter("theater_no");
-		List<TheaterVO> tlist=new ArrayList<TheaterVO>();
+		String theater_no = model.getRequest().getParameter("theater_no");
+		List<TheaterVO> tlist = new ArrayList<TheaterVO>();
 		StringTokenizer st = new StringTokenizer(theater_no, ", ");
 		while (st.hasMoreTokens()) { // 데이터 갯수가 명확하지 않은 경우 hasMoreTokens 사용
 			TheaterVO vo = MovieDAO.theaterData(Integer.parseInt(st.nextToken()));
@@ -86,6 +92,7 @@ public class MovieModel {
 		model.addAttribute("main_jsp", "../contents/reserve.jsp");
 		return "theater.jsp";
 	}
+
 	// 달력
 	@RequestMapping("contents/date.do")
 	public String movie_date(Model model) {
@@ -129,7 +136,7 @@ public class MovieModel {
 		 * cal.set(Calendar.DATE, 1);
 		 */
 		cal.set(year, month - 1, 1);
-		//System.out.println(cal.get(Calendar.DAY_OF_WEEK));
+		// System.out.println(cal.get(Calendar.DAY_OF_WEEK));
 		/*
 		 * // 요일 구하기 int[] lastday={31,28,31,30,31,30, 31,31,30,31,30,31}; // 1년
 		 * 1월 1일 ~ 2018년 12월 31의 총합 int total=(year-1)*365 +(year-1)/4
@@ -146,41 +153,50 @@ public class MovieModel {
 		int week = cal.get(Calendar.DAY_OF_WEEK);
 		week = week - 1;
 		int lastday = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-		//System.out.println("Calendar.DATE=" + cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-		//System.out.println(lastday);
+		// System.out.println("Calendar.DATE=" +
+		// cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+		// System.out.println(lastday);
 		model.addAttribute("week", week);
 		model.addAttribute("lastday", lastday);
-		
-		String date_no = model.getRequest().getParameter("date_no"); // date no => 난수로 저장됨, 1~31중 몇개
-		int[] reday=new int[30];
-		StringTokenizer st1=new StringTokenizer(date_no,", "); // 난수를 ", "로 잘라냄
-		while(st1.hasMoreTokens()) {
-			int k=Integer.parseInt(st1.nextToken());
-			reday[k-1]=k; // 첨자 하나가 작아야됨
+
+		String date_no = model.getRequest().getParameter("date_no"); // date no
+																		// =>
+																		// 난수로
+																		// 저장됨,
+																		// 1~31중
+																		// 몇개
+		int[] reday = new int[30];
+		StringTokenizer st1 = new StringTokenizer(date_no, ", "); // 난수를 ", "로
+																	// 잘라냄
+		while (st1.hasMoreTokens()) {
+			int k = Integer.parseInt(st1.nextToken());
+			reday[k - 1] = k; // 첨자 하나가 작아야됨
 		}
-		List<Integer> rList=new ArrayList<Integer>();
-		for(int k:reday) {
-			if(k<day) // 오늘 이후것만 출력
-				k=0;
+		List<Integer> rList = new ArrayList<Integer>();
+		for (int k : reday) {
+			if (k < day) // 오늘 이후것만 출력
+				k = 0;
 			rList.add(k);
 		}
 		model.addAttribute("rList", rList);
 		model.addAttribute("main_jsp", "../contents/reserve.jsp");
 		return "date.jsp";
 	}
+
 	@RequestMapping("contents/time.do")
 	public String movie_time(Model model) {
-		String day=model.getRequest().getParameter("day");
-		String timeno=MovieDAO.reserveGetTime(Integer.parseInt(day));
-		List<String> list=new ArrayList<String>();
-		StringTokenizer st=new StringTokenizer(timeno,", ");
-		while(st.hasMoreTokens()) { // 각 갯수가 틀리기 때문에 hasMoreTokens()
+		String day = model.getRequest().getParameter("day");
+		String timeno = MovieDAO.reserveGetTime(Integer.parseInt(day));
+		List<String> list = new ArrayList<String>();
+		StringTokenizer st = new StringTokenizer(timeno, ", ");
+		while (st.hasMoreTokens()) { // 각 갯수가 틀리기 때문에 hasMoreTokens()
 			list.add(MovieDAO.timeData(Integer.parseInt(st.nextToken())));
 		}
 		model.addAttribute("list", list);
 		model.addAttribute("main_jsp", "../contents/reserve.jsp");
 		return "time.jsp";
 	}
+
 	@RequestMapping("contents/inwon.do")
 	public String movie_inwon(Model model) {
 		model.addAttribute("main_jsp", "../contents/reserve.jsp");

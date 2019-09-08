@@ -4,9 +4,11 @@ import com.ciwi.controller.Controller;
 import com.ciwi.controller.Model;
 import com.ciwi.controller.RequestMapping;
 import com.ciwi.dao.JjimDAO;
+import com.ciwi.dao.MovieDAO;
 import com.ciwi.dao.ShowDAO;
 import com.ciwi.vo.AreaVO;
 import com.ciwi.vo.JjimVO;
+import com.ciwi.vo.MovieVO;
 import com.ciwi.vo.ShowGenreVO;
 import com.ciwi.vo.ShowVO;
 import java.util.*;
@@ -18,9 +20,36 @@ public class ShowModel {
 
 	@RequestMapping("contents/show.do")
 	public String show_list(Model model) {
-		List<ShowVO> slist = ShowDAO.showAllData();
 		List<AreaVO> alist = ShowDAO.getAreaName();
 		List<ShowGenreVO> glist = ShowDAO.getGenreName();
+		String page = model.getRequest().getParameter("page");
+		if (page == null) {
+			page = "1";
+		}
+		int curPage = Integer.parseInt(page);
+		int rowSize = 12;
+		int start = (curPage * rowSize) - (rowSize - 1);
+		int end = (curPage * rowSize);
+		int BLOCK = 5;
+		int totalPage = ShowDAO.showTotalPage(rowSize);
+		int startPage = ((curPage - 1) / BLOCK * BLOCK) + 1;
+		int endPage = ((curPage - 1) / BLOCK * BLOCK) + BLOCK;
+		int allPage = totalPage;
+		if (endPage > allPage) {
+			endPage = allPage;
+		}
+		Map map = new HashMap<>();
+		map.put("start", start);
+		map.put("end", end);
+
+		List<ShowVO> slist = ShowDAO.showPageListData(map);
+		model.addAttribute("curPage", curPage);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("allPage", allPage);
+		model.addAttribute("BLOCK", BLOCK);
+		
 		model.addAttribute("alist", alist);
 		model.addAttribute("glist", glist);
 		model.addAttribute("slist", slist);
