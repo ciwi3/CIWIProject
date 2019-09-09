@@ -57,13 +57,15 @@ public class MypageModel {
 	@RequestMapping("mypage/cashOk.do")
 	public String cashOkData(Model model){
 		String id=model.getRequest().getParameter("id");
+		//System.out.println(id);
 		MypageDAO.cashOkData(id);
-		return "../mypage/adminpage.do";
+		return "redirect:../mypage/adminpage.do";
 	}
 	//결제내역 승인취소
 	@RequestMapping("mypage/cashNo.do")
 	public String cashNoData(Model model){
 		String id=model.getRequest().getParameter("id");
+		//System.out.println(id);
 		MypageDAO.cashNoData(id);
 		return "../mypage/adminpage.do";
 	}

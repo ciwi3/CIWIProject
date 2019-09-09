@@ -10,17 +10,30 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('#cashOkBtn').click(function(){
+	$('.cashOkBtn').click(function(){
 		var id=$(this).attr("data-id");
+		//alert(id);
 		$.ajax({
 			type:'post',
 			url:'../mypage/cashOk.do',
-			date:{id:id},
+			data:{id:id},
 			success:function(response){
 				location.href="";
 			}
 		});
-	})
+	});
+	$('.cashNoBtn').click(function(){
+		var id=$(this).attr("data-id");
+		//alert(id);
+		$.ajax({
+			type:'post',
+			url:'../mypage/cashNo.do',
+			data:{id:id},
+			success:function(response){
+				location.href="";
+			}
+		});
+	});
 });
 </script>
 </head>
@@ -54,14 +67,16 @@ $(function(){
 							<c:if test="${vo.cash_state==1}">
 							<td>승인완료</td>
 							</c:if>
+							<c:if test="${vo.cash_state==0}">
 							<td>
-							<c:if test="${vo.cash_state==0 }">
-								<input type=button value="승인완료" class="btn btn-sm btn-info" id=cashOkBtn data-id=${vo.cash_id }>
+								<input type=button value="승인완료" class="cashOkBtn btn btn-sm btn-info" data-id=${vo.cash_id }>
+							</td>
 							</c:if>
 							<c:if test="${vo.cash_state==1 }">
-								<input type=button value="승인취소" class="btn btn-sm btn-danger" id="cashNoBtn">
-							</c:if>
+							<td>
+								<input type=button value="승인취소" class="cashNoBtn btn btn-sm btn-danger" data-id=${vo.cash_id }>
 							</td>
+							</c:if>
 							</tr>
 						</c:forEach>
 					</table>
