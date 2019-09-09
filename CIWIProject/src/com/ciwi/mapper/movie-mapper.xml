@@ -135,4 +135,11 @@
 		SELECT * FROM movie
 		WHERE mno=#{mno}
 	</select>
+			<select id="MovieListData" resultType="MovieVO"
+		parameterType="hashMap">
+		SELECT mno, title, director, actor, poster, regdate, genre, grade, story, category_no, score, theater_no,num
+		FROM (SELECT mno, title, director, actor, poster, regdate, genre, grade, story, category_no, score, theater_no, FROM
+		festival)
+		WHERE num BETWEEN #{start} AND #{end}
+		</select>
 </mapper>
