@@ -175,7 +175,7 @@
 									<ul class="dropdown-list">
 									<c:if test="${sessionScope.admin==0 }">
 										<li><a href="../mypage/myinformation.do">MY INFORMATION</a></li>
-										<li><a href="#tab2">MY WALLET</a></li>
+										<li><a href="../mypage/mycashcharge.do">CASH CAHRGE</a></li>
 										<li><a href="../mypage/jjim.do">MISSING</a></li>
 										<li><a href="../member/join_modify.do">회원수정</a></li>
 									</c:if>

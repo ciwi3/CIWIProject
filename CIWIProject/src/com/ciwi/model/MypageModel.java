@@ -53,7 +53,7 @@ public class MypageModel {
 		model.addAttribute("main_jsp", "../mypage/adminpage.jsp");
 		return "../main/main.jsp";
 	}
-	//결제내역 승인완료
+	//관리자결제내역 승인완료
 	@RequestMapping("mypage/cashOk.do")
 	public String cashOkData(Model model){
 		String id=model.getRequest().getParameter("id");
@@ -61,7 +61,7 @@ public class MypageModel {
 		MypageDAO.cashOkData(id);
 		return "redirect:../mypage/adminpage.do";
 	}
-	//결제내역 승인취소
+	//관리자결제내역 승인취소
 	@RequestMapping("mypage/cashNo.do")
 	public String cashNoData(Model model){
 		String id=model.getRequest().getParameter("id");
@@ -69,6 +69,8 @@ public class MypageModel {
 		MypageDAO.cashNoData(id);
 		return "../mypage/adminpage.do";
 	}
+	//사용자 캐시충전 내역화면 출력
+	//
 
 
 
