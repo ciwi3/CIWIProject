@@ -138,8 +138,8 @@
 			<select id="moviePageListData" resultType="MovieVO"
 		parameterType="hashMap">
 		SELECT mno, title, director, actor, poster, regdate, genre, grade, story, category_no, score, theater_no,num
-		FROM (SELECT mno, title, director, actor, poster, regdate, genre, grade, story, category_no, score, theater_no, FROM
-		festival)
+		FROM (SELECT mno, title, director, actor, poster, regdate, genre, grade, story, category_no, score, theater_no,rownum as num FROM
+		movie)
 		WHERE num BETWEEN #{start} AND #{end}
 		</select>
 </mapper>
