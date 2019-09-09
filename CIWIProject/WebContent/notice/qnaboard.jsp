@@ -25,19 +25,19 @@
 <body>
 <div>
 <h1 class="text-center" style="padding: 2ex;"><strong>자주묻는 질문 Q & A</strong></h1>
-			<c:if test="${admin==1 }">
-	<table class="table text-center">
-		<td>
+	<c:if test="${admin==1 }">
+		<table class="table text-center" frame=void>
+			<td>
 				<a href="qnaboard_insert.do" class="btn btn-lg btn-info">Q&A추가</a>
-		</td>
-	</table>
-			</c:if>
+			</td>
+		</table>
+	</c:if>
 </div>
 <div id="accordion" class="aco">
 	<c:forEach var="i" items="${list }">
 	  <h3>${i.subject }</h3>
 	  <div>
-	    <pre>${i.content }</pre>
+	    <pre style="white-space: pre-line;">${i.content }</pre>
 	  </div>
 	</c:forEach>
 </div>

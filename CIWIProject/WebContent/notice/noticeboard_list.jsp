@@ -29,7 +29,7 @@
 		         </tr>
 		       </table>
 		    </c:if>
-		<div style="height: auto; width: 100%; border:1px solid gold;">
+		<div style="height: auto; width: 100%; border:2px solid gold;">
 			<table class="table">
 				<tr>
 		          <th width=10% class="text-center"></th>
@@ -53,22 +53,26 @@
 		           <c:set var="count" value="${count-1 }"/>
 	         	</c:forEach>
 			</table>
+		</div>
 			<table class="table">
 				<tr>
 		          <td class="text-center">
 		            <ul class="pagination">
-		              <li><a href="noticeboard_list.do?page=1">&lt;&lt;</a></li>
-		              <li><a href="#">&lt;</a></li>
-					  <c:forEach var="i" begin="1" end="${totalpage }">
+			          <c:if test="${curpage>BLOCK }">
+			             <li><a href="noticeboard_list.do?page=1">&lt;&lt;</a></li>
+			             <li><a href="noticeboard_list.do?page=${startPage-1 }">&lt;</a></li>
+			          </c:if>
+					  <c:forEach var="i" begin="${startPage }" end="${endPage }">
 					    <li class="${i==curpage?'active':''}"><a href="noticeboard_list.do?page=${i }">${i }</a>
 					  </c:forEach>
-					  <li><a href="#">&gt;</a></li>
-					  <li><a href="noticeboard_list.do?page=${totalpage }">&gt;&gt;</a></li>
+					  <c:if test="${endPage<allPage }">
+						 <li><a href="noticeboard_list.do?page=${endPage+1 }">&gt;</a></li>
+						 <li><a href="noticeboard_list.do?page=${allPage}">&gt;&gt;</a></li>
+					  </c:if>
 					</ul>
 		          </td>
 		        </tr>
 			</table>
-			</div>
 		</div>
 	</div>
 </body>

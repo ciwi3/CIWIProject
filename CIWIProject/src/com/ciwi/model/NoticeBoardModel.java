@@ -12,6 +12,7 @@ import com.ciwi.controller.RequestMapping;
 import com.ciwi.dao.*;
 import com.ciwi.vo.*;
 
+
 @Controller("noticeBoardModel")
 public class NoticeBoardModel {
 	
@@ -35,11 +36,29 @@ public class NoticeBoardModel {
 		List<NoticeBoardVO> list =NoticeBoardDAO.noticeboardListData(map);
 		model.addAttribute("list", list);
 		
-		
 		int totalpage=NoticeBoardDAO.noticeboardTotalPage();
 		int count = NoticeBoardDAO.noticeboardRowCount();
 		count=count-((curpage*rowSize)-rowSize);
 		
+		   
+		   int BLOCK=5;
+	
+		   int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+
+		   int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		   
+		   int allPage=totalpage;
+		   
+		   if(endPage>allPage)
+		   {
+			   endPage=allPage;
+		   }
+		
+		model.addAttribute("BLOCK", BLOCK);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("allPage", allPage);   
+		   
 		String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		model.addAttribute("today", today);
 		model.addAttribute("curpage", curpage);
