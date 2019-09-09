@@ -384,13 +384,13 @@
 
 	<!-- jQuery Plugins -->
 	<script src="../js/bootstrap.min.js"></script>
-	<script src="../js/jquery.min.js"></script>  
+	<!-- <script src="../js/jquery.min.js"></script> -->  
 	<script src="../js/jquery.stellar.min.js"></script>
 	<script src="../js/main.js"></script>
 
 	<script src="../mainjs/demo.js"></script>
 	<script src="../mainjs/e-magz.js"></script>
-	<script src="../mainjs/jquery.js"></script>
+	<!-- <script src="../mainjs/jquery.js"></script> -->
 	<script src="../mainjs/jquery.migrate.js"></script>
 
 	<script src="../main_scripts/jquery-number/jquery.number.min.js"></script>
