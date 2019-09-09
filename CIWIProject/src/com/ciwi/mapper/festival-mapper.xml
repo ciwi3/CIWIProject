@@ -65,8 +65,10 @@
 	<select id="festivalPageListData" resultType="FestivalVO"
 		parameterType="hashMap">
 		SELECT fno, poster,subject, host, fdate, place,num
-		FROM (SELECT fno, poster,subject, host, fdate, place,rownum as num FROM
-		festival)
+		FROM (SELECT fno, poster,subject, host, fdate, place,rownum as num 
+        FROM (SELECT fno, poster,subject, host, fdate, place FROM
+		festival
+        ORDER BY fno ASC))
 		WHERE num BETWEEN #{start} AND #{end}
 	</select>
 	<select id="festivalTotalPage" resultType="int" parameterType="int">

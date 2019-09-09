@@ -125,7 +125,10 @@
 		parameterType="hashMap">
 		SELECT sno,subject,sdate,poster,starttime,price,place,showtime,tel,host,age,homepage,source,address,slike,genre_no,category_no,area_no,num
 		FROM (SELECT sno,subject,sdate,poster,starttime,price,place,showtime,tel,host,age,homepage,source,address,slike,genre_no,category_no,area_no,rownum as num FROM
-		show)
+		(SELECT sno,subject,sdate,poster,starttime,price,place,showtime,tel,host,age,homepage,source,address,slike,genre_no,category_no,area_no FROM
+		show 
+		ORDER BY sno asc
+		))
 		WHERE num BETWEEN #{start} AND #{end}
 	</select>
 </mapper>

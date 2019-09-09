@@ -137,9 +137,12 @@
 	</select>
 			<select id="moviePageListData" resultType="MovieVO"
 		parameterType="hashMap">
-		SELECT mno, title, director, actor, poster, regdate, genre, grade, story, category_no, score, theater_no,num
+        SELECT mno, title, director, actor, poster, regdate, genre, grade, story, category_no, score, theater_no,num
 		FROM (SELECT mno, title, director, actor, poster, regdate, genre, grade, story, category_no, score, theater_no,rownum as num FROM
-		movie)
+		(SELECT mno, title, director, actor, poster, regdate, genre, grade, story, category_no, score, theater_no FROM
+		movie
+		ORDER BY mno ASC
+		))
 		WHERE num BETWEEN #{start} AND #{end}
 		</select>
 </mapper>
