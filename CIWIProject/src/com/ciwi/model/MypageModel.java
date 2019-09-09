@@ -6,6 +6,7 @@ import com.ciwi.controller.Controller;
 import com.ciwi.controller.Model;
 import com.ciwi.controller.RequestMapping;
 import com.ciwi.dao.MypageDAO;
+import com.ciwi.vo.CashVO;
 import com.ciwi.vo.MemberVO;
 @Controller("MypageModel")
 public class MypageModel {
@@ -17,8 +18,10 @@ public class MypageModel {
 		// 나의 이름,휴대폰번호,내보유캐시,취향 검색 후 출력
 		HttpSession session = model.getRequest().getSession();
 		MemberVO vo = new MemberVO();
+		CashVO cvo = new CashVO();
 		String id=(String)session.getAttribute("id");
 		vo=MypageDAO.myInformation(id);
+		
 		model.addAttribute("vo", vo); 
 		model.addAttribute("main_jsp", "../mypage/myinformation.jsp");
 		return "../main/main.jsp";
@@ -30,18 +33,53 @@ public class MypageModel {
 		return "../main/main.jsp";
 	}
 	// 캐시충전 
-	@RequestMapping("mypage/cashcharge_ok.do")
+	@RequestMapping("mypage/mycashcharge_ok.do")
 	public String cashUpdate(Model model){
-		//int mempay=model.getRequest().getParameter();
+		String pay=model.getRequest().getParameter("pay");
+		System.out.println(pay);
 		HttpSession session = model.getRequest().getSession();
-		MemberVO vo = new MemberVO();
+		CashVO vo = new CashVO();
 		String id=(String)session.getAttribute("id");
-		vo.setId(id);
-		//vo.setMempay(mempay);
+		vo.setCash_id(id);
+		vo.setCash_pay(Integer.parseInt(pay));
 		MypageDAO.cashchargeUpdate(vo);
-		return "";
+		return "../mypage/mycashcharge_ok.do";
 	}
-	//충전완료 화면출력
-	
-	
+	//결제내역 데이터출력
+	@RequestMapping("mypage/adminpage.do")
+	public String cashManageData(Model model){
+		List<CashVO> list = MypageDAO.cashManageData();
+		model.addAttribute("list", list);
+		model.addAttribute("main_jsp", "../mypage/adminpage.jsp");
+		return "../main/main.jsp";
+	}
+	//결제내역 승인완료
+	@RequestMapping("mypage/cashOk.do")
+	public String cashOkData(Model model){
+		String id=model.getRequest().getParameter("id");
+		MypageDAO.cashOkData(id);
+		return "../mypage/adminpage.do";
+	}
+	//결제내역 승인취소
+	@RequestMapping("mypage/cashNo.do")
+	public String cashNoData(Model model){
+		String id=model.getRequest().getParameter("id");
+		MypageDAO.cashNoData(id);
+		return "../mypage/adminpage.do";
+	}
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+

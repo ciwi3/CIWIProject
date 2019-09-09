@@ -22,15 +22,67 @@ public class MypageDAO {
 		}
 		return vo;
 	}
-	//내지갑 충전
-	public static void cashchargeUpdate(MemberVO vo){
+	//보유캐시 출력
+	public static int cashTotalData(CashVO vo){
+		int pay=0;
 		SqlSession session=null;
 		try{
 			session=ssf.openSession();
-			session.update("cashchargeUpdate",vo);
+			pay=session.selectOne("cashTotalData",vo);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return pay;
+	}
+	//내지갑 충전
+	public static void cashchargeUpdate(CashVO vo){
+		SqlSession session=null;
+		try{
+			session=ssf.openSession();
+			session.insert("cashchargeUpdate",vo);
 			session.commit();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	// 미승인,승인창 출력하려고 cash테이블검색
+	public static List<CashVO> cashManageData(){
+		List<CashVO> list = new ArrayList<CashVO>();
+		SqlSession session=null;
+		try{
+			session=ssf.openSession();
+			list=session.selectList("cashManageData");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	//결제승인 완료
+	public static void cashOkData(String id){
+		SqlSession session=null;
+		try{
+			session=ssf.openSession();
+			session.update("cashOkData",id);
+			session.commit();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	//결제승인 취소
+	public static void cashNoData(String id){
+		SqlSession session=null;
+		try{
+			session=ssf.openSession();
+			session.update("cashNoData",id);
+			session.commit();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
+
+
+
+
+

@@ -173,11 +173,15 @@
 							<div class="dropdown">
 								<div class="dropdown-body">
 									<ul class="dropdown-list">
+									<c:if test="${sessionScope.admin==0 }">
 										<li><a href="../mypage/myinformation.do">MY INFORMATION</a></li>
 										<li><a href="#tab2">MY WALLET</a></li>
 										<li><a href="../mypage/jjim.do">MISSING</a></li>
 										<li><a href="../member/join_modify.do">회원수정</a></li>
-
+									</c:if>
+									<c:if test="${sessionScope.admin==1 }">
+										<li><a href="../mypage/adminpage.do">MANAGEMENT</a></li>
+									</c:if>
 									</ul>
 								</div>
 							</div></li>&nbsp;&nbsp;&nbsp;

@@ -20,11 +20,7 @@
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-$(function(){
-	$('#cashChargeBtn').click(function(){
-		
-	});
-});
+
 </script>
 </head>
 <body>
@@ -49,7 +45,7 @@ $(function(){
 		<div class="container">
 			<h2 class="text-center">나의 회원정보</h2>
 				<div class="row2">
-				<form action="../mypage/mycashcharge.do"></form>
+				<form action="../mypage/mycashcharge.do">
 					<table class="table">
 						<tr>
 							<th class="text-right" width=20% height=20%><font size="2px">아이디 : </font></th>
@@ -83,11 +79,12 @@ $(function(){
 							</td>
 						</tr>
 							<th class="text-right" width=20% ><font size="2px">내 보유캐시 : </font></th>
-							<td class="text-left" width=80%> ${vo.mempay }&nbsp;&nbsp;Point
+							<td class="text-left" width=80%> ${cash_pay }&nbsp;&nbsp;Point
 								&nbsp;&nbsp;<input type=submit  value="충전하기" class="btn btn-sm btn-info" id="cashChargeBtn">&nbsp;&nbsp;
 							</td>
 						</tr>
 					</table>
+					</form>
 					</div>
 				</div>
 				<!-- /container -->

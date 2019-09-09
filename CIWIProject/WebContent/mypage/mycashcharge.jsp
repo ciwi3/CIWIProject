@@ -22,7 +22,17 @@
 <script type="text/javascript">
 $(function(){
 	$('#cashChargeBtn').click(function(){
-		
+		var pay=$('#pay').val();
+		//alert(pay);
+		$.ajax({
+			type:'post',
+			url:'../mypage/mycashcharge_ok.do',
+			data:{pay:pay},
+			success:function(response){
+				alert("완료되었습니다. 승인처리 이후 사용가능합니다.");
+				location.href="../mypage/myinformation.do";
+			}
+		});
 	});
 });
 </script>
@@ -52,43 +62,16 @@ $(function(){
 				<form action="../mypage/mycashcharge_ok.do"></form>
 					<table class="table">
 						<tr>
+							<p style="font-size: 10px">충전할 Point를 입력해주세요.</p>
 							<th class="text-right" width=20% height=20%><font size="2px">충전할 캐시 : </font></th>
 							<td class="text-left" width=80%>
-								<input type=text size=20>
+								<input id="pay" type=text size=20 placeholder="0" style = "text-align:right;" >&nbsp;&nbsp;Point
 							</td>
-						</tr>
-						<tr>
-							<th class="text-right" width=20% ><font size="2px">이름 : </font></th>
-							<td class="text-left" width=80%>${vo.name }
-							</td>
-						</tr>
-						<tr>
-							<th class="text-right" width=20% ><font size="2px">휴대폰번호 : </font></th>
-							<td class="text-left" width=80%>${vo.phone }
-							</td>
-						</tr>
-						<tr>
-						<tr>
-							<th class="text-right" width=20% ><font size="2px">우편번호 : </font></th>
-							<td class="text-left" width=80%>${vo.post }
-							</td>
-						</tr>
-						<tr>
-							<th class="text-right" width=20% ><font size="2px">주소 : </font></th>
-							<td class="text-left" width=80%>${vo.main_addr }
-							</td>
-						</tr>
-						<tr>
-							<th class="text-right" width=20% ><font size="2px">나의 문화취향 : </font></th>
-							<td class="text-left" width=80%>${vo.genre }
-							</td>
-						</tr>
-							<th class="text-right" width=20% ><font size="2px">내 보유캐시 : </font></th>
-							<td class="text-left" width=80%> ${vo.mempay }&nbsp;&nbsp;Point
-								&nbsp;&nbsp;<input type=submit  value="충전하기" class="btn btn-sm btn-info" id="cashChargeBtn">&nbsp;&nbsp;
-							</td>
-						</tr>
+							</tr>
 					</table>
+					<div class="text-center">
+						<input type=button  value="충전하기" class="btn btn-ms btn-info" id="cashChargeBtn">
+				</div>
 					</div>
 				</div>
 				<!-- /container -->
