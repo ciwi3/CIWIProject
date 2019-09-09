@@ -115,7 +115,7 @@
 						<div class="dropdown">
 							<div class="dropdown-body">
 								<ul class="dropdown-list">
-									<li><a data-toggle="tab" href="#tab1">ABOUT US</a></li>
+									<li><a href="../main/aboutUS.do">ABOUT US</a></li>
 									<li><a data-toggle="tab" href="#tab2">GUIED</a></li>
 								</ul>
 							</div>

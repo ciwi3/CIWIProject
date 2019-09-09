@@ -121,7 +121,7 @@ public class MainModel {
 
 		String text = model.getRequest().getParameter("text");
 		Map map = new HashMap<>();
-		map.put("searchOption", "제목");
+		map.put("searchOption", "�젣紐�");
 		map.put("search", text);
 		List<FestivalVO> fList = FestivalDAO.festivalSearch(map);
 		List<ShowVO> sList = ShowDAO.showSearch8(map);
@@ -146,4 +146,13 @@ public class MainModel {
 
 		return "../main/main.jsp";
 	}
+	
+	@RequestMapping("main/aboutUS.do")
+	public String aboutUS(Model model){
+		
+		model.addAttribute("main_jsp", "../main/aboutUS.jsp");
+		
+		return "../main/main.jsp";
+	}
+	
 }
