@@ -113,10 +113,10 @@
 
 
 	<!-- jQuery Plugins -->
-	<script src="js2/jquery.min.js"></script>
-	<script src="js2/bootstrap.min.js"></script>
-	<script src="js2/jquery.stellar.min.js"></script>
-	<script src="js2/main.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/jquery.stellar.min.js"></script>
+<!-- 	<script src="js2/main.js"></script> -->
 
 </body>
 </html>

@@ -2610,14 +2610,14 @@ aside .ads figcaption {
 .box {
   background-color: #fff;
   border-radius: 3px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
+/*   box-shadow: 0 0 30px rgba(0, 0, 0, 0.05); */
 }
 .box.box-border {
   box-shadow: none;
   border: 1px solid #f2f2f2;
 }
 .box .box-body {
-  padding: 30px;
+  padding-left: 45px;
 }
 .box .box-body h4 {
   margin-bottom: 30px;

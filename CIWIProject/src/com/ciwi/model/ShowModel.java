@@ -64,44 +64,44 @@ public class ShowModel {
 		try {
 			String no = model.getRequest().getParameter("no");
 			ShowVO svo = ShowDAO.showDetailData(Integer.parseInt(no));
-			
-			
+
 			// JJim
 			HttpSession session = model.getRequest().getSession();
-			String id = (String)session.getAttribute("id");
-			int flag=0;
+			String id = (String) session.getAttribute("id");
+			int flag = 0;
 			List<JjimVO> list = new ArrayList<JjimVO>();
 			Map selectShowJjimMap = new HashMap();
 			selectShowJjimMap.put("category_no", 4);
 			selectShowJjimMap.put("contents_no", Integer.parseInt(no));
-			if(id==null) {
+			if (id == null) {
 				selectShowJjimMap.put("id", "-");
 			} else {
 				selectShowJjimMap.put("id", id);
 			}
 			list = JjimDAO.getJjim(selectShowJjimMap);
-			if(list.isEmpty()) {
-				flag=0;
+			if (list.isEmpty()) {
+				flag = 0;
 			} else {
 				System.out.println("여기 와지나?");
 				flag = list.get(0).getFlag();
 			}
 			model.addAttribute("flag", flag);
 			// JJim End
-			
-			
+
 			List<ReviewVO> rlist = ReviewDAO.showReviewList(svo);
 			/* System.out.println(list.size()); */
 			model.addAttribute("svo", svo);
 			model.addAttribute("rlist", rlist);
 			model.addAttribute("main_jsp", "../contents/show_detail.jsp");
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 		/*
 		 * System.out.println(svo.getCategory_no()); System.out.println(svo.getSno());
 		 */
 
 		return "../main/main.jsp";
 	}
+
 	@RequestMapping("contents/show_jjim_ok.do")
 	public String show_jjim_ok(Model model) {
 		String sno = model.getRequest().getParameter("sno"); // 찜 등록,삭제 구분
@@ -121,16 +121,16 @@ public class ShowModel {
 		selectShowJjimMap.put("contents_no", sno);
 		selectShowJjimMap.put("id", id);
 		list = JjimDAO.getJjim(selectShowJjimMap); // 카테고리, 글 번호, 아이디, 찜 상태 정보를 가져옴
-		
+
 		flag = list.get(0).getFlag();
-		
+
 		if (list.size() >= 2) {
 			Map deleteJjimMap = new HashMap();
 			deleteJjimMap.put("category_no", 4);
 			deleteJjimMap.put("contents_no", sno);
 			deleteJjimMap.put("id", id);
 			JjimDAO.deleteJjimShowData(deleteJjimMap);
-			
+
 			// 데이터가 삭제되면 flag=0으로 설정해줌
 			flag = 0;
 		}
@@ -138,7 +138,7 @@ public class ShowModel {
 
 		return "redirect:../contents/show_detail.do";
 	}
-	
+
 	@RequestMapping("contents/show_search.do")
 	public String show_Search(Model model) {
 		/* String[] checks = model.getRequest().getParameterValues("Checks"); */
@@ -170,54 +170,55 @@ public class ShowModel {
 
 	@RequestMapping("contents/show_review_insert.do")
 	public String show_rating(Model model) {
-		try {
-			model.getRequest().setCharacterEncoding("UTF-8");
-		} catch (Exception ex) {
-		}
+		  try {
+		         model.getRequest().setCharacterEncoding("UTF-8");
+		      } catch (Exception ex) {
+		      }
 
-		String rating = model.getRequest().getParameter("rating");
-		String content_no = model.getRequest().getParameter("no");
-		HttpSession session = model.getRequest().getSession();
-		String memid = (String) session.getAttribute("memid");
-		String rtext = model.getRequest().getParameter("rtext");
+		      String rating = model.getRequest().getParameter("rating");
+		      String content_no = model.getRequest().getParameter("no");
+		      HttpSession session = model.getRequest().getSession();
+		      String memid = (String) session.getAttribute("memid");
+		      String rtext = model.getRequest().getParameter("rtext");
 
-		ReviewVO vo = new ReviewVO();
+		      ReviewVO vo = new ReviewVO();
 
-		vo.setRating(Integer.parseInt(rating));
-		vo.setContent_no(Integer.parseInt(content_no));
-		vo.setMemid(memid);
-		vo.setCategory_no(4);
-		vo.setRtext(rtext);
+		      vo.setRating(Integer.parseInt(rating));
+		      vo.setContent_no(Integer.parseInt(content_no));
+		      vo.setMemid(memid);
+		      vo.setCategory_no(4);
+		      vo.setRtext(rtext);
 
-		String rCheck = ReviewDAO.ratingcheck(vo);
+		      String rCheck = ReviewDAO.ratingcheck(vo);
 
-		if (rCheck != null) {
-			ReviewDAO.reviewModified(vo, memid);
-		} else if (rCheck == null) {
-			if (rtext == null) {
-				ReviewDAO.ratingInsert(vo);
-			} else {
-				ReviewDAO.reviewInsert(vo);
-			}
-		}
+		      if (rCheck != null) {
+		         ReviewDAO.reviewModified(vo, memid);
+		      } else if (rCheck == null) {
+		         if (rtext == null) {
+		            ReviewDAO.ratingInsert(vo);
+		         } else {
+		            ReviewDAO.reviewInsert(vo);
+		         }
+		      }
 
-		model.addAttribute("main_jsp", "../contents/show_datail.jsp");
+		      model.addAttribute("main_jsp", "../contents/show_datail.jsp");
 
-		return "../main/main.jsp";
+		      return "../main/main.jsp";
+
 	}
 
 	@RequestMapping("contents/show_delete.do")
 	public String reviewDelete(Model model) {
-		String rno = model.getRequest().getParameter("rno");
-		HttpSession session = model.getRequest().getSession();
-		String memid = (String) session.getAttribute("memid");
+	     String rno = model.getRequest().getParameter("rno");
+	      HttpSession session = model.getRequest().getSession();
+	      String memid = (String) session.getAttribute("memid");
 
-		ReviewVO vo = new ReviewVO();
+	      ReviewVO vo = new ReviewVO();
 
-		vo.setRno(Integer.parseInt(rno));
-		vo.setMemid(memid);
+	      vo.setRno(Integer.parseInt(rno));
+	      vo.setMemid(memid);
 
-		ReviewDAO.reviewDelete(vo, memid);
-		return "../main/main.jsp";
+	      ReviewDAO.reviewDelete(vo, memid);
+	      return "../main/main.jsp";
 	}
 }

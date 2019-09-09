@@ -7,7 +7,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="../main_css/s_style">
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<link rel="../main_css/main_style">
+<script type="text/javascript">
+$('.starRev span').click(function(){
+    $(this).parent().children('span').removeClass('on');
+    $(this).addClass('on').prevAll('span').addClass('on');
+    return false;
+  });
+</script>
+
 <script type="text/javascript">
 	$(function(){
 		var sno = ${svo.sno};
@@ -23,6 +31,35 @@
 		})
 	})
 </script>
+<style type="text/css">
+.starR1{
+    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.starR2{
+    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+
+.starR1.on {
+   background-position: 0 0;
+}
+
+.starR2.on {
+   background-position: -15px 0;
+}
+</style>
+
 </head>
 <body>
 	<!-- HEADER -->
@@ -113,30 +150,62 @@
 				</table>
 			</div>
 			<!-- /row -->
-			<div style="margin-left: 40px;">
-				<br> <br> <br>
-				<div class="col-sm-10">
-					<textarea cols="10" placeholder="리뷰를 입력하세요." name="review"
-						class="form-control"></textarea>
-				</div>
-			</div>
-		</div>
-		<!-- /container -->
-		<table>
-			<tr>
-				<c:forEach var="vo" items="${list }">
-					<td>${vo.rating}</td>
-				</c:forEach>
-			</tr>
-		</table>
-	</div>
-	<!-- /SECTION -->
+			<div class="box box-warning">
+            <div class="rating col-sm-3">
+               <div class="starRev" style="padding-left:30px;">
+                  <span class="starR1 on">0.5</span> <span class="starR2">1</span> <span
+                     class="starR1">1.5</span> <span class="starR2">2</span> <span
+                     class="starR1">2.5</span> <span class="starR2">3</span> <span
+                     class="starR1">3.5</span> <span class="starR2">4</span> <span
+                     class="starR1">4.5</span> <span class="starR2">5</span>
+               </div>
+            </div>
+            <div class="box-body" style="width: auto; height: auto;">
+               <br>
+               <br> <i class="fa fa-pencil"><span><strong> Review</strong></span></i>
+               <form class="form-horizontal" method=post
+                  action="../contents/show_review_insert.do" id="rinsertfrm">
+                  <div class="form-group margin">
+                     <div class="col-sm-10">
+                        <textarea class="form-control" id="rtext" row="3"
+                           placeholder="리뷰를 작성해주세요."></textarea>
+                     </div>
+                     <div class="col-sm-2">
+                        <button type="button"
+                           class="btn btn-primary btn-block replyAddBtn" style="margin-top:11px;" id="InsertBtn">
+                           <i class="fa fa-save"></i>등록
+                        </button>
+                     </div>
+                  </div>
+               </form>
+            </div>
+            <div class="box-footer">
+               <form id="reviewListfrm" name="reviewList" method="post">
+                  <div class="reviewList text-center">
+                     <ul class="pagination pagination-sm no-margin">
+
+                     </ul>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <!-- /container -->
+      <%--             <table>
+         <tr>
+            <c:forEach var="vo" items="${list }">
+               <td>${vo.rating}</td>
+            </c:forEach>
+         </tr>
+      </table> --%>
+   </div>
+   <!-- /SECTION -->
 
 
-	<!-- jQuery Plugins -->
-	<script src="../js/jquery.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-	<script src="../js/jquery.stellar.min.js"></script>
-	<script src="../js/main.js"></script>
+   <!-- jQuery Plugins -->
+   <script src="../js/jquery.min.js"></script>
+   <script src="../js/bootstrap.min.js"></script>
+   <script src="../js/jquery.stellar.min.js"></script>
+
 </body>
 </html>
