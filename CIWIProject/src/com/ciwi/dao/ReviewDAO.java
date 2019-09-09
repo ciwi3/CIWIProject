@@ -59,15 +59,20 @@ public class ReviewDAO {
 		return result;
 	}
 
-	public static void reviewDelete(int rno, int res) {
+	public static int reviewDelete(ReviewVO vo, String id) {
 		SqlSession session = ssf.openSession(true);
-		ReviewVO vo = session.selectOne("reviewDelete", rno);
-
+		int result = 0;
+		if (vo.getMemid().equals(id)) {
+			session.selectOne("reviewDelete", vo);
+			result=1;
+		}
 		session.close();
+		return result;
+
 	}
 
 	public static List<ReviewVO> showReviewList(ShowVO vo) {
-		SqlSession session=ssf.openSession(true);
+		SqlSession session=ssf.openSession();
 		List<ReviewVO> list=new ArrayList<ReviewVO>();
 		list=session.selectList("showReviewList",vo);
 		session.close();
@@ -90,5 +95,11 @@ public class ReviewDAO {
 		
 		return list;
 	}
-
+	public static String ratingcheck(ReviewVO vo) {
+		SqlSession session=ssf.openSession();
+		String rCheck=session.selectOne("ratingcheck",vo);
+		session.close();
+		
+		return rCheck;
+	}
 }

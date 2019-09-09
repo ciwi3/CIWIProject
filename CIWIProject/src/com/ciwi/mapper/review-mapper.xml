@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ciwi.mapper.review-mapper">
-	
+
 	<!-- 내가 쓴 리뷰 리스트 -->
 	<select id="myPageList" resultType="ReviewVO">
-		SELECT * FROM review 
+		SELECT * FROM review
 		WHERE memid=#{memid}
 	</select>
-	
+
 	<!-- 리뷰 총 페이지 수 -->
 	<select id="reviewTotalPage" resultType="int">
 		SELECT
 		CEIL(count(*).10.0) FROM review
 	</select>
+
+	<!-- 평점 추가 -->
+	<insert id="ratingInsert" parameterType="ReviewVO">
+		INSERT INTO
+		review(rno,category_no,memid,date,rating,rlike,rdislike)
+		values(
+		rating_no_seq.nextval,
+		#{rno},
+		#{category_no},
+		#{memid},
+		#{date},
+		#{rating},
+		#{rlike},
+		#{rdislike}
+		)
+	</insert>
 
 	<!-- 평점,리뷰 추가 -->
 	<insert id="reviewInsert" parameterType="ReviewVO">
@@ -31,60 +47,63 @@
 		)
 	</insert>
 
-	<!-- 평점 추가 -->
-	<insert id="ratingInsert" parameterType="ReviewVO">
-		INSERT INTO
-		review(rno,category_no,memid,date,rating,rlike,rdislike)
-		values(
-		rating_no_seq.nextval,
-		#{rno},
-		#{category_no},
-		#{memid},
-		#{date},
-		#{rating},
-		#{rlike},
-		#{rdislike}
-		)
-	</insert>
-
 	<!-- 리뷰 수정 -->
 	<update id="reviewModified" parameterType="ReviewVO">
-		UPDATE review SET rtext=#{rtext}, rating=#{rating}
+		UPDATE review SET
+		rtext=#{rtext}, rating=#{rating}
 		CASE WHEN rtext=#{rtext} IS NOT NULL
 		THEN rtext=#{rtext}, rating=#{rating}
 		WHEN rtext=#{rtext} IS NULL
-		THEN rating=#{rating}
+		THEN
+		rating=#{rating}
 		WHERE memid=#{memid} AND rno=#{rno}
 	</update>
 
 	<!-- 리뷰 삭제 -->
-	<delete id="reviewDelete" parameterType="int">
+	<delete id="reviewDelete" parameterType="ReviewVO">
 		DELETE FROM review WHERE
 		rno=#{rno} AND memid=#{memid}
 	</delete>
-	
+
 	<!-- 컨텐츠별 리뷰 리스트 -->
-	<select id="showReviewList" resultType="ShowVO"
+	<select id="showReviewList" resultType="ReviewVO"
 		parameterType="ShowVO">
-		Select rating, rlike, rdislike, rtext, memid
-		FROM shoW s, review r
-		WHERE s.sno=#{sno} AND r.content_no=#{content_no}
-		AND s.category_no=#{category_no} AND r.category_no=#{category_no}
+		SELECT rating, rlike, rdislike, rtext, memid,r.content_no,r.category_no
+		FROM shoW s,
+		review r
+		WHERE s.sno=#{sno} AND r.content_no=#{sno}
+        AND r.category_no=#{category_no} AND s.category_no=#{category_no}
 	</select>
-	<select id="FestivalReviewList" resultType="FestivalVO"
+	
+	<select id="FestivalReviewList" resultType="ReviewVO"
 		parameterType="FestivalVO">
-		Select rating, rlike, rdislike, rtext, memid
-		FROM festival f, review r
-		WHERE f.fno=#{fno} AND r.content_no=#{content_no}
+		SELECT rating, rlike, rdislike, rtext, memid
+		FROM
+		festival f, review r
+		WHERE f.fno=#{fno} AND r.content_no=#{fno}
 		AND f.category_no=#{category_no} AND r.category_no#{category_no}
 	</select>
-	<select id="movieReviewList" resultType="MovieVO"
+	
+	<select id="movieReviewList" resultType="ReviewVO"
 		parameterType="MovieVO">
-		Select rating, rlike, rdislike, rtext, memid
-		FROM movie m, review r
-		WHERE m.mno=#{mno} AND r.content_no=#{content_no}
-		AND m.category_no=#{category_no} AND r.category_no=#{category_no}
+		SELECT rating, rlike, rdislike, rtext, memid
+		FROM movie
+		m, review r
+		WHERE m.mno=#{mno} AND r.content_no=#{mno}
+		AND
+		m.category_no=#{category_no} AND r.category_no=#{category_no}
 	</select>
+
+	<!-- rating 유무 확인 -->
+	<select id="ratingcheck" resultType="String"
+		parameterType="ReviewVO">
+		SELECT rating
+		FROM review
+		WHERE memid=#{memid} AND
+		category_no=#{category_no} AND content_no=#{content_no}
+	</select>
+
+
 	<!-- 댓글기능에 좋아요나 싫어요 기능 할때 특정 회원이 좋아요나 싫어요를 누르면 해당 댓글번호랑 회원번호랑 가져와서 좋아요 같은 
 		테이블에 넣고 출력할떄는 좋아요 테이블에서 조회해서 이미 눌렀는지 안눌렀는지 체크한당 업데이트는 시간에 민감한 자료 아니면 묶어서 
 		전송해도 된다구함 가져올때 인덱스써서 하면 뭐 큰문제 없음 -->

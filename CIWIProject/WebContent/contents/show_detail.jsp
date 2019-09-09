@@ -7,15 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="../main_css/s_style">
-<script src="../js/star.js"></script>
 
-<script type="text/javascript">
-$('.starRev span').click(function(){
-	  $(this).parent().children('span').removeClass('on');
-	  $(this).addClass('on').prevAll('span').addClass('on');
-	  return false;
-	});
-</script>
 <script type="text/javascript">
 	$(function() {
 		var sno = $
@@ -126,19 +118,19 @@ $('.starRev span').click(function(){
 			<div style="margin-left: 40px;">
 				<br> <br> <br>
 				<div class="col-sm-10">
-<!-- 					<div class="starRev">
-						<span class="starR1 on">0.5</span> <span class="starR2">1</span> <span
-							class="starR1">1.5</span> <span class="starR2">2</span> <span
-							class="starR1">2.5</span> <span class="starR2">3</span> <span
-							class="starR1">3.5</span> <span class="starR2">4</span> <span
-							class="starR1">4.5</span> <span class="starR2">5</span>
-					</div> -->
 					<textarea cols="10" placeholder="리뷰를 입력하세요." name="review"
 						class="form-control"></textarea>
 				</div>
 			</div>
 		</div>
 		<!-- /container -->
+		<table>
+			<tr>
+				<c:forEach var="vo" items="${list }">
+					<td>${vo.rating}</td>
+				</c:forEach>
+			</tr>
+		</table>
 	</div>
 	<!-- /SECTION -->
 

@@ -8,9 +8,9 @@ import com.ciwi.controller.Controller;
 import com.ciwi.controller.Model;
 import com.ciwi.controller.RequestMapping;
 import com.ciwi.dao.*;
-import com.ciwi.dao.JjimDAO;
 import com.ciwi.vo.FestivalVO;
 import com.ciwi.vo.JjimVO;
+import com.ciwi.vo.ReviewVO;
 
 @Controller("festivalModel")
 public class FestivalModel {
@@ -70,9 +70,10 @@ public class FestivalModel {
 				flag = list.get(0).getFlag();
 			}
 			
-			
+			List<ReviewVO> rlist = ReviewDAO.FestivalReviewList(fvo);
 			model.addAttribute("fvo", fvo);
 			model.addAttribute("flag", flag);
+			model.addAttribute("rlist", rlist);
 			model.addAttribute("main_jsp", "../contents/festival_detail.jsp");
 		} catch(Exception e){}
 		
@@ -110,5 +111,58 @@ public class FestivalModel {
 			flag = 0;
 		}
 		return "redirect:../contents/festival_detail.do";
+	}
+	
+	@RequestMapping("contents/fesitval_review_insert.do")
+	public String Festival_rating(Model model) {
+		try {
+			model.getRequest().setCharacterEncoding("UTF-8");
+		} catch (Exception ex) {
+		}
+
+		String rating = model.getRequest().getParameter("rating");
+		String content_no = model.getRequest().getParameter("no");
+		HttpSession session = model.getRequest().getSession();
+		String memid = (String) session.getAttribute("memid");
+		String rtext = model.getRequest().getParameter("rtext");
+
+		ReviewVO vo = new ReviewVO();
+
+		vo.setRating(Integer.parseInt(rating));
+		vo.setContent_no(Integer.parseInt(content_no));
+		vo.setMemid(memid);
+		vo.setCategory_no(4);
+		vo.setRtext(rtext);
+
+		String rCheck = ReviewDAO.ratingcheck(vo);
+
+		if (rCheck != null) {
+			ReviewDAO.reviewModified(vo, memid);
+		} else if (rCheck == null) {
+			if (rtext == null) {
+				ReviewDAO.ratingInsert(vo);
+			} else {
+				ReviewDAO.reviewInsert(vo);
+			}
+		}
+
+		model.addAttribute("main_jsp", "../contents/festival_datail.jsp");
+
+		return "../main/main.jsp";
+	}
+
+	@RequestMapping("contents/festival_delete.do")
+	public String reviewDelete(Model model) {
+		String rno = model.getRequest().getParameter("rno");
+		HttpSession session = model.getRequest().getSession();
+		String memid = (String) session.getAttribute("memid");
+
+		ReviewVO vo = new ReviewVO();
+
+		vo.setRno(Integer.parseInt(rno));
+		vo.setMemid(memid);
+
+		ReviewDAO.reviewDelete(vo, memid);
+		return "../main/main.jsp";
 	}
 }

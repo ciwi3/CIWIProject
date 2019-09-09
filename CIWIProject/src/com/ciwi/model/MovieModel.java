@@ -9,11 +9,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import javax.servlet.http.HttpSession;
+
 import com.ciwi.controller.Controller;
 import com.ciwi.controller.Model;
 import com.ciwi.controller.RequestMapping;
 import com.ciwi.dao.FestivalDAO;
 import com.ciwi.dao.MovieDAO;
+import com.ciwi.dao.ReviewDAO;
 import com.ciwi.dao.ShowDAO;
 import com.ciwi.vo.*;
 
@@ -62,7 +65,9 @@ public class MovieModel {
 	public String show_detail(Model model) {
 		String no = model.getRequest().getParameter("no");
 		MovieVO mvo = MovieDAO.movieDetailData(Integer.parseInt(no));
+		List<ReviewVO> rlist=ReviewDAO.movieReviewList(mvo);
 		model.addAttribute("mvo", mvo);
+		model.addAttribute("rlist", rlist);
 		model.addAttribute("main_jsp", "../contents/movie_detail.jsp");
 
 		return "../main/main.jsp";
@@ -201,5 +206,58 @@ public class MovieModel {
 	public String movie_inwon(Model model) {
 		model.addAttribute("main_jsp", "../contents/reserve.jsp");
 		return "inwon.jsp";
+	}
+	
+	@RequestMapping("contents/curmovie_review_insert.do")
+	public String movie_rating(Model model) {
+		try {
+			model.getRequest().setCharacterEncoding("UTF-8");
+		} catch (Exception ex) {
+		}
+
+		String rating = model.getRequest().getParameter("rating");
+		String content_no = model.getRequest().getParameter("no");
+		HttpSession session = model.getRequest().getSession();
+		String memid = (String) session.getAttribute("memid");
+		String rtext = model.getRequest().getParameter("rtext");
+
+		ReviewVO vo = new ReviewVO();
+
+		vo.setRating(Integer.parseInt(rating));
+		vo.setContent_no(Integer.parseInt(content_no));
+		vo.setMemid(memid);
+		vo.setCategory_no(4);
+		vo.setRtext(rtext);
+
+		String rCheck = ReviewDAO.ratingcheck(vo);
+
+		if (rCheck != null) {
+			ReviewDAO.reviewModified(vo, memid);
+		} else if (rCheck == null) {
+			if (rtext == null) {
+				ReviewDAO.ratingInsert(vo);
+			} else {
+				ReviewDAO.reviewInsert(vo);
+			}
+		}
+
+		model.addAttribute("main_jsp", "../contents/curmovie_datail.jsp");
+
+		return "../main/main.jsp";
+	}
+
+	@RequestMapping("contents/curmovie_delete.do")
+	public String reviewDelete(Model model) {
+		String rno = model.getRequest().getParameter("rno");
+		HttpSession session = model.getRequest().getSession();
+		String memid = (String) session.getAttribute("memid");
+
+		ReviewVO vo = new ReviewVO();
+
+		vo.setRno(Integer.parseInt(rno));
+		vo.setMemid(memid);
+
+		ReviewDAO.reviewDelete(vo, memid);
+		return "../main/main.jsp";
 	}
 }
