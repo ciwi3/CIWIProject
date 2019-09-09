@@ -74,7 +74,7 @@
 	<select id="getJjimMovieData" resultType="MovieVO" parameterType="String">
 		Select mno, poster, title, regdate
 		From movie m, jjim j
-		Where m.category_no=2
+		Where m.category_no=j.category_no
 		And m.mno=j.contents_no
 		And j.id=#{id}
 	</select>

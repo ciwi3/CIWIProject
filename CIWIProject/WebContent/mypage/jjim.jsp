@@ -60,7 +60,6 @@
 					</div>
 				</c:forEach>
 				<div class="col-md-12 text-right">
-					<!-- <a href="../contents/festival.do">더보기</a> -->
 					<hr>
 				</div>
 			</div>
@@ -82,7 +81,7 @@
 							<div class="post-body">
 								<div class="post-category">
 									<h3 class="post-title">
-										<a href="../contents/festival_detail.do?fno=${jjimMvo.mno }">${jjimMvo.title }</a>
+										<a href="../contents/movie_detail.do?fno=${jjimMvo.mno }">${jjimMvo.title }</a>
 									</h3>
 								</div>
 								<ul class="post-meta">
@@ -94,7 +93,6 @@
 					</div>
 				</c:forEach>
 				<div class="col-md-12 text-right">
-					<!-- <a href="../contents/festival.do">더보기</a> -->
 					<hr>
 				</div>
 			</div>
@@ -129,7 +127,6 @@
 					</div>
 				</c:forEach>
 				<div class="col-md-12 text-right">
-					<!-- <a href="../contents/festival.do">더보기</a> -->
 					<hr>
 				</div>
 			</div>

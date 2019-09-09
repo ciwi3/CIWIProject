@@ -78,9 +78,7 @@ public class FestivalModel {
 			model.addAttribute("flag", flag);
 			model.addAttribute("rlist", rlist);
 			model.addAttribute("main_jsp", "../contents/festival_detail.jsp");
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		} catch(Exception e) {}
 		
 		return "../main/main.jsp";
 	}

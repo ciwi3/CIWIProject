@@ -14,11 +14,9 @@ import javax.servlet.http.HttpSession;
 import com.ciwi.controller.Controller;
 import com.ciwi.controller.Model;
 import com.ciwi.controller.RequestMapping;
-import com.ciwi.dao.FestivalDAO;
 import com.ciwi.dao.JjimDAO;
 import com.ciwi.dao.MovieDAO;
 import com.ciwi.dao.ReviewDAO;
-import com.ciwi.dao.ShowDAO;
 import com.ciwi.vo.*;
 
 @Controller("MovieModel")
@@ -101,7 +99,6 @@ public class MovieModel {
 		String mno = model.getRequest().getParameter("mno"); // 찜 등록,삭제 구분
 		HttpSession session = model.getRequest().getSession();
 		String id = (String) session.getAttribute("id");
-		System.out.println(mno);
 		int flag = 0;
 		// 찜 등록
 		Map insertJjimMap = new HashMap();
@@ -124,7 +121,7 @@ public class MovieModel {
 			deleteJjimMap.put("category_no", 3);
 			deleteJjimMap.put("contents_no", Integer.parseInt(mno));
 			deleteJjimMap.put("id", id);
-			JjimDAO.deleteJjimFestivalData(deleteJjimMap);
+			JjimDAO.deleteJjimMovieData(deleteJjimMap);
 			// 데이터가 삭제되면 flag=0으로 설정해줌
 			flag = 0;
 		}
