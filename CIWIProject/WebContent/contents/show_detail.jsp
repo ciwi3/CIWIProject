@@ -1,45 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<link rel="../main_css/s_style">
+<script src="../js/star.js"></script>
+
 <script type="text/javascript">
-$(function(){
-	var sno=${svo.sno};
-	$('#jjim').click(function(){
-		$.ajax({
-			type:'post',
-			url:'../contents/show_jjim_ok.do',
-			data:{sno:sno},
-			success:function(res) {
-				location.href='../contents/show_detail.do?no='+sno;
-			}
+$('.starRev span').click(function(){
+	  $(this).parent().children('span').removeClass('on');
+	  $(this).addClass('on').prevAll('span').addClass('on');
+	  return false;
+	});
+</script>
+<script type="text/javascript">
+	$(function() {
+		var sno = $
+		{
+			svo.sno
+		}
+		;
+		$('#jjim').click(function() {
+			$.ajax({
+				type : 'post',
+				url : '../contents/show_jjim_ok.do',
+				data : {
+					sno : sno
+				},
+				success : function(res) {
+					location.href = '../contents/show_detail.do?no=' + sno;
+				}
+			})
 		})
 	})
-})
 </script>
 </head>
 <body>
 	<!-- HEADER -->
-	<header id="header">
-		<!-- PAGE HEADER -->
-		<div class="page-header">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-offset-1 col-md-10 text-center">
-						<div class="author">
-							<h1 class="text-uppercase">공연／전시</h1>
-						</div>
+	<header id="header"> <!-- PAGE HEADER -->
+	<div class="page-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10 text-center">
+					<div class="author">
+						<h1 class="text-uppercase">공연／전시</h1>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- /PAGE HEADER -->
-	</header>
+	</div>
+	<!-- /PAGE HEADER --> </header>
 	<!-- /HEADER -->
 
 	<!-- SECTION -->
@@ -47,28 +60,31 @@ $(function(){
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
-			<div class="row">
+			<div class="row"
+				style="margin-top: 30px; margin-left: 45px; margin-right: 45px;">
 				<div class="col-sm-10">
-					<h1>${svo.subject }</h1>
+					<h3 style="font: bold;">${svo.subject }</h3>
 				</div>
 				<c:if test="${sessionScope.id==null }">
-				<div class="col-sm-1">
-					<a href="../member/login.do">
-						<input type="button" class="btn btn-sm btn-warning" value="로그인 필요">
-					</a>
-				</div>
+					<div class="col-sm-1">
+						<a href="../member/login.do"> <input type="button"
+							class="btn btn-sm btn-warning" value="로그인 필요">
+						</a>
+					</div>
 				</c:if>
 				<c:if test="${sessionScope.id!=null }">
-				<div class="col-sm-1">
-					<input type="button" class="btn btn-sm btn-warning" id="jjim" value="보고싶어요">
-				</div>
+					<div class="col-sm-1">
+						<input type="button" class="btn btn-sm btn-warning" id="jjim"
+							value="보고싶어요">
+					</div>
 				</c:if>
 				<div class="col-sm-1">
 					<a href="../contents/show.do" class="btn btn-sm btn-danger">목록</a>
 				</div>
 				<table class="table">
-					<tr >
-						<td rowspan=2><img src="${svo.poster }" width=350px height=450px></td>
+					<tr>
+						<td rowspan=2><img src="${svo.poster }" width=350px
+							height=450px></td>
 						<th>공연기간</th>
 						<td>${svo.sdate }</td>
 					</tr>
@@ -107,16 +123,30 @@ $(function(){
 				</table>
 			</div>
 			<!-- /row -->
+			<div style="margin-left: 40px;">
+				<br> <br> <br>
+				<div class="col-sm-10">
+<!-- 					<div class="starRev">
+						<span class="starR1 on">0.5</span> <span class="starR2">1</span> <span
+							class="starR1">1.5</span> <span class="starR2">2</span> <span
+							class="starR1">2.5</span> <span class="starR2">3</span> <span
+							class="starR1">3.5</span> <span class="starR2">4</span> <span
+							class="starR1">4.5</span> <span class="starR2">5</span>
+					</div> -->
+					<textarea cols="10" placeholder="리뷰를 입력하세요." name="review"
+						class="form-control"></textarea>
+				</div>
+			</div>
 		</div>
 		<!-- /container -->
 	</div>
 	<!-- /SECTION -->
 
-	
+
 	<!-- jQuery Plugins -->
-	<script src="../js2/jquery.min.js"></script>
-	<script src="../js2/bootstrap.min.js"></script>
-	<script src="../js2/jquery.stellar.min.js"></script>
-	<script src="../js2/main.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/jquery.stellar.min.js"></script>
+	<script src="../js/main.js"></script>
 </body>
 </html>

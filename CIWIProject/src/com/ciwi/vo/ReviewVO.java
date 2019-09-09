@@ -21,7 +21,7 @@ public class ReviewVO {
 	private int rating;
 	private int rlike;
 	private int rdislike;
-	private String review;
+	private String rtext;
 	public String getMemid() {
 		return memid;
 	}
@@ -70,10 +70,10 @@ public class ReviewVO {
 	public void setRdislike(int rdislike) {
 		this.rdislike = rdislike;
 	}
-	public String getReview() {
-		return review;
+	public String getRtext() {
+		return rtext;
 	}
-	public void setReview(String review) {
-		this.review = review;
+	public void setRtext(String rtext) {
+		this.rtext = rtext;
 	}
 }

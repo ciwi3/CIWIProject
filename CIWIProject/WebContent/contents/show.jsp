@@ -60,8 +60,6 @@
 		</form>
 	<!-- SEARCH -->
 
-
-
 	<!-- SECTION -->
 	<div class="section">
 		<!-- container -->

@@ -6,12 +6,12 @@
 <meta charset=UTF-8">
 <title>CIWI Template</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
-<style type="text/css">
+<!-- <style type="text/css">
 .row {
 	margin: 0px auto;
 	width: 800px;
 }
-</style>
+</style> -->
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
