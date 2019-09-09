@@ -23,7 +23,7 @@ public class NoticeBoardModel {
 		int curpage = Integer.parseInt(page);
 		
 		Map map = new HashMap();
-		int rowSize=10;
+		int rowSize=5;
 		int start = (curpage*rowSize)-(rowSize-1);
 		int end = curpage*rowSize;
 		

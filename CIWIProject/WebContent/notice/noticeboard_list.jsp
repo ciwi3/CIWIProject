@@ -46,7 +46,7 @@
 		             		<sup><font color=red>new</font></sup>
 		             	</c:if>
 		             </td>
-		             <td width=15% class="text-center">${vo.id }</td>
+		             <td width=15% class="text-center">관리자</td>
 		             <td width=20% class="text-center">${vo.dbday }</td>
 		             <td width=10% class="text-center">${vo.hit }</td>
 		           </tr>
@@ -60,7 +60,7 @@
 		              <li><a href="noticeboard_list.do?page=1">&lt;&lt;</a></li>
 		              <li><a href="#">&lt;</a></li>
 					  <c:forEach var="i" begin="1" end="${totalpage }">
-					    <li class="${i==curpage?'active':''}"><a href="freeboard_list.do?page=${i }">${i }</a>
+					    <li class="${i==curpage?'active':''}"><a href="noticeboard_list.do?page=${i }">${i }</a>
 					  </c:forEach>
 					  <li><a href="#">&gt;</a></li>
 					  <li><a href="noticeboard_list.do?page=${totalpage }">&gt;&gt;</a></li>

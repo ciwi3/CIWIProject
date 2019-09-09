@@ -11,7 +11,7 @@
 	</select>
 	<!-- 총페이지 -->
  	<select id="noticeboardTotalPage" resultType="int">
- 		SELECT CEIL(count(*)/10.0) FROM noticeboard
+ 		SELECT CEIL(count(*)/5.0) FROM noticeboard
  	</select>
  	
  	<!-- 게시물번호 처리-->

@@ -26,7 +26,7 @@
 					<th class="text-right">${vo.dbday }</th>
 				</tr>
 				<tr>
-					<th class="text-left">${vo.id }</th>
+					<th class="text-left">관리자</th>
 					<th class="text-right">조회수 : ${vo.hit }</th>
 				</tr>
 			</table>
