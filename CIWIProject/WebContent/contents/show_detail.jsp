@@ -7,21 +7,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="../main_css/s_style">
-
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-	$(function() {
-		var sno = $
-		{
-			svo.sno
-		}
-		;
+	$(function(){
+		var sno = ${svo.sno};
 		$('#jjim').click(function() {
 			$.ajax({
 				type : 'post',
 				url : '../contents/show_jjim_ok.do',
-				data : {
-					sno : sno
-				},
+				data : {sno:sno},
 				success : function(res) {
 					location.href = '../contents/show_detail.do?no=' + sno;
 				}
@@ -58,16 +52,20 @@
 					<h3 style="font: bold;">${svo.subject }</h3>
 				</div>
 				<c:if test="${sessionScope.id==null }">
-					<div class="col-sm-1">
-						<a href="../member/login.do"> <input type="button"
-							class="btn btn-sm btn-warning" value="로그인 필요">
-						</a>
-					</div>
+				<div class="col-sm-1">
+					<a href="../member/login.do">
+						<input type="button" class="btn btn-sm btn-warning" value="로그인 필요">
+					</a>
+				</div>
 				</c:if>
 				<c:if test="${sessionScope.id!=null }">
 					<div class="col-sm-1">
-						<input type="button" class="btn btn-sm btn-warning" id="jjim"
-							value="보고싶어요">
+					<c:if test="${flag==0 }">
+						<input type="button" class="btn btn-sm btn-warning" id="jjim" value="보고싶어요">
+					</c:if>
+					<c:if test="${flag!=0 }">
+						<input type="button" class="btn btn-sm btn-danger" id="jjim" value="등록 취소">
+					</c:if>
 					</div>
 				</c:if>
 				<div class="col-sm-1">

@@ -66,6 +66,7 @@ public class FestivalModel {
 			} else {
 				selectFestivalJjimMap.put("id", id);
 			}
+			
 			list = JjimDAO.getJjim(selectFestivalJjimMap);
 			if(list.isEmpty()) {
 				flag=0;
@@ -102,8 +103,8 @@ public class FestivalModel {
 		selectFestivalJjimMap.put("id", id);
 		list = JjimDAO.getJjim(selectFestivalJjimMap); // 카테고리, 글 번호, 아이디, 찜 상태
 														// 정보를 가져옴
-
 		flag = list.get(0).getFlag();
+		
 		if (list.size() >= 2) {
 			Map deleteJjimMap = new HashMap();
 			deleteJjimMap.put("category_no", 1);
