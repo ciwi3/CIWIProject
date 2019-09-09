@@ -97,9 +97,53 @@ public class NoticeBoardModel {
 		return "../main/main.jsp";
 	}
 	
+	@RequestMapping("notice/noticeboard_update.do")
+	public String nboard_update(Model model) {
 	
+		String no = model.getRequest().getParameter("no");
 	
+		NoticeBoardVO vo = NoticeBoardDAO.noticeboardDetailData(Integer.parseInt(no), "update");
+		
+		String page = model.getRequest().getParameter("page");
+		model.addAttribute("curpage", page);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("main_jsp", "../notice/noticeboard_update.jsp");
+		return "../main/main.jsp";
+	}
+
+	@RequestMapping("notice/noticeboard_update_ok.do")
+	public String board_update_ok(Model model) {
+		try {
+			model.getRequest().setCharacterEncoding("UTF-8");
+		} catch (Exception ex) {
+		}
+
+		String subject = model.getRequest().getParameter("subject");
+		String content = model.getRequest().getParameter("content");
+		String no = model.getRequest().getParameter("no");
+		
+		String page = model.getRequest().getParameter("page");
+		model.addAttribute("curpage", page);
+
+		NoticeBoardVO vo = new NoticeBoardVO();
+		vo.setSubject(subject);
+		vo.setContent(content);
+		vo.setNo(Integer.parseInt(no));
+
+		int n = NoticeBoardDAO.noticeboardUpdate(vo);
+
+		model.addAttribute("no", n);
+
+		return "../notice/noticeboard_update_ok.jsp";
+	}
 	
+	@RequestMapping("notice/noticeboard_delete_ok.do")
+	public String nboard_delete_ok(Model model) {
+		String no = model.getRequest().getParameter("no");
+		NoticeBoardDAO.noticeboardDelete(Integer.parseInt(no));
+		return "redirect:..../notice/noticeboard_list.do";
+	}
 	
 	
 	

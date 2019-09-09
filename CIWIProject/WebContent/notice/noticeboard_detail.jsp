@@ -14,12 +14,32 @@
 }
 
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+function del() {
+		var no = $('#no').val();
+	 if (confirm("정말 삭제하시겠습니까??") == true){   //확인
+			$.ajax({
+				type:'post',
+				url:'noticeboard_delete_ok.do',
+				data:{no:no},
+				success:function(response){
+					location.href="../notice/noticeboard_list.do";
+				}
+			})
+	 }else{   //취소
+	     return false;
+
+	 }
+
+	}
+</script>
 </head>
 <body>
 	<div class="container">
-	<h1 class="text-center">내용보기</h1>
+	<h2 class="text-center" style="padding: 2ex;">${vo.dbday } 공지</h2>
 		<div class="row">
-			<div style="height: auto; width: 100%; border:1px solid gold;">
+			<div style="height: auto; width: 100%; border:2px solid gold;">
 			<table class="table">
 				<tr>
 					<th class="text-left">${vo.subject }</th>
@@ -32,7 +52,8 @@
 			</table>
 			<table class="table" frame="void">
 				<tr>
-					<td colspan="2" class="text-left" valign="top" height="200"><pre>${vo.content }</pre></td>
+					<td colspan="2" class="text-left" valign="top" height="200">
+					<pre style="white-space: pre-line;">${vo.content }</pre></td>
 				</tr>
 			</table>
 			</div>
@@ -40,8 +61,9 @@
 				<tr>
 		          <td colspan="2" class="text-right">
 			          <c:if test="${vo.id==id }">
-			            <a href="noticeboard_update.do?no=${vo.no }" class="btn btn-sm btn-info">수정</a>
-			            <a href="noticeboard_delete.do?no=${vo.no }" class="btn btn-sm btn-danger">삭제</a>
+			            <a href="noticeboard_update.do?no=${vo.no }&page=${curpage}" class="btn btn-sm btn-info">수정</a>
+			            <input type="button" class="btn btn-sm btn-danger" onclick="del()" value="삭제">
+			            <input type="hidden" name="no" value="${vo.no }" id="no">
 			          </c:if>
 		            <a href="noticeboard_list.do?page=${curpage }" class="btn btn-sm btn-info">목록</a>
 		          </td>

@@ -115,6 +115,9 @@ public class BoardModel {
 		// DAO => 결과값 받기
 		FreeBoardVO vo = FreeBoardDAO.freeboardDetailData(Integer.parseInt(no), "update");
 		// 결과값 => JSP로 전송
+		String page = model.getRequest().getParameter("page");
+		model.addAttribute("curpage", page);
+		
 		model.addAttribute("vo", vo);
 		model.addAttribute("main_jsp", "../community/freeboard_update.jsp");
 		return "../main/main.jsp";
@@ -131,7 +134,10 @@ public class BoardModel {
 		String content = model.getRequest().getParameter("content");
 		String bcategory = model.getRequest().getParameter("board_category");
 		String no = model.getRequest().getParameter("no");
-
+		
+		String page = model.getRequest().getParameter("page");
+		model.addAttribute("curpage", page);
+		
 		bcategory = bcategory.substring(0, 1);
 		int board_category = Integer.parseInt(bcategory);
 

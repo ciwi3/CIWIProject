@@ -58,7 +58,7 @@ $(function(){
         내용보기  ==> list.jsp ===> DetailModel ===> detail.jsp
    --%>
   <div class="container">
-    <h2 class="text-center">내용보기</h2>
+    <h2 class="text-center" style="padding: 2ex;">내용보기</h2>
     <div class="row">
       <table class="table">
         <tr>
@@ -88,7 +88,7 @@ $(function(){
         <tr>
           <td colspan="4" class="text-right">
 	          <c:if test="${vo.id==id }">
-	            <a href="freeboard_update.do?no=${vo.no }" class="btn btn-sm btn-info">수정</a>
+	            <a href="freeboard_update.do?no=${vo.no }&page=${curpage}" class="btn btn-sm btn-info">수정</a>
 	            <a href="freeboard_delete.do?no=${vo.no }" class="btn btn-sm btn-danger">삭제</a>
 	          </c:if>
             <a href="freeboard_list.do?page=${curpage }" class="btn btn-sm btn-info">목록</a>
@@ -132,7 +132,7 @@ $(function(){
 	              &nbsp;&nbsp;
 	            </c:forEach>
 	          </c:if>
-             <pre>${rvo.msg }</pre></td>
+             <pre style="white-space: pre-line;">${rvo.msg }</pre></td>
            </tr>
            <tr style="display:none" id="m${rvo.no }" class="reply">
 	          <td class="text-left" colspan="2">

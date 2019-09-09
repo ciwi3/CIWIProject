@@ -39,4 +39,30 @@
 	    FROM noticeboard 
 	    WHERE no=#{no}
  	</select>
+ 	 	<!-- 수정하기 -->
+ 	<update id="noticeboardUpdate" parameterType="NoticeBoardVO">
+ 		UPDATE noticeboard SET
+ 		subject=#{subject},content=#{content}
+ 		WHERE no=#{no}
+ 	</update>
+ 	  <!-- 게시물 삭제 -->
+    <delete id="noticeboardDelete" parameterType="int">
+   		DELETE FROM noticeboard
+   		WHERE no=#{no}
+    </delete>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -17,7 +17,7 @@ public class NoticeBoardDAO {
 		ssf=CreateSqlSessionFactory.getSsf();
 	}
 	
-	//게시물 목록
+	//공지 목록
 	public static List<NoticeBoardVO> noticeboardListData(Map map){
 	
 		List<NoticeBoardVO> list = new ArrayList<NoticeBoardVO>();
@@ -39,7 +39,7 @@ public class NoticeBoardDAO {
 		return total;
 	}
 	
-	//게시물 전체 갯수 읽기
+	//공지 전체 갯수 읽기
 	public static int noticeboardRowCount(){
 		int count = 0;
 		SqlSession session=ssf.openSession();
@@ -49,7 +49,7 @@ public class NoticeBoardDAO {
 		return count;
 	}
 	
-	//게시글 추가
+	//공지 추가
 	public static void noticeboardInsert(NoticeBoardVO vo){
 		SqlSession session = ssf.openSession(true);
 		session.insert("noticeboardInsert",vo);
@@ -67,6 +67,33 @@ public class NoticeBoardDAO {
 		session.close();
 		return vo;
 	}
+	
+	//수정하기
+	public static int noticeboardUpdate(NoticeBoardVO vo){
+		int no=0;
+		SqlSession session = ssf.openSession();
+		
+			no=vo.getNo();
+			session.update("noticeboardUpdate", vo);
+			session.commit();
+
+		
+		session.close();
+		return no;
+	}
+	
+	// 공지 삭제
+	public static void noticeboardDelete(int no){
+		SqlSession session = ssf.openSession();
+		session.delete("noticeboardDelete",no);
+		session.commit();
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 }
