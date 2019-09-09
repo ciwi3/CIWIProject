@@ -8,14 +8,7 @@
 <title>Insert title here</title>
 <link rel="../main_css/s_style">
 <link rel="../main_css/main_style">
-<script type="text/javascript">
-$('.starRev span').click(function(){
-    $(this).parent().children('span').removeClass('on');
-    $(this).addClass('on').prevAll('span').addClass('on');
-    return false;
-  });
-</script>
-
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 	$(function(){
 		var sno = ${svo.sno};
@@ -26,6 +19,23 @@ $('.starRev span').click(function(){
 				data : {sno:sno},
 				success : function(res) {
 					location.href = '../contents/show_detail.do?no=' + sno;
+				}
+			})
+		})
+		$('.starRev span').click(function(){
+		    $(this).parent().children('span').removeClass('on');
+		    $(this).addClass('on').prevAll('span').addClass('on');
+		    return false;
+		  });
+		
+		var rating=$('#rating').val();
+		$('InsertBtn').click(function(){
+			$.ajax({
+				type:'post',
+				url:'../contents/show_review_insert.do',
+				data: {rating:rating},
+				success: function(res){
+					alert("리뷰가 등록되었습니다.");
 				}
 			})
 		})
@@ -172,7 +182,7 @@ $('.starRev span').click(function(){
                      </div>
                      <div class="col-sm-2">
                         <button type="button"
-                           class="btn btn-primary btn-block replyAddBtn" style="margin-top:11px;" id="InsertBtn">
+                           class="btn btn-primary btn-block replyAddBtn" style="height: 54px;" id="InsertBtn">
                            <i class="fa fa-save"></i>등록
                         </button>
                      </div>
