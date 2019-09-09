@@ -175,8 +175,7 @@
 									<ul class="dropdown-list">
 										<li><a href="../mypage/myinformation.do">MY INFORMATION</a></li>
 										<li><a href="#tab2">MY WALLET</a></li>
-										<li><a href="#tab2">MISSING</a></li>
-										<li><a href="../mypage/jjim.do">보고싶어요</a></li>
+										<li><a href="../mypage/jjim.do">MISSING</a></li>
 										<li><a href="../member/join_modify.do">회원수정</a></li>
 
 									</ul>

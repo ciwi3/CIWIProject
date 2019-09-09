@@ -38,7 +38,7 @@ $(function(){
 		<tr>
 		<c:forEach var="time" items="${list }">
 			<td>
-				<span class="times btn btn-xs btn-info">${time }</span>
+				<span class="times btn btn-sm btn-info">${time }</span>
 			</td>
 		</c:forEach>
 		</tr>

@@ -12,19 +12,21 @@
 </head>
 <body>
 	<!-- HEADER -->
-	<header id="header"> <!-- PAGE HEADER -->
-	<div class="page-header">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-offset-1 col-md-10 text-center">
-					<div class="author">
-						<h1 class="text-uppercase">찜한 목록</h1>
+	<header id="header">
+		<!-- PAGE HEADER -->
+		<div class="page-header">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-10 text-center">
+						<div class="author">
+							<h1 class="text-uppercase">찜한 목록</h1>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- /PAGE HEADER --> </header>
+	<!-- /PAGE HEADER -->
+	</header>
 	<!-- /HEADER -->
 
 	<!-- SECTION -->
@@ -32,7 +34,7 @@
 		<!-- container -->
 		<div class="container">
 			<div class="author">
-				<h3 class="text-uppercase">공연/행사 목록</h3>
+				<h2 class="text-uppercase">공연/행사 목록</h2>
 			</div>
 			<!-- row -->
 			<div class="row">
@@ -67,7 +69,7 @@
 		<!-- container -->
 		<div class="container">
 			<div class="author">
-				<h3 class="text-uppercase">페스티벌 목록</h3>
+				<h2 class="text-uppercase">페스티벌 목록</h2>
 			</div>
 			<!-- row -->
 			<div class="row">
@@ -99,7 +101,7 @@
 			</div>
 		</div>
 		<!-- /container -->
-
+	</div>
 
 	<!-- jQuery Plugins -->
 	<script src="../js/jquery.min.js"></script>

@@ -164,7 +164,12 @@ function reserve() {
 							</tr>
 							<tr>
 								<td class="text-center" colspan=2>
-									<span id="reserve_btn"></span>
+									<c:if test="${sessionScope.id==null }">
+										<a href="../member/login.do" class="text-danger">로그인 후 이용해주세요</a>
+									</c:if>
+									<c:if test="${sessionScope.id!=null }">
+										<span id="reserve_btn"></span>
+									</c:if>
 								</td>
 							</tr>
 						</table>
