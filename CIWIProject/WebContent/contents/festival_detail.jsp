@@ -10,6 +10,7 @@
 <script type="text/javascript">
 $(function(){
 	var fno=${fvo.fno};
+	var flag=${flag};
 	$('#jjim').click(function(){
 		$.ajax({
 			type:'post',
@@ -58,9 +59,14 @@ $(function(){
 				</div>
 				</c:if>
 				<c:if test="${sessionScope.id!=null }">
-				<div class="col-sm-1">
-					<input type="button" class="btn btn-sm btn-warning" id="jjim" value="보고싶어요">
-				</div>
+					<div class="col-sm-1">
+					<c:if test="${flag==0 }">
+						<input type="button" class="btn btn-sm btn-warning" id="jjim" value="보고싶어요">
+					</c:if>
+					<c:if test="${flag!=0 }">
+						<input type="button" class="btn btn-sm btn-danger" id="jjim" value="등록 취소">
+					</c:if>
+					</div>
 				</c:if>
 				<div class="col-sm-1">
 					<a href="../contents/festival.do" class="btn btn-sm btn-danger">목록</a>

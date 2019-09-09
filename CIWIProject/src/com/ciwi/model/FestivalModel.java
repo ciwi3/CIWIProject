@@ -50,55 +50,65 @@ public class FestivalModel {
 	}
 
 	@RequestMapping("contents/festival_detail.do")
-	public String festival_detail(Model model) {
-		String fno = model.getRequest().getParameter("fno");
-		FestivalVO fvo = FestivalDAO.festivalDetail(Integer.parseInt(fno));
-		model.addAttribute("fvo", fvo);
-		model.addAttribute("main_jsp", "../contents/festival_detail.jsp");
+	public String festival_detail(Model model){
+		try {
+			String fno = model.getRequest().getParameter("fno");
+			HttpSession session = model.getRequest().getSession();
+			String id = (String)session.getAttribute("id");
+			int flag=0;
+			FestivalVO fvo = FestivalDAO.festivalDetail(Integer.parseInt(fno));
+			
+			List<JjimVO> list = new ArrayList<JjimVO>();
+			Map selectFestivalJjimMap = new HashMap();
+			selectFestivalJjimMap.put("category_no", 1);
+			selectFestivalJjimMap.put("contents_no", Integer.parseInt(fno));
+			selectFestivalJjimMap.put("id", id);
+			list = JjimDAO.getJjim(selectFestivalJjimMap);
+			if(list.isEmpty()) {
+				flag=0;
+			} else {
+				flag = list.get(0).getFlag();
+			}
+			
+			
+			model.addAttribute("fvo", fvo);
+			model.addAttribute("flag", flag);
+			model.addAttribute("main_jsp", "../contents/festival_detail.jsp");
+		} catch(Exception e){}
+		
 		return "../main/main.jsp";
 	}
 	@RequestMapping("contents/festival_jjim_ok.do")
 	public String festival_jjim_ok(Model model) {
-		String fno=model.getRequest().getParameter("fno"); // 찜 등록,삭제 구분
-		HttpSession session=model.getRequest().getSession();
-		String id=(String)session.getAttribute("id");
-		
+		String fno = model.getRequest().getParameter("fno"); // 찜 등록,삭제 구분
+		HttpSession session = model.getRequest().getSession();
+		String id = (String) session.getAttribute("id");
+		int flag = 0;
 		// 찜 등록
-		Map insertJjimMap=new HashMap();
+		Map insertJjimMap = new HashMap();
 		insertJjimMap.put("fno", fno);
 		insertJjimMap.put("id", id);
 		JjimDAO.insertJjimFestivalData(insertJjimMap);
-		
+
 		// 어떤 사용자가 어떤 카테고리의 어떤 글을 찜했는지 안했는지 알기 위한 jjim목록 가져오기
-		List<JjimVO> list=new ArrayList<JjimVO>();
-		Map selectFestivalJjimMap=new HashMap();
+		List<JjimVO> list = new ArrayList<JjimVO>();
+		Map selectFestivalJjimMap = new HashMap();
 		selectFestivalJjimMap.put("category_no", 1);
 		selectFestivalJjimMap.put("contents_no", Integer.parseInt(fno));
 		selectFestivalJjimMap.put("id", id);
-		list=JjimDAO.getJjim(selectFestivalJjimMap); // 카테고리, 글 번호, 아이디, 찜 상태 정보를 가져옴
-		if(list.size()>=2) {
-			Map deleteJjimMap=new HashMap();
+		list = JjimDAO.getJjim(selectFestivalJjimMap); // 카테고리, 글 번호, 아이디, 찜 상태
+														// 정보를 가져옴
+
+		flag = list.get(0).getFlag();
+		if (list.size() >= 2) {
+			Map deleteJjimMap = new HashMap();
 			deleteJjimMap.put("category_no", 1);
 			deleteJjimMap.put("contents_no", Integer.parseInt(fno));
 			deleteJjimMap.put("id", id);
 			JjimDAO.deleteJjimFestivalData(deleteJjimMap);
+			// 데이터가 삭제되면 flag=0으로 설정해줌
+			flag = 0;
 		}
-		
-		/*try {
-			int flag=list.get(1).getFlag();
-			// flag가 1이면 찜 삭제, 아니면 빠져나감
-			
-			model.addAttribute("flag", flag);
-		} catch (Exception e) {}*/
-		
-		// model.addAttribute("flag", list.get(0).getFlag());
-		return "../contents/festival_detail.jsp";
+		return "redirect:../contents/festival_detail.do";
 	}
 }
-
-
-
-
-
-
-
