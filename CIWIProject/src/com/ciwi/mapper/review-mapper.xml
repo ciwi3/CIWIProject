@@ -81,7 +81,7 @@
 		FROM
 		festival f, review r
 		WHERE f.fno=#{fno} AND r.content_no=#{fno}
-		AND f.category_no=#{category_no} AND r.category_no#{category_no}
+		AND f.category_no=#{category_no} AND r.category_no=#{category_no}
 	</select>
 	
 	<select id="movieReviewList" resultType="ReviewVO"

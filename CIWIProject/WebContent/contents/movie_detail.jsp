@@ -9,12 +9,12 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	var sno=${svo.sno};
+	var mno=${mvo.mno};
 	$('#jjim').click(function(){
 		$.ajax({
 			type:'post',
 			url:'../contents/movie_jjim_ok.do',
-			data:{sno:sno},
+			data:{mno:mno},
 			success:function(res) {
 				location.href='../contents/movie_detail.do?no='+mno;
 			}
@@ -59,9 +59,14 @@ $(function(){
 				</div>
 				</c:if>
 				<c:if test="${sessionScope.id!=null }">
-				<div class="col-sm-1">
-					<input type="button" class="btn btn-sm btn-warning" id="jjim" value="보고싶어요">
-				</div>
+					<div class="col-sm-1">
+					<c:if test="${flag==0 }">
+						<input type="button" class="btn btn-sm btn-warning" id="jjim" value="보고싶어요">
+					</c:if>
+					<c:if test="${flag!=0 }">
+						<input type="button" class="btn btn-sm btn-danger" id="jjim" value="등록 취소">
+					</c:if>
+					</div>
 				</c:if>
 				<div class="col-sm-1">
 					<a href="../contents/movie.do" class="btn btn-sm btn-danger">목록</a>
@@ -102,9 +107,9 @@ $(function(){
 
 	
 	<!-- jQuery Plugins -->
-	<script src="../js2/jquery.min.js"></script>
-	<script src="../js2/bootstrap.min.js"></script>
-	<script src="../js2/jquery.stellar.min.js"></script>
-	<script src="../js2/main.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/jquery.stellar.min.js"></script>
+	<script src="../js/main.js"></script>
 </body>
 </html>

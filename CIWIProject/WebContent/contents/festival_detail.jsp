@@ -10,7 +10,6 @@
 <script type="text/javascript">
 $(function(){
 	var fno=${fvo.fno};
-	var flag=${flag};
 	$('#jjim').click(function(){
 		$.ajax({
 			type:'post',

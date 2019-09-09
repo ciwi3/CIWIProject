@@ -69,6 +69,40 @@
 		<!-- container -->
 		<div class="container">
 			<div class="author">
+				<h2 class="text-uppercase">영화 목록</h2>
+			</div>
+			<!-- row -->
+			<div class="row">
+				<c:forEach var="jjimMvo" items="${jjimMlist }">
+					<div class="col-md-3">
+						<!-- post -->
+						<div class="poster">
+							<a class="imges" href="../contents/movie_detail.do?no=${jjimMvo.mno }"><img
+								src="${jjimMvo.poster }" width=250px height=350px></a>
+							<div class="post-body">
+								<div class="post-category">
+									<h3 class="post-title">
+										<a href="../contents/festival_detail.do?fno=${jjimMvo.mno }">${jjimMvo.title }</a>
+									</h3>
+								</div>
+								<ul class="post-meta">
+									<li>${jjimMvo.regdate }</li>
+								</ul>
+							</div>
+						</div>
+						<!-- /post -->
+					</div>
+				</c:forEach>
+				<div class="col-md-12 text-right">
+					<!-- <a href="../contents/festival.do">더보기</a> -->
+					<hr>
+				</div>
+			</div>
+		</div>
+		<!-- /container -->
+		<!-- container -->
+		<div class="container">
+			<div class="author">
 				<h2 class="text-uppercase">페스티벌 목록</h2>
 			</div>
 			<!-- row -->

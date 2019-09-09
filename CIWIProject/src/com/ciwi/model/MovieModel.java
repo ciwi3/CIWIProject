@@ -15,6 +15,7 @@ import com.ciwi.controller.Controller;
 import com.ciwi.controller.Model;
 import com.ciwi.controller.RequestMapping;
 import com.ciwi.dao.FestivalDAO;
+import com.ciwi.dao.JjimDAO;
 import com.ciwi.dao.MovieDAO;
 import com.ciwi.dao.ReviewDAO;
 import com.ciwi.dao.ShowDAO;
@@ -62,17 +63,73 @@ public class MovieModel {
 		return "../main/main.jsp";
 	}
 	@RequestMapping("contents/movie_detail.do")
-	public String show_detail(Model model) {
-		String no = model.getRequest().getParameter("no");
-		MovieVO mvo = MovieDAO.movieDetailData(Integer.parseInt(no));
-		List<ReviewVO> rlist=ReviewDAO.movieReviewList(mvo);
-		model.addAttribute("mvo", mvo);
-		model.addAttribute("rlist", rlist);
-		model.addAttribute("main_jsp", "../contents/movie_detail.jsp");
+	public String movie_detail(Model model) {
+		try {
+			String no = model.getRequest().getParameter("no");
+			HttpSession session = model.getRequest().getSession();
+			String id = (String)session.getAttribute("id");
+			int flag=0;
+			MovieVO mvo = MovieDAO.movieDetailData(Integer.parseInt(no));
+			
+			List<JjimVO> list = new ArrayList<JjimVO>();
+			Map selectMovieJjimMap = new HashMap();
+			selectMovieJjimMap.put("category_no", 3);
+			selectMovieJjimMap.put("contents_no", Integer.parseInt(no));
+			if(id==null) {
+				selectMovieJjimMap.put("id", "-");
+			} else {
+				selectMovieJjimMap.put("id", id);
+			}
+			list = JjimDAO.getJjim(selectMovieJjimMap);
+			if(list.isEmpty()) {
+				flag=0;
+			} else {
+				flag = list.get(0).getFlag();
+			}
+			
+			List<ReviewVO> rlist=ReviewDAO.movieReviewList(mvo);
+			model.addAttribute("mvo", mvo);
+			model.addAttribute("flag", flag);
+			model.addAttribute("rlist", rlist);
+			model.addAttribute("main_jsp", "../contents/movie_detail.jsp");
+		} catch (Exception e) {}
 
 		return "../main/main.jsp";
 	}
+	@RequestMapping("contents/movie_jjim_ok.do")
+	public String movie_jjim_ok(Model model) {
+		String mno = model.getRequest().getParameter("mno"); // 찜 등록,삭제 구분
+		HttpSession session = model.getRequest().getSession();
+		String id = (String) session.getAttribute("id");
+		System.out.println(mno);
+		int flag = 0;
+		// 찜 등록
+		Map insertJjimMap = new HashMap();
+		insertJjimMap.put("mno", mno);
+		insertJjimMap.put("id", id);
+		JjimDAO.insertJjimMovieData(insertJjimMap);
 
+		// 어떤 사용자가 어떤 카테고리의 어떤 글을 찜했는지 안했는지 알기 위한 jjim목록 가져오기
+		List<JjimVO> list = new ArrayList<JjimVO>();
+		Map selectMovieJjimMap = new HashMap();
+		selectMovieJjimMap.put("category_no", 3);
+		selectMovieJjimMap.put("contents_no", mno);
+		selectMovieJjimMap.put("id", id);
+		list = JjimDAO.getJjim(selectMovieJjimMap); // 카테고리, 글 번호, 아이디, 찜 상태
+														// 정보를 가져옴
+
+		flag = list.get(0).getFlag();
+		if (list.size() >= 2) {
+			Map deleteJjimMap = new HashMap();
+			deleteJjimMap.put("category_no", 3);
+			deleteJjimMap.put("contents_no", Integer.parseInt(mno));
+			deleteJjimMap.put("id", id);
+			JjimDAO.deleteJjimFestivalData(deleteJjimMap);
+			// 데이터가 삭제되면 flag=0으로 설정해줌
+			flag = 0;
+		}
+		return "redirect:../contents/movie_detail.do";
+	}
 	// 예약 영화 리스트
 	@RequestMapping("contents/reserve.do")
 	public String movie_reserve_list(Model model) {

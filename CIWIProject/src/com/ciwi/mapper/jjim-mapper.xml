@@ -71,10 +71,10 @@
 		And j.id=#{id}
 	</select>
 	<!-- 찜한 영화 데이터 가져오기 -->
-	<select id="getJjimMovieData" resultType="FestivalVO" parameterType="String">
-		Select mno, poster, subject, regdate, place
+	<select id="getJjimMovieData" resultType="MovieVO" parameterType="String">
+		Select mno, poster, title, regdate
 		From movie m, jjim j
-		Where m.category_no=j.category_no
+		Where m.category_no=2
 		And m.mno=j.contents_no
 		And j.id=#{id}
 	</select>

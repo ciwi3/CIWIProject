@@ -48,7 +48,6 @@ public class FestivalModel {
 		model.addAttribute("main_jsp", "../contents/festival.jsp");
 		return "../main/main.jsp";
 	}
-
 	@RequestMapping("contents/festival_detail.do")
 	public String festival_detail(Model model){
 		try {
@@ -62,7 +61,11 @@ public class FestivalModel {
 			Map selectFestivalJjimMap = new HashMap();
 			selectFestivalJjimMap.put("category_no", 1);
 			selectFestivalJjimMap.put("contents_no", Integer.parseInt(fno));
-			selectFestivalJjimMap.put("id", id);
+			if(id==null) {
+				selectFestivalJjimMap.put("id", "-");
+			} else {
+				selectFestivalJjimMap.put("id", id);
+			}
 			list = JjimDAO.getJjim(selectFestivalJjimMap);
 			if(list.isEmpty()) {
 				flag=0;
@@ -75,7 +78,9 @@ public class FestivalModel {
 			model.addAttribute("flag", flag);
 			model.addAttribute("rlist", rlist);
 			model.addAttribute("main_jsp", "../contents/festival_detail.jsp");
-		} catch(Exception e){}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		return "../main/main.jsp";
 	}

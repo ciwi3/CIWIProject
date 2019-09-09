@@ -20,11 +20,12 @@ public class JjimModel {
 		// 공연 찜 데이터
 		List<ShowVO> jjimSlist=JjimDAO.getJjimShowData(id);
 		// 영화 찜 데이터
-
+		List<MovieVO> jjimMlist=JjimDAO.getJjimMovieData(id);
 		// 행사 찜 데이터
 		List<FestivalVO> jjimFlist=JjimDAO.getJjimFestivalData(id);
 		
 		model.addAttribute("jjimSlist", jjimSlist);
+		model.addAttribute("jjimMlist", jjimMlist);
 		model.addAttribute("jjimFlist", jjimFlist);
 		model.addAttribute("main_jsp", "../mypage/jjim.jsp");
 		return "../main/main.jsp";
