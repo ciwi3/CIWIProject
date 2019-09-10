@@ -20,13 +20,13 @@ public class MemberVO {
 	private String genre;
 	private String msg;
 	private ReviewVO review = new ReviewVO();
-	private CashVO cvo=new CashVO();
-	public CashVO getCvo() {
-		return cvo;
+	private int cash_pay;
+	public int getCash_pay() {
+		return cash_pay;
 	}
 
-	public void setCvo(CashVO cvo) {
-		this.cvo = cvo;
+	public void setCash_pay(int cash_pay) {
+		this.cash_pay = cash_pay;
 	}
 
 	private int mempay;

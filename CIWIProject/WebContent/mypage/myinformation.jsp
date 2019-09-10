@@ -73,11 +73,6 @@
 							<td class="text-left" width=80%>${vo.main_addr }
 							</td>
 						</tr>
-						<tr>
-							<th class="text-right" width=20% ><font size="2px">나의 문화취향 : </font></th>
-							<td class="text-left" width=80%>${vo.genre }
-							</td>
-						</tr>
 							<th class="text-right" width=20% ><font size="2px">내 보유캐시 : </font></th>
 							<td class="text-left" width=80%> ${vo.cash_pay }&nbsp;&nbsp;Point
 								&nbsp;&nbsp;<input type=submit  value="충전하기" class="btn btn-sm btn-info" id="cashChargeBtn">&nbsp;&nbsp;
