@@ -187,8 +187,14 @@ public class FreeBoardDAO {
 		}		
 		
 		
-		
-		
+		//¸®½ºÃ÷´ñ±Û ´ñ¼ö
+		   public static int recount(int no)
+		   {
+			   SqlSession session=ssf.openSession(true);
+			   int count=session.selectOne("recount",no);
+			   session.close();
+			   return count;
+		   }
 		
 	   
 	   

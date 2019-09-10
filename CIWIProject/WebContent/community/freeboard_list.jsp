@@ -29,9 +29,9 @@ $(function () {
 </head>
 <body>
    <div class="container">
-     <div class="row">
        <h1 class="text-center" style="padding: 2ex;" >자유게시판</h1>
-       <table class="table">
+     <div class="row">
+       <table class="table" frame="void">
          <tr>
            <td class="text-left">
 	           <c:if test="${id!=null }">
@@ -80,7 +80,7 @@ $(function () {
 	           <tr>
 	             <td width=10% class="text-center">${count }</td>
 	             <td width=45% class="text-left"><a href="freeboard_detail.do?no=${vo.no }&page=${curpage }">
-	             <font color="blue">[${vo.bccate}]</font>&nbsp;&nbsp; ${vo.subject }</a>
+	             <font color="blue">[${vo.bccate}]</font>&nbsp;&nbsp; ${vo.subject } </a>
 	             	<c:if test="${today==vo.dbday }">
 	             		<sup><font color=pink>new</font></sup>
 	             	</c:if>

@@ -31,7 +31,6 @@ public class BoardModel {
 		
 		map.put("start", start);
 		map.put("end", end);
-		
 
 		List<FreeBoardVO> list = FreeBoardDAO.freeboardListData(map);	
 		List<FreeBoardVO> nList = FreeBoardDAO.freeboardNoticeData(map);

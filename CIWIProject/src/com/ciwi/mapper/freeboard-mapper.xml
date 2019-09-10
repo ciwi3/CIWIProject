@@ -20,6 +20,13 @@
 	    ORDER BY no desc
 	    
 	</select>
+	<!-- 리스트 댓글 수 -->
+	<select id="recount" resultType="int" parameterType="int">
+		SELECT
+	    COUNT(*) as recount
+		FROM freeboardreply
+		WHERE bno=#{no};
+	</select>
 	
 	<!-- 총페이지 -->
  	<select id="freeboardTotalPage" resultType="int">

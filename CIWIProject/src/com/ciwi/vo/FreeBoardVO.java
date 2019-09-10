@@ -12,7 +12,15 @@ public class FreeBoardVO {
 	private String dbday;
 	private int board_category;
 	private String bccate;
+	private int recount;
 	
+	
+	public int getRecount() {
+		return recount;
+	}
+	public void setRecount(int recount) {
+		this.recount = recount;
+	}
 	public String getBccate() {
 		return bccate;
 	}

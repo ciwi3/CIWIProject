@@ -37,7 +37,7 @@ function del() {
 </head>
 <body>
 	<div class="container">
-	<h2 class="text-center" style="padding: 2ex;">${vo.dbday } 공지</h2>
+	<h2 class="text-center" style="padding: 2ex;">${vo.dbday } 공지 사항</h2>
 		<div class="row">
 			<div style="height: auto; width: 100%; border:2px solid gold;">
 			<table class="table">
