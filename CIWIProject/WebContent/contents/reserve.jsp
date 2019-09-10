@@ -55,7 +55,7 @@ function reserve() {
 	
 	$.ajax({
 		type:'post',
-		url:'../movie/insert.do',
+		url:'../contents/insert.do',
 		data:{
 			title:title,
 			tname:tname,
@@ -66,7 +66,7 @@ function reserve() {
 		},
 		success:function(response) {
 			alert("예매 신청이 완료됐습니다.");
-			location.href="../movie/mypage.do"
+			location.href="../mypage/mypage.do"
 		}
 	})
 }

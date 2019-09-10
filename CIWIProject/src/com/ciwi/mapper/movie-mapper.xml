@@ -75,7 +75,6 @@
 	ORDER BY num
 	</select>
 	
-	<!-- 예약 -->
 	<!-- 현재 예약 가능한 영화 목록 출력 -->
 	<select id="movieListData" resultType="MovieVO">
 		Select *
@@ -105,18 +104,36 @@
 		Select theater_total_seat
 		From theater
 		Where theater_no=#{theater_no};
-		<!-- 영화 추천  -->
 	</select>
-		<select id="movieRecommendSingleGenre" resultType="MovieVO"
-		parameterType="int">
+	
+	<!-- 예약 -->
+	<insert id="reserveMovie" parameterType="ReserveInfoVO">
+		<selectKey keyProperty="r_no" resultType="int" order="BEFORE">
+			Select NVL(MAX(r_no)+1,1) as r_no
+			From reserve
+		</selectKey>
+		Insert Into reserve Values(
+			#{r_no},
+			#{r_id},
+			#{r_title},
+			#{r_tname},
+			#{r_rdate},
+			#{r_rtime},
+			#{r_inwon},
+			#{r_price},
+			0
+		)
+	</insert>
+	
+	<!-- 영화 추천  -->
+	<select id="movieRecommendSingleGenre" resultType="MovieVO" parameterType="int">
 		SELECT DISTINCT mno, title,
 		director, actor, poster, regdate,genre,grade,story,category_no,score,theater_no
 		FROM movie
 		WHERE REGEXP_LIKE(genre,(SELECT movie_genre FROM movie_genre WHERE movie_no = #{genre))
 	</select>
 	<!-- 장르 여러개 영화 추천 -->
-	<select id="movieRecommendMultiGenre" resultType="MovieVO"
-		parameterType="java.util.Map">
+	<select id="movieRecommendMultiGenre" resultType="MovieVO" parameterType="java.util.Map">
 		SELECT DISTINCT mno, title,
 		director, actor, poster, regdate,genre,grade,story,category_no,score,theater_no
 		FROM movie
@@ -124,20 +141,18 @@
 		REGEXP_LIKE(genre,(SELECT movie_genre FROM movie_genre WHERE movie_no = #{last}))
 	</select>
 	<!-- 출력 -->
- 
-		<select id="getMovieGenreName" resultType="MovieGenreVO">
+ 	<select id="getMovieGenreName" resultType="MovieGenreVO">
 		SELECT * FROM movie_genre
 	</select>
 	<!-- 페이지수 구하기 -->
-		<select id="movieTotalPage" resultType="int" parameterType="int">
+	<select id="movieTotalPage" resultType="int" parameterType="int">
 		SELECT CEIL(COUNT(*)/#{rowSize}) FROM movie
 	</select>
-		<select id="movieDetailData" resultType="movieVO" parameterType="int">
+	<select id="movieDetailData" resultType="movieVO" parameterType="int">
 		SELECT * FROM movie
 		WHERE mno=#{mno}
 	</select>
-			<select id="moviePageListData" resultType="MovieVO"
-		parameterType="hashMap">
+	<select id="moviePageListData" resultType="MovieVO" parameterType="hashMap">
         SELECT mno, title, director, actor, poster, regdate, genre, grade, story, category_no, score, theater_no,num
 		FROM (SELECT mno, title, director, actor, poster, regdate, genre, grade, story, category_no, score, theater_no,rownum as num FROM
 		(SELECT mno, title, director, actor, poster, regdate, genre, grade, story, category_no, score, theater_no FROM
@@ -145,5 +160,5 @@
 		ORDER BY mno ASC
 		))
 		WHERE num BETWEEN #{start} AND #{end}
-		</select>
+	</select>
 </mapper>

@@ -23,8 +23,9 @@
        <typeAlias type="com.ciwi.vo.QNABoardVO" alias="QNABoardVO"/>
        <typeAlias type="com.ciwi.vo.JjimVO" alias="JjimVO"/>
        <typeAlias type="com.ciwi.vo.ReviewVO" alias="ReviewVO"/>
-        <typeAlias type="com.ciwi.vo.NoticeBoardVO" alias="NoticeBoardVO"/>
-        <typeAlias type="com.ciwi.vo.CashVO" alias="CashVO"/>
+       <typeAlias type="com.ciwi.vo.NoticeBoardVO" alias="NoticeBoardVO"/>
+       <typeAlias type="com.ciwi.vo.CashVO" alias="CashVO"/>
+       <typeAlias type="com.ciwi.vo.ReserveInfoVO" alias="ReserveInfoVO"/>
        
        <!-- <typeAlias type="com.sist.vo.FestivalVO" alias="FestivalVO"/> -->
     </typeAliases>

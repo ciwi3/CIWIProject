@@ -145,4 +145,10 @@ public class MovieDAO {
 		session.close();
 		return vo;
 	}
+	// 영화 예약
+	public static void reserveMovie(ReserveInfoVO vo) {
+		SqlSession session=ssf.openSession(true);
+		session.insert("reserveMovie", vo);
+		session.close();
+	}
 }

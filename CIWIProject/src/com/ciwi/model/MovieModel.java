@@ -314,4 +314,32 @@ public class MovieModel {
 		ReviewDAO.reviewDelete(vo, memid);
 		return "../main/main.jsp";
 	}
+	
+	@RequestMapping("contents/insert.do")
+	public String reserveMovie(Model model) {
+		try{
+			model.getRequest().setCharacterEncoding("UTF-8");
+		} catch (Exception e) {}
+		HttpSession session=model.getRequest().getSession();
+		String id=(String)session.getAttribute("id");
+		String title=model.getRequest().getParameter("title");
+		String tname=model.getRequest().getParameter("tname");
+		String rdate=model.getRequest().getParameter("rdate");
+		String rtime=model.getRequest().getParameter("rtime");
+		String inwon=model.getRequest().getParameter("inwon");
+		String price=model.getRequest().getParameter("price");
+		
+		ReserveInfoVO vo=new ReserveInfoVO();
+		vo.setR_Id(id);
+		vo.setR_title(title);
+		vo.setR_tname(tname);
+		vo.setR_rdate(rdate);
+		vo.setR_rtime(rtime);
+		vo.setR_inwon(inwon);
+		vo.setR_price(price);
+		MovieDAO.reserveMovie(vo);
+		
+		model.addAttribute("main_jsp", "redirect../contents/mypage.do");
+		return "../main/main.jsp";
+	}
 }
