@@ -37,6 +37,15 @@
 		update cash set cash_state=1
 		where cash_id=#{cash_id}
 	</update>
+	<!-- 사용자: 예매 데이터 출력 -->
+	<select id="reserveData" resultType="ReserveInfoVO" parameterType="String">
+		select * from reserve
+		where r_id=#{id}
+	</select>
+	<!-- 관리자 : 예매 데이터 출력 -->
+	<select id="reserveAdminData" resultType="ReserveInfoVO">
+		select * from reserve
+	</select>
 </mapper>
 
 

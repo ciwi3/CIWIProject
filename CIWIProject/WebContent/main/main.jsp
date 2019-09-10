@@ -177,11 +177,13 @@
 										<li><a href="../mypage/myinformation.do">MY INFORMATION</a></li>
 										<li><a href="../mypage/mycashcharge.do">CASH CAHRGE</a></li>
 										<li><a href="../mypage/mypage.do">CASH MANAGEMENT</a></li>
+										<li><a href="../mypage/reservepage.do">RESERVE MANAGEMENT</a></li>
 										<li><a href="../mypage/jjim.do">MISSING</a></li>
 										<li><a href="../member/join_modify.do">회원수정</a></li>
 									</c:if>
 									<c:if test="${sessionScope.admin==1 }">
-										<li><a href="../mypage/adminpage.do">MANAGEMENT</a></li>
+										<li><a href="../mypage/adminpage.do">CASH MANAGEMENT</a></li>
+										<li><a href="../mypage/adminreserve.do">RESERVE MANAGEMENT</a></li>
 									</c:if>
 									</ul>
 								</div>

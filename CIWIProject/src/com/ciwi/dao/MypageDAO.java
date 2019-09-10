@@ -68,6 +68,30 @@ public class MypageDAO {
 			e.printStackTrace();
 		}
 	}
+	//사용자 예매 정보 출력
+	public static List<ReserveInfoVO> reserveData(String id){
+		List<ReserveInfoVO> list = new ArrayList<ReserveInfoVO>();
+		SqlSession session=null;
+		try{
+			session=ssf.openSession();
+			list=session.selectList("reserveData",id);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	//관리자 예매정보 출력
+	public static List<ReserveInfoVO> reserveAdminData(){
+		List<ReserveInfoVO> list = new ArrayList<ReserveInfoVO>();
+		SqlSession session=null;
+		try{
+			session=ssf.openSession();
+			list=session.selectList("reserveAdminData");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 
 }
 

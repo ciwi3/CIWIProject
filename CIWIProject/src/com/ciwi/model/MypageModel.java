@@ -8,6 +8,7 @@ import com.ciwi.controller.RequestMapping;
 import com.ciwi.dao.MypageDAO;
 import com.ciwi.vo.CashVO;
 import com.ciwi.vo.MemberVO;
+import com.ciwi.vo.ReserveInfoVO;
 @Controller("MypageModel")
 public class MypageModel {
 	//마이페이지
@@ -44,23 +45,7 @@ public class MypageModel {
 		MypageDAO.cashchargeUpdate(vo);
 		return "../mypage/mycashcharge_ok.do";
 	}
-	//결제내역 데이터출력
-	@RequestMapping("mypage/adminpage.do")
-	public String cashManageData(Model model){
-		List<CashVO> list = MypageDAO.cashManageData();
-		model.addAttribute("list", list);
-		model.addAttribute("main_jsp", "../mypage/adminpage.jsp");
-		return "../main/main.jsp";
-	}
-	//관리자결제내역 승인완료
-	@RequestMapping("mypage/cashOk.do")
-	public String cashOkData(Model model){
-		String id=model.getRequest().getParameter("id");
-		//System.out.println(id);
-		MypageDAO.cashOkData(id);
-		return "redirect:../mypage/adminpage.do";
-	}
-	//사용자 캐시충전 내역화면 출력
+	//사용자 캐시 내역 화면 출력
 	@RequestMapping("mypage/mypage.do")
 	public String mypageData(Model model){
 		List<CashVO> list = MypageDAO.cashManageData();
@@ -68,20 +53,40 @@ public class MypageModel {
 		model.addAttribute("main_jsp", "../mypage/mypage.jsp");
 		return "../main/main.jsp";
 	}
-	
-
-
+	//관리자 결제내역 데이터출력
+	@RequestMapping("mypage/adminpage.do")
+	public String cashManageData(Model model){
+		List<CashVO> list = MypageDAO.cashManageData();
+		model.addAttribute("list", list);
+		model.addAttribute("main_jsp", "../mypage/adminpage.jsp");
+		return "../main/main.jsp";
+	}	
+	//관리자결제내역 승인완료
+	@RequestMapping("mypage/cashOk.do")
+	public String cashOkData(Model model){
+		String id=model.getRequest().getParameter("id");
+		MypageDAO.cashOkData(id);
+		return "redirect:../mypage/adminpage.do";
+	}
+	//사용자 예매 데이터 출력
+	@RequestMapping("mypage/reservepage.do")
+	public String reserveData(Model model){
+		HttpSession session = model.getRequest().getSession();
+		String id=(String)session.getAttribute("id");
+		//System.out.println(id);
+		List<ReserveInfoVO> list = MypageDAO.reserveData(id);
+		model.addAttribute("list", list);
+		model.addAttribute("main_jsp", "../mypage/reservepage.jsp");
+		return "../main/main.jsp";
+	}
+	// 관리자예매 데이터 출력
+	@RequestMapping("mypage/adminreserve.do")
+	public String reserveAdminData(Model model){
+		List<ReserveInfoVO> list = MypageDAO.reserveAdminData();
+		model.addAttribute("list", list);
+		model.addAttribute("main_jsp", "../mypage/adminreserve.jsp");
+		return "../main/main.jsp";
+	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
 

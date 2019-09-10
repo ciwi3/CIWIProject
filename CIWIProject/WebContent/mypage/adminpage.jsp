@@ -10,14 +10,6 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('#reserveBtn').click(function(){
-		$('#reserve').show();
-		$('#pay').hide();
-	});
-	$('#payBtn').click(function(){
-		$('#pay').show();
-		$('#reserve').hide();
-	});
 	//승인완료
 	$('.cashOkBtn').click(function(){
 		var id=$(this).attr("data-id");
@@ -36,51 +28,11 @@ $(function(){
 <body>
 	<div class="session">
 		<div class="text-center"><br><br>
-		<input type=button value="예매내역" class="btn btn-lg btn-info" id=reserveBtn>&nbsp;&nbsp;
-		<input type=button value="결제내역" class="btn btn-lg btn-danger" id=payBtn><br><br>
-					<div class="container" id=reserve style="display: none">
-				<h2 >예매내역</h2>
-				<div class="row">
-					<table class="table table-striped">
-						<tr class="success">
-							<th width=10% class="text-center">번호</th>
-							<th width=10% class="text-center">아이디</th>
-							<th width=10% class="text-center">충전 날짜</th>
-							<th width=10% class="text-center">충전 금액</th>
-							<th width=10% class="text-center">승인선택</th>
-							<th width=10% class="text-center">현재처리상태</th>
-						</tr>
-						<c:forEach var="vo" items="${list }">
-							<tr>
-							<td>${vo.cash_no }</td>
-							<td>${vo.cash_id }</td>
-							<td>${vo.cash_date }</td>
-							<td>${vo.cash_pay }</td>
-							<c:if test="${vo.cash_state==0}">
-							<td>승인대기</td>
-							</c:if>
-							<c:if test="${vo.cash_state==1}">
-							<td>승인완료</td>
-							</c:if>
-							<c:if test="${vo.cash_state==0}">
-							<td>
-								<input type=button value="승인완료" class="cashOkBtn btn btn-sm btn-info" data-id=${vo.cash_id }>
-							</td>
-							</c:if>
-							<c:if test="${vo.cash_state==1 }">
-							<td>결제완료</td>
-							</c:if>
-							</tr>
-						</c:forEach>
-					</table>
-				</div>
-			</div>
-			
-			<div class="container" id=pay style="display: none">
+			<div class="container">
 				<h2 >결제내역</h2>
 				<div class="row">
 					<table class="table table-striped">
-						<tr class="success">
+						<tr class="warning">
 							<th width=10% class="text-center">번호</th>
 							<th width=10% class="text-center">아이디</th>
 							<th width=10% class="text-center">충전 날짜</th>
