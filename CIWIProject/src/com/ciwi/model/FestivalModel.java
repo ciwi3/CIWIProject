@@ -59,7 +59,7 @@ public class FestivalModel {
 			
 			List<JjimVO> list = new ArrayList<JjimVO>();
 			Map selectFestivalJjimMap = new HashMap();
-			selectFestivalJjimMap.put("category_no", 1);
+			selectFestivalJjimMap.put("category_no", 3);
 			selectFestivalJjimMap.put("contents_no", Integer.parseInt(fno));
 			if(id==null) {
 				selectFestivalJjimMap.put("id", "-");
@@ -98,7 +98,7 @@ public class FestivalModel {
 		// 어떤 사용자가 어떤 카테고리의 어떤 글을 찜했는지 안했는지 알기 위한 jjim목록 가져오기
 		List<JjimVO> list = new ArrayList<JjimVO>();
 		Map selectFestivalJjimMap = new HashMap();
-		selectFestivalJjimMap.put("category_no", 1);
+		selectFestivalJjimMap.put("category_no", 3);
 		selectFestivalJjimMap.put("contents_no", Integer.parseInt(fno));
 		selectFestivalJjimMap.put("id", id);
 		list = JjimDAO.getJjim(selectFestivalJjimMap); // 카테고리, 글 번호, 아이디, 찜 상태
@@ -107,7 +107,7 @@ public class FestivalModel {
 		
 		if (list.size() >= 2) {
 			Map deleteJjimMap = new HashMap();
-			deleteJjimMap.put("category_no", 1);
+			deleteJjimMap.put("category_no", 3);
 			deleteJjimMap.put("contents_no", Integer.parseInt(fno));
 			deleteJjimMap.put("id", id);
 			JjimDAO.deleteJjimFestivalData(deleteJjimMap);

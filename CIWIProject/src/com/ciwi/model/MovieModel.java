@@ -71,7 +71,7 @@ public class MovieModel {
 			
 			List<JjimVO> list = new ArrayList<JjimVO>();
 			Map selectMovieJjimMap = new HashMap();
-			selectMovieJjimMap.put("category_no", 3);
+			selectMovieJjimMap.put("category_no", 2);
 			selectMovieJjimMap.put("contents_no", Integer.parseInt(no));
 			if(id==null) {
 				selectMovieJjimMap.put("id", "-");
@@ -109,7 +109,7 @@ public class MovieModel {
 		// 어떤 사용자가 어떤 카테고리의 어떤 글을 찜했는지 안했는지 알기 위한 jjim목록 가져오기
 		List<JjimVO> list = new ArrayList<JjimVO>();
 		Map selectMovieJjimMap = new HashMap();
-		selectMovieJjimMap.put("category_no", 3);
+		selectMovieJjimMap.put("category_no", 2);
 		selectMovieJjimMap.put("contents_no", mno);
 		selectMovieJjimMap.put("id", id);
 		list = JjimDAO.getJjim(selectMovieJjimMap); // 카테고리, 글 번호, 아이디, 찜 상태
@@ -118,7 +118,7 @@ public class MovieModel {
 		flag = list.get(0).getFlag();
 		if (list.size() >= 2) {
 			Map deleteJjimMap = new HashMap();
-			deleteJjimMap.put("category_no", 3);
+			deleteJjimMap.put("category_no", 2);
 			deleteJjimMap.put("contents_no", Integer.parseInt(mno));
 			deleteJjimMap.put("id", id);
 			JjimDAO.deleteJjimMovieData(deleteJjimMap);
