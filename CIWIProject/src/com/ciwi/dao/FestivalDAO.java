@@ -17,7 +17,12 @@ public class FestivalDAO {
 		session.insert("festivalDataInsert", vo);
 		session.close(); // disConnection()
 	}
-
+	public static List<FestivalVO> festivalMainList() {
+		SqlSession session = ssf.openSession();
+		List<FestivalVO> list = session.selectList("festivalMainList");
+		session.close();
+		return list;
+	}
 	public static List<FestivalVO> festivalAllData() {
 		SqlSession session = ssf.openSession();
 		List<FestivalVO> list = session.selectList("festivalAllData");
