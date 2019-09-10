@@ -112,6 +112,8 @@ public class ShowModel {
 				tCheck = true;
 				model.addAttribute("vo", resultVo);
 			}
+				
+			
 			
 			model.addAttribute("svo", svo);
 			model.addAttribute("rlist", rlist);
