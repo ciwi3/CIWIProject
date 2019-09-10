@@ -17,11 +17,18 @@ public class ReviewVO {
 	private int category_no;
 	private int content_no;
 	private String memid;
+	private int memno;
 	private Date datetime;
-	private int rating;
+	private double rating;
 	private int rlike;
 	private int rdislike;
 	private String rtext;
+	public int getMemno() {
+		return memno;
+	}
+	public void setMemno(int memno) {
+		this.memno = memno;
+	}
 	public String getMemid() {
 		return memid;
 	}
@@ -52,10 +59,10 @@ public class ReviewVO {
 	public void setDatetime(Date datetime) {
 		this.datetime = datetime;
 	}
-	public int getRating() {
+	public double getRating() {
 		return rating;
 	}
-	public void setRating(int rating) {
+	public void setRating(double rating) {
 		this.rating = rating;
 	}
 	public int getRlike() {

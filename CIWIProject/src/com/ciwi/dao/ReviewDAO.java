@@ -44,6 +44,7 @@ public class ReviewDAO {
 	// 리뷰(default+= 평점)등록
 	public static void reviewInsert(ReviewVO vo) {
 		SqlSession session = ssf.openSession(true);
+		System.out.println(vo.getRating());
 		session.insert("reviewInsert", vo);
 		session.close();
 	}
@@ -53,7 +54,7 @@ public class ReviewDAO {
 		int result = 0;
 		if (vo.getMemid().equals(id)) {
 			session.update("reviewModified", vo);
-			result=1;
+			result = 1;
 		}
 		session.close();
 		return result;
@@ -64,42 +65,56 @@ public class ReviewDAO {
 		int result = 0;
 		if (vo.getMemid().equals(id)) {
 			session.selectOne("reviewDelete", vo);
-			result=1;
+			result = 1;
 		}
 		session.close();
 		return result;
-
 	}
 
 	public static List<ReviewVO> showReviewList(ShowVO vo) {
-		SqlSession session=ssf.openSession();
-		List<ReviewVO> list=new ArrayList<ReviewVO>();
-		list=session.selectList("showReviewList",vo);
+		SqlSession session = ssf.openSession();
+		System.out.println(vo.getSubject());
+		List<ReviewVO> list = new ArrayList<ReviewVO>();
+		list = session.selectList("showReviewList", vo);
 		session.close();
-		
+
 		return list;
 	}
+
 	public static List<ReviewVO> FestivalReviewList(FestivalVO vo) {
-		SqlSession session=ssf.openSession(true);
-		List<ReviewVO> list=new ArrayList<ReviewVO>();
-		list=session.selectList("FestivalReviewList",vo);
+		SqlSession session = ssf.openSession(true);
+		List<ReviewVO> list = new ArrayList<ReviewVO>();
+		list = session.selectList("FestivalReviewList", vo);
 		session.close();
-		
+
 		return list;
 	}
+
 	public static List<ReviewVO> movieReviewList(MovieVO vo) {
-		SqlSession session=ssf.openSession(true);
-		List<ReviewVO> list=new ArrayList<ReviewVO>();
-		list=session.selectList("movieReviewList",vo);
+		SqlSession session = ssf.openSession(true);
+		List<ReviewVO> list = new ArrayList<ReviewVO>();
+		list = session.selectList("movieReviewList", vo);
 		session.close();
-		
+
 		return list;
 	}
-	public static String ratingcheck(ReviewVO vo) {
-		SqlSession session=ssf.openSession();
-		String rCheck=session.selectOne("ratingcheck",vo);
+
+	public static String ratingCheck(ReviewVO vo) {
+		SqlSession session = ssf.openSession();
+		String rCheck = session.selectOne("ratingCheck", vo);
 		session.close();
-		
+
 		return rCheck;
+	}
+
+	public static ReviewVO myReviewCheck(ReviewVO vo) {
+		SqlSession session = ssf.openSession();
+		ReviewVO resultVo = session.selectOne("myReviewCheck", vo);
+		if(resultVo==null){
+			resultVo=new ReviewVO();
+		}
+		session.close();
+
+		return resultVo;
 	}
 }

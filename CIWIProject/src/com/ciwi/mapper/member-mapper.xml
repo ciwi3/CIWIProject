@@ -9,7 +9,7 @@
 	</select>
 	<!-- 2. 비밀번호 확인 -->
 	<select id="memberGetPwd" resultType="MemberVO" parameterType="String">
-		Select pwd,name,admin
+		Select pwd,name,admin,join_no
 		From member
 		Where id=#{id}
 	</select>
