@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ciwi.mapper.mypage-mapper">
-	<resultMap type="MemberVO" id="MemberAllMap"></resultMap>
+	<resultMap type="MemberVO" id="MemberAllMap">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="phone" column="phone"/>
+		<result property="post" column="post"/>
+		<result property="main_addr" column="main_addr"/>
+		<result property="genre" column="genre"/>
+		<result property="cvo.cash_pay" column="cash_pay"/>
+	</resultMap>
 <!-- 나의정보:session의 아이디가져오기-->
 	<select id="myinformation" resultType="MemberVO" parameterType="String">
-		select * from member
-		where id=#{id}  
+		select id,name,phone,post,main_addr,genre,
+		(Select sum(cash_pay) From cash Where cash_id=#{id}) as cash_pay
+		From member m,cash c
+		Where m.id=#{id}  
 	</select>
 	<!-- 보유캐시 출력 -->
 	<select id="cashTotalData" resultType="int" parameterType="CashVO">
@@ -33,11 +43,6 @@
 	<!-- 결제내역 : 승인완료 -->
 	<update id="cashOkData" parameterType="String">
 		update cash set cash_state=1
-		where cash_id=#{cash_id}
-	</update>
-	<!-- 결제내역 : 승인취소 -->
-	<update id="cashNoData" parameterType="String">
-		update cash set cash_state=0
 		where cash_id=#{cash_id}
 	</update>
 </mapper>

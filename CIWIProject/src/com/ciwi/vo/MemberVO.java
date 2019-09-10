@@ -20,6 +20,15 @@ public class MemberVO {
 	private String genre;
 	private String msg;
 	private ReviewVO review = new ReviewVO();
+	private CashVO cvo=new CashVO();
+	public CashVO getCvo() {
+		return cvo;
+	}
+
+	public void setCvo(CashVO cvo) {
+		this.cvo = cvo;
+	}
+
 	private int mempay;
 
 	public int getMempay() {

@@ -79,7 +79,7 @@
 							</td>
 						</tr>
 							<th class="text-right" width=20% ><font size="2px">내 보유캐시 : </font></th>
-							<td class="text-left" width=80%> ${cash_pay }&nbsp;&nbsp;Point
+							<td class="text-left" width=80%> ${vo.cash_pay }&nbsp;&nbsp;Point
 								&nbsp;&nbsp;<input type=submit  value="충전하기" class="btn btn-sm btn-info" id="cashChargeBtn">&nbsp;&nbsp;
 							</td>
 						</tr>

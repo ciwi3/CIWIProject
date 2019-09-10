@@ -68,18 +68,7 @@ public class MypageDAO {
 			e.printStackTrace();
 		}
 	}
-	//결제승인 취소
-	public static void cashNoData(String id){
-		SqlSession session=null;
-		try{
-			session=ssf.openSession();
-			session.update("cashNoData",id);
-			session.commit();
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
+
 }
 
 

@@ -15,13 +15,12 @@ public class MypageModel {
 	@RequestMapping("mypage/myinformation.do")
 	public String myinformation(Model model){
 		// session에 등록된 아이디로 검색해서 
-		// 나의 이름,휴대폰번호,내보유캐시,취향 검색 후 출력
+		// 나의 이름,휴대폰번호,취향,보유총캐시 검색 후 출력
 		HttpSession session = model.getRequest().getSession();
 		MemberVO vo = new MemberVO();
 		CashVO cvo = new CashVO();
 		String id=(String)session.getAttribute("id");
 		vo=MypageDAO.myInformation(id);
-		
 		model.addAttribute("vo", vo); 
 		model.addAttribute("main_jsp", "../mypage/myinformation.jsp");
 		return "../main/main.jsp";
@@ -61,16 +60,15 @@ public class MypageModel {
 		MypageDAO.cashOkData(id);
 		return "redirect:../mypage/adminpage.do";
 	}
-	//관리자결제내역 승인취소
-	@RequestMapping("mypage/cashNo.do")
-	public String cashNoData(Model model){
-		String id=model.getRequest().getParameter("id");
-		//System.out.println(id);
-		MypageDAO.cashNoData(id);
-		return "../mypage/adminpage.do";
-	}
 	//사용자 캐시충전 내역화면 출력
-	//
+	@RequestMapping("mypage/mypage.do")
+	public String mypageData(Model model){
+		List<CashVO> list = MypageDAO.cashManageData();
+		model.addAttribute("list", list);
+		model.addAttribute("main_jsp", "../mypage/mypage.jsp");
+		return "../main/main.jsp";
+	}
+	
 
 
 
