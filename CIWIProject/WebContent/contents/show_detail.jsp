@@ -25,11 +25,11 @@
 			});
 		});
 		var rating = '';
-		var rText = '';		
+/* 		var rText = '';		
 		if(${tCheck==true}){
 			rating= ${vo.rating};
 			rtext = "${vo.rtext}";
-		}
+		} */
 		$('.starRev_t span').click(function() {
 			var star =$(this);				
 			rating = $(this).text();
@@ -71,7 +71,7 @@
 					$('#resultlist').html(res);
 				}
 			});
-		})
+		});
 		
 		$('#modifiedBtn').click(function(){
 			var rtext = $('#rtext').val();
@@ -86,8 +86,23 @@
 					no : ${svo.sno}
 				},
 				success : function(res) {
-					alert(res);
+					/* alert(res); */
 					alert("리뷰가 수정되었습니다.");
+					$('#resultlist').html(res);
+				}
+			});
+		});
+		$('#deleteBtn').click(function(){
+			$.ajax({
+				type : 'post',
+				url : '../contents/show_delete.do',
+				data : {
+					rno : ${vo.rno},
+					content_no : ${vo.content_no}
+				},
+				success : function(res) {
+					/* alert(res); */
+					alert("리뷰가 삭제되었습니다..");
 					$('#resultlist').html(res);
 				}
 			});
@@ -155,7 +170,7 @@
 				style="margin-top: 30px; margin-left: 45px; margin-right: 45px;">
 				<div class="col-sm-10">
 					<h3 style="font: bold;">${svo.subject }</h3>
-					<div class="rating col-sm-3">
+					<div class="rating col-sm-4">
 						<div class="starRev_t" style="padding-left: 30px;">
 							<span class="starR1">0.5</span> <span class="starR2">1</span> <span
 								class="starR1">1.5</span> <span class="starR2">2</span> <span

@@ -112,8 +112,6 @@ public class ShowModel {
 				tCheck = true;
 				model.addAttribute("vo", resultVo);
 			}
-				
-			
 			
 			model.addAttribute("svo", svo);
 			model.addAttribute("rlist", rlist);
@@ -240,13 +238,18 @@ public class ShowModel {
 		String rno = model.getRequest().getParameter("rno");
 		HttpSession session = model.getRequest().getSession();
 		String memid = (String) session.getAttribute("memid");
-
+		String content_no=model.getRequest().getParameter("content_no");
+		
 		ReviewVO vo = new ReviewVO();
 
 		vo.setRno(Integer.parseInt(rno));
 		vo.setMemid(memid);
-
+		
 		ReviewDAO.reviewDelete(vo, memid);
-		return "../main/main.jsp";
+		
+		ShowVO svo = ShowDAO.showDetailData(Integer.parseInt(content_no));
+		List<ReviewVO> rlist = ReviewDAO.showReviewList(svo);
+		model.addAttribute("rlist", rlist);
+		return "../contents/review_ok.jsp";
 	}
 }
