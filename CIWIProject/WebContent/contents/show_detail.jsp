@@ -163,7 +163,7 @@
 			<div class="box box-warning">
             <div class="rating col-sm-3">
                <div class="starRev" style="padding-left:30px;">
-                  <span class="starR1 on">0.5</span> <span class="starR2">1</span> <span
+                  <span class="starR1">0.5</span> <span class="starR2">1</span> <span
                      class="starR1">1.5</span> <span class="starR2">2</span> <span
                      class="starR1">2.5</span> <span class="starR2">3</span> <span
                      class="starR1">3.5</span> <span class="starR2">4</span> <span
@@ -216,6 +216,6 @@
    <script src="../js/jquery.min.js"></script>
    <script src="../js/bootstrap.min.js"></script>
    <script src="../js/jquery.stellar.min.js"></script>
-
+	<script src="../js/main.js"></script>
 </body>
 </html>
