@@ -9,6 +9,7 @@
 <style type="text/css">
 .row{
 	margin: 2px auto;
+	width: 1200px;
 }
 .h1{
  font-family: "Times New Roman", Times, serif;
@@ -40,6 +41,25 @@
 					<td class="text-center">
 						<img src="../img/about.PNG">
 					</td>
+				</tr>
+			</table>
+			<h3><strong><font size="7" style="color: orange;">■</font> C.I.W.I 주요 특징</strong></h3>
+			<table class="table" border="2" bordercolor="orange">
+				<tr b>
+					<th width="23%" ><pre style="white-space: pre-wrap; border: none; background-color: white;">모든 문화정보가 한자리에 ~ 문화향유의 중심, <strong style="font-size: medium;"> CIWI!</strong></pre></th>
+					<td width="77%"><prestyle="white-space: pre-wrap; border: none; background-color: white;">문화 정보 보유 기관 및 사이트에서 수집한 문화정보를 서비스별/문화분류별 유형별/기관별 검색으로 빠르고 정확한 서비스를 제공합니다.</pre></td>
+				</tr>
+				<tr>
+					<th width="23%"><pre style="white-space: pre-wrap; border: none; background-color: white;">한국의 다양한 문화소식을 빠르고 편리하게</pre></th>
+					<td width="77%"><pre style="white-space: pre-wrap; border: none; background-color: white;">교육/체험/채용 등의 실시간 문화소식과 전국의 주요 공연/전시 및 행사/축제 정보를 편리하게 이용하실 수 있습니다.</pre></td>
+				</tr>
+				<tr>
+					<th width="23%"><pre style="white-space: pre-wrap; border: none; background-color: white;">다른 사람들과 나누는 문화!</pre></th>
+					<td width="77%"><pre style="white-space: pre-wrap; border: none; background-color: white;">다른 이용자들과 커뮤니티를 이용해서 정보를 공유하거나 각종 문화생활들을 리뷰를 보고 선택할 수 있습니다.</pre></td>
+				</tr>
+				<tr>
+					<th width="23%"><pre style="white-space: pre-wrap; border: none; background-color: white;">한국 문화정보에 관한 친절한 큐레이터, 문화추천 서비스</pre></th>
+					<td width="77%"><pre style="white-space: pre-wrap; border: none; background-color: white;">CIWI가 보여주는 공연,행사,영화 등 각 분야의 테마별 문화 추천 서비스 및 전국 이용자들이 전하는 전국 주요 콘텐츠를 만나보세요.</pre></td>
 				</tr>
 			</table>
 		</div>
