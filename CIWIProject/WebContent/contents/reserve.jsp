@@ -55,6 +55,19 @@ function reserve() {
 	
 	$.ajax({
 		type:'post',
+		url:'../contents/theater.do',
+		data:{
+			title:title,
+			tname:tname,
+			rdate:rdate,
+			rtime:rtime,
+			inwon:inwon,
+			price:price
+		}
+	})
+	
+	$.ajax({
+		type:'post',
 		url:'../contents/insert.do',
 		data:{
 			title:title,

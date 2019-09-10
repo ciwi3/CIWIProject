@@ -19,6 +19,9 @@
 		<result property="ccvo.category_name" column="category_name" />
 		<result property="avo.area_name" column="area_name" />
 	</resultMap>
+	<select id="festivalAllCount" resultType="int">
+		Select Count(*) From festival
+	</select>
 	<sql id="festivalSearchSql">
 	 (SELECT fno,subject,poster,fdate,fg.festival_genre as festival_genre,
 		c.category_name as category_name, a.area_name as area_name,rownum as num

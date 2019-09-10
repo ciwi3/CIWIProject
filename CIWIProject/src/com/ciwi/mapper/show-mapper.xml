@@ -24,6 +24,9 @@
 		<result property="ccvo.category_name" column="category_name" />
 		<result property="avo.area_name" column="area_name" />
 	</resultMap>
+	<select id="showAllCount" resultType="int">
+		Select Count(*) From show
+	</select>
 	<sql id="showSearchSql">
 		 (
 		SELECT sno,subject,poster,sdate,sg.show_genre as show_genre,

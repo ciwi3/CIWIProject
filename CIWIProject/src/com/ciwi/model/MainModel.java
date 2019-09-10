@@ -27,12 +27,19 @@ public class MainModel {
 
 	@RequestMapping("main/main.do")
 	public String main_page(Model model) {
+		List<ShowVO> slist=ShowDAO.showAllData();
 		List<FestivalVO> flist=FestivalDAO.festivalMainList();
 		List<MovieVO> mlist=MovieDAO.movieListData();
-		
+		model.addAttribute("slist", slist);
 		model.addAttribute("flist", flist);
 		model.addAttribute("mlist", mlist);
 		
+		int sTotal=ShowDAO.showAllCount();
+		int mTotal=MovieDAO.movieAllCount();
+		int fTotal=FestivalDAO.festivalAllCount();
+		model.addAttribute("sTotal", sTotal);
+		model.addAttribute("mTotal", mTotal);
+		model.addAttribute("fTotal", fTotal);
 		
 		List<FestivalVO> fList = null;
 		List<ShowVO> sList = null;

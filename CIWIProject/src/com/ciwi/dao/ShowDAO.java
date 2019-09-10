@@ -20,7 +20,13 @@ public class ShowDAO {
 	static {
 		ssf = CreateSqlSessionFactory.getSsf();
 	}
-
+	public static int showAllCount() {
+		int total=0;
+		SqlSession session = ssf.openSession();
+		total = session.selectOne("showAllCount");
+		session.close();
+		return total;
+	}
 	public static List<ShowVO> showAllData() {
 		List<ShowVO> list = new ArrayList<ShowVO>();
 		SqlSession session = ssf.openSession(); // getConnection()

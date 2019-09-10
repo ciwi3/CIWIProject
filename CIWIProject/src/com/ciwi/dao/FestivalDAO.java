@@ -11,7 +11,13 @@ public class FestivalDAO {
 	static {
 		ssf = CreateSqlSessionFactory.getSsf();
 	}
-
+	public static int festivalAllCount() {
+		int total=0;
+		SqlSession session = ssf.openSession();
+		total = session.selectOne("festivalAllCount");
+		session.close();
+		return total;
+	}
 	public static void festivalDataInsert(FestivalVO vo) {
 		SqlSession session = ssf.openSession(true); // getConnection()
 		session.insert("festivalDataInsert", vo);

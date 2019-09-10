@@ -9,8 +9,15 @@ public class MovieDAO {
 	private static SqlSessionFactory ssf;
 	static {
 		ssf = CreateSqlSessionFactory.getSsf();
-	}//
-
+	}
+	
+	public static int movieAllCount() {
+		int total=0;
+		SqlSession session = ssf.openSession();
+		total = session.selectOne("movieAllCount");
+		session.close();
+		return total;
+	}
 	public static void movieDataInsert(MovieVO vo) {
 		SqlSession session = ssf.openSession(true);
 		session.insert("movieDataInsert", vo);

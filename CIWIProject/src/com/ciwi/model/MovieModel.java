@@ -146,6 +146,7 @@ public class MovieModel {
 		StringTokenizer st = new StringTokenizer(theater_no, ", ");
 		while (st.hasMoreTokens()) { // 데이터 갯수가 명확하지 않은 경우 hasMoreTokens 사용
 			TheaterVO vo = MovieDAO.theaterData(Integer.parseInt(st.nextToken()));
+			System.out.println(vo);
 			tlist.add(vo);
 		}
 		model.addAttribute("tlist", tlist);
