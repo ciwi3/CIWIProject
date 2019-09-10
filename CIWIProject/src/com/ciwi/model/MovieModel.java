@@ -32,7 +32,7 @@ public class MovieModel {
 			page = "1";
 		}
 		int curPage = Integer.parseInt(page);
-		int rowSize = 8;
+		int rowSize = 12;
 		int start = (curPage * rowSize) - (rowSize - 1);
 		int end = (curPage * rowSize);
 		int BLOCK = 5;
@@ -65,10 +65,12 @@ public class MovieModel {
 	public String movie_detail(Model model) {
 		try {
 			String no = model.getRequest().getParameter("no");
-			HttpSession session = model.getRequest().getSession();
-			String id = (String)session.getAttribute("id");
-			int flag=0;
 			MovieVO mvo = MovieDAO.movieDetailData(Integer.parseInt(no));
+
+			int flag=0;
+			HttpSession session= model.getRequest().getSession();
+			String id=(String) session.getAttribute("idSe");
+			boolean tCheck=false;
 			
 			List<JjimVO> list = new ArrayList<JjimVO>();
 			Map selectMovieJjimMap = new HashMap();
@@ -87,9 +89,33 @@ public class MovieModel {
 			}
 			
 			List<ReviewVO> rlist=ReviewDAO.movieReviewList(mvo);
+
+			String content_no=model.getRequest().getParameter("no");
+			String memid=(String) session.getAttribute("id");
+			
+			ReviewVO vo=new ReviewVO();
+			
+			vo.setContent_no(Integer.parseInt(content_no));
+			vo.setCategory_no(1);
+			vo.setMemid(memid);
+			ReviewVO resultVo=ReviewDAO.myReviewCheck(vo);
+			
+			try {
+				if (resultVo.getRating() == 0) {
+				}
+			} catch (NullPointerException e) {
+				tCheck = false;
+			}
+
+			if (resultVo.getRtext()!=null) {
+				tCheck = true;
+				model.addAttribute("vo", resultVo);
+			}
+			
 			model.addAttribute("mvo", mvo);
 			model.addAttribute("flag", flag);
 			model.addAttribute("rlist", rlist);
+			model.addAttribute("tCheck", tCheck);
 			model.addAttribute("main_jsp", "../contents/movie_detail.jsp");
 		} catch (Exception e) {}
 
@@ -275,6 +301,7 @@ public class MovieModel {
 		String content_no = model.getRequest().getParameter("no");
 		HttpSession session = model.getRequest().getSession();
 		String memid = (String) session.getAttribute("memid");
+		int memno=(Integer) session.getAttribute("memno");
 		String rtext = model.getRequest().getParameter("rtext");
 
 		ReviewVO vo = new ReviewVO();
@@ -282,10 +309,11 @@ public class MovieModel {
 		vo.setRating(Integer.parseInt(rating));
 		vo.setContent_no(Integer.parseInt(content_no));
 		vo.setMemid(memid);
-		vo.setCategory_no(4);
+		vo.setMemno(memno);
+		vo.setCategory_no(2);
 		vo.setRtext(rtext);
 
-		String rCheck = ReviewDAO.ratingcheck(vo);
+		String rCheck = ReviewDAO.ratingCheck(vo);
 
 		if (rCheck != null) {
 			ReviewDAO.reviewModified(vo, memid);
@@ -296,10 +324,10 @@ public class MovieModel {
 				ReviewDAO.reviewInsert(vo);
 			}
 		}
-
-		model.addAttribute("main_jsp", "../contents/curmovie_datail.jsp");
-
-		return "../main/main.jsp";
+		MovieVO mvo=MovieDAO.movieDetailData(Integer.parseInt(content_no));
+		List<ReviewVO> rlist=ReviewDAO.movieReviewList(mvo);
+		model.addAttribute("rlist",rlist);
+		return "../contents/review_ok.jsp";
 	}
 
 	@RequestMapping("contents/curmovie_delete.do")

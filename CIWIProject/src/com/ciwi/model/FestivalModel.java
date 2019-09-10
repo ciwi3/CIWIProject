@@ -138,7 +138,7 @@ public class FestivalModel {
 		vo.setCategory_no(4);
 		vo.setRtext(rtext);
 
-		String rCheck = ReviewDAO.ratingcheck(vo);
+		String rCheck = ReviewDAO.ratingCheck(vo);
 
 		if (rCheck != null) {
 			ReviewDAO.reviewModified(vo, memid);

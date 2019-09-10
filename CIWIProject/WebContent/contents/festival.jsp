@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="../js/bootstrap.min.js"></script>
 </head>
 <body>
 	<!-- HEADER -->
@@ -16,9 +17,9 @@
 			<div class="row">
 				<div class="col-md-offset-1 col-md-10 text-center">
 					<div class="author">
-						<h1 class="text-uppercase">행사, 축제</h1>
-						<p class="lead">리스트를 통해 어떤 행사 및 축제가 있는지 확인하고, 원하는 내용의 정보를 얻어
-							직접 즐겨보세요!</p>
+						<h1 class="text-uppercase">행사 ／ 축제</h1>
+<!-- 						<p class="lead">리스트를 통해 어떤 행사 및 축제가 있는지 확인하고, 원하는 내용의 정보를 얻어
+							직접 즐겨보세요!</p> -->
 					</div>
 				</div>
 			</div>
@@ -28,18 +29,17 @@
 	<!-- /HEADER -->
 
 	<!-- SECTION -->
-	<div class="section">
+	<div class="section" style="padding-top:40px">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
 			<c:forEach var="fvo" items="${flist }">
-				<div class="row">
-					<div class="col-md-10">
+				<div class="col-md-3">
 						<!-- post -->
-						<div class="post post-row">
+						<div class="poster">
 							<a class="post-img"
 								href="../contents/festival_detail.do?fno=${fvo.fno }"><img
-								src="${fvo.poster }" width=100 height=200 alt=""></a>
+								src="${fvo.poster }" width=250px height=350px></a>
 							<div class="post-body">
 								<div class="post-category">
 									<h3 class="post-title">
@@ -56,8 +56,8 @@
 						<!-- /post -->
 						<hr>
 					</div>
-				</div>
 			</c:forEach>
+				</div>
 			<!-- /row -->
 			<div class="row text-center">
 				<ul class="pagination pagination-lg">
@@ -80,10 +80,10 @@
 	</div>
 	<!-- /SECTION -->
 	<!-- jQuery Plugins -->
-	<script src="../js2/jquery.min.js"></script>
-	<script src="../js2/bootstrap.min.js"></script>
-	<script src="../js2/jquery.stellar.min.js"></script>
-	<script src="../js2/main.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/jquery.stellar.min.js"></script>
+	<script src="../js/main.js"></script>
 
 </body>
 </html>
