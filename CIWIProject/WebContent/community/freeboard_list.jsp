@@ -64,7 +64,7 @@ $(function () {
 			             <font style="font-size: larger; font-style: inherit;" color="red">
 			              <strong>${gvo.subject }</strong></font></a>
 		             	<c:if test="${today==gvo.dbday }">
-		             		<sup><font color=pink>new</font></sup>
+		             		<sup><font color=orange>new</font></sup>
 		             	</c:if>
 		             	<c:if test="${gvo.hit>30 }">
 		             		<sup><font color=red>hot</font></sup>
@@ -85,7 +85,7 @@ $(function () {
 	             <font color="blue">[${vo.bccate}]</font>&nbsp;&nbsp; 
 	             <font style="font-size: large; font: bold;">${vo.subject }</font> </a>
 	             	<c:if test="${today==vo.dbday }">
-	             		<sup><font color=pink>new</font></sup>
+	             		<sup><font color=orange>new</font></sup>
 	             	</c:if>
 	             	<c:if test="${vo.hit>30 }">
 		             	<sup><font color=red>hot</font></sup>
