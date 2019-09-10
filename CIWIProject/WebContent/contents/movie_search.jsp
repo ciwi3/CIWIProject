@@ -24,7 +24,7 @@
 							</tr>
 						</table>
 					</c:if>
-				</div>
+				</div> 
 				<h3 class="text-center">검색결과</h3>
 				<!-- 				<table class="table">
 					<tr>
@@ -38,23 +38,23 @@
 				<!-- row -->
 
 				<div class="row">
-					<c:forEach var="svo" items="${slist }">
+					<c:forEach var="mvo" items="${mlist }">
 						<div class="col-md-3">
 							<!-- post -->
 							<div class="poster">
 								<a class="imges"
-									href="../contents/show_detail.do?no=${svo.sno }"><img
-									src="${svo.poster }" width=250px height=350px></a>
+									href="../contents/movie_detail.do?no=${mvo.mno }"><img
+									src="${mvo.poster }" width=250px height=350px></a>
 								<div class="post-body">
 									<div class="post-category">
 										<h3 class="post-title">
-											<a href="../contents/show_detail.do?no=${svo.sno }">${svo.subject }</a>
+											<a href="../contents/movie_detail.do?no=${mvo.mno }">${mvo.title }</a>
 										</h3>
 									</div>
 									<ul class="post-meta">
-										<li>${svo.sdate }</li>
+										<li>${mvo.regdate }</li>
 									</ul>
-									<p>${svo.place }</p>
+									<p>${mvo.actor }</p>
 								</div>
 							</div>
 							<!-- /post -->
@@ -63,7 +63,7 @@
 					</c:forEach>
 				</div>
 				<!-- /row -->
-
+		
 			</div>
 			<!-- /container -->
 		</div>

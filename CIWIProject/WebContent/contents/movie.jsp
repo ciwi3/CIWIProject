@@ -28,36 +28,34 @@
 	<!-- /HEADER -->
 
 	<!-- SEARCH -->
-	<form method="get" action="../contents/show_search.do">
+	<form method="get" action="../contents/movie_search.do">
 		<div class="container-fluid">
 			<div class="row">
-				<div style="padding: 50px,20px,20px,50px">
+				<div style="padding: 50px, 20px, 20px, 50px">
 					<select class="options" name="genre">
 						<optgroup label="장르">
-						<option selected>전체</option>
+							<option selected>전체</option>
 							<c:forEach var="genre" items="${glist }">
 								<option value="${genre.movie_no}">${genre.movie_genre}</option>
 							</c:forEach>
 						</optgroup>
-					</select> <select name="area">
-						<optgroup label="지역">
-							<option selected>상영여부</option>
-							<c:forEach var="area" items="${alist }">
-								<option value="${area.area_no }">${area.area_name}</option>
-							</c:forEach>
+					</select> <select name="onScreen">
+						<optgroup label="상영여부">
+							<option value="1" selected="selected">상영중</option>
+							<option value="0">전체</option>
 						</optgroup>
 					</select> <select name="search">
-							<optgroup>
-							
-								<option >제목</option>
-								<option >내용</option>
-							</optgroup>
-						</select> <input type="text" size=20 name="stext" alt="Search"> <input
-							type="submit" class="btn btn-sm">
-					</div>
+						<optgroup>
+							<option selected="selected">제목</option>
+							<option>배우</option>
+							<option>감독</option>
+						</optgroup>
+					</select> <input type="text" size=20 name="mtext" alt="Search"> <input
+						type="submit" class="btn btn-sm">
 				</div>
 			</div>
-		</form>
+		</div>
+	</form>
 	<!-- SEARCH -->
 
 
@@ -72,7 +70,8 @@
 					<div class="col-md-3">
 						<!-- post -->
 						<div class="poster">
-							<a class="imges" href="../contents/movie_detail.do?no=${mvo.mno }"><img
+							<a class="imges"
+								href="../contents/movie_detail.do?no=${mvo.mno }"><img
 								src="${mvo.poster }" width=250px height=350px></a>
 							<div class="post-body">
 								<div class="post-category">

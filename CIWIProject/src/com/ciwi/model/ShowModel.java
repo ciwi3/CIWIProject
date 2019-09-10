@@ -185,7 +185,6 @@ public class ShowModel {
 		model.addAttribute("glist", glist);
 		model.addAttribute("count", slist.size());
 		System.out.println(slist.size());
-		model.getRequest().getAttribute("count");
 		model.addAttribute("main_jsp", "../contents/show_search.jsp");
 
 		return "../main/main.jsp";

@@ -18,6 +18,7 @@ import com.ciwi.dao.FestivalDAO;
 import com.ciwi.dao.JjimDAO;
 import com.ciwi.dao.MovieDAO;
 import com.ciwi.dao.ReviewDAO;
+import com.ciwi.dao.ShowDAO;
 import com.ciwi.vo.*;
 
 @Controller("MovieModel")
@@ -61,45 +62,71 @@ public class MovieModel {
 		model.addAttribute("main_jsp", "../contents/movie.jsp");
 		return "../main/main.jsp";
 	}
+
+	@RequestMapping("contents/movie_search.do")
+	public String show_Search(Model model) {
+		String genre = model.getRequest().getParameter("genre");
+		String onScreen = model.getRequest().getParameter("onScreen");
+		String searchOption = model.getRequest().getParameter("search");
+		String search = model.getRequest().getParameter("mtext");
+		Map map = new HashMap<>();
+		map.put("movieGenre", genre);
+		map.put("isOnScreen", onScreen);
+		System.out.println(onScreen);
+		map.put("searchOption", searchOption);
+		map.put("search", search);
+
+		List<MovieVO> mlist = MovieDAO.movieSearch(map);
+		List<MovieGenreVO> glist = MovieDAO.getMovieGenreName();
+
+		model.addAttribute("mlist", mlist);
+		model.addAttribute("glist", glist);
+		model.addAttribute("count", mlist.size());
+		System.out.println(mlist.size());
+		model.addAttribute("main_jsp", "../contents/movie_search.jsp");
+
+		return "../main/main.jsp";
+	}
+
 	@RequestMapping("contents/movie_detail.do")
 	public String movie_detail(Model model) {
 		try {
 			String no = model.getRequest().getParameter("no");
 			MovieVO mvo = MovieDAO.movieDetailData(Integer.parseInt(no));
 
-			int flag=0;
-			HttpSession session= model.getRequest().getSession();
-			String id=(String) session.getAttribute("idSe");
-			boolean tCheck=false;
-			
+			int flag = 0;
+			HttpSession session = model.getRequest().getSession();
+			String id = (String) session.getAttribute("idSe");
+			boolean tCheck = false;
+
 			List<JjimVO> list = new ArrayList<JjimVO>();
 			Map selectMovieJjimMap = new HashMap();
 			selectMovieJjimMap.put("category_no", 2);
 			selectMovieJjimMap.put("contents_no", Integer.parseInt(no));
-			if(id==null) {
+			if (id == null) {
 				selectMovieJjimMap.put("id", "-");
 			} else {
 				selectMovieJjimMap.put("id", id);
 			}
 			list = JjimDAO.getJjim(selectMovieJjimMap);
-			if(list.isEmpty()) {
-				flag=0;
+			if (list.isEmpty()) {
+				flag = 0;
 			} else {
 				flag = list.get(0).getFlag();
 			}
-			
-			List<ReviewVO> rlist=ReviewDAO.movieReviewList(mvo);
 
-			String content_no=model.getRequest().getParameter("no");
-			String memid=(String) session.getAttribute("id");
-			
-			ReviewVO vo=new ReviewVO();
-			
+			List<ReviewVO> rlist = ReviewDAO.movieReviewList(mvo);
+
+			String content_no = model.getRequest().getParameter("no");
+			String memid = (String) session.getAttribute("id");
+
+			ReviewVO vo = new ReviewVO();
+
 			vo.setContent_no(Integer.parseInt(content_no));
 			vo.setCategory_no(1);
 			vo.setMemid(memid);
-			ReviewVO resultVo=ReviewDAO.myReviewCheck(vo);
-			
+			ReviewVO resultVo = ReviewDAO.myReviewCheck(vo);
+
 			try {
 				if (resultVo.getRating() == 0) {
 				}
@@ -107,20 +134,22 @@ public class MovieModel {
 				tCheck = false;
 			}
 
-			if (resultVo.getRtext()!=null) {
+			if (resultVo.getRtext() != null) {
 				tCheck = true;
 				model.addAttribute("vo", resultVo);
 			}
-			
+
 			model.addAttribute("mvo", mvo);
 			model.addAttribute("flag", flag);
 			model.addAttribute("rlist", rlist);
 			model.addAttribute("tCheck", tCheck);
 			model.addAttribute("main_jsp", "../contents/movie_detail.jsp");
-		} catch (Exception e) {}
+		} catch (Exception ex) {
+		}
 
 		return "../main/main.jsp";
 	}
+
 	@RequestMapping("contents/movie_jjim_ok.do")
 	public String movie_jjim_ok(Model model) {
 		String mno = model.getRequest().getParameter("mno"); // 찜 등록,삭제 구분
@@ -140,7 +169,7 @@ public class MovieModel {
 		selectMovieJjimMap.put("contents_no", mno);
 		selectMovieJjimMap.put("id", id);
 		list = JjimDAO.getJjim(selectMovieJjimMap); // 카테고리, 글 번호, 아이디, 찜 상태
-														// 정보를 가져옴
+													// 정보를 가져옴
 
 		flag = list.get(0).getFlag();
 		if (list.size() >= 2) {
@@ -154,6 +183,7 @@ public class MovieModel {
 		}
 		return "redirect:../contents/movie_detail.do";
 	}
+
 	// 예약 영화 리스트
 	@RequestMapping("contents/reserve.do")
 	public String movie_reserve_list(Model model) {
@@ -289,7 +319,7 @@ public class MovieModel {
 		model.addAttribute("main_jsp", "../contents/reserve.jsp");
 		return "inwon.jsp";
 	}
-	
+
 	@RequestMapping("contents/curmovie_review_insert.do")
 	public String movie_rating(Model model) {
 		try {
@@ -301,7 +331,7 @@ public class MovieModel {
 		String content_no = model.getRequest().getParameter("no");
 		HttpSession session = model.getRequest().getSession();
 		String memid = (String) session.getAttribute("memid");
-		int memno=(Integer) session.getAttribute("memno");
+		int memno = (Integer) session.getAttribute("memno");
 		String rtext = model.getRequest().getParameter("rtext");
 
 		ReviewVO vo = new ReviewVO();
@@ -324,9 +354,9 @@ public class MovieModel {
 				ReviewDAO.reviewInsert(vo);
 			}
 		}
-		MovieVO mvo=MovieDAO.movieDetailData(Integer.parseInt(content_no));
-		List<ReviewVO> rlist=ReviewDAO.movieReviewList(mvo);
-		model.addAttribute("rlist",rlist);
+		MovieVO mvo = MovieDAO.movieDetailData(Integer.parseInt(content_no));
+		List<ReviewVO> rlist = ReviewDAO.movieReviewList(mvo);
+		model.addAttribute("rlist", rlist);
 		return "../contents/review_ok.jsp";
 	}
 
@@ -344,22 +374,23 @@ public class MovieModel {
 		ReviewDAO.reviewDelete(vo, memid);
 		return "../main/main.jsp";
 	}
-	
+
 	@RequestMapping("contents/insert.do")
 	public String reserveMovie(Model model) {
-		try{
+		try {
 			model.getRequest().setCharacterEncoding("UTF-8");
-		} catch (Exception e) {}
-		HttpSession session=model.getRequest().getSession();
-		String id=(String)session.getAttribute("id");
-		String title=model.getRequest().getParameter("title");
-		String tname=model.getRequest().getParameter("tname");
-		String rdate=model.getRequest().getParameter("rdate");
-		String rtime=model.getRequest().getParameter("rtime");
-		String inwon=model.getRequest().getParameter("inwon");
-		String price=model.getRequest().getParameter("price");
-		
-		ReserveInfoVO vo=new ReserveInfoVO();
+		} catch (Exception e) {
+		}
+		HttpSession session = model.getRequest().getSession();
+		String id = (String) session.getAttribute("id");
+		String title = model.getRequest().getParameter("title");
+		String tname = model.getRequest().getParameter("tname");
+		String rdate = model.getRequest().getParameter("rdate");
+		String rtime = model.getRequest().getParameter("rtime");
+		String inwon = model.getRequest().getParameter("inwon");
+		String price = model.getRequest().getParameter("price");
+
+		ReserveInfoVO vo = new ReserveInfoVO();
 		vo.setR_id(id);
 		vo.setR_title(title);
 		vo.setR_tname(tname);
@@ -368,7 +399,7 @@ public class MovieModel {
 		vo.setR_inwon(inwon);
 		vo.setR_price(price);
 		MovieDAO.reserveMovie(vo);
-		
+
 		model.addAttribute("main_jsp", "redirect../contents/mypage.do");
 		return "../main/main.jsp";
 	}

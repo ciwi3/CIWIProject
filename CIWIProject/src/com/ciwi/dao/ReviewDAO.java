@@ -73,7 +73,6 @@ public class ReviewDAO {
 
 	public static List<ReviewVO> showReviewList(ShowVO vo) {
 		SqlSession session = ssf.openSession();
-		System.out.println(vo.getSubject());
 		List<ReviewVO> list = new ArrayList<ReviewVO>();
 		list = session.selectList("showReviewList", vo);
 		session.close();

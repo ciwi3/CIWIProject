@@ -45,20 +45,21 @@
 					<!-- search & aside toggle -->
 					<div class="col-md-6 col-sm-12"
 						style="padding-top: 25px; padding-left: 40px;">
-						<form class="search" autocomplete="off">
-							<div class="form-group">
-								<div class="input-group">
-									<input type="text" name="q" class="form-control"
-										placeholder="Search">
-									<div class="input-group-btn">
-										<button class="btn btn-primary">
-											<i class="ion-search"></i>
-										</button>
+							<form class="search" autocomplete="off"
+								action="../main/unifiedsearch.do" method="get">
+								<div class="form-group">
+									<div class="input-group">
+										<input type="text" name="text" class="form-control"
+											placeholder="Search">
+										<div class="input-group-btn">
+											<button class="btn btn-primary">
+												<i class="ion-search"></i>
+											</button>
+										</div>
 									</div>
 								</div>
-							</div>
-						</form>
-					</div><!-- 
+							</form>
+						</div><!-- 
 					<div style="padding-left:100px;">
 					</div> -->
 					<div class="col-md-3 col-sm-12 text-right" style="padding-left: 50px;">

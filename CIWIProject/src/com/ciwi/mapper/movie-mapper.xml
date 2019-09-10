@@ -53,29 +53,30 @@
 	</insert>
 	
 	<select id="movieSearch" parameterType="java.util.Map" resultType="MovieVO" >
-	SELECT mno,title,director,actor,poster,regdate,story,genre,category_no,score,grade,num
-	FROM (SELECT mno,title,director,actor,poster,regdate,story,genre,category_no,score,grade,rownum as num FROM movie ORDER BY regdate)
+	SELECT mno,title,director,actor,poster,regdate,story,genre,category_no,score,grade,showing,num
+	FROM (SELECT mno,title,director,actor,poster,regdate,story,genre,category_no,score,grade,showing,rownum as num
+	FROM (SELECT mno,title,director,actor,poster,regdate,story,genre,category_no,score,grade,showing FROM movie ORDER BY regdate DESC))
   <trim prefix="WHERE" prefixOverrides="AND|OR">
 	<if test='moiveGenre !=null and !movieGenre.equals("")'>
 	AND REGEXP_LIKE(genre,#{movieGenre})
 	</if>
-      <if test='searchOption.equals("제목") 	and text!=null  and !text.equals("")'>
- 	AND REGEXP_LIKE(title,#{text})
+      <if test='searchOption.equals("제목") 	and search!=null  and !search.equals("")'>
+ 	AND REGEXP_LIKE(title,#{search})
 	</if>
-     <if test='searchOption.equals("배우") and text!=null  and !text.equals("")'>
-	AND REGEXP_LIKE(actor,#{text})
+     <if test='searchOption.equals("배우") and search!=null  and !search.equals("")'>
+	AND REGEXP_LIKE(actor,#{search})
 	</if>
-	 <if test='searchOption.equals("감독") and text!=null  and !text.equals("")'>
-	AND REGEXP_LIKE(director,#{text})
+	 <if test='searchOption.equals("감독") and search!=null  and !search.equals("")'>
+	AND REGEXP_LIKE(director,#{search})
 	</if>
-	<if test="isOnScreen==0"> <!-- 바꾸던가 해야할듯? -->
-	AND category_no = 2
+	<if test="isOnScreen!=null and isOnScreen==1"> <!-- 바꾸던가 해야할듯? -->
+	AND showing = 1
 	</if>
-	<if test="isOnScreen==1">
-	AND category_no = 3
+	<if test="isOnScreen!=null and isOnScreen==0">
+	AND showing = 0
 	</if>
 	</trim>
-	ORDER BY num
+	ORDER BY num ASC
 	</select>
 	
 	<!-- 현재 예약 가능한 영화 목록 출력 -->
@@ -134,7 +135,7 @@
 		SELECT DISTINCT mno, title,
 		director, actor, poster, regdate,genre,grade,story,category_no,score,theater_no
 		FROM movie
-		WHERE REGEXP_LIKE(genre,(SELECT movie_genre FROM movie_genre WHERE movie_no = #{genre))
+		WHERE REGEXP_LIKE(genre,(SELECT movie_genre FROM movie_genre WHERE movie _no = #{genre))
 	</select>
 	<!-- 장르 여러개 영화 추천 -->
 	<select id="movieRecommendMultiGenre" resultType="MovieVO" parameterType="java.util.Map">
