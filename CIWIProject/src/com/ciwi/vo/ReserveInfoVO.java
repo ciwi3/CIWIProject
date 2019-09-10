@@ -2,7 +2,7 @@ package com.ciwi.vo;
 
 public class ReserveInfoVO {
 	private int r_no;
-	private String r_Id;
+	private String r_id;
 	private String r_title;
 	private String r_tname;
 	private String r_rdate;
@@ -11,23 +11,17 @@ public class ReserveInfoVO {
 	private String r_price;
 	private int r_state;
 	
-	public int getR_state() {
-		return r_state;
+	public String getR_id() {
+		return r_id;
 	}
-	public void setR_state(int r_state) {
-		this.r_state = r_state;
+	public void setR_id(String r_id) {
+		this.r_id = r_id;
 	}
 	public int getR_no() {
 		return r_no;
 	}
 	public void setR_no(int r_no) {
 		this.r_no = r_no;
-	}
-	public String getR_Id() {
-		return r_Id;
-	}
-	public void setR_Id(String r_Id) {
-		this.r_Id = r_Id;
 	}
 	public String getR_title() {
 		return r_title;
@@ -64,5 +58,11 @@ public class ReserveInfoVO {
 	}
 	public void setR_price(String r_price) {
 		this.r_price = r_price;
+	}
+	public int getR_state() {
+		return r_state;
+	}
+	public void setR_state(int r_state) {
+		this.r_state = r_state;
 	}
 }

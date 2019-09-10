@@ -330,7 +330,7 @@ public class MovieModel {
 		String price=model.getRequest().getParameter("price");
 		
 		ReserveInfoVO vo=new ReserveInfoVO();
-		vo.setR_Id(id);
+		vo.setR_id(id);
 		vo.setR_title(title);
 		vo.setR_tname(tname);
 		vo.setR_rdate(rdate);
