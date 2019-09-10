@@ -80,10 +80,14 @@ $(function(){
           <th class="text-center info" width=20%>제목</th>
           <td class="text-left" colspan="3">
           <font color="blue">[${vo.bccate}]</font>&nbsp;
-          ${vo.subject }</td>
+          <font style="font-size: large;">${vo.subject }</font></td>
         </tr>
         <tr>
-          <td colspan="4" class="text-left" valign="top" height="200">${vo.content }</td>
+        	<%-- <td colspan="4" class="text-left" valign="top" height="250">
+        		<textarea rows="10" cols="150" readonly="readonly">${vo.content }</textarea>
+        	</td> --%>
+          <td colspan="4" class="text-left" valign="top" height="200">
+          <pre style="white-space: pre-line;border: none; background-color: white; font-size: 13pt; font-family: fantasy;">${vo.content }</pre></td>
         </tr>
         <tr>
           <td colspan="4" class="text-right">

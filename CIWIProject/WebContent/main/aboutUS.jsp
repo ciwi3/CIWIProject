@@ -28,9 +28,10 @@
 				</tr>
 				<tr>
 				<td>
-					<pre style="white-space: pre-line;"><strong style="font-size: medium;">CIWI</strong>는 대한민국 문화체육관광부와 소속기관 및 공공기관에서 생산되는 다양한 한국의 문화예술,영화  등을 제공하여 한국의 문화를 보다 풍족하고 편리하게 이용할 수 있도록 지원하는 통합문화정보사이트 입니다. 
-					문화체험(공연, 전시, 행사 등), 소식 등을 주요 메뉴로 서비스하고 있습니다. 
-					<strong style="font-size: medium;">CIWI</strong>는 앞으로도 한국의 공공문화정보는 물론 민간의 문화정보연계를 점차 확대하고, 양질의 문화예술 콘텐츠를 제공하여 사용자 중심의 서비스를 구현해 나가겠습니다.</pre>
+					<pre style="white-space: pre-line; border: none; background-color: white; font-size: 13pt; font-family: sans-serif;">
+					<strong style="font-size: medium;">C.I.W.I</strong>는 대한민국 문화체육관광부와 소속기관 및 공공기관에서 생산되는 다양한 한국의 문화예술,영화  등을 제공하여 한국의 문화를 보다 풍족하고 편리하게 이용할 수 있도록 지원하는 통합문화정보사이트 입니다. 
+					<strong style="font-size: medium;">C.I.W.I</strong>는 문화체험(공연, 전시, 행사 ), 예약,소식 리뷰 등을 주요 메뉴로 서비스하고 있습니다. 
+					<strong style="font-size: medium;">C.I.W.I</strong>는 앞으로도 한국의 공공문화정보는 물론 민간의 문화정보연계를 점차 확대하고, 양질의 문화예술 콘텐츠를 제공하여 사용자 중심의 서비스를 구현해 나가겠습니다.</pre>
 				</td>
 				</tr>
 			</table>

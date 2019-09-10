@@ -10,7 +10,7 @@
 <style type="text/css">
 .row {
    margin: 0px auto;
-   width:900px;
+   width:1000px;
 }
 
 </style>
@@ -42,18 +42,19 @@ function del() {
 			<div style="height: auto; width: 100%; border:2px solid gold;">
 			<table class="table">
 				<tr>
-					<th class="text-left">${vo.subject }</th>
+					<th class="text-left"><font style="font-size: large;;">${vo.subject }</font></th>
 					<th class="text-right">${vo.dbday }</th>
 				</tr>
 				<tr>
-					<th class="text-left">관리자</th>
+					<th class="text-left"><font style="font-size: 13pt;">관리자</font></th>
 					<th class="text-right">조회수 : ${vo.hit }</th>
 				</tr>
 			</table>
 			<table class="table" frame="void">
 				<tr>
 					<td colspan="2" class="text-left" valign="top" height="200">
-					<pre style="white-space: pre-line;">${vo.content }</pre></td>
+					<pre style="white-space: pre-line; border: none; background-color: white; font-size: 13pt; font-family: sans-serif;">
+					${vo.content }</pre></td>
 				</tr>
 			</table>
 			</div>

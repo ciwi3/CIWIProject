@@ -60,7 +60,9 @@ $(function () {
 				  <tr bgcolor="f200f200f200">
 		             <td width=10% class="text-center"><strong style="color: red">공지</strong></td>
 		             <td width=45% class="text-left"><a href="freeboard_detail.do?no=${gvo.no }&page=${curpage }">
-		             <font color="red">[${gvo.bccate}]&nbsp; ${gvo.subject }</font></a>
+			             <font color="red">[${gvo.bccate}]</font>&nbsp; 
+			             <font style="font-size: larger; font-style: inherit;" color="red">
+			              <strong>${gvo.subject }</strong></font></a>
 		             	<c:if test="${today==gvo.dbday }">
 		             		<sup><font color=pink>new</font></sup>
 		             	</c:if>
@@ -80,7 +82,8 @@ $(function () {
 	           <tr>
 	             <td width=10% class="text-center">${count }</td>
 	             <td width=45% class="text-left"><a href="freeboard_detail.do?no=${vo.no }&page=${curpage }">
-	             <font color="blue">[${vo.bccate}]</font>&nbsp;&nbsp; ${vo.subject } </a>
+	             <font color="blue">[${vo.bccate}]</font>&nbsp;&nbsp; 
+	             <font style="font-size: large; font: bold;">${vo.subject }</font> </a>
 	             	<c:if test="${today==vo.dbday }">
 	             		<sup><font color=pink>new</font></sup>
 	             	</c:if>

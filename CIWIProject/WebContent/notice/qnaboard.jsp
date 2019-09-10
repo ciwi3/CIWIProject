@@ -37,7 +37,8 @@
 	<c:forEach var="i" items="${list }">
 	  <h3>${i.subject }</h3>
 	  <div>
-	    <pre style="white-space: pre-line;">${i.content }</pre>
+	    <pre style="white-space: pre-line;border: none; background-color: white; font-size: medium;">
+	    ${i.content }</pre>
 	  </div>
 	</c:forEach>
 </div>
