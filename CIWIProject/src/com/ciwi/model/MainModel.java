@@ -27,6 +27,13 @@ public class MainModel {
 
 	@RequestMapping("main/main.do")
 	public String main_page(Model model) {
+		List<FestivalVO> flist=FestivalDAO.festivalMainList();
+		List<MovieVO> mlist=MovieDAO.movieListData();
+		
+		model.addAttribute("flist", flist);
+		model.addAttribute("mlist", mlist);
+		
+		
 		List<FestivalVO> fList = null;
 		List<ShowVO> sList = null;
 		List<MovieVO> mList = null;
@@ -83,7 +90,7 @@ public class MainModel {
 					map.put("first", Integer.parseInt(firstGenre));
 					map.put("last", Integer.parseInt(lastGenre));
 					mList = MovieDAO.movieRecommendMultiGenre(map);
-					bList = nm.blogGetData(firstGenre + " " + lastGenre + " 영화");
+					bList = nm.blogGetData(firstGenre + " " + lastGenre + " �쁺�솕");
 				} else {
 					mList = MovieDAO.movieRecommendSingleGenre(Integer.parseInt(vo.getGenre()));
 					bList = nm.blogGetData(vo.getGenre());
@@ -121,7 +128,7 @@ public class MainModel {
 
 		String text = model.getRequest().getParameter("text");
 		Map map = new HashMap<>();
-		map.put("searchOption", "�젣紐�");
+		map.put("searchOption", "占쎌젫筌륅옙");
 		map.put("search", text);
 		List<FestivalVO> fList = FestivalDAO.festivalSearch(map);
 		List<ShowVO> sList = ShowDAO.showSearch8(map);

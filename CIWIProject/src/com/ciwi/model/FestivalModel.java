@@ -14,14 +14,6 @@ import com.ciwi.vo.ReviewVO;
 
 @Controller("festivalModel")
 public class FestivalModel {
-	@RequestMapping("main/main.do")
-	public String festival_main_list(Model model) {
-		List<FestivalVO> flist=FestivalDAO.festivalMainList();
-		
-		model.addAttribute("flist", flist);
-		model.addAttribute("main_jsp", "../main/section.jsp");
-		return "../main/main.jsp";
-	}
 	@RequestMapping("contents/festival.do")
 	public String festival_list(Model model) {
 		String page = model.getRequest().getParameter("page");

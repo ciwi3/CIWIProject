@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.ciwi.controller.Controller;
 import com.ciwi.controller.Model;
 import com.ciwi.controller.RequestMapping;
+import com.ciwi.dao.FestivalDAO;
 import com.ciwi.dao.JjimDAO;
 import com.ciwi.dao.MovieDAO;
 import com.ciwi.dao.ReviewDAO;

@@ -81,6 +81,7 @@
 		From movie
 		Where category_no=2
 		And mno Between 1 And 10
+		And showing=1
 	</select>
 	<!-- 선택한 영화를 제공하는 상영관 목록 출력 -->
 	<select id="theaterData" resultType="TheaterVO" parameterType="int">
