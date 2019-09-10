@@ -15,6 +15,14 @@ public class MovieVO {
 	private String score;
 	private int category_no;
 	private String theater_no;
+	private int showing;
+	
+	public int getShowing() {
+		return showing;
+	}
+	public void setShowing(int showing) {
+		this.showing = showing;
+	}
 
 	private int count = 0;
 

@@ -78,10 +78,9 @@ public class FestivalManager {
 						vo.setHomepage(hompage.attr("href"));
 						vo.setAddress(addr);
 						vo.setTel(tel.text());
-						vo.setShowtime("-");
 						vo.setFlike(0);
 						vo.setFestival_no(1);
-						vo.setCategory_no(1);
+						vo.setCategory_no(3); // category_no = 3 (행사/축제)
 						if (area.contains("서울")) {
 							vo.setArea_no(1);
 						} else if (area.contains("부산")) {

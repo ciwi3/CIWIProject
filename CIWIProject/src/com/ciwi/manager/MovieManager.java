@@ -70,7 +70,7 @@ public class MovieManager {
 						System.out.println("=================================================");
 						
 						MovieVO vo=new MovieVO();
-						vo.setMno(k+77);
+						vo.setMno(k+74);
 						vo.setTitle(title.text());
 						vo.setPoster(poster.attr("src"));
 						vo.setDirector(director.text());
@@ -79,9 +79,10 @@ public class MovieManager {
 						vo.setGrade(grad);
 						vo.setRegdate(regdate.text());
 						vo.setStory(story.text());
-						vo.setCategory_no(3); // category_no = 3 (전체 영화)
+						vo.setCategory_no(2); // category_no = 2 (영화)
 						vo.setScore(sco);
 						vo.setTheater_no("0"); // 0=상영관 없음
+						vo.setShowing(0);
 						list.add(vo);
 						k++;  
 					}catch (Exception e) {

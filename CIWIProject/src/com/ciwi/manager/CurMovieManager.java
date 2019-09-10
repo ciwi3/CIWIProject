@@ -16,29 +16,28 @@ public class CurMovieManager {
 
 	public static void main(String[] args) {
 		CurMovieManager cm = new CurMovieManager();
-		// List<MovieVO> list=cm.movieAlldata();
-		/*int i=1;
+		List<MovieVO> list=cm.movieAlldata();
+		int i=1;
 		for(MovieVO vo:list) {
 			MovieDAO.movieDataInsert(vo);
 			System.out.println("i="+i);
 			i++;
 		}
 		System.out.println("save end");
-		cm.theaterData();*/
+		cm.theaterData();
 		
 		// 167개의 극장에서 각 날짜에 해당하는 상영시간표에 난수를 넣음
-		/*int k=1;
-		for(int i=1; i<=167; i++) { // 극장 총 167개
+		int k=1;
+		for(int a=1; a<=167; a++) { // 극장 총 167개
 			DateInfoVO vo=new DateInfoVO();
-			vo.setDate_no(i);
+			vo.setDate_no(a);
 			vo.setTime_no(cm.reserveDayData());
 			MovieDAO.dateInsert(vo);
 			System.out.println("k= "+k);
 			k++;
-		}*/
+		}
 		// 상영관 마다 날짜 난수 발생
-		/*int k=1;
-		for(int i=1; i<=30; i++) { // 9월 = 30일
+		for(int b=1; b<=30; b++) { // 9월 = 30일
 			DateInfoVO vo=new DateInfoVO();
 			vo.setDate_no(i);
 			vo.setTime_no(cm.reserveTimeData());
@@ -46,7 +45,7 @@ public class CurMovieManager {
 			System.out.println("k= "+k);
 			k++;
 		}
-		System.out.println("저장 완료");*/
+		System.out.println("저장 완료");
 	}
 
 public List<MovieVO> movieAlldata(){
@@ -106,11 +105,12 @@ public List<MovieVO> movieAlldata(){
 					vo.setGrade(grade.text().substring(4, grade.text().indexOf("가")+1));
 					vo.setRegdate(redate.text());
 					vo.setStory(story.text());
-					vo.setCategory_no(2); // category_no = 2 (현재 상영중인 영화)
+					vo.setCategory_no(2); // category_no = 2 (영화)
 					vo.setScore(sco);
 					// 난수 발생 시킴
 					String theaterData=CurMovieManager.theaterData();
 					vo.setTheater_no(theaterData); // 현재 상영중인 영화의 상영관 난수 발생시켜야됨
+					vo.setShowing(1);
 					list.add(vo);
 					System.out.println("================================================");
 					k++;

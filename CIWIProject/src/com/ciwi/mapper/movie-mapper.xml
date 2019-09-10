@@ -15,7 +15,8 @@
 		#{story},
 		#{category_no},
 		#{score},
-		#{theater_no}
+		#{theater_no},
+		#{showing}
 		)
 	</insert>
 	<!-- 극장정보 삽입 -->

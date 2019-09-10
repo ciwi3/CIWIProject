@@ -55,27 +55,27 @@ public class ShowManager {
 						vo.setAge(age.text());
 						vo.setTel(tel.text());
 						vo.setSlike(0);
-						vo.setCategory_no(4);
+						vo.setCategory_no(1); // category_no = 1 (공연/전시)
 					/*	switch (genre.text()) {
-						case "����/�ܼ�Ʈ":
+						case "占쏙옙占쏙옙/占쌤쇽옙트":
 							vo.setGenre_no(1);
 							break;
-						case "������/�����":
+						case "占쏙옙占쏙옙占쏙옙/占쏙옙占쏙옙占�":
 							vo.setGenre_no(2);
 							break;
-						case "����":
+						case "占쏙옙占쏙옙":
 							vo.setGenre_no(3);
 							break;
-						case "����":
+						case "占쏙옙占쏙옙":
 							vo.setGenre_no(4);
 							break;
-						case "����/�߷�":
+						case "占쏙옙占쏙옙/占쌩뤄옙":
 							vo.setGenre_no(5);
 							break;
-						case "�Ƶ�/����":
+						case "占싣듸옙/占쏙옙占쏙옙":
 							vo.setGenre_no(6);
 							break;
-						case "����":
+						case "占쏙옙占쏙옙":
 							vo.setGenre_no(7);
 							break;
 						default:
@@ -84,55 +84,55 @@ public class ShowManager {
 						}
 
 						String area = "";
-						if (address.text().contains("�ּ�-")) {
+						if (address.text().contains("占쌍쇽옙-")) {
 							area = address.text().substring(3, address.text().length());
 						} else {
 							area = address.text().substring(2, address.text().length());
 						}
 						vo.setAddress(area);
 
-						if (area.contains("����Ư��")) {
+						if (area.contains("占쏙옙占쏙옙특占쏙옙")) {
 							vo.setArea_no(1);
-						} else if (area.contains("�λ�")) {
+						} else if (area.contains("占싸삼옙")) {
 							vo.setArea_no(2);
-						} else if (area.contains("�뱸")) {
+						} else if (area.contains("占쎈구")) {
 							vo.setArea_no(3);
-						} else if (area.contains("��õ")) {
+						} else if (area.contains("占쏙옙천")) {
 							vo.setArea_no(4);
-						} else if (area.contains("����")) {
+						} else if (area.contains("占쏙옙占쏙옙")) {
 							vo.setArea_no(5);
-						} else if (area.contains("����")) {
+						} else if (area.contains("占쏙옙占쏙옙")) {
 							vo.setArea_no(6);
-						} else if (area.contains("���")) {
+						} else if (area.contains("占쏙옙占�")) {
 							vo.setArea_no(7);
-						} else if (area.contains("����")) {
+						} else if (area.contains("占쏙옙占쏙옙")) {
 							vo.setArea_no(8);
-						} else if (area.contains("���")) {
+						} else if (area.contains("占쏙옙占�")) {
 							vo.setArea_no(9);
-						} else if (area.contains("����")) {
+						} else if (area.contains("占쏙옙占쏙옙")) {
 							vo.setArea_no(10);
-						} else if (area.contains("��û�ϵ�")) {
+						} else if (area.contains("占쏙옙청占싹듸옙")) {
 							vo.setArea_no(11);
-						} else if (area.contains("��û����")) {
+						} else if (area.contains("占쏙옙청占쏙옙占쏙옙")) {
 							vo.setArea_no(12);
-						} else if (area.contains("����ϵ�")) {
+						} else if (area.contains("占쏙옙占쏙옙溝占�")) {
 							vo.setArea_no(13);
-						} else if (area.contains("���󳲵�")) {
+						} else if (area.contains("占쏙옙占쏢남듸옙")) {
 							vo.setArea_no(14);
-						} else if (area.contains("���ϵ�")) {
+						} else if (area.contains("占쏙옙占싹듸옙")) {
 							vo.setArea_no(15);
-						} else if (area.contains("��󳲵�")) {
+						} else if (area.contains("占쏙옙車껨占�")) {
 							vo.setArea_no(16);
-						} else if (area.contains("����")) {
+						} else if (area.contains("占쏙옙占쏙옙")) {
 							vo.setArea_no(17);
 						} else {
 							vo.setArea_no(18);
 						}
-						vo.setSource("����");
+						vo.setSource("占쏙옙占쏙옙");
 						try {
 							vo.setHomepage(homepage.text());
 						} catch (NullPointerException e) {
-							vo.setHomepage("����");
+							vo.setHomepage("占쏙옙占쏙옙");
 						}
 
 						System.out.println(subject.text());
@@ -145,7 +145,7 @@ public class ShowManager {
 						System.out.println(showtime.text());
 						System.out.println(age.text());
 						System.out.println(tel.text());
-						if (address.text().contains("�ּ�-")) {
+						if (address.text().contains("占쌍쇽옙-")) {
 							System.out.println((address.text().substring(3, address.text().length())));
 						} else {
 							System.out.println((address.text().substring(2, address.text().length())));
