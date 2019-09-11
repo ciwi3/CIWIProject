@@ -306,15 +306,20 @@
 						</form>
 					</div>
 				</c:if>
-				<div class="box-footer">
+	<div class="box-footer" style="width: 800px; height: auto;">
 					<form id="reviewListfrm" name="reviewList" method="post">
 						<div class="reviewList text-center" id="resultlist">
-							<c:forEach var="vo" items="${ rlist}">
-								<tr>
-									<td>${vo.memid}</td>
-									<td>${vo.rating}</td>
-								</tr>
-							</c:forEach>
+							<table class="table">
+								<c:forEach var="vo" items="${ rlist}">
+									<tr>
+										<td class="text-left"><strong style="font-size: large; color: orange;"> 작성자 : </strong>&nbsp;&nbsp;${vo.memid}</td>
+										<td class="text-right">  <strong style="font-size: large; color: orange;"> 평점 : </strong> &nbsp;&nbsp;${vo.rating}</td>
+									</tr>
+									<tr>
+										<td colspan="2" class="text-left"><pre> ${vo.rtext }</pre></td>
+									</tr>
+								</c:forEach>
+							</table>
 						</div>
 					</form>
 				</div>
