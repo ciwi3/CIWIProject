@@ -28,8 +28,8 @@ $(function(){
 </head>
 <body>
 	<div class="container">
-	<h2 class="text-center">비밀번호 찾기</h2><br>
-		<div class="row">
+	<h2 class="text-center" style="padding: 1cm;">비밀번호 찾기</h2><br>
+		<div class="row" style="margin-left: 30%;">
 			<form method="post" action="../member/pwdFind_ok.do">
 				<table class="table">
 					<tr>

@@ -37,8 +37,8 @@ $(function(){
 </head>
 <body>
 	<div class="container">
-	<h2 class="text-center">아이디 찾기</h2><br>
-		<div class="row">
+	<h2 class="text-center" style="padding: 1cm;">아이디 찾기</h2><br>
+		<div class="row" style="margin-left: 30%;">
 			<form method="post" action="../member/idFind_ok.do">
 				<table class="table">
 					<tr>
