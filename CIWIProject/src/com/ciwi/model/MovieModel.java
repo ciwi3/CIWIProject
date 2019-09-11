@@ -123,7 +123,7 @@ public class MovieModel {
 			ReviewVO vo = new ReviewVO();
 
 			vo.setContent_no(Integer.parseInt(content_no));
-			vo.setCategory_no(1);
+			vo.setCategory_no(2);
 			vo.setMemid(memid);
 			ReviewVO resultVo = ReviewDAO.myReviewCheck(vo);
 
@@ -145,6 +145,7 @@ public class MovieModel {
 			model.addAttribute("tCheck", tCheck);
 			model.addAttribute("main_jsp", "../contents/movie_detail.jsp");
 		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 
 		return "../main/main.jsp";
@@ -320,7 +321,7 @@ public class MovieModel {
 		return "inwon.jsp";
 	}
 
-	@RequestMapping("contents/curmovie_review_insert.do")
+	@RequestMapping("contents/movie_review_insert.do")
 	public String movie_rating(Model model) {
 		try {
 			model.getRequest().setCharacterEncoding("UTF-8");
@@ -330,13 +331,13 @@ public class MovieModel {
 		String rating = model.getRequest().getParameter("rating");
 		String content_no = model.getRequest().getParameter("no");
 		HttpSession session = model.getRequest().getSession();
-		String memid = (String) session.getAttribute("memid");
+		String memid = (String) session.getAttribute("id");
 		int memno = (Integer) session.getAttribute("memno");
 		String rtext = model.getRequest().getParameter("rtext");
 
 		ReviewVO vo = new ReviewVO();
 
-		vo.setRating(Integer.parseInt(rating));
+		vo.setRating(Double.parseDouble(rating));
 		vo.setContent_no(Integer.parseInt(content_no));
 		vo.setMemid(memid);
 		vo.setMemno(memno);
@@ -360,11 +361,11 @@ public class MovieModel {
 		return "../contents/review_ok.jsp";
 	}
 
-	@RequestMapping("contents/curmovie_delete.do")
+	@RequestMapping("contents/movie_delete.do")
 	public String reviewDelete(Model model) {
 		String rno = model.getRequest().getParameter("rno");
 		HttpSession session = model.getRequest().getSession();
-		String memid = (String) session.getAttribute("memid");
+		String memid = (String) session.getAttribute("id");
 
 		ReviewVO vo = new ReviewVO();
 
