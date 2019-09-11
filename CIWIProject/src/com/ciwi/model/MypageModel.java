@@ -68,6 +68,13 @@ public class MypageModel {
 		MypageDAO.cashOkData(id);
 		return "redirect:../mypage/adminpage.do";
 	}
+	//관리자 예매내역 승인완료
+	@RequestMapping("mypage/reserveOk.do")
+	public String reserveOkData(Model model){
+		String id=model.getRequest().getParameter("id");
+		MypageDAO.reserveOkData(id);
+		return "redirect:../mypage/adminreserve.do";
+	}
 	//사용자 예매 데이터 출력
 	@RequestMapping("mypage/reservepage.do")
 	public String reserveData(Model model){

@@ -45,10 +45,10 @@ $(function(){
 							<td>${vo.cash_date }</td>
 							<td>${vo.cash_pay }</td>
 							<c:if test="${vo.cash_state==0}">
-							<td>승인대기중</td>
+							<td style="color: red">승인대기중</td>
 							</c:if>
 							<c:if test="${vo.cash_state==1}">
-							<td>승인처리완료</td>
+							<td style="color: blue">승인처리완료</td>
 							</c:if>
 							</tr>
 						</c:forEach>

@@ -53,18 +53,21 @@
                     <!-- .entry-header -->
                     <div class="countdown flex flex-wrap justify-content-between" data-date="2018/06/06">
                         <div class="countdown-holder">
-                            <div class="movie">0</div>
-                            <label>영화</label>
+                            <div class="movie">${mCount }</div>
+                            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            영화</label>
                         </div><!-- .countdown-holder -->
 
                         <div class="countdown-holder">
-                            <div class="show">0</div>
-                            <label style="margin-left: -25px;">공연 / 전시</label>
+                            <div class="show">${sCount }</div>
+                            <label style="margin-left: -25px;">&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;공연 / 전시</label>
                         </div><!-- .countdown-holder -->
 
                         <div class="countdown-holder">
-                            <div class="festival">0</div>
-                            <label>페스티발</label>
+                            <div class="festival">${fCount }</div>
+                            <label>&nbsp;&nbsp;페스티발</label>
                         </div><!-- .countdown-holder -->
                     </div><!-- .countdown -->
                 </div><!-- .col-12 -->

@@ -14,8 +14,8 @@
 }
 .row2 {
 	margin: 0px auto;
-	width: 700px;
-	height:500px;
+	width: 600px;
+	height:400px;
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -62,7 +62,6 @@
 							<td class="text-left" width=80%>${vo.phone }
 							</td>
 						</tr>
-						<tr>
 						<tr>
 							<th class="text-right" width=20% ><font size="2px">우편번호 : </font></th>
 							<td class="text-left" width=80%>${vo.post }

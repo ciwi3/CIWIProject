@@ -68,6 +68,17 @@ public class MypageDAO {
 			e.printStackTrace();
 		}
 	}
+	//예매 승인 완료
+	public static void reserveOkData(String id){
+		SqlSession session=null;
+		try{
+			session=ssf.openSession();
+			session.update("reserveOkData",id);
+			session.commit();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	//사용자 예매 정보 출력
 	public static List<ReserveInfoVO> reserveData(String id){
 		List<ReserveInfoVO> list = new ArrayList<ReserveInfoVO>();

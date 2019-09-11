@@ -400,7 +400,7 @@ public class MovieModel {
 		vo.setR_price(price);
 		MovieDAO.reserveMovie(vo);
 
-		model.addAttribute("main_jsp", "redirect../contents/mypage.do");
+		model.addAttribute("main_jsp", "redirect../mypage/reservepage.do");
 		return "../main/main.jsp";
 	}
 }

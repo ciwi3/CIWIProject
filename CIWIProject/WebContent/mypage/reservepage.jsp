@@ -16,9 +16,9 @@
 				<div class="row">
 					<table class="table table-striped">
 				<tr class="warning">
-					<th width=10% class="text-center">번호</th>
+					<th width=5% class="text-center">번호</th>
 					<th width=10% class="text-center">아이디</th>
-					<th width=10% class="text-center">영화명</th>
+					<th width=16% class="text-center">영화명</th>
 					<th width=10% class="text-center">극장명</th>
 					<th width=15% class="text-center">예매일</th>
 					<th width=10% class="text-center">예매시간</th>
@@ -37,10 +37,10 @@
 					<td width=10% class="text-center">${vo.r_inwon }</td>
 					<td width=10% class="text-center">${vo.r_price }</td>
 					<c:if test="${vo.r_state==0}">
-							<td width=10% class="text-center">승인대기중</td>
+							<td width=10% class="text-center" style="color: red">승인대기중</td>
 					</c:if>
 					<c:if test="${vo.r_state==1}">
-							<td width=10% class="text-center">승인완료</td>
+							<td width=10% class="text-center" style="color: blue">승인완료</td>
 					</c:if>
 					</tr>
 				</c:forEach>

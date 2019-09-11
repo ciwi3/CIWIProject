@@ -79,7 +79,7 @@ function reserve() {
 		},
 		success:function(response) {
 			alert("예매 신청이 완료됐습니다.");
-			location.href="../mypage/mypage.do"
+			location.href="../mypage/reservepage.do"
 		}
 	})
 }
