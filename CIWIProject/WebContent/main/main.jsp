@@ -117,7 +117,6 @@
 							<div class="dropdown-body">
 								<ul class="dropdown-list">
 									<li><a href="../main/aboutUS.do">ABOUT US</a></li>
-									<li><a data-toggle="tab" href="#tab2">GUIED</a></li>
 								</ul>
 							</div>
 						</div></li> &nbsp;&nbsp;&nbsp;
@@ -130,7 +129,7 @@
 									<li class="active"><a href="../contents/show.do">PERFORMANCE
 											/ EXHIBITION</a></li>
 									<li><a href="../contents/movie.do">MOVIE</a></li>
-									<li><a href="../contents/festival.do">CONCERT</a></li>
+									<li><a href="../contents/festival.do">FESTIVAL</a></li>
 								</ul>
 							</div>
 						</div></li> &nbsp;&nbsp;&nbsp;
@@ -140,10 +139,7 @@
 								<!--  										<div class="col-md-3"> -->
 								<!--<h4 class="dropdown-heading">Categories</h4> -->
 								<ul class="dropdown-list">
-									<li><a data-toggle="tab" href="#tab1">PERFORMANCE /
-											EXHIBITION</a></li>
 									<li><a href="../contents/reserve.do">MOVIE</a></li>
-									<li><a data-toggle="tab" href="#tab3">CONCERT</a></li>
 								</ul>
 								<!-- 										</div> -->
 							</div>
