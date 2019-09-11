@@ -1,3 +1,4 @@
+<%@page import="sun.reflect.ReflectionFactory.GetReflectionFactoryAction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -347,60 +348,19 @@ function sample6_execDaumPostcode() {
 								<td class="text-left" width=80%>
 								<select name=cate id=cate1>
 									<option>카테고리선택</option>
-										<option>영화</option>
-										<option>공연 전시</option>
-										<option>페스티벌</option>
+									<option>공연/전시</option>
+									<option>영화</option>
+									<option>페스티벌</option>
 								</select>
 								<select name=genre id=genre1>
 										<option>장르선택</option>
-										<option>액션</option>
-										<option>코미디</option>
-										<option>애니매이션</option>
-										<option>모험</option>
-										<option>가족</option>
-										<option>드라마</option>
-										<option>판타지</option>
-										<option>뮤지컬</option>
-										<option>멜로/로멘스</option>
-										<option>다큐멘터리</option>
-										<option>미스터리</option>
-										<option>공포</option>
-										<option>SF</option>
-										<option>공연실황</option>
-										<option>범죄</option>
-										<option>스릴러</option>
-										<option>기타</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-							<th class="text-right" width=20%><font size="2px">      </font>
-								<td class="text-left" width=80%>
-								<select name=cate id=cate2 >
-									<option>카테고리선택</option>
-									<option>영화</option>
-									<option>공연 전시</option>
+									<c:forEach var="mvo" items="${mlist }">
+										<option>${mvo.movie_genre }</option>
+									</c:forEach>
+									<c:forEach var="svo" items="${slist }">
+										<option>${svo.show_genre }</option>
+									</c:forEach>
 									<option>페스티벌</option>
-								</select>
-								<select name=genre id=genre2>
-										<option>장르선택</option>
-										<option>액션</option>
-										<option>코미디</option>
-										<option>애니매이션</option>
-										<option>모험</option>
-										<option>가족</option>
-										<option>드라마</option>
-										<option>판타지</option>
-										<option>뮤지컬</option>
-										<option>멜로/로멘스</option>
-										<option>다큐멘터리</option>
-										<option>미스터리</option>
-										<option>공포</option>
-										<option>SF</option>
-										<option>공연실황</option>
-										<option>범죄</option>
-										<option>스릴러</option>
-										<option>기타</option>
 									</select>
 								</td>
 							</tr>

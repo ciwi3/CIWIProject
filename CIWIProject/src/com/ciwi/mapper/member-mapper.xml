@@ -90,6 +90,13 @@
 	<select id="memberGetGenreAndCategory" resultType="MemberVO" parameterType="String">
 		SELECT cate,genre FROM member WHERE ID = #{id}
 	</select>
+	<!-- 장르 -->
+	<select id="joinMovieGenreData" resultType="MovieGenreVO">
+		select * from movie_genre
+	</select>
+	<select id="joinShowGenreData" resultType="ShowGenreVO">
+		select * from show_genre
+	</select>
 </mapper>
 
 

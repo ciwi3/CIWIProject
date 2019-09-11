@@ -8,6 +8,9 @@ import com.ciwi.controller.Model;
 import com.ciwi.controller.RequestMapping;
 import com.ciwi.dao.MemberDAO;
 import com.ciwi.vo.MemberVO;
+import com.ciwi.vo.MovieGenreVO;
+import com.ciwi.vo.ShowGenreVO;
+
 import net.bytebuddy.matcher.ModifierMatcher.Mode;
 
 @Controller("MemberModel")
@@ -21,7 +24,6 @@ public class MemberModel {
 		session.setAttribute("count", count);
 		return "../member/join_ok.jsp"; // 띄울 화면으로 이동.
 	}
-
 	// 회원가입: 휴대폰번호 중복 확인
 	@RequestMapping("member/join_phone_ok.do")
 	public String join_phone(Model model) {
@@ -32,14 +34,16 @@ public class MemberModel {
 		model.addAttribute("count", count);
 		return "../member/join_phone_ok.jsp";
 	}
-
 	// 회원가입:화면이동
 	@RequestMapping("member/join.do")
 	public String member_join(Model model) {
+		List<MovieGenreVO> mlist = MemberDAO.joinMovieGenreData();
+		List<ShowGenreVO> slist= MemberDAO.joinShowGenreData();
+		model.addAttribute("mlist", mlist);
+		model.addAttribute("slist", slist);
 		model.addAttribute("main_jsp", "../member/join.jsp");
 		return "../main/main.jsp";
 	}
-
 	// 회원가입 : 데이터넣기
 	@RequestMapping("member/insert.do")
 	public String member_join_insert(Model model) {
@@ -60,7 +64,8 @@ public class MemberModel {
 		String sub_addr = model.getRequest().getParameter("sub_addr");
 		String cate = model.getRequest().getParameter("cate1") + "," + model.getRequest().getParameter("cate2");
 		String genre = model.getRequest().getParameter("genre1") + "," + model.getRequest().getParameter("genre2");
-
+		
+		
 		MemberVO vo = new MemberVO();
 		vo.setId(id);
 		vo.setPwd(pwd);
@@ -77,7 +82,6 @@ public class MemberModel {
 		MemberDAO.memberInsertData(vo);
 		return "redirect:../member/join_finish.do"; // 값을 전송
 	}
-
 	// 회원가입 완료
 	@RequestMapping("member/join_finish.do")
 	public String member_join_finish(Model model) {
@@ -86,7 +90,6 @@ public class MemberModel {
 		model.addAttribute("main_jsp", "../member/join_finish.jsp");
 		return "../main/main.jsp";
 	}
-
 	// 회원수정 화면이동
 	@RequestMapping("member/join_modify.do")
 	public String join_modify(Model model) {
@@ -249,5 +252,5 @@ public class MemberModel {
 		}
 		return "redirect:../member/join_modify.do";
 	}
-
+	
 }

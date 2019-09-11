@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import com.ciwi.vo.MemberVO;
+import com.ciwi.vo.MovieGenreVO;
+import com.ciwi.vo.ShowGenreVO;
 public class MemberDAO {
 	private static SqlSessionFactory ssf;
 	static {
@@ -52,6 +54,35 @@ public class MemberDAO {
 			if (session != null)
 				session.close();
 		}
+	}
+	// 회원가입 장르 검색
+	public static List<MovieGenreVO> joinMovieGenreData(){
+		List<MovieGenreVO> list= new ArrayList<MovieGenreVO>();
+		SqlSession session = null;
+		try {
+			session = ssf.openSession(true);
+			list=session.selectList("joinMovieGenreData");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return list;
+	}
+	public static List<ShowGenreVO> joinShowGenreData(){
+		List<ShowGenreVO> list= new ArrayList<ShowGenreVO>();
+		SqlSession session = null;
+		try {
+			session = ssf.openSession(true);
+			list=session.selectList("joinShowGenreData");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null)
+				session.close();
+		}
+		return list;
 	}
 
 	// 회원가입 후 아이디받기
@@ -197,5 +228,6 @@ public class MemberDAO {
 		}
 		return vo;
 	}
+	
 
 }

@@ -3,6 +3,14 @@ package com.ciwi.vo;
 public class MovieGenreVO {
 	private int movie_no;
 	private String movie_genre;
+	private ShowGenreVO sv = new ShowGenreVO();
+	public ShowGenreVO getSv() {
+		return sv;
+	}
+
+	public void setSv(ShowGenreVO sv) {
+		this.sv = sv;
+	}
 
 	public int getMovie_no() {
 		return movie_no;

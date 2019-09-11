@@ -6,9 +6,7 @@
 <meta charset="UTF-8">
 <title>CIWI Template</title>
 <style type="text/css">
-.section{
-	margin:0px auto;
-}
+
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
