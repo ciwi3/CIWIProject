@@ -18,7 +18,7 @@
 				<div class="col-md-offset-1 col-md-10 text-center">
 					<div class="author">
 						<h1 class="text-uppercase">행사 ／ 축제</h1>
-<!-- 						<p class="lead">리스트를 통해 어떤 행사 및 축제가 있는지 확인하고, 원하는 내용의 정보를 얻어
+						<!-- 						<p class="lead">리스트를 통해 어떤 행사 및 축제가 있는지 확인하고, 원하는 내용의 정보를 얻어
 							직접 즐겨보세요!</p> -->
 					</div>
 				</div>
@@ -27,17 +27,36 @@
 	</div>
 	<!-- /PAGE HEADER --> </header>
 	<!-- /HEADER -->
+	<!-- SEARCH -->
+	<form method="get" action="../contents/festival_search.do">
+		<div class="container-fluid">
+			<div class="row">
+				<div style="padding: 50px, 20px, 20px, 50px">
+					<select name="search">
+						<optgroup>
+							<option selected="selected">제목</option>
+							<option>내용</option>
+						</optgroup>
+					</select> <input type="text" size=20 name="ftext" alt="Search"> <input
+						type="submit" class="btn btn-sm">
+				</div>
+			</div>
+		</div>
+	</form>
+	<!-- SEARCH -->
 
 	<!-- SECTION -->
-	<div class="section" style="padding-top:40px">
+	<!-- SECTION -->
+	<div class="section">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
-			<c:forEach var="fvo" items="${flist }">
-				<div class="col-md-3">
+			<div class="row">
+				<c:forEach var="fvo" items="${flist }">
+					<div class="col-md-3">
 						<!-- post -->
 						<div class="poster">
-							<a class="post-img"
+							<a class="imges"
 								href="../contents/festival_detail.do?fno=${fvo.fno }"><img
 								src="${fvo.poster }" width=250px height=350px></a>
 							<div class="post-body">
@@ -50,14 +69,14 @@
 									<li>${fvo.host }</li>
 									<li>${fvo.fdate }</li>
 								</ul>
-								<p>${fvo.place }</p>
+								<p>${fvo.place}</p>
 							</div>
 						</div>
 						<!-- /post -->
 						<hr>
 					</div>
-			</c:forEach>
-				</div>
+				</c:forEach>
+			</div>
 			<!-- /row -->
 			<div class="row text-center">
 				<ul class="pagination pagination-lg">

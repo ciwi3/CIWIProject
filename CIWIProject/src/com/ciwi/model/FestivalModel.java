@@ -8,8 +8,11 @@ import com.ciwi.controller.Controller;
 import com.ciwi.controller.Model;
 import com.ciwi.controller.RequestMapping;
 import com.ciwi.dao.*;
+import com.ciwi.vo.FestivalGenreVO;
 import com.ciwi.vo.FestivalVO;
 import com.ciwi.vo.JjimVO;
+import com.ciwi.vo.MovieGenreVO;
+import com.ciwi.vo.MovieVO;
 import com.ciwi.vo.ReviewVO;
 
 @Controller("festivalModel")
@@ -81,6 +84,22 @@ public class FestivalModel {
 			model.addAttribute("main_jsp", "../contents/festival_detail.jsp");
 		} catch(Exception e) {}
 		
+		return "../main/main.jsp";
+	}
+	@RequestMapping("contents/festival_search.do")
+	public String show_Search(Model model) {
+		String searchOption = model.getRequest().getParameter("search");
+		String search = model.getRequest().getParameter("ftext");
+		Map map = new HashMap<>();
+		map.put("searchOption", searchOption);
+		map.put("search", search);
+
+		List<FestivalVO> flist = FestivalDAO.festivalSearch(map);
+
+		model.addAttribute("flist", flist);
+		model.addAttribute("count", flist.size());
+		model.addAttribute("main_jsp", "../contents/festival_search.jsp");
+
 		return "../main/main.jsp";
 	}
 	@RequestMapping("contents/festival_jjim_ok.do")
