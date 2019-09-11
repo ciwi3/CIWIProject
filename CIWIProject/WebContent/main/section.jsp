@@ -14,68 +14,65 @@
 		<div class="container">
 			<!-- row -->
 			<div id="hot-post" class="row hot-post">
-				<div class="col-md-8 hot-post-left">
-					<!-- post -->
+				<div class="col-md-4 hot-post-left">
+					<!-- post 1-->
 					<div class="post post-thumb">
-						<a class="post-img" href="blog-post.html"><img
-							src="../img/hot-post-1.jpg" alt=""></a>
+						<a class="post-img" href="../contents/festival_detail.do?fno=2"><img
+							src="https://www.culture.go.kr/upload/rdf/19/08/rdf_2019082414445511491.jpg" width="200" height="500"></a>
 						<div class="post-body">
 							<div class="post-category">
-								<a href="category.html">Lifestyle</a>
+								<a href="../contents/festival.do">Festival</a>
 							</div>
 							<h3 class="post-title title-lg">
-								<a href="blog-post.html">Postea senserit id eos, vivendo
-									periculis ei qui</a>
+								<a href="../contents/festival_detail.do?fno=2">원마운트 슈퍼문 페스티벌
+								</a>
 							</h3>
 							<ul class="post-meta">
-								<li><a href="author.html">John Doe</a></li>
-								<li>20 April 2018</li>
+								<li>2019.09.06~15</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+					<!-- /post 2-->
+				<div class="col-md-4 hot-post-left">
+					<!-- post -->
+					<div class="post post-thumb">
+						<a class="post-img" href="../contents/movie_detail.do?no=3"><img
+							src="http://viewers.heraldcorp.com/news/photo/201906/37340_33635_1750.jpg" width="200" height="500"></a>
+						<div class="post-body">
+							<div class="post-category">
+								<a href="../contents/movie.do">movie</a>
+							</div>
+							<h3 class="post-title title-lg">
+								<a href="../contents/movie_detail.do?no=3">엑스트</a>
+							</h3>
+							<ul class="post-meta">
+								<li>2019.07.31. 개봉</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+					<!-- /post 3-->
+				<div class="col-md-4 hot-post-left">
+					<!-- post -->
+					<div class="post post-thumb">
+						<a class="post-img" href="../contents/show_detail.do?no=93"><img
+							src="https://www.culture.go.kr/upload/rdf/19/08/rdf_201908169592494529.jpg" width="200" height="500"></a>
+						<div class="post-body">
+							<div class="post-category">
+								<a href="../contents/show.do">concert</a>
+							</div>
+							<h3 class="post-title title-lg">
+								<a href="../contents/show_detail.do?no=93">아몬드</a>
+							</h3>
+							<ul class="post-meta">
+								<li>2019-09-19~25</li>
 							</ul>
 						</div>
 					</div>
 					<!-- /post -->
 				</div>
-				<div class="col-md-4 hot-post-right">
-					<!-- post -->
-					<div class="post post-thumb">
-						<a class="post-img" href="blog-post.html"><img
-							src="../img/hot-post-2.jpg" alt=""></a>
-						<div class="post-body">
-							<div class="post-category">
-								<a href="category.html">Lifestyle</a>
-							</div>
-							<h3 class="post-title">
-								<a href="blog-post.html">Sed ut perspiciatis, unde omnis
-									iste natus error sit</a>
-							</h3>
-							<ul class="post-meta">
-								<li><a href="author.html">John Doe</a></li>
-								<li>20 April 2018</li>
-							</ul>
-						</div>
-					</div>
-					<!-- /post -->
 
-					<!-- post -->
-					<div class="post post-thumb">
-						<a class="post-img" href="blog-post.html"><img
-							src="../img/hot-post-3.jpg" alt=""></a>
-						<div class="post-body">
-							<div class="post-category">
-								<a href="category.html">Fashion</a> <a href="category.html">Lifestyle</a>
-							</div>
-							<h3 class="post-title">
-								<a href="blog-post.html">Mel ut impetus suscipit tincidunt.
-									Cum id ullum laboramus persequeris.</a>
-							</h3>
-							<ul class="post-meta">
-								<li><a href="author.html">John Doe</a></li>
-								<li>20 April 2018</li>
-							</ul>
-						</div>
-					</div>
-					<!-- /post -->
-				</div>
 			</div>
 			<!-- /row -->
 		</div>
