@@ -14,6 +14,7 @@ import com.ciwi.vo.JjimVO;
 import com.ciwi.vo.MovieGenreVO;
 import com.ciwi.vo.MovieVO;
 import com.ciwi.vo.ReviewVO;
+import com.ciwi.vo.ShowVO;
 
 @Controller("festivalModel")
 public class FestivalModel {
@@ -51,41 +52,70 @@ public class FestivalModel {
 		model.addAttribute("main_jsp", "../contents/festival.jsp");
 		return "../main/main.jsp";
 	}
+
 	@RequestMapping("contents/festival_detail.do")
-	public String festival_detail(Model model){
+	public String festival_detail(Model model) {
 		try {
 			String fno = model.getRequest().getParameter("fno");
 			HttpSession session = model.getRequest().getSession();
-			String id = (String)session.getAttribute("id");
-			int flag=0;
+			String id = (String) session.getAttribute("id");
+			int flag = 0;
 			FestivalVO fvo = FestivalDAO.festivalDetail(Integer.parseInt(fno));
-			
+
 			List<JjimVO> list = new ArrayList<JjimVO>();
 			Map selectFestivalJjimMap = new HashMap();
 			selectFestivalJjimMap.put("category_no", 3);
 			selectFestivalJjimMap.put("contents_no", Integer.parseInt(fno));
-			if(id==null) {
+			if (id == null) {
 				selectFestivalJjimMap.put("id", "-");
 			} else {
 				selectFestivalJjimMap.put("id", id);
 			}
-			
+
 			list = JjimDAO.getJjim(selectFestivalJjimMap);
-			if(list.isEmpty()) {
-				flag=0;
+			if (list.isEmpty()) {
+				flag = 0;
 			} else {
 				flag = list.get(0).getFlag();
 			}
-			
+
+			boolean tCheck = false;
 			List<ReviewVO> rlist = ReviewDAO.FestivalReviewList(fvo);
+
+			String content_no = model.getRequest().getParameter("fno");
+			String memid = (String) session.getAttribute("id");
+
+			ReviewVO vo = new ReviewVO();
+
+			vo.setContent_no(Integer.parseInt(content_no));
+			vo.setCategory_no(3);
+			vo.setMemid(memid);
+			ReviewVO resultVo = ReviewDAO.myReviewCheck(vo);
+
+			try {
+				if (resultVo.getRating() == 0) {
+				}
+			} catch (NullPointerException e) {
+				tCheck = false;
+			}
+
+			if (resultVo.getRtext() != null) {
+				tCheck = true;
+				model.addAttribute("vo", resultVo);
+			}
+
 			model.addAttribute("fvo", fvo);
 			model.addAttribute("flag", flag);
 			model.addAttribute("rlist", rlist);
+			model.addAttribute("tCheck", tCheck);
 			model.addAttribute("main_jsp", "../contents/festival_detail.jsp");
-		} catch(Exception e) {}
-		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return "../main/main.jsp";
 	}
+
 	@RequestMapping("contents/festival_search.do")
 	public String show_Search(Model model) {
 		String searchOption = model.getRequest().getParameter("search");
@@ -102,6 +132,7 @@ public class FestivalModel {
 
 		return "../main/main.jsp";
 	}
+
 	@RequestMapping("contents/festival_jjim_ok.do")
 	public String festival_jjim_ok(Model model) {
 		String fno = model.getRequest().getParameter("fno"); // 찜 등록,삭제 구분
@@ -123,7 +154,7 @@ public class FestivalModel {
 		list = JjimDAO.getJjim(selectFestivalJjimMap); // 카테고리, 글 번호, 아이디, 찜 상태
 														// 정보를 가져옴
 		flag = list.get(0).getFlag();
-		
+
 		if (list.size() >= 2) {
 			Map deleteJjimMap = new HashMap();
 			deleteJjimMap.put("category_no", 3);
@@ -135,8 +166,8 @@ public class FestivalModel {
 		}
 		return "redirect:../contents/festival_detail.do";
 	}
-	
-	@RequestMapping("contents/fesitval_review_insert.do")
+
+	@RequestMapping("contents/festival_review_insert.do")
 	public String Festival_rating(Model model) {
 		try {
 			model.getRequest().setCharacterEncoding("UTF-8");
@@ -146,16 +177,18 @@ public class FestivalModel {
 		String rating = model.getRequest().getParameter("rating");
 		String content_no = model.getRequest().getParameter("no");
 		HttpSession session = model.getRequest().getSession();
-		String memid = (String) session.getAttribute("memid");
+		String memid = (String) session.getAttribute("id");
+		int memno = (Integer) session.getAttribute("memno");
 		String rtext = model.getRequest().getParameter("rtext");
 
 		ReviewVO vo = new ReviewVO();
 
-		vo.setRating(Integer.parseInt(rating));
+		vo.setRating(Double.parseDouble(rating));
 		vo.setContent_no(Integer.parseInt(content_no));
 		vo.setMemid(memid);
-		vo.setCategory_no(4);
+		vo.setCategory_no(3);
 		vo.setRtext(rtext);
+		vo.setMemno(memno);
 
 		String rCheck = ReviewDAO.ratingCheck(vo);
 
@@ -168,17 +201,17 @@ public class FestivalModel {
 				ReviewDAO.reviewInsert(vo);
 			}
 		}
-
-		model.addAttribute("main_jsp", "../contents/festival_datail.jsp");
-
-		return "../main/main.jsp";
+		FestivalVO fvo = FestivalDAO.festivalDetail(Integer.parseInt(content_no));
+		List<ReviewVO> rlist = ReviewDAO.FestivalReviewList(fvo);
+		model.addAttribute("rlist", rlist);
+		return "../contents/review_ok.jsp";
 	}
 
 	@RequestMapping("contents/festival_delete.do")
 	public String reviewDelete(Model model) {
 		String rno = model.getRequest().getParameter("rno");
 		HttpSession session = model.getRequest().getSession();
-		String memid = (String) session.getAttribute("memid");
+		String memid = (String) session.getAttribute("id");
 
 		ReviewVO vo = new ReviewVO();
 

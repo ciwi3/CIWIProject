@@ -236,7 +236,7 @@ public class ShowModel {
 	public String reviewDelete(Model model) {
 		String rno = model.getRequest().getParameter("rno");
 		HttpSession session = model.getRequest().getSession();
-		String memid = (String) session.getAttribute("memid");
+		String memid = (String) session.getAttribute("id");
 		String content_no=model.getRequest().getParameter("content_no");
 		
 		ReviewVO vo = new ReviewVO();
@@ -244,7 +244,7 @@ public class ShowModel {
 		vo.setRno(Integer.parseInt(rno));
 		vo.setMemid(memid);
 		
-		ReviewDAO.reviewDelete(vo, memid);
+		ReviewDAO.reviewDelete(vo, memid);	
 		
 		ShowVO svo = ShowDAO.showDetailData(Integer.parseInt(content_no));
 		List<ReviewVO> rlist = ReviewDAO.showReviewList(svo);

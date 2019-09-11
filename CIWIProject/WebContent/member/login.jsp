@@ -30,12 +30,12 @@ $(function(){
 </script>
 </head>
 <body>
-	<div class="section">
+
 		<div class="container">
 			<div class="author">
-				<h2 class="text-uppercase">로그인</h2>
+				<h2 class="text-center" style="padding: 2ex;">로그인</h2>
 			</div>
-			<div class="row">
+			<div class="row" style="margin-left: 38%;">
 				<form method=post action="../member/login_ok.do" id="loginfrm">
 					<table class="table">
 						<tr>
@@ -62,6 +62,6 @@ $(function(){
 				</form>
 			</div>
 		</div>
-	</div>
+
 </body>
 </html>

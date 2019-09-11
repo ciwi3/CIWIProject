@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,11 +26,11 @@
 			});
 		});
 		var rating = '';
-/* 		var rText = '';		
+ 		var rText = '';		
 		if(${tCheck==true}){
-			rating= ${vo.rating};
-			rtext = "${vo.rtext}";
-		} */
+			rating= '${vo.rating}';
+			rtext = '${vo.rtext}';
+		} 
 		$('.starRev_t span').click(function() {
 			var star =$(this);				
 			rating = $(this).text();
@@ -41,7 +42,7 @@
 				url : '../contents/show_review_insert.do',
 				data : {
 					rating : rating,
-					no : ${svo.sno}
+					no : '${svo.sno}'
 				},
 				success : function(res) {
 					alert("평점이 등록되었습니다.");
@@ -63,7 +64,7 @@
 				data : {
 					rating : rating,
 					rtext : rtext,
-					no : ${svo.sno}
+					no : '${svo.sno}'
 				},
 				success : function(res) {
 					/* alert(res); */
@@ -83,7 +84,7 @@
 				data : {
 					rating : rating,
 					rtext : rtext,
-					no : ${svo.sno}
+					no : '${svo.sno}'
 				},
 				success : function(res) {
 					/* alert(res); */
@@ -91,14 +92,17 @@
 					$('#resultlist').html(res);
 				}
 			});
-		});
+				});
 		$('#deleteBtn').click(function(){
+
+			var rno = '${vo.rno}';
+			var content_no = '${vo.content_no}';
 			$.ajax({
 				type : 'post',
 				url : '../contents/show_delete.do',
 				data : {
-					rno : ${vo.rno},
-					content_no : ${vo.content_no}
+					rno : rno,
+					content_no : content_no
 				},
 				success : function(res) {
 					/* alert(res); */
@@ -305,9 +309,11 @@
 				<div class="box-footer">
 					<form id="reviewListfrm" name="reviewList" method="post">
 						<div class="reviewList text-center" id="resultlist">
-							<c:forEach var="vo" items="${rlist }">
-								<ul class="pagination pagination-sm no-margin">${vo.rating }
-								</ul>
+							<c:forEach var="vo" items="${ rlist}">
+								<tr>
+									<td>${vo.memid}</td>
+									<td>${vo.rating}</td>
+								</tr>
 							</c:forEach>
 						</div>
 					</form>
