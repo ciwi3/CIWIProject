@@ -119,7 +119,9 @@ public class MovieModel {
 
 			String content_no = model.getRequest().getParameter("no");
 			String memid = (String) session.getAttribute("id");
-
+			if(memid==null){
+				memid="-";
+			}
 			ReviewVO vo = new ReviewVO();
 
 			vo.setContent_no(Integer.parseInt(content_no));
