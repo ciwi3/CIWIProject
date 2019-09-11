@@ -100,7 +100,7 @@
 								<c:if test="${s.index<3 }">
 									<div class="post">
 										<a class="post-img"
-											href="../contents/show_detail.do?fno=${svo.sno }"> <img
+											href="../contents/show_detail.do?no=${svo.sno }"> <img
 											src="${svo.poster }" alt=""
 											style="width: 200px; height: 200px">
 										</a>
@@ -109,7 +109,7 @@
 												<a href="category.html">Travel</a>
 											</div>
 											<h3 class="post-title">
-												<a href="../contents/show_detail.do?fno=${svo.sno }">${svo.subject }</a>
+												<a href="../contents/show_detail.do?no=${svo.sno }">${svo.subject }</a>
 											</h3>
 											<ul class="post-meta">
 												<li>${svo.host }</li>
@@ -141,7 +141,7 @@
 							<div class="col-md-4">
 								<c:if test="${m.index<3 }">
 									<div class="post">
-										<a class="post-img" href="../contents/festival_detail.do?fno=${mvo.mno }">
+										<a class="post-img" href="../contents/movie_detail.do?no=${mvo.mno }">
 											<img src="${mvo.poster }" style="width: 200px; height: 200px">
 										</a>
 										<div class="post-body">
@@ -149,7 +149,7 @@
 												<a href="category.html">Travel</a>
 											</div>
 											<h3 class="post-title">
-												<a href="../contents/festival_detail.do?fno=${mvo.mno }">${mvo.title }</a>
+												<a href="../contents/movie_detail.do?no=${mvo.mno }">${mvo.title }</a>
 											</h3>
 											<ul class="post-meta">
 												<li>${mvo.director }</li>
