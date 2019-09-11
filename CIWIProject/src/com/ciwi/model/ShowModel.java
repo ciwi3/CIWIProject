@@ -141,7 +141,7 @@ public class ShowModel {
 		// 어떤 사용자가 어떤 카테고리의 어떤 글을 찜했는지 안했는지 알기 위한 jjim목록 가져오기
 		List<JjimVO> list = new ArrayList<JjimVO>();
 		Map selectShowJjimMap = new HashMap();
-		selectShowJjimMap.put("category_no", 4);
+		selectShowJjimMap.put("category_no", 1);
 		selectShowJjimMap.put("contents_no", sno);
 		selectShowJjimMap.put("id", id);
 		list = JjimDAO.getJjim(selectShowJjimMap); // 카테고리, 글 번호, 아이디, 찜 상태 정보를
@@ -151,7 +151,7 @@ public class ShowModel {
 
 		if (list.size() >= 2) {
 			Map deleteJjimMap = new HashMap();
-			deleteJjimMap.put("category_no", 4);
+			deleteJjimMap.put("category_no", 1);
 			deleteJjimMap.put("contents_no", sno);
 			deleteJjimMap.put("id", id);
 			JjimDAO.deleteJjimShowData(deleteJjimMap);
