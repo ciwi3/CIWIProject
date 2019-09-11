@@ -84,7 +84,9 @@ public class FestivalModel {
 
 			String content_no = model.getRequest().getParameter("fno");
 			String memid = (String) session.getAttribute("id");
-
+			if(memid==null) {
+				memid="-";
+			}
 			ReviewVO vo = new ReviewVO();
 
 			vo.setContent_no(Integer.parseInt(content_no));
@@ -178,9 +180,7 @@ public class FestivalModel {
 		String content_no = model.getRequest().getParameter("no");
 		HttpSession session = model.getRequest().getSession();
 		String memid = (String) session.getAttribute("id");
-		if(memid==null) {
-			memid="-";
-		}
+		
 		int memno = (Integer) session.getAttribute("memno");
 		String rtext = model.getRequest().getParameter("rtext");
 
