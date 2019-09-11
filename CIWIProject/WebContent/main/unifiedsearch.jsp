@@ -76,7 +76,7 @@
 					</c:if>
 					<td class="text-left">
 						<ul class="text-center">
-							<a href="../contents/movie_detail.do?mno=${mvo.mno }">
+							<a href="../contents/movie_detail.do?no=${mvo.mno }">
 								<li><img src="${mvo.poster }" width="80px" height="100px"></li>
 								<li>${mvo.title }</li>
 							</a>
